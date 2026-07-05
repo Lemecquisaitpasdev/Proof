@@ -57,6 +57,14 @@ après le lancement.
 - **Grille** : 12 colonnes, max 1100 px, gouttières 14 px, sections 88 px,
   rythme vertical multiple de 8
 
+## Images produit
+
+Déposez vos photos dans `public/products/` en les nommant par slug —
+`the-patch.jpg`, `the-ritual.jpg`, `protocol.jpg`, et `hero.jpg` pour le héros
+de la home. Dès qu'un fichier existe, il remplace automatiquement le visuel
+CSS généré (cartes shop + fiches produit). Formats : avif, webp, jpg, jpeg,
+png. Détails et rappels DA dans `public/products/README.md`.
+
 ## Panier & paiement
 
 Le panier vit côté client (`lib/cart.tsx`, persistance `localStorage`).

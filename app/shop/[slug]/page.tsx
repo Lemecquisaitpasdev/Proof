@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
@@ -7,6 +8,7 @@ import PatchVisual from "@/components/PatchVisual";
 import ProductCard from "@/components/ProductCard";
 import { AddToRitual } from "@/components/AddButton";
 import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
+import { productImage } from "@/lib/product-image";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -30,6 +32,7 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   const others = products.filter((p) => p.slug !== product.slug);
+  const photo = productImage(product.slug);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -56,11 +59,22 @@ export default async function ProductPage({ params }: Props) {
 
           <div className="pdp">
             <div className="pdp__visual">
-              <PatchVisual
-                layers={product.layers}
-                count={product.coverage}
-                label={BATCH}
-              />
+              {photo ? (
+                <Image
+                  src={photo}
+                  alt={`${product.name} — silicone scar patch`}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 550px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              ) : (
+                <PatchVisual
+                  layers={product.layers}
+                  count={product.coverage}
+                  label={BATCH}
+                />
+              )}
             </div>
 
             <div>

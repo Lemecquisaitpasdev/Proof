@@ -1,11 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import PatchVisual from "@/components/PatchVisual";
 import { products } from "@/lib/products";
+import { productImage } from "@/lib/product-image";
 
 export default function HomePage() {
+  const heroPhoto = productImage("hero");
+
   return (
     <>
       {/* HÉROS */}
@@ -36,7 +40,18 @@ export default function HomePage() {
               </div>
             </div>
             <div className="hero__visual">
-              <PatchVisual layers={1} count="5 × 15 cm" />
+              {heroPhoto ? (
+                <Image
+                  src={heroPhoto}
+                  alt="Proof — premium silicone scar patch"
+                  fill
+                  sizes="(max-width: 940px) 100vw, 460px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              ) : (
+                <PatchVisual layers={1} count="5 × 15 cm" />
+              )}
             </div>
           </div>
 

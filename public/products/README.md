@@ -1,26 +1,33 @@
 # Images produit — déposez vos fichiers ici
 
 Déposez une image dans ce dossier et le site l'utilise automatiquement à la
-place du visuel CSS généré (carte boutique + fiche produit). Aucun code à
-toucher.
+place du visuel CSS généré. Aucun code à toucher, aucun renommage nécessaire :
+vos noms de fichiers sont déjà reconnus (majuscules/minuscules indifférentes).
 
-## Convention de nommage
+## Vos fichiers → où ils apparaissent
 
-Le nom du fichier = le slug du produit :
+| Votre fichier | Emplacement sur le site |
+| --- | --- |
+| `patchProof.png` | **The Patch** — carte shop + fiche produit |
+| `patchproofeditionslimitee.png` | **The Ritual** — carte shop + fiche produit |
+| `packagingproofpatch.png` | **Protocol** — carte shop + fiche produit |
+| `Patchproofgris.png` | The Patch — 2ᵉ image de la fiche produit |
+| `siliconegelmannequin.png` | **Héros de la page d'accueil** |
+| `produitgelsilicone.png` | Science — section 01, le matériau |
+| `gelsilicone.png` | Science — section 02, le mécanisme |
+| `texturegelsilicone.png` | Texture de fond (Story + Science, opacité 8 % — règle R.03) |
+| `ordonnancepatchsilicone.png` | Home — à côté du bloc posologie |
 
-| Fichier | Produit | Où elle apparaît |
-| --- | --- | --- |
-| `the-patch.jpg` | The Patch — $29 | Carte shop + fiche produit |
-| `the-ritual.jpg` | The Ritual — $69 | Carte shop + fiche produit |
-| `protocol.jpg` | Protocol — $129 | Carte shop + fiche produit |
-| `hero.jpg` | — | Visuel du héros de la page d'accueil |
+## Convention générique (fonctionne aussi)
 
-Formats acceptés : `.avif`, `.webp`, `.jpg`, `.jpeg`, `.png` (premier trouvé
-dans cet ordre). Next.js redimensionne et optimise tout seul — visez
-simplement ≥ 1200 px de large.
+`the-patch`, `the-ritual`, `protocol` (+ suffixe `-2` pour une seconde image
+de fiche), `hero`, `science-material`, `science-mechanism`, `texture`,
+`ordonnance` — avec l'extension `.avif`, `.webp`, `.jpg`, `.jpeg` ou `.png`
+(premier format trouvé dans cet ordre).
 
-Après ajout ou suppression d'une image, relancez `npm run dev` (ou refaites
-un build) pour que le changement soit pris en compte.
+Next.js redimensionne et optimise tout seul — visez simplement ≥ 1200 px de
+large. Après ajout ou suppression d'une image, relancez `npm run dev` ou
+refaites un build.
 
 ## Rappels DA — règle R.01
 

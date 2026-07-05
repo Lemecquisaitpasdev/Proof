@@ -1286,6 +1286,61 @@ strong {
   white-space: nowrap;
 }
 
+/* ============ IMAGES ÉDITORIALES ============ */
+
+.imgframe {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--charbon);
+}
+
+.imgframe--tall {
+  aspect-ratio: 1 / 1.05;
+}
+
+.pdp__gallery {
+  display: grid;
+  gap: var(--gut);
+}
+
+/* R.03 — texture en fond de section, 10 % d'opacité maximum */
+.section--tex {
+  position: relative;
+}
+
+.section--tex > .texbg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.section--tex > .container {
+  position: relative;
+}
+
+.ordgrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--gut);
+  align-items: stretch;
+}
+
+@media (max-width: 860px) {
+  .ordgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ordgrid .imgframe {
+  aspect-ratio: auto;
+  min-height: 240px;
+  height: 100%;
+}
+
 /* ============ DIVERS ============ */
 
 .pagehead {

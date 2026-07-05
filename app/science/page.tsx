@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
+import { productImage } from "@/lib/product-image";
 
 export const metadata: Metadata = {
   title: "Science",
@@ -10,6 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default function SciencePage() {
+  const materialPhoto = productImage("science-material");
+  const mechanismPhoto = productImage("science-mechanism");
+  const texture = productImage("texture");
+
   return (
     <>
       <section className="pagehead">
@@ -45,6 +51,17 @@ export default function SciencePage() {
               used in clinical settings, cut as a 5 × 15 cm patch you can trim
               to your scar.
             </p>
+            {materialPhoto ? (
+              <div className="imgframe" style={{ marginTop: 28 }}>
+                <Image
+                  src={materialPhoto}
+                  alt="Medical-grade silicone — the material"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 620px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
@@ -81,6 +98,17 @@ export default function SciencePage() {
                 ]}
               />
             </div>
+            {mechanismPhoto ? (
+              <div className="imgframe" style={{ marginTop: "var(--gut)" }}>
+                <Image
+                  src={mechanismPhoto}
+                  alt="Silicone — occlusion and hydration"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 620px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
@@ -89,7 +117,18 @@ export default function SciencePage() {
         <Trait />
       </div>
 
-      <section className="section">
+      <section className={`section${texture ? " section--tex" : ""}`}>
+        {texture ? (
+          <div className="texbg" aria-hidden="true">
+            <Image
+              src={texture}
+              alt=""
+              fill
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        ) : null}
         <div className="container split">
           <div>
             <span className="eyebrow">03 — The evidence</span>

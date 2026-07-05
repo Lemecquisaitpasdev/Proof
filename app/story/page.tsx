@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
+import { productImage } from "@/lib/product-image";
 
 export const metadata: Metadata = {
   title: "Story",
@@ -10,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function StoryPage() {
+  const texture = productImage("texture");
+
   return (
     <>
       <section className="pagehead">
@@ -105,7 +109,18 @@ export default function StoryPage() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className={`section${texture ? " section--tex" : ""}`}>
+        {texture ? (
+          <div className="texbg" aria-hidden="true">
+            <Image
+              src={texture}
+              alt=""
+              fill
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        ) : null}
         <div className="container">
           <p className="quote measure" style={{ maxWidth: "20em" }}>
             The scar stays. <em>That is the point.</em>

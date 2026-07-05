@@ -33,6 +33,7 @@ export default async function ProductPage({ params }: Props) {
 
   const others = products.filter((p) => p.slug !== product.slug);
   const photo = productImage(product.slug);
+  const photo2 = productImage(`${product.slug}-2`);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -58,23 +59,36 @@ export default async function ProductPage({ params }: Props) {
           </nav>
 
           <div className="pdp">
-            <div className="pdp__visual">
-              {photo ? (
-                <Image
-                  src={photo}
-                  alt={`${product.name} — silicone scar patch`}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 550px"
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
-              ) : (
-                <PatchVisual
-                  layers={product.layers}
-                  count={product.coverage}
-                  label={BATCH}
-                />
-              )}
+            <div className="pdp__gallery">
+              <div className="pdp__visual">
+                {photo ? (
+                  <Image
+                    src={photo}
+                    alt={`${product.name} — silicone scar patch`}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 550px"
+                    style={{ objectFit: "cover" }}
+                    priority
+                  />
+                ) : (
+                  <PatchVisual
+                    layers={product.layers}
+                    count={product.coverage}
+                    label={BATCH}
+                  />
+                )}
+              </div>
+              {photo2 ? (
+                <div className="imgframe">
+                  <Image
+                    src={photo2}
+                    alt={`${product.name} — detail`}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 550px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              ) : null}
             </div>
 
             <div>

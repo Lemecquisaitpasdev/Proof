@@ -9,6 +9,7 @@ import { productImage } from "@/lib/product-image";
 
 export default function HomePage() {
   const heroPhoto = productImage("hero");
+  const ordonnancePhoto = productImage("ordonnance");
 
   return (
     <>
@@ -155,7 +156,10 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <div style={{ marginTop: "var(--gut)" }}>
+          <div
+            className={ordonnancePhoto ? "ordgrid" : undefined}
+            style={{ marginTop: "var(--gut)" }}
+          >
             <Posology
               lines={[
                 "Apply once daily on clean skin.",
@@ -163,6 +167,17 @@ export default function HomePage() {
               ]}
               sideEffects="Side effects : pride, confidence, questions at parties."
             />
+            {ordonnancePhoto ? (
+              <div className="imgframe">
+                <Image
+                  src={ordonnancePhoto}
+                  alt="Proof — posology"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 420px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

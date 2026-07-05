@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import {
+  Archivo,
+  IBM_Plex_Mono,
+  Instrument_Sans,
+  Playfair_Display,
+} from "next/font/google";
 import { CartProvider } from "@/lib/cart";
+import { products } from "@/lib/products";
+import { productImage } from "@/lib/product-image";
 import Topbar from "@/components/Topbar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,6 +32,12 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -55,10 +68,14 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const thumbs = Object.fromEntries(
+    products.map((p) => [p.slug, productImage(p.slug)]),
+  );
+
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${instrument.variable} ${plexMono.variable}`}
+      className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${playfair.variable}`}
     >
       <body>
         <CartProvider>
@@ -66,7 +83,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
-          <CartDrawer />
+          <CartDrawer thumbs={thumbs} />
         </CartProvider>
       </body>
     </html>

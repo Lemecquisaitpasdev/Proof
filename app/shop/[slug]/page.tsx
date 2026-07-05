@@ -33,7 +33,10 @@ export default async function ProductPage({ params }: Props) {
 
   const others = products.filter((p) => p.slug !== product.slug);
   const photo = productImage(product.slug);
-  const photo2 = productImage(`${product.slug}-2`);
+  const gallery = [
+    productImage(`${product.slug}-2`),
+    productImage(`${product.slug}-3`),
+  ].filter((g): g is string => g !== null);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -78,17 +81,17 @@ export default async function ProductPage({ params }: Props) {
                   />
                 )}
               </div>
-              {photo2 ? (
-                <div className="imgframe">
+              {gallery.map((src, i) => (
+                <div className="imgframe" key={src}>
                   <Image
-                    src={photo2}
-                    alt={`${product.name} — detail`}
+                    src={src}
+                    alt={`${product.name} — detail ${i + 2}`}
                     fill
                     sizes="(max-width: 900px) 100vw, 550px"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
-              ) : null}
+              ))}
             </div>
 
             <div>
@@ -162,30 +165,12 @@ export default async function ProductPage({ params }: Props) {
             <div className="specs-scroll">
               <table className="specs" style={{ minWidth: 0 }}>
                 <tbody>
-                  <tr>
-                    <th scope="row">Material</th>
-                    <td className="is-os">Medical-grade silicone</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Size</th>
-                    <td>5 × 15 cm — cut to fit</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Wear</th>
-                    <td>12–23 h per day</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Reuse</th>
-                    <td>Up to 14 days per patch</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Coverage</th>
-                    <td>{product.coverage}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Batch</th>
-                    <td>{BATCH}</td>
-                  </tr>
+                  {product.specs.map(([label, value], i) => (
+                    <tr key={label}>
+                      <th scope="row">{label}</th>
+                      <td className={i === 0 ? "is-os" : undefined}>{value}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -194,9 +179,28 @@ export default async function ProductPage({ params }: Props) {
       </section>
 
       <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container split">
+          <div>
+            <span className="eyebrow">Questions</span>
+            <h2 className="h2">Before you commit.</h2>
+          </div>
+          <div className="faq">
+            {product.faq.map((item) => (
+              <details key={item.q}>
+                <summary>{item.q}</summary>
+                <div className="faq__a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <span className="eyebrow">Continue the story</span>
-          <div className="minicards">
+          <div className="cards">
             {others.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}

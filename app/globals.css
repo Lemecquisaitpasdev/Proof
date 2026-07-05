@@ -339,8 +339,28 @@ strong {
   gap: var(--gut);
 }
 
+.cards--four {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1000px) {
+  .cards--four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 860px) {
   .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .cards--four {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .cards--four {
     grid-template-columns: 1fr;
   }
 }
@@ -364,6 +384,24 @@ strong {
   aspect-ratio: 4 / 3.4;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+}
+
+.card__visual img {
+  transition: transform 0.7s var(--ease-organique);
+}
+
+.card:hover .card__visual img {
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__visual img {
+    transition: none;
+  }
+
+  .card:hover .card__visual img {
+    transform: none;
+  }
 }
 
 .card__body {
@@ -553,7 +591,7 @@ strong {
 }
 
 .specs-scroll .specs {
-  min-width: 640px;
+  min-width: 780px;
 }
 
 /* ============ HEADER ============ */
@@ -740,35 +778,123 @@ strong {
   min-height: 320px;
 }
 
-.statline {
+/* PRESSE — « as seen in », défilement lent, voix des wordmarks */
+.press {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0;
+  align-items: center;
   border-block: 1px solid var(--line);
   margin-top: 72px;
+  overflow: hidden;
 }
 
-.statline__item {
+.press__label {
+  flex-shrink: 0;
   font-family: var(--font-mono), monospace;
-  font-size: 10.5px;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--or);
+  padding: 20px 28px 20px 0;
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.press__viewport {
+  overflow: hidden;
+  flex: 1;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.press__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 44s linear infinite;
+}
+
+.press__seq {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pw {
+  white-space: nowrap;
   text-transform: uppercase;
   color: var(--os-55);
-  padding: 14px 22px;
-  border-right: 1px solid var(--line);
+  padding-inline: 34px;
+  line-height: 1;
 }
 
-.statline__item:first-child {
-  padding-left: 0;
+.pw-vogue {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  font-size: 23px;
+  letter-spacing: 0.16em;
 }
 
-.statline__item:last-child {
-  border-right: none;
+.pw-elle {
+  font-family: var(--font-archivo), sans-serif;
+  font-stretch: 118%;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.3em;
 }
 
-.statline__item em {
-  font-style: normal;
-  color: var(--peau);
+.pw-bazaar {
+  font-family: var(--font-playfair), serif;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+}
+
+.pw-allure {
+  font-family: var(--font-instrument), sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.32em;
+}
+
+.pw-mc {
+  font-family: var(--font-playfair), serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.14em;
+}
+
+.pw-cosmo {
+  font-family: var(--font-archivo), sans-serif;
+  font-stretch: 82%;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: 0.05em;
+}
+
+.pw-glamour {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+}
+
+.pw-byrdie {
+  font-family: var(--font-instrument), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.34em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press__track {
+    animation: none;
+  }
+}
+
+@media (max-width: 660px) {
+  .press__label {
+    padding-right: 18px;
+  }
 }
 
 /* ============ SECTIONS D'ÉDITO ============ */
@@ -1396,14 +1522,6 @@ strong {
   }
 }
 
-.minicards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gut);
-}
-
-@media (max-width: 660px) {
-  .minicards {
-    grid-template-columns: 1fr;
-  }
+.hero__visual {
+  border: 1px solid var(--line);
 }

@@ -4,6 +4,7 @@ const ITEMS = [
   "Reusable 14 days",
   "Wear time 12–23 h",
   "5 × 15 cm",
+  "New — The Gel 30 ml",
   "Ships worldwide",
   "Honor it. Don't erase it.",
 ];

@@ -1,11 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/lib/cart";
 import { formatPrice, getProduct } from "@/lib/products";
 import PatchVisual from "@/components/PatchVisual";
 
-export default function CartDrawer() {
+export default function CartDrawer({
+  thumbs = {},
+}: {
+  thumbs?: Record<string, string | null>;
+}) {
   const { items, total, isOpen, close, setQty } = useCart();
   const lines = Object.entries(items)
     .map(([slug, qty]) => ({ product: getProduct(slug), qty }))
@@ -62,7 +67,21 @@ export default function CartDrawer() {
                     onClick={close}
                     aria-label={product.name}
                   >
-                    <PatchVisual layers={product.layers} label="" />
+                    {thumbs[product.slug] ? (
+                      <Image
+                        src={thumbs[product.slug] as string}
+                        alt=""
+                        width={64}
+                        height={64}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                      />
+                    ) : (
+                      <PatchVisual layers={product.layers} label="" />
+                    )}
                   </Link>
                   <div>
                     <div className="cline__name">{product.name}</div>

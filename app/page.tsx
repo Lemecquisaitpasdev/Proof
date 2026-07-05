@@ -4,6 +4,7 @@ import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import PatchVisual from "@/components/PatchVisual";
+import PressMarquee from "@/components/PressMarquee";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
@@ -56,31 +57,18 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="statline">
-            <span className="statline__item">
-              Wear <em>12–23 h</em> daily
-            </span>
-            <span className="statline__item">
-              Reusable <em>14 days</em>
-            </span>
-            <span className="statline__item">
-              <em>Medical-grade</em> silicone
-            </span>
-            <span className="statline__item">
-              Ships <em>worldwide</em>
-            </span>
-          </div>
+          <PressMarquee />
         </div>
       </section>
 
       {/* LA BOUTIQUE */}
       <section className="section" id="shop">
         <div className="container">
-          <span className="eyebrow">The shop — three chapters</span>
+          <span className="eyebrow">The shop — four chapters</span>
           <h2 className="h2" style={{ marginBottom: 40 }}>
             Pick your chapter.
           </h2>
-          <div className="cards">
+          <div className="cards cards--four">
             {products.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}

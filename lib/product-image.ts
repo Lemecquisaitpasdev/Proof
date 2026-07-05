@@ -16,15 +16,18 @@ const ALIASES: Record<string, string[]> = {
   // Produits — carte shop + fiche
   "the-patch": ["the-patch", "patchproof"],
   "the-ritual": ["the-ritual", "patchproofeditionslimitee"],
-  protocol: ["protocol", "packagingproofpatch"],
+  protocol: ["protocol"],
+  "the-gel": ["the-gel", "produitgelsilicone"],
 
-  // Seconde image de galerie sur les fiches produit
+  // Images de galerie supplémentaires sur les fiches produit
   "the-patch-2": ["the-patch-2", "patchproofgris"],
   "the-ritual-2": ["the-ritual-2"],
   "protocol-2": ["protocol-2"],
+  "the-gel-2": ["the-gel-2", "gelsilicone"],
+  "the-gel-3": ["the-gel-3", "siliconegelmannequin"],
 
-  // Héros de la home
-  hero: ["hero", "siliconegelmannequin"],
+  // Héros de la home — le packshot packaging, fissure kintsugi
+  hero: ["hero", "packagingproofpatch"],
 
   // Page Science
   "science-material": ["science-material", "produitgelsilicone"],
@@ -34,7 +37,7 @@ const ALIASES: Record<string, string[]> = {
   texture: ["texture", "texturegelsilicone"],
 
   // Visuel ordonnance, à côté du bloc posologie de la home
-  ordonnance: ["ordonnance", "ordonnancepatchsilicone"],
+  ordonnance: ["ordonnance"],
 };
 
 export function productImage(slot: string): string | null {

@@ -7,7 +7,7 @@ import { formatPrice, products } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Three chapters. The Patch at $29, The Ritual at $69, Protocol at $129. Medical-grade silicone patches that improve the appearance of scars.",
+    "Four chapters. The Patch at $29, The Ritual at $69, Protocol at $129, The Gel at $39. Medical-grade silicone that improves the appearance of scars.",
 };
 
 export default function ShopPage() {
@@ -16,16 +16,17 @@ export default function ShopPage() {
       <section className="pagehead">
         <div className="container">
           <span className="eyebrow">The shop</span>
-          <h1 className="h1 h1--page">Three chapters.</h1>
+          <h1 className="h1 h1--page">Four chapters.</h1>
           <p className="lead measure">
-            Every scar gets a chapter. Pick where yours starts.
+            Every scar gets a chapter. Three patches, one gel — pick where
+            yours starts.
           </p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <div className="cards">
+          <div className="cards cards--four">
             {products.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
@@ -95,8 +96,8 @@ export default function ShopPage() {
             <Posology
               title="Dispensing note"
               lines={[
-                "All chapters : same patch, same silicone, same size.",
-                "Only the duration of the ritual changes.",
+                "Same medical-grade silicone in every chapter.",
+                "Patch for coverage. Gel for the zones that move.",
               ]}
             />
           </div>

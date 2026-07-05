@@ -34,6 +34,7 @@ npm start          # sert le build
 | `/shop/the-patch` | The Patch — $29 — Chapitre 01, L'Accident |
 | `/shop/the-ritual` | The Ritual — $69 — Chapitre 02, Le Rituel (best-seller) |
 | `/shop/protocol` | Protocol — $129 — Chapitre 03, Le Protocole (post-op) |
+| `/shop/the-gel` | The Gel — $39 — Chapitre 04, Le Geste (visage & zones mobiles) |
 | `/story` | Manifeste — kintsugi, le trait |
 | `/science` | Mécanisme, preuves, ce qu'on refuse de dire |
 | `/help` | FAQ + contact |

@@ -15,7 +15,7 @@ export default function CheckoutPage() {
     <section className="pagehead section">
       <div className="container">
         <span className="eyebrow">Checkout</span>
-        <h1 className="h1 h1--page">Your ritual.</h1>
+        <h1 className="d1">Your ritual.</h1>
 
         {lines.length === 0 ? (
           <div style={{ marginTop: 48, maxWidth: 560 }}>
@@ -42,7 +42,7 @@ export default function CheckoutPage() {
                     {lines.map(({ product, qty }) =>
                       product ? (
                         <tr key={product.slug}>
-                          <td className="is-os">
+                          <td className="is-ink">
                             {product.name} — {product.chapter}
                           </td>
                           <td>{qty}</td>
@@ -53,7 +53,7 @@ export default function CheckoutPage() {
                     <tr>
                       <th scope="row">Total</th>
                       <td />
-                      <td className="is-os">{formatPrice(total)}</td>
+                      <td className="is-ink">{formatPrice(total)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -64,7 +64,7 @@ export default function CheckoutPage() {
                 className="mono"
                 style={{
                   marginTop: 16,
-                  color: "var(--os-40)",
+                  color: "var(--graphite)",
                   fontSize: 10,
                   letterSpacing: "0.18em",
                 }}

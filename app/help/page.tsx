@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Trait from "@/components/Trait";
+import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 
 export const metadata: Metadata = {
@@ -62,9 +62,14 @@ export default function HelpPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">Help</span>
-          <h1 className="h1 h1--page">Questions, answered.</h1>
-          <p className="lead measure">
+          <span className="eyebrow enter">Help</span>
+          <h1 className="d1 enter" style={{ "--d": ".1s" } as React.CSSProperties}>
+            Questions, answered.
+          </h1>
+          <p
+            className="lead measure enter"
+            style={{ "--d": ".22s" } as React.CSSProperties}
+          >
             Short answers, no hotline music. If it is not here, write to us.
           </p>
         </div>
@@ -77,12 +82,12 @@ export default function HelpPage() {
           style={gi > 0 ? { paddingTop: 0 } : undefined}
         >
           <div className="container split">
-            <div>
-              <span className="eyebrow">
+            <div data-reveal>
+              <span className="eyebrow eyebrow--gold">
                 {String(gi + 1).padStart(2, "0")} — {group.section}
               </span>
             </div>
-            <div className="faq">
+            <div className="faq" data-reveal>
               {group.items.map((item) => (
                 <details key={item.q}>
                   <summary>{item.q}</summary>
@@ -96,22 +101,23 @@ export default function HelpPage() {
         </section>
       ))}
 
-      <div className="container">
-        <Trait />
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
       </div>
 
       <section className="section">
         <div className="container split">
-          <div>
-            <span className="eyebrow">Contact</span>
-            <h2 className="h2">A human answers.</h2>
+          <div data-reveal>
+            <span className="eyebrow eyebrow--gold">Contact</span>
+            <h2 className="d3">A human answers.</h2>
           </div>
-          <div>
+          <div data-reveal>
             <p className="measure">
               Write to{" "}
               <a
                 href="mailto:contactus@trackk.fr"
-                style={{ color: "var(--peau)", textDecoration: "underline" }}
+                className="klink"
+                style={{ color: "var(--kintsugi-ink)" }}
               >
                 contactus@trackk.fr
               </a>{" "}

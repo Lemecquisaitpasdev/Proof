@@ -6,7 +6,7 @@ export default function NotFound() {
     <section className="pagehead section">
       <div className="container">
         <span className="eyebrow">Error 404</span>
-        <h1 className="h1 h1--page">
+        <h1 className="d1">
           This page left
           <br />
           no scar.

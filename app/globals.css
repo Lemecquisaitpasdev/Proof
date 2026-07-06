@@ -1896,10 +1896,17 @@ html.js .ritual--live .rstep {
   gap: var(--gut);
   margin-top: 32px;
   align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .pdp__buy .btn {
-  flex: 1;
+  flex: 1 1 200px;
+}
+
+@media (max-width: 420px) {
+  .pdp__buy .btn {
+    flex-basis: 100%;
+  }
 }
 
 .qty--pdp {

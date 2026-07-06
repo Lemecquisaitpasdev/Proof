@@ -1,46 +1,50 @@
 # Images produit — déposez vos fichiers ici
 
 Déposez une image dans ce dossier et le site l'utilise automatiquement à la
-place du visuel CSS généré. Aucun code à toucher, aucun renommage nécessaire :
-vos noms de fichiers sont déjà reconnus (majuscules/minuscules indifférentes).
+place du visuel CSS généré (`PlateVisual`). Les noms de fichiers actuels de la
+marque sont déjà reconnus (majuscules/minuscules indifférentes) ; la table
+complète des slots vit dans `lib/product-image.ts`.
 
-## Vos fichiers → où ils apparaissent
+## Vos fichiers → où ils apparaissent (DA V2.0)
 
 | Votre fichier | Emplacement sur le site |
 | --- | --- |
-| `siliconegelmannequin.png` | **Héros de la page d'accueil** + 3ᵉ image de la fiche The Gel |
-| `packagingproofpatch.png` | Story — section « Clinical luxury » (l'objet) |
-| `patchProof.png` | **The Patch** — carte shop + fiche produit |
-| `Patchproofgris.png` | The Patch — 2ᵉ image de la fiche produit |
-| `patchproofeditionslimitee.png` | **The Ritual** — carte shop + fiche produit |
-| `produitgelsilicone.png` | **The Gel** — carte shop + fiche produit, et Science 01 |
-| `gelsilicone.png` | The Gel — 2ᵉ image de fiche, et Science 02 |
-| `texturegelsilicone.png` | Texture de fond (Story + Science, opacité 8 % — règle R.03) |
-| `ordonnancepatchsilicone.png` | **Non utilisée** — visuel hors marque (climatisation), à retirer |
+| `siliconegelmannequin.png` | **Héros** (portrait lumineux, cicatrice assumée) + étape « Wear » du rituel |
+| `patchProof.png` | **The Patch** — carte shop (état primaire, macro sur peau) + étape « Apply » |
+| `texturegelsilicone.png` | **The Gel** — carte shop (état primaire, texture) + étape « Clean » + macro texture |
+| `patchproofeditionslimitee.png` | **The Ritual** — état hover studio + galerie fiche |
+| `packagingproofpatch.png` | **Story** (macro kintsugi, parallaxe) + hover Protocol |
+| `produitgelsilicone.png` | The Gel — hover studio + galerie ; Science 01 |
+| `gelsilicone.png` | The Gel — galerie fiche ; Science 02 |
+| `Patchproofgris.png` | The Patch — hover studio + galerie fiche |
+| `ordonnancepatchsilicone.png` | **Non utilisée** — visuel hors marque, à retirer |
 
-Protocol n'a pas encore de photo : déposez un fichier `protocol.png` (ou
-.jpg/.webp) et il prendra la place du visuel CSS.
+Les cartes The Ritual et Protocol n'ont pas de photo primaire claire : elles
+affichent la plate CSS (`PlateVisual`, patch argile sur porcelaine) jusqu'à ce
+qu'un fichier `the-ritual.png` / `protocol.png` soit déposé.
 
-## Convention générique (fonctionne aussi)
+## Slots reconnus
 
-`the-patch`, `the-ritual`, `protocol`, `the-gel` (+ suffixes `-2` / `-3` pour
-les images de galerie des fiches), `hero`, `science-material`,
-`science-mechanism`, `texture`, `ordonnance` — avec l'extension `.avif`,
-`.webp`, `.jpg`, `.jpeg` ou `.png` (premier format trouvé dans cet ordre).
+Primaires clairs : `hero`, `the-patch`, `the-ritual`, `protocol`, `the-gel`.
+Hover studio : `alt-the-patch`, `alt-the-ritual`, `alt-protocol`, `alt-the-gel`.
+Rituel : `ritual-clean`, `ritual-apply`, `ritual-wear`.
+Galeries PDP : `<slug>-2`, `<slug>-3`. Story : `story-object`. Science :
+`science-material`, `science-mechanism`. Macro : `texture`.
+Extensions dans l'ordre : `.avif`, `.webp`, `.jpg`, `.jpeg`, `.png`.
 
-Next.js redimensionne et optimise tout seul — visez simplement ≥ 1200 px de
-large. Après ajout ou suppression d'une image, relancez `npm run dev` ou
-refaites un build.
+Next.js redimensionne et optimise tout seul — visez ≥ 1200 px de large, ratio
+vertical 4:5 pour les cartes et le hero. Après ajout/suppression, relancez
+`npm run dev` ou refaites un build.
 
-## Rappels DA — règle R.01
+## Rappels DA V2.0 « Clinical warmth »
 
-- Fond charbon dégradé, jamais de fond blanc.
-- Lumière directionnelle unique venant du haut-gauche, ombres longues.
-- Surfaces : pierre brute, travertin sombre, béton.
-- Chaque image doit pouvoir être confondue avec une campagne de parfum —
-  jamais avec une photo de pharmacie.
-- Zéro avant/après. La retouche lisse les fonds, jamais les gens.
+- **Lumière, pas noir** : fonds bone / porcelaine / plâtre chaud, pas de fond
+  noir plein (le noir est réservé à la seule section Science).
+- Lumière naturelle latérale douce, rasante (≈ 20°) pour révéler la texture
+  silicone ; une seule ombre portée neutre.
+- Peau réelle, cicatrice visible et assumée, jamais lissée. Zéro avant/après.
+- Chaque image doit pouvoir être confondue avec une campagne de soin de luxe
+  (Sturm / Aesop / La Mer / Rhode) — jamais avec une photo de pharmacie.
 
-Le reste du dossier `public/` sert aux fichiers statiques classiques
-(og-image, favicons additionnels, etc.) — tout ce qui s'y trouve est servi à
-la racine du site.
+Le brief photo complet (cadrage, lumière, sujet) des assets flagship à produire
+est dans `docs/DESIGN.md` § 5.

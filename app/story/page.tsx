@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function StoryPage() {
   const texture = productImage("texture");
+  const objectPhoto = productImage("story-object");
 
   return (
     <>
@@ -72,6 +73,17 @@ export default function StoryPage() {
               the point. The point is a scar you carry on purpose, looked
               after, worn like anything else you value.
             </p>
+            {objectPhoto ? (
+              <div className="imgframe" style={{ marginTop: 28 }}>
+                <Image
+                  src={objectPhoto}
+                  alt="Proof packaging — the gold seam"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 620px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

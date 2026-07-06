@@ -8,13 +8,13 @@ vos noms de fichiers sont déjà reconnus (majuscules/minuscules indifférentes)
 
 | Votre fichier | Emplacement sur le site |
 | --- | --- |
-| `packagingproofpatch.png` | **Héros de la page d'accueil** (packaging, fissure kintsugi) |
+| `siliconegelmannequin.png` | **Héros de la page d'accueil** + 3ᵉ image de la fiche The Gel |
+| `packagingproofpatch.png` | Story — section « Clinical luxury » (l'objet) |
 | `patchProof.png` | **The Patch** — carte shop + fiche produit |
 | `Patchproofgris.png` | The Patch — 2ᵉ image de la fiche produit |
 | `patchproofeditionslimitee.png` | **The Ritual** — carte shop + fiche produit |
 | `produitgelsilicone.png` | **The Gel** — carte shop + fiche produit, et Science 01 |
 | `gelsilicone.png` | The Gel — 2ᵉ image de fiche, et Science 02 |
-| `siliconegelmannequin.png` | The Gel — 3ᵉ image de fiche (portrait) |
 | `texturegelsilicone.png` | Texture de fond (Story + Science, opacité 8 % — règle R.03) |
 | `ordonnancepatchsilicone.png` | **Non utilisée** — visuel hors marque (climatisation), à retirer |
 

@@ -26,12 +26,15 @@ const ALIASES: Record<string, string[]> = {
   "the-gel-2": ["the-gel-2", "gelsilicone"],
   "the-gel-3": ["the-gel-3", "siliconegelmannequin"],
 
-  // Héros de la home — le packshot packaging, fissure kintsugi
-  hero: ["hero", "packagingproofpatch"],
+  // Héros de la home — le portrait au flacon, cicatrice visible (R.02)
+  hero: ["hero", "siliconegelmannequin"],
 
   // Page Science
   "science-material": ["science-material", "produitgelsilicone"],
   "science-mechanism": ["science-mechanism", "gelsilicone"],
+
+  // Page Story — l'objet, packaging à la fissure kintsugi
+  "story-object": ["story-object", "packagingproofpatch"],
 
   // Texture de fond de section (R.03 — opacité ≤ 10 %)
   texture: ["texture", "texturegelsilicone"],

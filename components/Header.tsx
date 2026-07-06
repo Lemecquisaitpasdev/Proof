@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/lib/cart";
 
@@ -14,6 +15,18 @@ const LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const { count, open } = useCart();
+  const [pop, setPop] = useState(false);
+  const prev = useRef(count);
+
+  useEffect(() => {
+    if (count > prev.current) {
+      setPop(true);
+      const t = setTimeout(() => setPop(false), 500);
+      prev.current = count;
+      return () => clearTimeout(t);
+    }
+    prev.current = count;
+  }, [count]);
 
   return (
     <header className="header">
@@ -28,8 +41,8 @@ export default function Header() {
               href={href}
               className={
                 pathname === href || pathname.startsWith(`${href}/`)
-                  ? "is-active"
-                  : undefined
+                  ? "klink is-active"
+                  : "klink"
               }
             >
               {label}
@@ -37,7 +50,13 @@ export default function Header() {
           ))}
         </nav>
         <button type="button" className="cartbtn" onClick={open}>
-          Cart <em>({count})</em>
+          Cart
+          <em
+            key={count}
+            className={pop ? "cartbtn__count is-pop" : "cartbtn__count"}
+          >
+            ({count})
+          </em>
         </button>
       </div>
     </header>

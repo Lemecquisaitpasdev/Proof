@@ -1,10 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Archivo,
-  IBM_Plex_Mono,
-  Instrument_Sans,
-  Playfair_Display,
-} from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
 import { CartProvider } from "@/lib/cart";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
@@ -12,18 +7,19 @@ import Topbar from "@/components/Topbar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import Fx from "@/components/Fx";
 import "./globals.css";
 
-const archivo = Archivo({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  variable: "--font-fraunces",
+  axes: ["opsz"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 const instrument = Instrument_Sans({
   subsets: ["latin"],
-  axes: ["wdth"],
   variable: "--font-instrument",
   display: "swap",
 });
@@ -32,12 +28,6 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -61,8 +51,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0b",
-  colorScheme: "dark",
+  themeColor: "#F5F1EA",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -75,10 +65,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${playfair.variable}`}
+      className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable}`}
     >
       <body>
+        {/* marque le JS disponible avant peinture — les reveals restent
+            visibles sans JavaScript */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
         <CartProvider>
+          <Fx />
           <Topbar />
           <Header />
           <main>{children}</main>

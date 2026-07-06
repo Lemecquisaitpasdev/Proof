@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { products } from "@/lib/products";
+import Newsletter from "@/components/Newsletter";
 
 export default function Footer() {
   return (
@@ -20,7 +21,9 @@ export default function Footer() {
             <ul>
               {products.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/shop/${p.slug}`}>{p.name}</Link>
+                  <Link href={`/shop/${p.slug}`} className="klink">
+                    {p.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -29,13 +32,19 @@ export default function Footer() {
             <h4>The House</h4>
             <ul>
               <li>
-                <Link href="/story">Story</Link>
+                <Link href="/story" className="klink">
+                  Story
+                </Link>
               </li>
               <li>
-                <Link href="/science">Science</Link>
+                <Link href="/science" className="klink">
+                  Science
+                </Link>
               </li>
               <li>
-                <Link href="/help">Help</Link>
+                <Link href="/help" className="klink">
+                  Help
+                </Link>
               </li>
             </ul>
           </div>
@@ -59,6 +68,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          <Newsletter />
         </div>
         <div className="footer__legal">
           <p>

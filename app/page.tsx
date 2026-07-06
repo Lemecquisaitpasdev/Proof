@@ -15,6 +15,7 @@ const D = (s: number) => ({ "--d": `${s}s` }) as React.CSSProperties;
 
 export default function HomePage() {
   const heroPhoto = productImage("hero");
+  const storyObject = productImage("story-object");
 
   return (
     <>
@@ -179,29 +180,45 @@ export default function HomePage() {
         <KintsugiLine variant="separator" />
       </div>
 
-      {/* L'HISTOIRE */}
+      {/* L'HISTOIRE — contemplative */}
       <section className="section--hush section">
-        <div className="container">
-          <span className="eyebrow" data-reveal>
-            The story
-          </span>
-          <p className="d2 story__quote" data-reveal>
-            In Japan, broken things are repaired with gold.
-          </p>
-          <p className="measure" style={{ marginTop: 32 }} data-reveal>
-            Kintsugi treats the repair as part of the object&apos;s history —
-            more valuable, not less. That is the entire idea behind Proof.
-            Honor it. Don&apos;t erase it.
-          </p>
-          <div data-reveal>
-            <Link
-              href="/story"
-              className="tlink klink"
-              style={{ marginTop: 32 }}
-            >
-              Read the story
-            </Link>
+        <div className="container story__grid">
+          <div>
+            <span className="eyebrow" data-reveal>
+              The story
+            </span>
+            <p className="d2 story__quote" data-reveal>
+              In Japan, broken things are repaired{" "}
+              <span className="kword kword--strike">
+                with gold
+                <KintsugiLine variant="strike" />
+              </span>
+              .
+            </p>
+            <p className="measure" style={{ marginTop: 32 }} data-reveal>
+              Kintsugi treats the repair as part of the object&apos;s history —
+              more valuable, not less. That is the entire idea behind Proof.
+              Honor it. Don&apos;t erase it.
+            </p>
+            <div data-reveal>
+              <Link href="/story" className="tlink klink" style={{ marginTop: 32 }}>
+                Read the story
+              </Link>
+            </div>
           </div>
+          <figure className="story__figure" data-reveal>
+            {storyObject ? (
+              <div className="hero__parallax" data-parallax="5">
+                <Image
+                  src={storyObject}
+                  alt="Proof packaging — the gold seam, a crack repaired with light"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
+          </figure>
         </div>
       </section>
     </>

@@ -4,6 +4,7 @@ import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import PressMarquee from "@/components/PressMarquee";
+import RitualSteps from "@/components/RitualSteps";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
@@ -140,35 +141,31 @@ export default function HomePage() {
           <h2 className="d2" style={{ marginBottom: 48 }} data-reveal>
             One patch. One day. Repeat.
           </h2>
-          <div className="ritual" data-reveal-group>
-            <div className="ritual__steps" style={{ gridColumn: "1 / -1" }}>
-              <div className="rstep" data-reveal>
-                <span className="rstep__no">R.01</span>
-                <h3 className="rstep__name">Clean</h3>
-                <p>
-                  Wash the area with mild soap. Pat dry. The patch only commits
-                  to honest skin.
-                </p>
-              </div>
-              <div className="rstep" data-reveal>
-                <span className="rstep__no">R.02</span>
-                <h3 className="rstep__name">Apply</h3>
-                <p>
-                  Place the patch over the scar. Press for ten seconds. Cut it
-                  to size if the story is shorter.
-                </p>
-              </div>
-              <div className="rstep" data-reveal>
-                <span className="rstep__no">R.03</span>
-                <h3 className="rstep__name">Wear</h3>
-                <p>
-                  12 to 23 hours a day. Rinse the patch at night, let it
-                  air-dry, start again — for up to 14 days per patch.
-                </p>
-              </div>
-            </div>
+          <div data-reveal>
+            <RitualSteps
+              steps={[
+                {
+                  no: "R.01",
+                  name: "Clean",
+                  text: "Wash the area with mild soap. Pat dry. The patch only commits to honest skin.",
+                  image: productImage("ritual-clean"),
+                },
+                {
+                  no: "R.02",
+                  name: "Apply",
+                  text: "Place the patch over the scar. Press for ten seconds. Cut it to size if the story is shorter.",
+                  image: productImage("ritual-apply"),
+                },
+                {
+                  no: "R.03",
+                  name: "Wear",
+                  text: "12 to 23 hours a day. Rinse the patch at night, let it air-dry, start again — for up to 14 days per patch.",
+                  image: productImage("ritual-wear"),
+                },
+              ]}
+            />
           </div>
-          <div style={{ marginTop: 32, maxWidth: 560 }} data-reveal>
+          <div style={{ marginTop: 48, maxWidth: 560 }} data-reveal>
             <Posology
               lines={[
                 "Apply once daily on clean skin.",

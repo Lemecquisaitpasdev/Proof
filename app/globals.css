@@ -1061,6 +1061,35 @@ html.js [data-parallax] {
   background: var(--porcelain);
 }
 
+.hero__title {
+  text-wrap: initial;
+}
+
+/* les mots du titre entrent en fondu pur — l'inline reste inline,
+   la césure naturelle est garantie à 390px */
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero__title .w {
+  display: inline;
+  opacity: 0;
+  animation: enter-fade 0.8s var(--ease-out) both;
+  animation-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title .w {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* bleed à droite — l'image touche le bord de l'écran */
 @media (min-width: 941px) {
   .hero__visual {

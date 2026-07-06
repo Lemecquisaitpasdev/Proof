@@ -1,95 +1,115 @@
 import Link from "next/link";
 import Image from "next/image";
-import Trait from "@/components/Trait";
+import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
-import PatchVisual from "@/components/PatchVisual";
 import PressMarquee from "@/components/PressMarquee";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
+/* Séquence d'entrée du hero — eyebrow → titre (mots, 40ms) → lead → CTAs
+   → image. Total < 1.6s. Les délais vivent ici, pas en JS. */
+const D = (s: number) => ({ "--d": `${s}s` }) as React.CSSProperties;
+
 export default function HomePage() {
   const heroPhoto = productImage("hero");
-  const ordonnancePhoto = productImage("ordonnance");
 
   return (
     <>
       {/* HÉROS */}
       <section className="hero">
-        <div className="container">
-          <span className="eyebrow">
-            Premium silicone scar patch — Batch Nº 017
-          </span>
-          <h1 className="h1">
-            Your scar
-            <br />
-            has a story.
-          </h1>
-          <div className="hero__grid">
-            <div>
-              <p className="lead measure">
-                We made it something worth wearing. A medical-grade silicone
-                patch that improves the appearance of scars — texture, color,
-                relief — without asking them to disappear.
-              </p>
-              <div className="hero__cta">
-                <Link href="/shop/the-ritual" className="btn btn--primary">
-                  Shop The Ritual — $69
-                </Link>
-                <Link href="/story" className="btn btn--ghost">
-                  Read the story
-                </Link>
-              </div>
+        <div className="container hero__grid">
+          <div className="hero__copy">
+            <span className="eyebrow enter" style={D(0)}>
+              Premium silicone scar patch — Batch Nº 017
+            </span>
+            <h1 className="d1 hero__title">
+              <span className="w enter" style={D(0.14)}>
+                Your
+              </span>{" "}
+              <span className="w enter" style={D(0.18)}>
+                scar
+              </span>{" "}
+              <span className="w enter" style={D(0.22)}>
+                has
+              </span>{" "}
+              <span className="w enter" style={D(0.26)}>
+                a
+              </span>{" "}
+              <span className="w enter" style={D(0.3)}>
+                <span className="kword">
+                  story.
+                  <KintsugiLine variant="underline" onload />
+                </span>
+              </span>
+            </h1>
+            <p className="lead hero__lead enter" style={D(0.4)}>
+              We made it something worth wearing. A medical-grade silicone
+              patch that improves the appearance of scars — texture, color,
+              relief — without asking them to disappear.
+            </p>
+            <div className="hero__cta enter" style={D(0.52)}>
+              <Link href="/shop/the-ritual" className="btn btn--primary">
+                Shop The Ritual — $69
+              </Link>
+              <Link href="/story" className="tlink klink">
+                Read the story
+              </Link>
             </div>
-            <div className="hero__visual">
-              {heroPhoto ? (
+          </div>
+          <div className="hero__visual enter" style={D(0.58)}>
+            {heroPhoto ? (
+              <div className="hero__parallax" data-parallax="6">
                 <Image
                   src={heroPhoto}
-                  alt="Proof — premium silicone scar patch"
+                  alt="Real skin, a visible scar, worn openly — Proof silicone scar care"
                   fill
-                  sizes="(max-width: 940px) 100vw, 460px"
+                  sizes="(max-width: 940px) 100vw, 42vw"
                   style={{ objectFit: "cover" }}
                   priority
                 />
-              ) : (
-                <PatchVisual layers={1} count="5 × 15 cm" />
-              )}
-            </div>
+              </div>
+            ) : null}
           </div>
-
-          <PressMarquee />
         </div>
       </section>
+
+      {/* PRESSE */}
+      <div className="container">
+        <PressMarquee />
+      </div>
 
       {/* LA BOUTIQUE */}
       <section className="section" id="shop">
         <div className="container">
-          <span className="eyebrow">The shop — four chapters</span>
-          <h2 className="h2" style={{ marginBottom: 40 }}>
+          <span className="eyebrow" data-reveal>
+            The shop — four chapters
+          </span>
+          <h2 className="d2" style={{ marginBottom: 56 }} data-reveal>
             Pick your chapter.
           </h2>
-          <div className="cards cards--four">
+          <div className="cards" data-reveal-group>
             {products.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+              <div key={p.slug} data-reveal>
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="container">
-        <Trait />
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
       </div>
 
-      {/* LA SCIENCE */}
+      {/* LA SCIENCE — version courte (le moment sombre vit sur sa section) */}
       <section className="section">
         <div className="container split">
-          <div>
+          <div data-reveal>
             <span className="eyebrow">The science</span>
-            <h2 className="h2">
-              Decades of clinical use. One material.
-            </h2>
+            <h2 className="d3">Decades of clinical use. One material.</h2>
           </div>
-          <div>
+          <div data-reveal>
             <p className="measure">
               Silicone sheeting has been used on scars since 1983 and appears
               in international scar-management recommendations as a first-line
@@ -102,7 +122,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/science"
-              className="btn btn--ghost"
+              className="tlink klink"
               style={{ marginTop: 24 }}
             >
               Read the science
@@ -114,40 +134,41 @@ export default function HomePage() {
       {/* LE RITUEL */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <span className="eyebrow">The ritual</span>
-          <h2 className="h2" style={{ marginBottom: 40 }}>
+          <span className="eyebrow" data-reveal>
+            The ritual
+          </span>
+          <h2 className="d2" style={{ marginBottom: 48 }} data-reveal>
             One patch. One day. Repeat.
           </h2>
-          <div className="steps">
-            <div className="step">
-              <span className="step__no">R.01</span>
-              <h3 className="step__name">Clean</h3>
-              <p>
-                Wash the area with mild soap. Pat dry. The patch only commits
-                to honest skin.
-              </p>
-            </div>
-            <div className="step">
-              <span className="step__no">R.02</span>
-              <h3 className="step__name">Apply</h3>
-              <p>
-                Place the patch over the scar. Press for ten seconds. Cut it to
-                size if the story is shorter.
-              </p>
-            </div>
-            <div className="step">
-              <span className="step__no">R.03</span>
-              <h3 className="step__name">Wear</h3>
-              <p>
-                12 to 23 hours a day. Rinse the patch at night, let it air-dry,
-                start again — for up to 14 days per patch.
-              </p>
+          <div className="ritual" data-reveal-group>
+            <div className="ritual__steps" style={{ gridColumn: "1 / -1" }}>
+              <div className="rstep" data-reveal>
+                <span className="rstep__no">R.01</span>
+                <h3 className="rstep__name">Clean</h3>
+                <p>
+                  Wash the area with mild soap. Pat dry. The patch only commits
+                  to honest skin.
+                </p>
+              </div>
+              <div className="rstep" data-reveal>
+                <span className="rstep__no">R.02</span>
+                <h3 className="rstep__name">Apply</h3>
+                <p>
+                  Place the patch over the scar. Press for ten seconds. Cut it
+                  to size if the story is shorter.
+                </p>
+              </div>
+              <div className="rstep" data-reveal>
+                <span className="rstep__no">R.03</span>
+                <h3 className="rstep__name">Wear</h3>
+                <p>
+                  12 to 23 hours a day. Rinse the patch at night, let it
+                  air-dry, start again — for up to 14 days per patch.
+                </p>
+              </div>
             </div>
           </div>
-          <div
-            className={ordonnancePhoto ? "ordgrid" : undefined}
-            style={{ marginTop: "var(--gut)" }}
-          >
+          <div style={{ marginTop: 32, maxWidth: 560 }} data-reveal>
             <Posology
               lines={[
                 "Apply once daily on clean skin.",
@@ -155,40 +176,37 @@ export default function HomePage() {
               ]}
               sideEffects="Side effects : pride, confidence, questions at parties."
             />
-            {ordonnancePhoto ? (
-              <div className="imgframe">
-                <Image
-                  src={ordonnancePhoto}
-                  alt="Proof — posology"
-                  fill
-                  sizes="(max-width: 860px) 100vw, 420px"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            ) : null}
           </div>
         </div>
       </section>
 
-      <div className="container">
-        <Trait />
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
       </div>
 
       {/* L'HISTOIRE */}
-      <section className="section">
+      <section className="section--hush section">
         <div className="container">
-          <span className="eyebrow">The story</span>
-          <p className="quote measure" style={{ maxWidth: "18em" }}>
-            In Japan, broken things are repaired <em>with gold.</em>
+          <span className="eyebrow" data-reveal>
+            The story
+          </span>
+          <p className="d2 story__quote" data-reveal>
+            In Japan, broken things are repaired with gold.
           </p>
-          <p className="measure" style={{ marginTop: 28 }}>
+          <p className="measure" style={{ marginTop: 32 }} data-reveal>
             Kintsugi treats the repair as part of the object&apos;s history —
             more valuable, not less. That is the entire idea behind Proof.
             Honor it. Don&apos;t erase it.
           </p>
-          <Link href="/story" className="btn btn--ghost" style={{ marginTop: 24 }}>
-            Read the story
-          </Link>
+          <div data-reveal>
+            <Link
+              href="/story"
+              className="tlink klink"
+              style={{ marginTop: 32 }}
+            >
+              Read the story
+            </Link>
+          </div>
         </div>
       </section>
     </>

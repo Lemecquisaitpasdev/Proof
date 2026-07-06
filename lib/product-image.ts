@@ -13,34 +13,43 @@ const DIR = path.join(process.cwd(), "public", "products");
 const EXTS = new Set([".avif", ".webp", ".jpg", ".jpeg", ".png"]);
 
 const ALIASES: Record<string, string[]> = {
-  // Produits — carte shop + fiche
+  /* Cards shop — état PRIMAIRE, toujours lumineux : photo claire si elle
+     existe, sinon la plate CSS (pas d'alias → null). */
   "the-patch": ["the-patch", "patchproof"],
-  "the-ritual": ["the-ritual", "patchproofeditionslimitee"],
+  "the-ritual": ["the-ritual"],
   protocol: ["protocol"],
-  "the-gel": ["the-gel", "produitgelsilicone"],
+  "the-gel": ["the-gel", "texturegelsilicone"],
 
-  // Images de galerie supplémentaires sur les fiches produit
+  /* Cards shop — état HOVER : l'objet photographié au studio. */
+  "alt-the-patch": ["alt-the-patch", "patchproofgris"],
+  "alt-the-ritual": ["alt-the-ritual", "patchproofeditionslimitee"],
+  "alt-protocol": ["alt-protocol", "packagingproofpatch"],
+  "alt-the-gel": ["alt-the-gel", "produitgelsilicone"],
+
+  /* Galeries PDP */
   "the-patch-2": ["the-patch-2", "patchproofgris"],
-  "the-ritual-2": ["the-ritual-2"],
-  "protocol-2": ["protocol-2"],
-  "the-gel-2": ["the-gel-2", "gelsilicone"],
-  "the-gel-3": ["the-gel-3", "siliconegelmannequin"],
+  "the-ritual-2": ["the-ritual-2", "patchproofeditionslimitee"],
+  "protocol-2": ["protocol-2", "packagingproofpatch"],
+  "the-gel-2": ["the-gel-2", "produitgelsilicone"],
+  "the-gel-3": ["the-gel-3", "gelsilicone"],
 
-  // Héros de la home — le portrait au flacon, cicatrice visible (R.02)
+  /* Héros de la home — portrait lumineux, cicatrice visible, assumée. */
   hero: ["hero", "siliconegelmannequin"],
 
-  // Page Science
+  /* Le Rituel — Clean / Apply / Wear (crossfade du stepper) */
+  "ritual-clean": ["ritual-clean", "texturegelsilicone"],
+  "ritual-apply": ["ritual-apply", "patchproof"],
+  "ritual-wear": ["ritual-wear", "siliconegelmannequin"],
+
+  /* Page Science */
   "science-material": ["science-material", "produitgelsilicone"],
   "science-mechanism": ["science-mechanism", "gelsilicone"],
 
-  // Page Story — l'objet, packaging à la fissure kintsugi
+  /* Story — l'objet, packaging à la fissure kintsugi */
   "story-object": ["story-object", "packagingproofpatch"],
 
-  // Texture de fond de section (R.03 — opacité ≤ 10 %)
+  /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],
-
-  // Visuel ordonnance, à côté du bloc posologie de la home
-  ordonnance: ["ordonnance"],
 };
 
 export function productImage(slot: string): string | null {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Trait from "@/components/Trait";
+import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import { formatPrice, products } from "@/lib/products";
@@ -15,9 +15,14 @@ export default function ShopPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">The shop</span>
-          <h1 className="h1 h1--page">Four chapters.</h1>
-          <p className="lead measure">
+          <span className="eyebrow enter">The shop</span>
+          <h1 className="d1 enter" style={{ "--d": ".1s" } as React.CSSProperties}>
+            Four chapters.
+          </h1>
+          <p
+            className="lead measure enter"
+            style={{ "--d": ".22s" } as React.CSSProperties}
+          >
             Every scar gets a chapter. Three patches, one gel — pick where
             yours starts.
           </p>
@@ -26,22 +31,26 @@ export default function ShopPage() {
 
       <section className="section">
         <div className="container">
-          <div className="cards cards--four">
+          <div className="cards" data-reveal-group>
             {products.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+              <div key={p.slug} data-reveal>
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="container">
-        <Trait />
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
       </div>
 
       <section className="section">
         <div className="container">
-          <span className="eyebrow">La planche — compare</span>
-          <div className="specs-scroll">
+          <span className="eyebrow" data-reveal>
+            La planche — compare
+          </span>
+          <div className="specs-scroll" data-reveal>
             <table className="specs">
               <thead>
                 <tr>
@@ -57,7 +66,7 @@ export default function ShopPage() {
                 <tr>
                   <th scope="row">Name</th>
                   {products.map((p) => (
-                    <td key={p.slug} className="is-os">
+                    <td key={p.slug} className="is-ink">
                       {p.name}
                     </td>
                   ))}
@@ -83,7 +92,7 @@ export default function ShopPage() {
                 <tr>
                   <th scope="row">Price</th>
                   {products.map((p) => (
-                    <td key={p.slug} className="is-os">
+                    <td key={p.slug} className="is-ink num">
                       {formatPrice(p.price)}
                     </td>
                   ))}
@@ -92,7 +101,7 @@ export default function ShopPage() {
             </table>
           </div>
 
-          <div style={{ marginTop: "var(--gut)" }}>
+          <div style={{ marginTop: 24, maxWidth: 560 }} data-reveal>
             <Posology
               title="Dispensing note"
               lines={[

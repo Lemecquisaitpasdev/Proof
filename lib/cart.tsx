@@ -20,7 +20,7 @@ type CartContextValue = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
-  add: (slug: string) => void;
+  add: (slug: string, opts?: { open?: boolean }) => void;
   setQty: (slug: string, qty: number) => void;
   clear: () => void;
 };
@@ -78,9 +78,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
-  const add = useCallback((slug: string) => {
+  const add = useCallback((slug: string, opts?: { open?: boolean }) => {
     setItems((prev) => ({ ...prev, [slug]: Math.min((prev[slug] ?? 0) + 1, 99) }));
-    setIsOpen(true);
+    if (opts?.open !== false) setIsOpen(true);
   }, []);
 
   const setQty = useCallback((slug: string, qty: number) => {

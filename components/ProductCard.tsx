@@ -2,11 +2,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { formatPrice, type Product } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
-import PatchVisual from "@/components/PatchVisual";
+import PlateVisual from "@/components/PlateVisual";
 import { CardAdd } from "@/components/AddButton";
 
+/**
+ * Card sans bordure — l'image fait la card. État primaire lumineux
+ * (photo claire ou plate CSS) ; au hover, crossfade vers la photo studio
+ * de l'objet, et prix + Add remontent en fondu. En tactile, tout est
+ * visible d'emblée.
+ */
 export default function ProductCard({ product }: { product: Product }) {
   const photo = productImage(product.slug);
+  const alt = productImage(`alt-${product.slug}`);
+  const patchCount = product.layers === 4 ? 8 : product.layers;
 
   return (
     <article className="card">
@@ -21,17 +29,28 @@ export default function ProductCard({ product }: { product: Product }) {
         {photo ? (
           <Image
             src={photo}
-            alt={`${product.name} — silicone scar patch`}
+            alt={`${product.name} — medical-grade silicone scar care`}
             fill
-            sizes="(max-width: 860px) 100vw, 360px"
+            sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
             style={{ objectFit: "cover" }}
           />
         ) : (
-          <PatchVisual
+          <PlateVisual
             layers={product.layers}
-            count={`${String(product.layers === 4 ? 8 : product.layers).padStart(2, "0")} patch${(product.layers === 4 ? 8 : product.layers) > 1 ? "es" : ""}`}
+            count={`${String(patchCount).padStart(2, "0")} patch${patchCount > 1 ? "es" : ""}`}
           />
         )}
+        {alt ? (
+          <span className="card__alt" aria-hidden="true">
+            <Image
+              src={alt}
+              alt=""
+              fill
+              sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
+              style={{ objectFit: "cover" }}
+            />
+          </span>
+        ) : null}
       </Link>
       <div className="card__body">
         <span className="card__chapter">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart";
 import { formatPrice, getProduct } from "@/lib/products";
-import PatchVisual from "@/components/PatchVisual";
+import PlateVisual from "@/components/PlateVisual";
 
 export default function CartDrawer({
   thumbs = {},
@@ -80,7 +80,7 @@ export default function CartDrawer({
                         }}
                       />
                     ) : (
-                      <PatchVisual layers={product.layers} label="" />
+                      <PlateVisual layers={product.layers} label="" />
                     )}
                   </Link>
                   <div>

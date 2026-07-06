@@ -1135,6 +1135,11 @@ html.js [data-parallax] {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.cards--pair {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+}
+
 @media (max-width: 1000px) {
   .cards,
   .cards--three {

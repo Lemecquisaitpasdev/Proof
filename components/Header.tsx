@@ -18,8 +18,16 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__in">
-        <Link href="/" className="logo" aria-label="Proof — home">
+        <Link
+          href="/"
+          className="logo"
+          aria-label="Proof — home"
+          style={{ display: "inline-flex", alignItems: "center", gap: 14 }}
+        >
           Proof
+          <span className="seal seal--sm" lang="ja" aria-hidden="true">
+            証
+          </span>
         </Link>
         <nav className="nav" aria-label="Main">
           {LINKS.map(({ href, label }) => (

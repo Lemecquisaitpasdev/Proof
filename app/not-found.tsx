@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <section className="pagehead section">
       <div className="container">
-        <span className="eyebrow">Error 404</span>
+        <span className="eyebrow">Error 404<em className="jp" lang="ja" aria-hidden="true">無</em></span>
         <h1 className="h1 h1--page">
           This page left
           <br />

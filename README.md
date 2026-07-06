@@ -57,6 +57,14 @@ après le lancement.
   jamais plus d'un par écran
 - **Grille** : 12 colonnes, max 1100 px, gouttières 14 px, sections 88 px,
   rythme vertical multiple de 8
+- **Accents japonais** : sceau hanko « 証 » (proof) en Or, kanji d'annotation
+  sur les eyebrows (金継ぎ, 記録, 儀式, 物語, 問答, 無, 第一〜四章…), textes
+  verticaux *tategaki* (héros, bande campagne, footer). Police : sous-ensemble
+  Noto Serif JP auto-hébergé (`public/fonts/proof-jp.woff2`, ~11 Ko — pour
+  ajouter un caractère, régénérer via l'API Google Fonts avec `text=`)
+- **Motion** : révélations au scroll (`ScrollFx` + `[data-reveal]`), balayage
+  des boutons, soulignés de navigation, zoom lent des cartes — le tout coupé
+  par `prefers-reduced-motion`, et page entièrement visible sans JavaScript
 
 ## Images produit
 

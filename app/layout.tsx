@@ -12,6 +12,7 @@ import Topbar from "@/components/Topbar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import ScrollFx from "@/components/ScrollFx";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -78,6 +79,7 @@ export default function RootLayout({
       className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${playfair.variable}`}
     >
       <body>
+        <ScrollFx />
         <CartProvider>
           <Topbar />
           <Header />

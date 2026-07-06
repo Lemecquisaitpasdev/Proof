@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import Trait from "@/components/Trait";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
@@ -11,6 +12,7 @@ import { productImage } from "@/lib/product-image";
 export default function HomePage() {
   const heroPhoto = productImage("hero");
   const ordonnancePhoto = productImage("ordonnance");
+  const bandPhoto = productImage("story-object");
 
   return (
     <>
@@ -42,6 +44,9 @@ export default function HomePage() {
               </div>
             </div>
             <div className="hero__visual">
+              <span className="vtext hero__vtag" lang="ja" aria-hidden="true">
+                傷は物語
+              </span>
               {heroPhoto ? (
                 <Image
                   src={heroPhoto}
@@ -64,27 +69,69 @@ export default function HomePage() {
       {/* LA BOUTIQUE */}
       <section className="section" id="shop">
         <div className="container">
-          <span className="eyebrow">The shop — four chapters</span>
-          <h2 className="h2" style={{ marginBottom: 40 }}>
-            Pick your chapter.
-          </h2>
+          <div data-reveal>
+            <span className="eyebrow">
+              The shop — four chapters
+              <em className="jp" lang="ja" aria-hidden="true">
+                全四章
+              </em>
+            </span>
+            <h2 className="h2" style={{ marginBottom: 40 }}>
+              Pick your chapter.
+            </h2>
+          </div>
           <div className="cards cards--four">
-            {products.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {products.map((p, i) => (
+              <div
+                key={p.slug}
+                data-reveal
+                style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}
+              >
+                <ProductCard product={p} />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <div className="container">
-        <Trait />
-      </div>
+      {/* LA BANDE — le packaging, la fissure d'or */}
+      {bandPhoto ? (
+        <section className="band" aria-label="Proof packaging">
+          <Image
+            src={bandPhoto}
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center 58%" }}
+          />
+          <span className="vtext band__vtag" lang="ja" aria-hidden="true">
+            金継ぎ
+          </span>
+          <div className="band__inner">
+            <div className="container" data-reveal>
+              <p className="band__line">Honorer. Pas effacer.</p>
+              <p className="band__sub">
+                The packaging carries the crack — gold, not camouflage
+              </p>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <div className="container">
+          <Trait />
+        </div>
+      )}
 
       {/* LA SCIENCE */}
-      <section className="section">
+      <section className="section section--grand">
         <div className="container split">
-          <div>
-            <span className="eyebrow">The science</span>
+          <div data-reveal>
+            <span className="eyebrow">
+              The science
+              <em className="jp" lang="ja" aria-hidden="true">
+                記録
+              </em>
+            </span>
             <h2 className="h2">
               Decades of clinical use. One material.
             </h2>
@@ -114,10 +161,17 @@ export default function HomePage() {
       {/* LE RITUEL */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <span className="eyebrow">The ritual</span>
-          <h2 className="h2" style={{ marginBottom: 40 }}>
-            One patch. One day. Repeat.
-          </h2>
+          <div data-reveal>
+            <span className="eyebrow">
+              The ritual
+              <em className="jp" lang="ja" aria-hidden="true">
+                儀式
+              </em>
+            </span>
+            <h2 className="h2" style={{ marginBottom: 40 }}>
+              One patch. One day. Repeat.
+            </h2>
+          </div>
           <div className="steps">
             <div className="step">
               <span className="step__no">R.01</span>
@@ -175,9 +229,14 @@ export default function HomePage() {
       </div>
 
       {/* L'HISTOIRE */}
-      <section className="section">
-        <div className="container">
-          <span className="eyebrow">The story</span>
+      <section className="section section--grand">
+        <div className="container" data-reveal>
+          <span className="eyebrow">
+            The story
+            <em className="jp" lang="ja" aria-hidden="true">
+              物語
+            </em>
+          </span>
           <p className="quote measure" style={{ maxWidth: "18em" }}>
             In Japan, broken things are repaired <em>with gold.</em>
           </p>

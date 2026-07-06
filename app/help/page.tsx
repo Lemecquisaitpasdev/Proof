@@ -62,7 +62,7 @@ export default function HelpPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">Help</span>
+          <span className="eyebrow">Help<em className="jp" lang="ja" aria-hidden="true">問答</em></span>
           <h1 className="h1 h1--page">Questions, answered.</h1>
           <p className="lead measure">
             Short answers, no hotline music. If it is not here, write to us.

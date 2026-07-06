@@ -20,7 +20,7 @@ export default function SciencePage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">The science<em className="jp" lang="ja" aria-hidden="true">科学</em></span>
+          <span className="eyebrow">The science</span>
           <h1 className="h1 h1--page">
             No miracles.
             <br />A mechanism.
@@ -131,7 +131,7 @@ export default function SciencePage() {
         ) : null}
         <div className="container split">
           <div>
-            <span className="eyebrow">03 — The evidence<em className="jp" lang="ja" aria-hidden="true">記録</em></span>
+            <span className="eyebrow">03 — The evidence</span>
             <h2 className="h2">On the record.</h2>
           </div>
           <div>

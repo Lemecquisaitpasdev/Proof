@@ -6,31 +6,14 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer__grid">
-          <div className="footer__brand" style={{ display: "flex", gap: 40 }}>
-            <div>
-              <div className="logo" style={{ marginBottom: 18 }}>
-                Proof
-              </div>
-              <p>
-                Premium silicone scar patches. The rigor of a medical device,
-                the desire of a niche perfumery object.
-              </p>
-              <span
-                className="seal"
-                lang="ja"
-                aria-hidden="true"
-                style={{ marginTop: 22 }}
-                title="Proof"
-              >
-                証
-              </span>
+          <div className="footer__brand">
+            <div className="logo" style={{ marginBottom: 18 }}>
+              Proof
             </div>
-            <div className="footer__jp" aria-hidden="true">
-              <span className="vtext" lang="ja">
-                誇りを持って傷と生きる
-              </span>
-              <span className="footer__jp-cap">Wear it with pride</span>
-            </div>
+            <p>
+              Premium silicone scar patches. The rigor of a medical device, the
+              desire of a niche perfumery object.
+            </p>
           </div>
           <div>
             <h4>The Shop</h4>

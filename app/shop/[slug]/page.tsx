@@ -102,9 +102,6 @@ export default async function ProductPage({ params }: Props) {
               ) : null}
               <span className="eyebrow" style={{ marginBottom: 16 }}>
                 {product.chapter} — {product.chapterName}
-                <em className="jp" lang="ja" aria-hidden="true">
-                  {product.kanji}
-                </em>
               </span>
               <h1 className="h2" style={{ fontSize: "clamp(36px, 5vw, 56px)" }}>
                 {product.name}

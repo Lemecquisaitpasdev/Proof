@@ -35,12 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="card__body">
         <span className="card__chapter">
-          <span>
-            {product.chapter} — {product.chapterName}
-          </span>
-          <span className="card__kanji" lang="ja" aria-hidden="true">
-            {product.kanji}
-          </span>
+          {product.chapter} — {product.chapterName}
         </span>
         <h3 className="card__name">
           <Link href={`/shop/${product.slug}`}>{product.name}</Link>

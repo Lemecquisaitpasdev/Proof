@@ -5,17 +5,6 @@
    Radius 0. Partout. Toujours.
    ============================================================ */
 
-/* Kanji d'accent — sous-ensemble Noto Serif JP (glyphes utilisés uniquement).
-   Pour ajouter un caractère : régénérer public/fonts/proof-jp.woff2 via
-   l'API Google Fonts (paramètre text=). */
-@font-face {
-  font-family: "Proof JP";
-  src: url("/fonts/proof-jp.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   /* 01 — COULEUR */
   --noir: #0b0b0b;
@@ -41,9 +30,6 @@
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 
   --ease-organique: cubic-bezier(0.65, 0.05, 0.22, 1);
-
-  --font-jp: "Proof JP", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP",
-    "Noto Serif CJK JP", serif;
 }
 
 * {
@@ -102,111 +88,6 @@ button {
   outline-offset: 3px;
 }
 
-/* Barre de défilement — encre sur encre */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #2c2a26 var(--noir);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--noir);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2c2a26;
-  border: 2px solid var(--noir);
-}
-
-/* ============ ACCENTS JAPONAIS ============ */
-/* Le kintsugi est déjà la signature. Les kanji sont des annotations
-   d'atelier : rares, en Peau ou Or, jamais décoratifs au kilomètre. */
-
-.jp {
-  font-family: var(--font-jp);
-  font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0.18em;
-}
-
-.eyebrow .jp {
-  color: var(--peau);
-  font-size: 13px;
-  margin-left: 14px;
-  vertical-align: -1px;
-}
-
-.vtext {
-  font-family: var(--font-jp);
-  font-weight: 600;
-  writing-mode: vertical-rl;
-  letter-spacing: 0.34em;
-  color: var(--os-40);
-  font-size: 14px;
-  line-height: 1;
-  user-select: none;
-}
-
-.vtext::after {
-  content: "";
-  display: block;
-  width: 1px;
-  height: 40px;
-  background: var(--or-35);
-  margin-top: 22px;
-  margin-inline: auto;
-}
-
-/* Le sceau — hanko en Or Cicatrice, jamais en rouge pharma */
-.seal {
-  display: inline-grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--or);
-  color: var(--or);
-  font-family: var(--font-jp);
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1;
-  user-select: none;
-  flex-shrink: 0;
-}
-
-.seal--sm {
-  width: 26px;
-  height: 26px;
-  font-size: 13px;
-}
-
-/* ============ RÉVÉLATION AU SCROLL ============ */
-/* Actif seulement quand le JS a posé html.fx — sans JS, tout est visible. */
-
-html.fx [data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.9s var(--ease-organique),
-    transform 0.9s var(--ease-organique);
-  transition-delay: var(--reveal-delay, 0s);
-}
-
-html.fx [data-reveal].is-in {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.fx [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
 /* ============ LAYOUT ============ */
 
 .container {
@@ -221,11 +102,6 @@ html.fx [data-reveal].is-in {
 
 .section--tight {
   padding-block: 56px;
-}
-
-/* Ma — l'espace comme matériau. Pour les moments d'édito. */
-.section--grand {
-  padding-block: clamp(96px, 11vw, 136px);
 }
 
 /* ============ 02 — TYPOGRAPHIE / TROIS VOIX ============ */
@@ -370,43 +246,27 @@ strong {
   text-transform: uppercase;
   padding: 18px 28px;
   border: 1px solid transparent;
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 0% 100%;
-  transition:
-    background-size 0.5s var(--ease-organique),
-    color 0.3s ease,
-    border-color 0.3s ease;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   white-space: nowrap;
 }
 
-.btn:hover,
-.btn:focus-visible {
-  background-size: 100% 100%;
+.btn--primary {
+  background: var(--os);
+  color: var(--noir);
 }
 
-.btn--primary {
-  background-color: var(--os);
-  background-image: linear-gradient(var(--peau), var(--peau));
-  color: var(--noir);
+.btn--primary:hover {
+  background: var(--peau);
 }
 
 .btn--ghost {
   border-color: var(--os-40);
-  background-image: linear-gradient(var(--os), var(--os));
   color: var(--os);
 }
 
-.btn--ghost:hover,
-.btn--ghost:focus-visible {
-  border-color: var(--os);
-  color: var(--noir);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn {
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
+.btn--ghost:hover {
+  border-color: var(--peau);
+  color: var(--peau);
 }
 
 .btn--block {
@@ -483,15 +343,6 @@ strong {
   grid-template-columns: repeat(4, 1fr);
 }
 
-/* Les wrappers de révélation ne cassent pas l'alignement des cartes */
-.cards > [data-reveal] {
-  min-height: 100%;
-}
-
-.cards > [data-reveal] > .card {
-  height: 100%;
-}
-
 @media (max-width: 1000px) {
   .cards--four {
     grid-template-columns: repeat(2, 1fr);
@@ -562,24 +413,11 @@ strong {
 }
 
 .card__chapter {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
   font-family: var(--font-mono), monospace;
   font-size: 10.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--or);
-}
-
-.card__kanji {
-  font-family: var(--font-jp);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--peau-40);
-  flex-shrink: 0;
 }
 
 .card__name {
@@ -846,43 +684,21 @@ strong {
 }
 
 .nav a {
-  position: relative;
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--os-55);
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
   padding-block: 6px;
 }
 
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--peau);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s var(--ease-organique);
-}
-
-.nav a:hover,
-.nav a.is-active {
+.nav a:hover {
   color: var(--peau);
 }
 
-.nav a:hover::after,
-.nav a.is-active::after {
-  transform: scaleX(1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav a::after {
-    transition: none;
-  }
+.nav a.is-active {
+  color: var(--peau);
 }
 
 .cartbtn {
@@ -960,33 +776,6 @@ strong {
 .hero__visual {
   position: relative;
   min-height: 320px;
-}
-
-/* Cadre or décalé — l'objet encadré comme une pièce réparée */
-.hero__visual::after {
-  content: "";
-  position: absolute;
-  inset: 12px -12px -12px 12px;
-  border: 1px solid var(--or-35);
-  pointer-events: none;
-}
-
-.hero__vtag {
-  position: absolute;
-  top: 4px;
-  left: -46px;
-}
-
-@media (max-width: 1240px) {
-  .hero__visual::after {
-    display: none;
-  }
-}
-
-@media (max-width: 940px) {
-  .hero__vtag {
-    display: none;
-  }
 }
 
 /* PRESSE — « as seen in », défilement lent, voix des wordmarks */
@@ -1541,34 +1330,7 @@ strong {
 .footer__brand p {
   font-size: 14px;
   color: var(--os-40);
-  max-width: 30ch;
-}
-
-.footer__jp {
-  display: flex;
-  gap: 22px;
-  align-items: flex-start;
-}
-
-.footer__jp .vtext {
-  min-height: 190px;
-  font-size: 15px;
-}
-
-.footer__jp-cap {
-  font-family: var(--font-mono), monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--os-40);
-  writing-mode: vertical-rl;
-  margin-top: 2px;
-}
-
-@media (max-width: 860px) {
-  .footer__jp {
-    display: none;
-  }
+  max-width: 34ch;
 }
 
 .footer h4 {
@@ -1659,87 +1421,6 @@ strong {
   border: 1px solid var(--line);
   overflow: hidden;
   background: var(--charbon);
-}
-
-.imgframe--cap::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 34%);
-  pointer-events: none;
-}
-
-.imgframe__cap {
-  position: absolute;
-  left: 14px;
-  bottom: 12px;
-  z-index: 1;
-  font-family: var(--font-mono), monospace;
-  font-size: 9.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(234, 227, 214, 0.85);
-}
-
-/* ============ BANDE CAMPAGNE — pleine largeur, moment La Mer ============ */
-
-.band {
-  position: relative;
-  height: clamp(360px, 46vw, 560px);
-  overflow: hidden;
-  border-block: 1px solid var(--line);
-}
-
-.band::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(11, 11, 11, 0.62), transparent 46%),
-    linear-gradient(to top, rgba(11, 11, 11, 0.55), transparent 36%);
-  pointer-events: none;
-}
-
-.band__inner {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-}
-
-.band__inner .container {
-  width: 100%;
-  padding-bottom: 44px;
-}
-
-.band__line {
-  font-family: var(--font-mono), monospace;
-  font-size: clamp(13px, 1.6vw, 17px);
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--os);
-}
-
-.band__sub {
-  font-family: var(--font-mono), monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--os-55);
-  margin-top: 12px;
-}
-
-.band__vtag {
-  position: absolute;
-  top: 40px;
-  right: max(24px, calc((100vw - var(--maxw)) / 2));
-  z-index: 1;
-  color: var(--os-70);
-}
-
-.band__vtag::after {
-  background: var(--or);
 }
 
 .imgframe--tall {

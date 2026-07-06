@@ -15,7 +15,7 @@ export default function ShopPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">The shop<em className="jp" lang="ja" aria-hidden="true">全四章</em></span>
+          <span className="eyebrow">The shop</span>
           <h1 className="h1 h1--page">Four chapters.</h1>
           <p className="lead measure">
             Every scar gets a chapter. Three patches, one gel — pick where

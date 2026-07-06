@@ -4,7 +4,6 @@ export type Product = {
   price: number;
   chapter: string;
   chapterName: string;
-  kanji: string;
   badge?: string;
   cardLine: string;
   tagline: string;
@@ -29,7 +28,6 @@ export const products: Product[] = [
     price: 29,
     chapter: "Chapitre 01",
     chapterName: "L'Accident",
-    kanji: "第一章",
     cardLine: "1 reusable patch · medical-grade silicone · 5 × 15 cm",
     tagline:
       "The entry ticket. One medical-grade silicone patch, reusable for fourteen days, to start telling the story properly.",
@@ -82,7 +80,6 @@ export const products: Product[] = [
     price: 69,
     chapter: "Chapitre 02",
     chapterName: "Le Rituel",
-    kanji: "第二章",
     badge: "Most chosen",
     cardLine: "3 patches · six weeks of daily wear · ritual card",
     tagline:
@@ -137,7 +134,6 @@ export const products: Product[] = [
     price: 129,
     chapter: "Chapitre 03",
     chapterName: "Le Protocole",
-    kanji: "第三章",
     cardLine: "8 patches · sixteen weeks · post-op guide",
     tagline:
       "Post-op, done seriously. Eight patches and sixteen weeks of coverage through the months where appearance changes the most.",
@@ -192,7 +188,6 @@ export const products: Product[] = [
     price: 39,
     chapter: "Chapitre 04",
     chapterName: "Le Geste",
-    kanji: "第四章",
     badge: "New",
     cardLine: "30 ml silicone gel · twice daily · face & mobile zones",
     tagline:

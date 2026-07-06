@@ -19,7 +19,7 @@ export default function StoryPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow">The story<em className="jp" lang="ja" aria-hidden="true">物語</em></span>
+          <span className="eyebrow">The story</span>
           <h1 className="h1 h1--page">
             Honor it.
             <br />
@@ -31,7 +31,7 @@ export default function StoryPage() {
       <section className="section">
         <div className="container split">
           <div>
-            <span className="eyebrow">01 — Kintsugi<em className="jp" lang="ja" aria-hidden="true">金継ぎ</em></span>
+            <span className="eyebrow">01 — Kintsugi</span>
             <h2 className="h2">The gold repair.</h2>
           </div>
           <div>
@@ -58,7 +58,7 @@ export default function StoryPage() {
       <section className="section">
         <div className="container split">
           <div>
-            <span className="eyebrow">02 — The object<em className="jp" lang="ja" aria-hidden="true">器</em></span>
+            <span className="eyebrow">02 — The object</span>
             <h2 className="h2">Clinical luxury.</h2>
           </div>
           <div>
@@ -95,7 +95,7 @@ export default function StoryPage() {
       <section className="section">
         <div className="container split">
           <div>
-            <span className="eyebrow">03 — Le trait<em className="jp" lang="ja" aria-hidden="true">線</em></span>
+            <span className="eyebrow">03 — Le trait</span>
             <h2 className="h2">One real line.</h2>
           </div>
           <div>

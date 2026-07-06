@@ -27,24 +27,51 @@ export default function Fx() {
     });
 
     /* Reveals + tracés */
+    const reveal = (el: Element) =>
+      el.classList.add(el.hasAttribute("data-draw") ? "is-drawn" : "is-in");
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          const el = entry.target as HTMLElement;
-          el.classList.add(el.hasAttribute("data-draw") ? "is-drawn" : "is-in");
-          io.unobserve(el);
+          reveal(entry.target);
+          io.unobserve(entry.target);
+          pending.delete(entry.target);
         }
       },
       { threshold: 0.18, rootMargin: "0px 0px -8% 0px" },
     );
 
     const observed: Element[] = [];
+    const pending = new Set<Element>();
     document.querySelectorAll("[data-reveal], [data-draw]").forEach((el) => {
       if (el.classList.contains("is-in") || el.classList.contains("is-drawn")) return;
       io.observe(el);
       observed.push(el);
+      pending.add(el);
     });
+
+    /* Filet de sécurité — un flick très rapide peut faire manquer l'IO :
+       tout élément déjà entré dans le viewport est révélé sans attendre. */
+    let sweepRaf = 0;
+    const sweep = () => {
+      sweepRaf = 0;
+      const line = window.innerHeight * 0.92;
+      for (const el of pending) {
+        if (el.getBoundingClientRect().top < line) {
+          reveal(el);
+          io.unobserve(el);
+          pending.delete(el);
+        }
+      }
+      if (pending.size === 0) {
+        window.removeEventListener("scroll", onSweep);
+      }
+    };
+    const onSweep = () => {
+      if (!sweepRaf) sweepRaf = requestAnimationFrame(sweep);
+    };
+    window.addEventListener("scroll", onSweep, { passive: true });
 
     /* Parallaxe */
     const layers = reduced
@@ -77,6 +104,8 @@ export default function Fx() {
     return () => {
       observed.forEach((el) => io.unobserve(el));
       io.disconnect();
+      window.removeEventListener("scroll", onSweep);
+      if (sweepRaf) cancelAnimationFrame(sweepRaf);
       if (layers.length) {
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onScroll);

@@ -3,18 +3,22 @@
 Boutique e-commerce de la marque **Proof** — patchs en silicone médical pour
 cicatrices. « Honor it. Don't erase it. »
 
-Construite selon la Direction Artistique V1.0 (juillet 2026) : le luxe
-clinique — la rigueur d'un dispositif médical, le désir d'un objet de
-parfumerie de niche, l'attitude d'un drop streetwear.
+Construite selon la Direction Artistique **V2.0 « Clinical warmth »**
+(juillet 2026) : le site passe du noir à la lumière — la peau est le sujet.
+La rigueur d'un dispositif médical rencontre le désir d'un objet de parfumerie
+de niche, dans le registre du _quiet luxury skincare_ (réfs : Dr. Barbara
+Sturm, Aesop, La Mer, Rhode). Le plan de DA détaillé vit dans
+[`docs/DESIGN.md`](docs/DESIGN.md).
 
 ## Stack
 
 - [Next.js](https://nextjs.org) (App Router, rendu 100 % statique)
 - React 19 + TypeScript
-- CSS sur mesure, zéro framework UI — le design system de la DA est implémenté
-  dans `app/globals.css`
-- Polices : Archivo (variable, axe `wdth` 62–125), Instrument Sans,
-  IBM Plex Mono — chargées via `next/font`
+- CSS sur mesure, zéro framework UI ni librairie d'animation — le design
+  system est implémenté dans `app/globals.css`, la motion dans un unique
+  `components/Fx.tsx` (IntersectionObserver + rAF)
+- Polices : Fraunces (sérif éditorial variable `opsz` + italique),
+  Instrument Sans (body), IBM Plex Mono (données cliniques) — via `next/font`
 
 ## Lancer le projet
 
@@ -45,26 +49,40 @@ après le lancement.
 
 ## Design system — repères DA
 
-- **Couleurs** : Noir Encre `#0B0B0B` (fond, jamais `#000`), Charbon `#161616`
-  (surfaces), Os `#EAE3D6` (texte, boutons), Peau `#C9A98C` (accents chauds),
-  Or Cicatrice `#A9865A` (le trait, labels mono)
-- **Radius 0. Partout. Toujours.** (verrouillé par `border-radius: 0 !important`)
-- **Trois voix typographiques** : Archivo Expanded Black (crie), Instrument
-  Sans (raconte), IBM Plex Mono (prescrit)
-- **Le Trait** : séparateur signature en Or Cicatrice, 1.4 px, animation de
-  tracé gauche → droite au scroll (2 s, easing organique,
-  `prefers-reduced-motion` respecté) — composant `components/Trait.tsx`,
-  jamais plus d'un par écran
-- **Grille** : 12 colonnes, max 1100 px, gouttières 14 px, sections 88 px,
-  rythme vertical multiple de 8
+- **Couleurs** : Bone `#F5F1EA` (fond, blanc os chaud), Porcelain `#FBF9F5`
+  (surfaces, plates produit), Ink `#1A1815` (texte + LA section sombre, jamais
+  `#000`), Clay `#B8A088` (filets, fonds teintés), Kintsugi `#C9A227` (l'or —
+  jamais en aplat), Graphite `#4A463F` (texte secondaire). L'or profond
+  `#7E6412` est le seul or autorisé en petit texte (AA sur bone).
+- **Le noir survit dans une seule section** (The Science) — moment de contraste
+  cinématique, pas régime général.
+- **Coins droits partout** (exception : pastilles badge 2 px). Filets 1 px
+  clay 30 %.
+- **Trois voix typographiques** : Fraunces (sérif éditorial — murmure),
+  Instrument Sans (parle), IBM Plex Mono (prescrit, petites doses cliniques).
+- **La ligne kintsugi** : `components/KintsugiLine.tsx` — fêlure d'or organique
+  à micro-fourche, déclinée en séparateur / underline (hero « story. ») /
+  strike (« with gold »). Tracé `stroke-dashoffset` au scroll ou au chargement,
+  filet or au hover des liens (`.klink`). Jamais plus d'un moment or par écran.
+- **Motion** : `components/Fx.tsx` — reveals fade + translateY(24 px) stagger
+  60 ms, parallaxe rAF ±6–8 %, tracés. Filet de sécurité anti-flick. Tout est
+  neutralisé par `prefers-reduced-motion` ; la page est complète sans JS.
+- **Grille** : max 1440 px, gouttières `clamp(24→80 px)`, rythme 4/8, sections
+  contemplatives plus hautes que les sections denses.
 
 ## Images produit
 
-Déposez vos photos dans `public/products/` en les nommant par slug —
-`the-patch.jpg`, `the-ritual.jpg`, `protocol.jpg`, et `hero.jpg` pour le héros
-de la home. Dès qu'un fichier existe, il remplace automatiquement le visuel
-CSS généré (cartes shop + fiches produit). Formats : avif, webp, jpg, jpeg,
-png. Détails et rappels DA dans `public/products/README.md`.
+Déposez vos photos dans `public/products/` en les nommant par slot (voir la
+table dans `lib/product-image.ts`). Slots clés : `hero`, `the-patch` /
+`the-ritual` / `protocol` / `the-gel` (état primaire lumineux des cartes),
+`alt-<slug>` (état hover studio), `ritual-clean` / `ritual-apply` /
+`ritual-wear` (stepper), `story-object` (macro kintsugi). Dès qu'un fichier
+existe il remplace le visuel CSS généré (`PlateVisual`). Formats : avif, webp,
+jpg, jpeg, png.
+
+Le brief photo complet des assets flagship à produire (portrait hero, packshots
+clairs, on-skin, triptyque des gestes, macro kintsugi) est dans
+[`docs/DESIGN.md`](docs/DESIGN.md) § 5.
 
 ## Panier & paiement
 

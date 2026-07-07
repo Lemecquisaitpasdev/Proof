@@ -1,0 +1,198 @@
+{
+  "$schema_note": "Prompts de génération d'images pour les assets flagship de PROOF (DA V2.0 « Clinical warmth »). Model-agnostique : compatibles Midjourney v6+, Flux, DALL·E 3, SDXL/Ideogram. Chaque asset porte le nom de fichier exact attendu par lib/product-image.ts — dépose le rendu dans public/products/ sous ce nom et il s'affiche automatiquement.",
+  "version": "2.0",
+  "brand": "PROOF — premium medical-grade silicone scar patches",
+  "art_direction": {
+    "concept": "Clinical warmth — quiet luxury skincare. La peau est le sujet, le site est lumineux. Références : Dr. Barbara Sturm (autorité clinique lumineuse), Aesop (warm minimalism), La Mer (luxe cinématique), Rhode (modernité soft, peau réelle).",
+    "palette": {
+      "bone": "#F5F1EA warm off-white background",
+      "porcelain": "#FBF9F5 secondary surface",
+      "ink": "#1A1815 warm near-black (never pure #000)",
+      "clay": "#B8A088 skin/argile neutral",
+      "kintsugi_gold": "#C9A227 matte gold, only as a repaired seam, never as a flat fill"
+    },
+    "lighting": "Soft natural directional daylight from upper-left, single gentle shadow. For product and texture: low raking light at ~20 degrees to reveal silicone surface. No hard flash, no ring-light catchlights.",
+    "surfaces": "Warm off-white plaster, limestone, unpolished travertine, raw ceramic, linen — always light and warm, never black seamless.",
+    "product_facts": "The patch is a translucent nude/beige medical-grade silicone rectangle, 5x15 cm, softly rounded corners, faint embossed repeating 'P' monogram texture, slightly satin finish. The gel is a matte charcoal airless pump bottle with a brushed-steel collar and thin 'PROOF' wordmark, 30 ml.",
+    "casting": "Real, diverse people, natural unretouched skin, a visible scar shown openly and honored — never airbrushed away, never a wound. Calm, self-possessed, editorial.",
+    "format_default": "4:5 vertical, high resolution >= 2000px on long edge, photorealistic editorial beauty photography, medium-format look, shot on 80-120mm, shallow but controlled depth of field."
+  },
+  "global_negative_prompt": "pure black background, dark studio, moody low-key, hypebeast, streetwear, neon, gradients as decoration, glassmorphism, colored shadows, HDR, oversaturation, plastic skin, heavy retouching, airbrushed scar, before-and-after split, medical clinical coldness, pharmacy stock photo, watermark, logo text overlay, UI, caption, lens flare, fisheye, deformed hands, extra fingers, blurry, low-res, cartoon, 3d render look, AI artifacts",
+  "assets": [
+    {
+      "id": "hero",
+      "filename": "hero.jpg",
+      "slot": "hero",
+      "placement": "Home hero, bleed right, vertical portrait behind the headline 'Your scar has a story.'",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Editorial beauty portrait of a self-possessed woman in her early 30s with natural bare skin and a real, healed thin scar visible along her cheekbone, worn openly and calmly, soft direct gaze just off camera. Warm off-white plaster background (#F5F1EA), soft natural window light from the upper left grazing the skin, single gentle shadow. Minimal styling, no makeup gloss, dewy realistic skin texture with visible pores. Quiet-luxury skincare campaign in the spirit of La Mer and Dr. Barbara Sturm. Photorealistic medium-format photography, 100mm, controlled shallow depth of field, warm neutral color grade, generous negative space on the right for text.",
+      "negative_prompt": "black background, dark mood, heavy makeup, airbrushed or hidden scar, wound, blood, sadness, clinical coldness, stock-photo smile, gradient backdrop"
+    },
+    {
+      "id": "the-patch-primary",
+      "filename": "the-patch.jpg",
+      "slot": "the-patch",
+      "placement": "Shop card 'The Patch' — primary state (on-skin macro)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Macro on-skin beauty shot: a single translucent nude medical-grade silicone scar patch applied over a real thin healed scar on a forearm or shoulder, fingertip gently pressing one edge. The patch is satin, slightly glossy, with a faint embossed repeating 'P' monogram texture, softly rounded corners. Warm real skin with natural texture. Soft daylight raking from upper left revealing the silicone surface. Warm off-white / porcelain surroundings. Photorealistic, 100mm macro, shallow depth of field, editorial skincare mood, calm and premium.",
+      "negative_prompt": "opaque bandage, band-aid look, medical gauze, black background, wound, redness, irritation, heavy retouching, plastic skin"
+    },
+    {
+      "id": "the-ritual-primary",
+      "filename": "the-ritual.jpg",
+      "slot": "the-ritual",
+      "placement": "Shop card 'The Ritual' — primary state (packshot on light)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Still-life packshot of three translucent nude medical-grade silicone scar patches fanned in a soft overlap on a warm porcelain surface (#FBF9F5), beside a slim matte off-white storage tin. Faint embossed 'P' monogram on each patch, softly rounded corners, satin finish catching a low raking daylight from upper left, one soft realistic drop shadow. Aesop-like warm minimalism, generous negative space, limestone / plaster surroundings. Photorealistic product photography, 90mm, crisp but soft, warm neutral grade.",
+      "negative_prompt": "black background, dark stone, harsh reflections, plastic cheap look, cluttered props, gradient backdrop, colored shadow"
+    },
+    {
+      "id": "protocol-primary",
+      "filename": "protocol.jpg",
+      "slot": "protocol",
+      "placement": "Shop card 'Protocol' — primary state (packshot on light)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Still-life packshot of a considered post-surgical set: eight translucent nude medical-grade silicone scar patches neatly stacked and slightly fanned, a slim matte tin, and a folded off-white printed timing guide card, arranged on warm limestone. Low raking daylight from upper left, single soft shadow, faint embossed 'P' monogram on the patches. Clinical yet warm, editorial, generous negative space, quiet-luxury pharmacy-of-the-future feel. Photorealistic product photography, 90mm, warm neutral color grade.",
+      "negative_prompt": "black background, hospital coldness, messy pile, plastic packaging, barcodes, harsh flash, gradient backdrop"
+    },
+    {
+      "id": "the-gel-primary",
+      "filename": "the-gel.jpg",
+      "slot": "the-gel",
+      "placement": "Shop card 'The Gel' — primary state (texture swatch)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Macro beauty texture of a clear silicone scar gel: a single glossy translucent swipe/smear of clear gel with soft internal highlights and a few fine bubbles, on a warm porcelain surface (#FBF9F5). Soft daylight from upper left, delicate specular sheen, one gentle shadow. Minimal, tactile, appetizing in the skincare sense, generous negative space. Photorealistic macro, 100mm, shallow depth of field, warm neutral grade.",
+      "negative_prompt": "black background, colored gel, food, slime, harsh reflections, gradient backdrop, plastic look"
+    },
+    {
+      "id": "alt-the-patch",
+      "filename": "alt-the-patch.jpg",
+      "slot": "alt-the-patch",
+      "placement": "Shop card 'The Patch' — hover state (studio object)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Studio object photograph of a single translucent nude medical-grade silicone scar patch laid flat and slightly lifted at one corner on warm limestone, faint embossed 'P' monogram, satin finish. Low raking daylight from upper left revealing the surface texture, one soft realistic shadow, warm off-white surroundings. Aesop-like restraint, generous negative space. Photorealistic, 90mm, warm neutral grade.",
+      "negative_prompt": "black background, harsh reflections, plastic look, gradient backdrop, clutter"
+    },
+    {
+      "id": "alt-the-ritual",
+      "filename": "alt-the-ritual.jpg",
+      "slot": "alt-the-ritual",
+      "placement": "Shop card 'The Ritual' — hover state (studio object)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Studio object photograph of an open slim matte off-white storage tin revealing three neatly stacked translucent nude silicone patches, on warm porcelain. Low raking daylight from upper left, one soft shadow, faint embossed 'P' monogram, calm editorial styling with generous negative space. Photorealistic product photography, 90mm, warm neutral color grade.",
+      "negative_prompt": "black background, cheap plastic, harsh flash, cluttered props, gradient backdrop"
+    },
+    {
+      "id": "alt-protocol",
+      "filename": "alt-protocol.jpg",
+      "slot": "alt-protocol",
+      "placement": "Shop card 'Protocol' — hover state (studio object)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Studio object photograph of a premium matte off-white box and tin set for a post-surgical silicone patch protocol, with a folded printed timing guide, on warm limestone. Debossed 'PROOF' wordmark on the box, subtle kintsugi-gold hairline detail as a single repaired seam across the lid, no flat gold. Low raking daylight from upper left, one soft shadow, quiet-luxury feel, generous negative space. Photorealistic, 90mm, warm neutral grade.",
+      "negative_prompt": "flat gold fill, gaudy gold, black background, plastic packaging, barcodes, harsh flash, gradient backdrop"
+    },
+    {
+      "id": "alt-the-gel",
+      "filename": "alt-the-gel.jpg",
+      "slot": "alt-the-gel",
+      "placement": "Shop card 'The Gel' — hover state (studio object)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Studio product photograph of a matte charcoal airless pump bottle with a brushed-steel collar and a thin minimal 'PROOF' wordmark, 30 ml, standing on warm porcelain with warm off-white surroundings — the dark object reading as a jewel against the light ground, not a dark scene. Soft daylight from upper left, one gentle realistic shadow, a faint kintsugi-gold hairline seam on the surface behind as a subtle detail. Photorealistic, 90mm, warm neutral color grade, generous negative space.",
+      "negative_prompt": "black background, dark scene, moody low-key, harsh reflections, flat gold, gradient backdrop"
+    },
+    {
+      "id": "ritual-clean",
+      "filename": "ritual-clean.jpg",
+      "slot": "ritual-clean",
+      "placement": "Ritual stepper — step R.01 'Clean'",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Editorial gesture photograph, step one of a skincare ritual: real hands patting a forearm dry with a natural linen towel beside a shallow bowl of clear water, warm off-white bathroom or studio setting, soft daylight from upper left. Calm, human, tactile, real skin. Same model and lighting across the Clean/Apply/Wear triptych. Photorealistic, 85mm, warm neutral grade, generous negative space.",
+      "negative_prompt": "black background, clinical coldness, gloves, harsh flash, stock-photo staging, gradient backdrop"
+    },
+    {
+      "id": "ritual-apply",
+      "filename": "ritual-apply.jpg",
+      "slot": "ritual-apply",
+      "placement": "Ritual stepper — step R.02 'Apply'",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Editorial gesture photograph, step two of a skincare ritual: real fingertips pressing a translucent nude silicone patch onto a healed scar on a forearm or shoulder, holding for a few seconds, warm off-white setting, soft daylight from upper left, faint embossed 'P' monogram on the patch. Same model and lighting as the triptych. Photorealistic macro-leaning, 85mm, real skin texture, warm neutral grade.",
+      "negative_prompt": "black background, wound, blood, redness, band-aid look, harsh flash, gradient backdrop"
+    },
+    {
+      "id": "ritual-wear",
+      "filename": "ritual-wear.jpg",
+      "slot": "ritual-wear",
+      "placement": "Ritual stepper — step R.03 'Wear'",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Editorial gesture photograph, step three of a skincare ritual: a person going calmly about their day with the translucent silicone patch worn openly on the skin, glimpsed under an open shirt collar or rolled sleeve, warm daylight interior, soft light from upper left. Quiet confidence, real unretouched skin, the patch honored not hidden. Same model and lighting as the triptych. Photorealistic, 85mm, warm neutral grade, generous negative space.",
+      "negative_prompt": "black background, hiding the patch, shame, clinical setting, harsh flash, gradient backdrop"
+    },
+    {
+      "id": "story-object",
+      "filename": "story-object.jpg",
+      "slot": "story-object",
+      "placement": "Story page + home story teaser — kintsugi macro (parallax)",
+      "aspect_ratio": "4:5",
+      "suggested_px": "2000x2500",
+      "prompt": "Fine-art macro of a real kintsugi-repaired ceramic bowl: a broken cream-glazed vessel mended with a genuine matte gold lacquer seam (#C9A227), the golden repair line as the most precious detail. Warm off-white plaster background (#F5F1EA), low raking daylight from upper left catching the gold and the glaze texture, one soft shadow. Contemplative, museum-quality, quiet luxury. Photorealistic, 100mm macro, shallow depth of field, warm neutral color grade, generous negative space.",
+      "negative_prompt": "flat gold fill, gaudy glitter gold, plastic, black background, cluttered, gradient backdrop, cartoon"
+    },
+    {
+      "id": "texture",
+      "filename": "texture.jpg",
+      "slot": "texture",
+      "placement": "Macro silicone texture — marquee / PDP detail",
+      "aspect_ratio": "3:2",
+      "suggested_px": "2400x1600",
+      "prompt": "Extreme macro of the surface of a translucent nude medical-grade silicone patch, revealing the faint embossed repeating 'P' monogram texture and satin micro-relief, on warm porcelain. Very low raking daylight from the left grazing the surface to sculpt the texture, delicate soft highlights, warm neutral tones. Abstract, tactile, premium material study. Photorealistic macro, 100mm, warm neutral grade.",
+      "negative_prompt": "black background, colored plastic, harsh specular blowout, gradient backdrop, text, logo overlay"
+    },
+    {
+      "id": "science-material",
+      "filename": "science-material.jpg",
+      "slot": "science-material",
+      "placement": "Science page — 01 'The material' editorial still",
+      "aspect_ratio": "4:3",
+      "suggested_px": "2400x1800",
+      "prompt": "Editorial science still-life: a translucent nude silicone patch and a clear gel swatch presented like museum specimens on warm limestone, with a single thin kintsugi-gold hairline underscore as a precious detail. Sturm-like clinical elegance rendered warm and luminous, soft daylight from upper left, one gentle shadow, generous negative space, warm neutral grade. Photorealistic, 90mm.",
+      "negative_prompt": "black background, cold laboratory, test tubes cliche, gradient backdrop, flat gold, harsh flash"
+    },
+    {
+      "id": "science-mechanism",
+      "filename": "science-mechanism.jpg",
+      "slot": "science-mechanism",
+      "placement": "Science page — 02 'The mechanism' editorial still",
+      "aspect_ratio": "4:3",
+      "suggested_px": "2400x1800",
+      "prompt": "Editorial macro of a translucent silicone patch sealing over skin, water droplets of retained hydration visible trapped beneath the translucent edge, warm real skin, soft daylight from upper left. Conveys occlusion and hydration as an elegant editorial object, not a diagram. Warm neutral grade, generous negative space. Photorealistic macro, 100mm.",
+      "negative_prompt": "black background, infographic arrows, text, cold clinical look, gradient backdrop, plastic skin"
+    }
+  ],
+  "optional_video": {
+    "id": "pdp-hero-loop",
+    "filename": "pdp-loop.mp4",
+    "placement": "Optional PDP hero — 6-8s silent loop (La Mer moment)",
+    "aspect_ratio": "4:5 or 1:1",
+    "prompt": "Slow silent macro loop, 6-8 seconds: a clear silicone gel slowly spreading in a thin film, or a translucent silicone patch gently flexing, on warm porcelain under soft raking daylight. Meditative, seamless loop, warm neutral grade, no text.",
+    "negative_prompt": "fast cuts, text, music cues, black background, logos, harsh flash"
+  },
+  "usage_notes": {
+    "midjourney": "Ajoute --ar depuis 'aspect_ratio' et --style raw --v 6 ; colle 'prompt', puis '--no ' suivi de 'negative_prompt'.",
+    "flux_sdxl": "Utilise 'prompt' et 'negative_prompt' tels quels ; guidance 3-4 (Flux) ou CFG 5-7 (SDXL) pour garder le naturel de la peau.",
+    "dalle3": "Colle 'prompt' et ajoute en fin de phrase les interdits clés du negative ('no black background, no before-and-after, no gradients').",
+    "dropin": "Enregistre chaque rendu sous 'filename' dans public/products/ (jpg/webp/avif/png acceptés) ; le slot s'affiche automatiquement, ratio 4:5 conseillé pour cartes et hero.",
+    "consistency": "Génère hero + ritual-clean/apply/wear avec la même personne et la même lumière (seed/cref fixes) ; garde les packshots sur le même fond limestone/porcelaine."
+  }
+}

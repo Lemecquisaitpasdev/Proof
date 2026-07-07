@@ -130,67 +130,84 @@ textarea {
 }
 
 /* ============ 02 — TYPOGRAPHIE / TROIS VOIX ============ */
-/* Sérif éditorial (Fraunces) = la voix qui murmure.
+/* Display Archivo Expanded Black (crie) = la voix V1, posée sur le clair.
    Grotesque humaniste (Instrument) = la voix qui parle.
    Mono (Plex) = la voix qui prescrit — petites doses cliniques. */
 
 .d1,
 .d2,
 .d3 {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 385;
-  letter-spacing: -0.015em;
-  line-height: 1.04;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.94;
   margin: 0;
   color: var(--ink);
   text-wrap: balance;
-  font-variant-ligatures: common-ligatures;
 }
 
 .d1 {
   font-size: clamp(44px, 7.2vw, 96px);
+  line-height: 0.9;
 }
 
 .d2 {
-  font-size: clamp(36px, 4.6vw, 64px);
-  line-height: 1.07;
+  font-weight: 850;
+  font-stretch: 112%;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 0.98;
+  letter-spacing: -0.008em;
 }
 
 .d3 {
-  font-size: clamp(28px, 3.2vw, 48px);
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  font-stretch: 108%;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.02;
 }
 
 .h-l {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 420;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 750;
+  font-stretch: 90%;
+  text-transform: uppercase;
   font-size: clamp(24px, 2.4vw, 32px);
-  line-height: 1.2;
-  letter-spacing: -0.005em;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   margin: 0;
   color: var(--ink);
 }
 
 .h-m {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 440;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 700;
+  font-stretch: 85%;
+  text-transform: uppercase;
   font-size: clamp(20px, 1.8vw, 24px);
-  line-height: 1.25;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
   margin: 0;
   color: var(--ink);
 }
 
-/* Exergue — sérif italique, la voix La Mer */
+/* Exergue — Archivo black en capitales (l'ancienne voix « quote ») */
 .exergue {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-style: italic;
-  font-weight: 360;
-  font-size: clamp(26px, 3.4vw, 44px);
-  line-height: 1.28;
-  letter-spacing: -0.005em;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.006em;
   margin: 0;
   text-wrap: balance;
+}
+
+.exergue em {
+  font-style: normal;
+  color: var(--kintsugi-ink);
 }
 
 .mono {
@@ -601,10 +618,12 @@ html.js [data-parallax] {
 }
 
 .logo {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 460;
-  font-size: 24px;
-  letter-spacing: 0.01em;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  font-size: 21px;
+  letter-spacing: -0.01em;
   color: var(--ink);
   line-height: 1;
 }
@@ -759,7 +778,7 @@ html.js [data-parallax] {
 }
 
 .pw-vogue {
-  font-family: var(--font-fraunces), serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 420;
   font-size: 22px;
   letter-spacing: 0.18em;
@@ -773,7 +792,7 @@ html.js [data-parallax] {
 }
 
 .pw-bazaar {
-  font-family: var(--font-fraunces), serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 520;
   font-size: 17px;
   letter-spacing: 0.1em;
@@ -787,7 +806,7 @@ html.js [data-parallax] {
 }
 
 .pw-mc {
-  font-family: var(--font-fraunces), serif;
+  font-family: var(--font-playfair), serif;
   font-weight: 420;
   font-size: 17px;
   letter-spacing: 0.14em;
@@ -879,9 +898,12 @@ html.js [data-parallax] {
 }
 
 .drawer__title {
-  font-family: var(--font-fraunces), serif;
-  font-weight: 440;
-  font-size: 19px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 108%;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: 15px;
   color: var(--ink);
 }
 
@@ -926,9 +948,12 @@ html.js [data-parallax] {
 }
 
 .cline__name {
-  font-family: var(--font-fraunces), serif;
-  font-weight: 440;
-  font-size: 17px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 110%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: 15px;
   color: var(--ink);
 }
 
@@ -1217,10 +1242,13 @@ html.js [data-parallax] {
 }
 
 .card__name {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 420;
-  font-size: 24px;
-  line-height: 1.1;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: 23px;
+  line-height: 1;
   color: var(--ink);
   margin: 0;
 }
@@ -1407,10 +1435,13 @@ html.js [data-parallax] {
 }
 
 .rstep__name {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(26px, 2.6vw, 36px);
-  line-height: 1.1;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1;
   color: var(--ink);
   margin: 0 0 12px;
 }
@@ -1516,12 +1547,14 @@ html.js .ritual--live .rstep {
 .posology::after {
   content: "PROOF";
   position: absolute;
-  right: -12px;
-  bottom: -26px;
-  font-family: var(--font-fraunces), serif;
-  font-weight: 500;
-  font-size: 96px;
-  letter-spacing: 0.02em;
+  right: -14px;
+  bottom: -22px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  font-size: 82px;
+  letter-spacing: -0.01em;
   color: var(--ink);
   opacity: 0.045;
   pointer-events: none;
@@ -1681,6 +1714,110 @@ html.js .ritual--live .rstep {
   .mechanism .m-dot {
     transition: none;
     opacity: 0.75;
+  }
+}
+
+/* ============ 15b — FEATURE « L'OBJET » (bande sombre, image à droite) ============ */
+/* Un second moment sombre, mené par le produit : liste de bénéfices + CTA
+   à gauche, macro des bouchons acier en bleed à droite. */
+
+.feature {
+  background: var(--ink);
+  color: var(--bone);
+  overflow: hidden;
+}
+
+.feature .eyebrow {
+  color: var(--bone-55);
+}
+
+.feature .d2,
+.feature .d3 {
+  color: var(--bone);
+}
+
+.feature p {
+  color: var(--bone-70);
+}
+
+.feature__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 5vw, 88px);
+  align-items: center;
+}
+
+.feature__media {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  margin: 0;
+}
+
+@media (min-width: 941px) {
+  .feature__media {
+    margin-right: calc(-1 * var(--pad));
+    aspect-ratio: 4 / 4.6;
+  }
+}
+
+.feature__media img {
+  object-fit: cover;
+}
+
+.feature__list {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+}
+
+.feature__list li {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone-70);
+  padding: 15px 0;
+  border-top: 1px solid var(--bone-12);
+  display: flex;
+  gap: 14px;
+}
+
+.feature__list li:last-child {
+  border-bottom: 1px solid var(--bone-12);
+}
+
+.feature__list li::before {
+  content: "+";
+  color: var(--kintsugi);
+  flex-shrink: 0;
+}
+
+.feature__cta {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.feature .btn--primary {
+  background: var(--bone);
+  color: var(--ink);
+}
+
+.feature .tlink {
+  color: var(--bone);
+}
+
+@media (max-width: 940px) {
+  .feature__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature__media {
+    order: -1;
+    aspect-ratio: 16 / 11;
   }
 }
 
@@ -1866,10 +2003,12 @@ html.js .ritual--live .rstep {
 }
 
 .pdp__title {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 385;
-  font-size: clamp(38px, 4.4vw, 60px);
-  line-height: 1.02;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 850;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  font-size: clamp(36px, 4.2vw, 56px);
+  line-height: 0.96;
   letter-spacing: -0.01em;
   margin: 0;
   color: var(--ink);
@@ -2018,9 +2157,12 @@ html.js .ritual--live .rstep {
 }
 
 .buybar__name {
-  font-family: var(--font-fraunces), serif;
-  font-weight: 440;
-  font-size: 16px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 108%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  font-size: 15px;
   color: var(--ink);
   flex: 1;
   min-width: 0;
@@ -2077,9 +2219,12 @@ html.js .ritual--live .rstep {
   align-items: baseline;
   gap: 24px;
   padding: 24px 2px;
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 430;
-  font-size: 19px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 650;
+  font-stretch: 85%;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: 17px;
   color: var(--ink);
   transition: color 0.15s ease;
 }
@@ -2258,9 +2403,11 @@ html.js .ritual--live .rstep {
 }
 
 .footer__mark {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 420;
-  letter-spacing: 0.01em;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 125%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
   line-height: 0.78;
   font-size: clamp(96px, 18vw, 230px);
   color: var(--ink);

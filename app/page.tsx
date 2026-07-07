@@ -16,6 +16,7 @@ const D = (s: number) => ({ "--d": `${s}s` }) as React.CSSProperties;
 export default function HomePage() {
   const heroPhoto = productImage("hero");
   const storyObject = productImage("story-object");
+  const bouchon = productImage("bouchon");
 
   return (
     <>
@@ -173,6 +174,49 @@ export default function HomePage() {
               sideEffects="Side effects : pride, confidence, questions at parties."
             />
           </div>
+        </div>
+      </section>
+
+      {/* L'OBJET — bande sombre menée par le produit (bouchons acier) */}
+      <section className="section feature">
+        <div className="container feature__grid">
+          <div className="feature__copy" data-reveal>
+            <span className="eyebrow">The object</span>
+            <h2 className="d2">Made to be kept.</h2>
+            <p className="measure" style={{ marginTop: 24 }}>
+              The rigor of a medical device, the manners of a niche perfumery
+              object — considered down to the brushed-steel cap, embossed with
+              the P.
+            </p>
+            <ul className="feature__list">
+              <li>Medical-grade silicone — worn 12 to 23 hours a day</li>
+              <li>Reusable up to 14 days per patch</li>
+              <li>Refillable gel in a brushed-steel cap</li>
+              <li>Ships worldwide — 30-day returns</li>
+              <li>A numbered series — Batch Nº 017</li>
+            </ul>
+            <div className="feature__cta">
+              <Link href="/shop" className="btn btn--primary">
+                Open the shop
+              </Link>
+              <Link href="/story" className="tlink klink">
+                Read the story
+              </Link>
+            </div>
+          </div>
+          <figure className="feature__media" data-reveal>
+            {bouchon ? (
+              <div className="hero__parallax" data-parallax="5">
+                <Image
+                  src={bouchon}
+                  alt="Proof — brushed-steel caps embossed with the P monogram"
+                  fill
+                  sizes="(max-width: 940px) 100vw, 55vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : null}
+          </figure>
         </div>
       </section>
 

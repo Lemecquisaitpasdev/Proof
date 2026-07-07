@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import {
+  Archivo,
+  IBM_Plex_Mono,
+  Instrument_Sans,
+  Playfair_Display,
+} from "next/font/google";
 import { CartProvider } from "@/lib/cart";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
@@ -10,11 +15,11 @@ import CartDrawer from "@/components/CartDrawer";
 import Fx from "@/components/Fx";
 import "./globals.css";
 
-const fraunces = Fraunces({
+// Display — la voix qui crie (Archivo Expanded Black, capitales), sur le clair
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["opsz"],
-  style: ["normal", "italic"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
@@ -28,6 +33,13 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+// Presse — wordmarks sérif (Vogue, Harper's Bazaar, Marie Claire)
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -65,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable}`}
+      className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${playfair.variable}`}
     >
       <body>
         {/* marque le JS disponible avant peinture — les reveals restent

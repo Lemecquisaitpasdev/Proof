@@ -18,28 +18,28 @@ const ALIASES: Record<string, string[]> = {
   "the-patch": ["the-patch", "patchproof"],
   "the-ritual": ["the-ritual"],
   protocol: ["protocol"],
-  "the-gel": ["the-gel", "texturegelsilicone"],
+  "the-gel": ["the-gel", "gelensiliconesurfondblanc", "texturegelsilicone"],
 
   /* Cards shop — état HOVER : l'objet photographié au studio. */
   "alt-the-patch": ["alt-the-patch", "patchproofgris"],
   "alt-the-ritual": ["alt-the-ritual", "patchproofeditionslimitee"],
   "alt-protocol": ["alt-protocol", "packagingproofpatch"],
-  "alt-the-gel": ["alt-the-gel", "produitgelsilicone"],
+  "alt-the-gel": ["alt-the-gel", "gelsiliconeavecboiteproduit", "produitgelsilicone"],
 
   /* Galeries PDP */
   "the-patch-2": ["the-patch-2", "patchproofgris"],
   "the-ritual-2": ["the-ritual-2", "patchproofeditionslimitee"],
   "protocol-2": ["protocol-2", "packagingproofpatch"],
-  "the-gel-2": ["the-gel-2", "produitgelsilicone"],
-  "the-gel-3": ["the-gel-3", "gelsilicone"],
+  "the-gel-2": ["the-gel-2", "photogelavecfond", "produitgelsilicone"],
+  "the-gel-3": ["the-gel-3", "photogelmarketing", "gelsilicone"],
 
   /* Héros de la home — portrait lumineux, cicatrice visible, assumée. */
-  hero: ["hero", "siliconegelmannequin"],
+  hero: ["hero", "gelensiliconenutulisationfemme", "siliconegelmannequin"],
 
   /* Le Rituel — Clean / Apply / Wear (crossfade du stepper) */
-  "ritual-clean": ["ritual-clean", "texturegelsilicone"],
+  "ritual-clean": ["ritual-clean", "photogelsalledebain", "texturegelsilicone"],
   "ritual-apply": ["ritual-apply", "patchproof"],
-  "ritual-wear": ["ritual-wear", "siliconegelmannequin"],
+  "ritual-wear": ["ritual-wear", "gelsiliconesurhomme", "siliconegelmannequin"],
 
   /* Page Science */
   "science-material": ["science-material", "produitgelsilicone"],
@@ -47,6 +47,9 @@ const ALIASES: Record<string, string[]> = {
 
   /* Story — l'objet, packaging à la fissure kintsugi */
   "story-object": ["story-object", "packagingproofpatch"],
+
+  /* La section « objet » de la home — bouchons acier embossés P */
+  bouchon: ["bouchon", "bouchonproduit"],
 
   /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],

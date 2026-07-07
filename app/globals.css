@@ -41,6 +41,10 @@
   --sec: clamp(96px, 11vw, 144px);
   --sec-hush: clamp(128px, 16vw, 208px);
 
+  /* Coins arrondis — appliqués aux surfaces d'images (demande client) */
+  --radius: 18px;
+  --radius-sm: 10px;
+
   /* MOTION — micro 150–200ms, reveals 500–600ms, jamais de bounce */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-organique: cubic-bezier(0.65, 0.05, 0.22, 1);
@@ -944,6 +948,7 @@ html.js [data-parallax] {
   height: 72px;
   position: relative;
   overflow: hidden;
+  border-radius: var(--radius-sm);
   background: var(--bone);
 }
 
@@ -1048,8 +1053,8 @@ html.js [data-parallax] {
 
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: clamp(32px, 5vw, 80px);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4.3fr);
+  gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
 
@@ -1080,9 +1085,11 @@ html.js [data-parallax] {
 
 .hero__visual {
   position: relative;
-  aspect-ratio: 3 / 4;
-  min-height: 320px;
+  aspect-ratio: 4 / 5;
+  min-height: 300px;
+  max-height: 72vh;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
 }
 
@@ -1112,13 +1119,6 @@ html.js [data-parallax] {
   .hero__title .w {
     animation: none;
     opacity: 1;
-  }
-}
-
-/* bleed à droite — l'image touche le bord de l'écran */
-@media (min-width: 941px) {
-  .hero__visual {
-    margin-right: calc(-1 * var(--pad));
   }
 }
 
@@ -1189,8 +1189,9 @@ html.js [data-parallax] {
 .card__visual {
   display: block;
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
 }
 
@@ -1395,6 +1396,7 @@ html.js [data-parallax] {
   top: 104px;
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
 }
 
@@ -1478,6 +1480,7 @@ html.js .ritual--live .rstep.is-active {
     position: relative;
     aspect-ratio: 4 / 3;
     overflow: hidden;
+    border-radius: var(--radius);
     background: var(--porcelain);
     margin-bottom: 8px;
   }
@@ -1742,8 +1745,8 @@ html.js .ritual--live .rstep {
 
 .feature__grid {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-  gap: clamp(32px, 5vw, 88px);
+  grid-template-columns: minmax(0, 5.5fr) minmax(0, 4.8fr);
+  gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
 
@@ -1751,13 +1754,13 @@ html.js .ritual--live .rstep {
   position: relative;
   aspect-ratio: 5 / 4;
   overflow: hidden;
+  border-radius: var(--radius);
   margin: 0;
 }
 
 @media (min-width: 941px) {
   .feature__media {
-    margin-right: calc(-1 * var(--pad));
-    aspect-ratio: 4 / 4.6;
+    aspect-ratio: 4 / 3.7;
   }
 }
 
@@ -1829,8 +1832,9 @@ html.js .ritual--live .rstep {
 
 .story__figure {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 4.4;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
   margin: 0;
 }
@@ -1881,6 +1885,7 @@ html.js .ritual--live .rstep {
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
 }
 
@@ -1991,6 +1996,7 @@ html.js .ritual--live .rstep {
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  border-radius: var(--radius);
   background: var(--porcelain);
 }
 

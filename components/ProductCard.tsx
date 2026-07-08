@@ -6,7 +6,7 @@ import PlateVisual from "@/components/PlateVisual";
 import { CardAdd } from "@/components/AddButton";
 
 /**
- * Card sans bordure — l'image fait la card. État primaire lumineux
+ * Card sans bordure, l'image fait la card. État primaire lumineux
  * (photo claire ou plate CSS) ; au hover, crossfade vers la photo studio
  * de l'objet, et prix + Add remontent en fondu. En tactile, tout est
  * visible d'emblée.
@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
         {photo ? (
           <Image
             src={photo}
-            alt={`${product.name} — medical-grade silicone scar care`}
+            alt={`${product.name}, medical-grade silicone scar care`}
             fill
             sizes="(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw"
             style={{ objectFit: "cover" }}
@@ -54,7 +54,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="card__body">
         <span className="card__chapter">
-          {product.chapter} — {product.chapterName}
+          {product.chapter} · {product.chapterName}
         </span>
         <h3 className="card__name">
           <Link href={`/shop/${product.slug}`}>{product.name}</Link>

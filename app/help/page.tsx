@@ -14,11 +14,11 @@ const FAQ = [
     items: [
       {
         q: "How do I apply it",
-        a: "Wash the area with mild soap, pat it dry, and place the patch over the scar. Press for ten seconds. No creams or oils underneath — the patch commits to clean skin only.",
+        a: "Wash the area with mild soap, pat it dry, and place the patch over the scar. Press for ten seconds. No creams or oils underneath, the patch commits to clean skin only.",
       },
       {
         q: "How long do I wear it each day",
-        a: "12 to 23 hours. Take it off to wash, let your skin breathe a moment, put it back. Consistency matters more than perfection — a missed day is a comma, not a full stop.",
+        a: "12 to 23 hours. Take it off to wash, let your skin breathe a moment, put it back. Consistency matters more than perfection, a missed day is a comma, not a full stop.",
       },
       {
         q: "How do I reuse it",
@@ -30,7 +30,7 @@ const FAQ = [
       },
       {
         q: "Can I use it on a fresh, post-op scar",
-        a: "Only once the wound is fully closed — no scabs, no openings, stitches out — and your clinician agrees. Protocol includes a timing guide for exactly this.",
+        a: "Only once the wound is fully closed, no scabs, no openings, stitches out, and your clinician agrees. Protocol includes a timing guide for exactly this.",
       },
       {
         q: "What if my skin reacts",
@@ -51,7 +51,7 @@ const FAQ = [
       },
       {
         q: "Which chapter should I pick",
-        a: "New scar and curiosity: The Patch. A scar you are serious about: The Ritual — six weeks is where texture and color settle. Post-surgery: Protocol, sixteen weeks of coverage.",
+        a: "New scar and curiosity: The Patch. A scar you are serious about: The Ritual, six weeks is where texture and color settle. Post-surgery: Protocol, sixteen weeks of coverage.",
       },
     ],
   },
@@ -84,7 +84,7 @@ export default function HelpPage() {
           <div className="container split">
             <div data-reveal>
               <span className="eyebrow eyebrow--gold">
-                {String(gi + 1).padStart(2, "0")} — {group.section}
+                {String(gi + 1).padStart(2, "0")} · {group.section}
               </span>
             </div>
             <div className="faq" data-reveal>
@@ -121,11 +121,11 @@ export default function HelpPage() {
               >
                 contactus@trackk.fr
               </a>{" "}
-              — answers within 24 hours, Monday to Friday.
+            , answers within 24 hours, Monday to Friday.
             </p>
             <div style={{ marginTop: 28 }}>
               <Posology
-                title="Support — posology"
+                title="Support, posology"
                 lines={[
                   "One email. Any question.",
                   "Response time : under 24 h, Mon–Fri.",

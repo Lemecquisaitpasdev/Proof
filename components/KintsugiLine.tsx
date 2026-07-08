@@ -1,5 +1,5 @@
 /**
- * LA LIGNE KINTSUGI — la signature.
+ * LA LIGNE KINTSUGI, la signature.
  * Une fêlure réparée à l'or : trait organique irrégulier, micro-fourche
  * aux deux tiers. Or mat 1.3px, jamais en aplat. Elle se dessine
  * (stroke-dashoffset) au scroll via Fx ([data-draw]) ou au chargement

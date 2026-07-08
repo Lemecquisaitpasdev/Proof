@@ -36,13 +36,13 @@ export default function SciencePage() {
       <section className="section">
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">01 — The material</span>
+            <span className="eyebrow eyebrow--gold">01 · The material</span>
             <h2 className="d3">Born in burn units.</h2>
           </div>
           <div data-reveal>
             <p className="measure">
               Silicone gel sheeting entered scar care in 1983, on burn scars
-              and contractures. Four decades later it is still the reference —
+              and contractures. Four decades later it is still the reference,
               not because the marketing was loud, but because the results kept
               being observed.
             </p>
@@ -55,24 +55,24 @@ export default function SciencePage() {
         </div>
       </section>
 
-      {/* LE MÉCANISME — la seule bande sombre de la page */}
+      {/* LE MÉCANISME, la seule bande sombre de la page */}
       <section className="section--hush section science">
         <div className="container">
           <div className="science__grid">
             <div data-reveal>
-              <span className="eyebrow eyebrow--gold">02 — The mechanism</span>
+              <span className="eyebrow eyebrow--gold">02 · The mechanism</span>
               <h2 className="d3" style={{ maxWidth: "12ch" }}>
                 Occlusion. Hydration.
               </h2>
               <p className="measure" style={{ marginTop: 28 }}>
-                A scar that dries out overproduces collagen — that is what makes
+                A scar that dries out overproduces collagen, that is what makes
                 it raised, stiff, and darker than the skin around it. A silicone
                 patch closes the surface, restores hydration in the outer layer
                 of the skin, and lets the tissue regulate its own collagen
                 production.
               </p>
               <p className="exergue" style={{ marginTop: 40 }}>
-                Flatter. Softer. Closer to your skin tone — worn{" "}
+                Flatter. Softer. Closer to your skin tone, worn{" "}
                 <em>12 to 23 hours a day, over weeks.</em>
               </p>
             </div>
@@ -86,7 +86,7 @@ export default function SciencePage() {
       <section className="section">
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">03 — The evidence</span>
+            <span className="eyebrow eyebrow--gold">03 · The evidence</span>
             <h2 className="d3">On the record.</h2>
           </div>
           <div data-reveal>
@@ -97,15 +97,15 @@ export default function SciencePage() {
             </p>
             <ul className="refs" style={{ marginTop: 24 }}>
               <li>
-                <span>Ref. 01</span>Perkins et al., 1983 — Burns — first report
+                <span>Ref. 01</span>Perkins et al., 1983, Burns, first report
                 of silicone gel sheeting on burn scars.
               </li>
               <li>
-                <span>Ref. 02</span>Mustoe et al., 2002 — International clinical
+                <span>Ref. 02</span>Mustoe et al., 2002, International clinical
                 recommendations on scar management.
               </li>
               <li>
-                <span>Ref. 03</span>Monstrey et al., 2014 — Updated
+                <span>Ref. 03</span>Monstrey et al., 2014, Updated
                 international scar-management guidelines: silicone as
                 first-line, non-invasive care.
               </li>
@@ -122,14 +122,14 @@ export default function SciencePage() {
         <div className="container split">
           <div data-reveal>
             <span className="eyebrow eyebrow--gold">
-              04 — What we refuse to say
+              04 · What we refuse to say
             </span>
             <h2 className="d3">The honest column.</h2>
           </div>
           <div data-reveal>
             <p className="measure">
               We don&apos;t say heal. We don&apos;t say cure. We don&apos;t say
-              disappear. The patch improves the appearance of scars — that is
+              disappear. The patch improves the appearance of scars, that is
               the claim, the whole claim, and it is enough.
             </p>
             <p className="exergue" style={{ marginTop: 32, marginBottom: 32 }}>
@@ -137,7 +137,7 @@ export default function SciencePage() {
             </p>
             <div style={{ marginBottom: 32 }}>
               <Posology
-                title="Mechanism — summary"
+                title="Mechanism, summary"
                 lines={[
                   "Occlusion of the scar surface.",
                   "Hydration of the stratum corneum.",
@@ -150,7 +150,7 @@ export default function SciencePage() {
                 Open the shop
               </Link>
               <Link href="/help" className="tlink klink">
-                Questions — Help
+                Questions, Help
               </Link>
             </div>
             <p

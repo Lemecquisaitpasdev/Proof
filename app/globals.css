@@ -1053,7 +1053,7 @@ html.js [data-parallax] {
 
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 4.3fr);
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5.2fr);
   gap: clamp(32px, 5vw, 72px);
   align-items: center;
 }
@@ -1085,9 +1085,8 @@ html.js [data-parallax] {
 
 .hero__visual {
   position: relative;
-  aspect-ratio: 4 / 5;
-  min-height: 300px;
-  max-height: 72vh;
+  /* cadre calé sur le ratio réel du portrait hero — image entière, non coupée */
+  aspect-ratio: 1654 / 951;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--porcelain);
@@ -1126,10 +1125,15 @@ html.js [data-parallax] {
   object-fit: cover;
 }
 
-/* l'image reçoit un translateY ±6% au scroll (Fx), donc légère sur-taille */
+/* l'image reçoit un translateY au scroll (Fx) — sur-taille réduite pour
+   ne quasiment rien rogner (image montrée en entier) */
 .hero__parallax {
   position: absolute;
-  inset: -7% 0;
+  inset: -4% 0;
+}
+
+.hero__parallax img {
+  object-fit: cover;
 }
 
 @media (max-width: 940px) {
@@ -1142,7 +1146,7 @@ html.js [data-parallax] {
   }
 
   .hero__visual {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1654 / 951;
     order: 2;
   }
 }

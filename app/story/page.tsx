@@ -28,12 +28,12 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* KINTSUGI — contemplative */}
+      {/* KINTSUGI, contemplative */}
       <section className="section--hush section">
         <div className="container story__grid">
           <div>
             <span className="eyebrow eyebrow--gold" data-reveal>
-              01 — Kintsugi
+              01, Kintsugi
             </span>
             <p className="d2 story__quote" data-reveal>
               Broken things are repaired{" "}
@@ -60,7 +60,7 @@ export default function StoryPage() {
               <div className="hero__parallax" data-parallax="6">
                 <Image
                   src={objectPhoto}
-                  alt="Proof packaging — the gold seam, a crack repaired with light"
+                  alt="Proof packaging, the gold seam, a crack repaired with light"
                   fill
                   sizes="(max-width: 900px) 100vw, 40vw"
                   style={{ objectFit: "cover" }}
@@ -68,7 +68,7 @@ export default function StoryPage() {
               </div>
             ) : null}
             <figcaption className="story__caption">
-              The seam, kept — not hidden.
+              The seam, kept, not hidden.
             </figcaption>
           </figure>
         </div>
@@ -81,7 +81,7 @@ export default function StoryPage() {
       <section className="section">
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">02 — The object</span>
+            <span className="eyebrow eyebrow--gold">02 · The object</span>
             <h2 className="d3">Clinical luxury.</h2>
           </div>
           <div data-reveal>
@@ -89,7 +89,7 @@ export default function StoryPage() {
               Proof is a silicone patch with the rigor of a medical device and
               the manners of a niche perfumery object. Medical-grade silicone,
               5 × 15 centimeters, worn 12 to 23 hours a day. It improves the
-              appearance of the scar — the texture, the color, the relief.
+              appearance of the scar, the texture, the color, the relief.
             </p>
             <p className="exergue" style={{ marginTop: 32 }}>
               It does not promise disappearance, because{" "}
@@ -106,13 +106,13 @@ export default function StoryPage() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">03 — The line</span>
+            <span className="eyebrow eyebrow--gold">03 · The line</span>
             <h2 className="d3">One real line.</h2>
           </div>
           <div data-reveal>
             <p className="measure">
               The gold line that crosses this site is not a decoration. It is
-              traced from a real scar — one customer, one story, one season.
+              traced from a real scar, one customer, one story, one season.
               Each season, a new line replaces it.
             </p>
             <p className="measure">
@@ -121,7 +121,7 @@ export default function StoryPage() {
             </p>
             <div style={{ marginTop: 32 }}>
               <Posology
-                title="Manifesto — summary"
+                title="Manifesto, summary"
                 lines={[
                   "Your scar has a story.",
                   "We made it something worth wearing.",

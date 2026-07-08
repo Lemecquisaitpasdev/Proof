@@ -48,7 +48,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         setItems(clean);
       }
     } catch {
-      // storage unavailable — cart stays in memory
+      // storage unavailable, cart stays in memory
     }
     setHydrated(true);
   }, []);
@@ -58,7 +58,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch {
-      // storage unavailable — cart stays in memory
+      // storage unavailable, cart stays in memory
     }
   }, [items, hydrated]);
 

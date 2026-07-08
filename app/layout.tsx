@@ -15,7 +15,7 @@ import CartDrawer from "@/components/CartDrawer";
 import Fx from "@/components/Fx";
 import "./globals.css";
 
-// Display — la voix qui crie (Archivo Expanded Black, capitales), sur le clair
+// Display, la voix qui crie (Archivo Expanded Black, capitales), sur le clair
 const archivo = Archivo({
   subsets: ["latin"],
   axes: ["wdth"],
@@ -36,7 +36,7 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-// Presse — wordmarks sérif (Vogue, Harper's Bazaar, Marie Claire)
+// Presse, wordmarks sérif (Vogue, Harper's Bazaar, Marie Claire)
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
@@ -48,13 +48,13 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Proof — Premium Silicone Scar Patch",
-    template: "%s — Proof",
+    default: "Proof, Premium Silicone Scar Patch",
+    template: "%s, Proof",
   },
   description:
     "Medical-grade silicone patches that improve the appearance of scars. Honor it. Don't erase it.",
   openGraph: {
-    title: "Proof — Premium Silicone Scar Patch",
+    title: "Proof, Premium Silicone Scar Patch",
     description:
       "Medical-grade silicone patches that improve the appearance of scars. Honor it. Don't erase it.",
     siteName: "Proof",
@@ -80,7 +80,7 @@ export default function RootLayout({
       className={`${archivo.variable} ${instrument.variable} ${plexMono.variable} ${playfair.variable}`}
     >
       <body>
-        {/* marque le JS disponible avant peinture — les reveals restent
+        {/* marque le JS disponible avant peinture, les reveals restent
             visibles sans JavaScript */}
         <script
           dangerouslySetInnerHTML={{

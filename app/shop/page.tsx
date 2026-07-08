@@ -23,7 +23,7 @@ export default function ShopPage() {
             className="lead measure enter"
             style={{ "--d": ".22s" } as React.CSSProperties}
           >
-            Every scar gets a chapter. Three patches, one gel — pick where
+            Every scar gets a chapter. Three patches, one gel, pick where
             yours starts.
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function ShopPage() {
       <section className="section">
         <div className="container">
           <span className="eyebrow" data-reveal>
-            La planche — compare
+            La planche, compare
           </span>
           <div className="specs-scroll" data-reveal>
             <table className="specs">

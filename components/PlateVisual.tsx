@@ -1,7 +1,7 @@
 import { BATCH } from "@/lib/products";
 
 /**
- * PLATE — packshot CSS, version lumière.
+ * PLATE, packshot CSS, version lumière.
  * Plate porcelaine, patch argile, une seule lumière douce venant du
  * haut-gauche, ombre portée neutre. La matière (grain silicone) vit
  * ici et nulle part ailleurs.

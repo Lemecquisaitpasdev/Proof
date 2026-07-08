@@ -35,23 +35,23 @@ export const products: Product[] = [
     coverage: "Up to 14 days",
     layers: 1,
     contents: [
-      "1 × silicone patch — 5 × 15 cm",
+      "1 × silicone patch, 5 × 15 cm",
       "1 × storage card",
       "Application guide",
     ],
     posology: [
       "Apply once daily on clean skin.",
       "Wear time : 12–23 h.",
-      "Rinse, air-dry, reuse — up to 14 days.",
+      "Rinse, air-dry, reuse, up to 14 days.",
     ],
     sideEffects: "Side effects : pride, confidence, questions at parties.",
     narrative: [
-      "It happened. The bike, the kitchen counter, the appendix — the details are yours. What it left behind is an opening sentence, and opening sentences deserve better than being mumbled.",
+      "It happened. The bike, the kitchen counter, the appendix, the details are yours. What it left behind is an opening sentence, and opening sentences deserve better than being mumbled.",
       "One patch. Cut it to size if you want. Wear it twelve to twenty-three hours a day, rinse it at night, and put it back in the morning. Fourteen days to see what a ritual feels like.",
     ],
     specs: [
       ["Material", "Medical-grade silicone"],
-      ["Size", "5 × 15 cm — cut to fit"],
+      ["Size", "5 × 15 cm, cut to fit"],
       ["Wear", "12–23 h per day"],
       ["Reuse", "Up to 14 days per patch"],
       ["Coverage", "Up to 14 days"],
@@ -68,7 +68,7 @@ export const products: Product[] = [
       },
       {
         q: "When do I see a change",
-        a: "Texture and color usually start moving after 8 to 12 weeks of consistent wear. One patch is the first fourteen days of that story — most people continue with The Ritual.",
+        a: "Texture and color usually start moving after 8 to 12 weeks of consistent wear. One patch is the first fourteen days of that story, most people continue with The Ritual.",
       },
     ],
     metaDescription:
@@ -83,13 +83,13 @@ export const products: Product[] = [
     badge: "Most chosen",
     cardLine: "3 patches · six weeks of daily wear · ritual card",
     tagline:
-      "The designated best-seller. Three patches, six weeks of daily wear — the window where texture and color settle.",
+      "The designated best-seller. Three patches, six weeks of daily wear, the window where texture and color settle.",
     bestFor: "The daily habit.",
     coverage: "Up to 6 weeks",
     layers: 3,
     contents: [
-      "3 × silicone patches — 5 × 15 cm",
-      "1 × ritual card — the six-week course",
+      "3 × silicone patches, 5 × 15 cm",
+      "1 × ritual card, the six-week course",
       "1 × storage tin",
     ],
     posology: [
@@ -101,11 +101,11 @@ export const products: Product[] = [
       "Side effects : a routine you actually keep. Compliments from strangers.",
     narrative: [
       "A scar does not change over a weekend. It changes because you show up every day, the way anything worth keeping gets kept.",
-      "Three patches, fourteen days each. Six weeks of the same quiet gesture every morning — the span most people need before the mirror starts reporting differently.",
+      "Three patches, fourteen days each. Six weeks of the same quiet gesture every morning, the span most people need before the mirror starts reporting differently.",
     ],
     specs: [
       ["Material", "Medical-grade silicone"],
-      ["Contains", "3 patches — 5 × 15 cm"],
+      ["Contains", "3 patches, 5 × 15 cm"],
       ["Wear", "12–23 h per day"],
       ["Rotation", "One patch every 14 days"],
       ["Coverage", "Up to 6 weeks"],
@@ -118,7 +118,7 @@ export const products: Product[] = [
       },
       {
         q: "What if I miss a day",
-        a: "A missed day is a comma, not a full stop. Put the patch back on the next morning and keep going — consistency over perfection.",
+        a: "A missed day is a comma, not a full stop. Put the patch back on the next morning and keep going, consistency over perfection.",
       },
       {
         q: "Does it work on older scars",
@@ -126,7 +126,7 @@ export const products: Product[] = [
       },
     ],
     metaDescription:
-      "Three medical-grade silicone patches and a six-week ritual card. The best-seller — six weeks of daily wear to improve the appearance of scars.",
+      "Three medical-grade silicone patches and a six-week ritual card. The best-seller, six weeks of daily wear to improve the appearance of scars.",
   },
   {
     slug: "protocol",
@@ -141,10 +141,10 @@ export const products: Product[] = [
     coverage: "Up to 16 weeks",
     layers: 4,
     contents: [
-      "8 × silicone patches — 5 × 15 cm",
+      "8 × silicone patches, 5 × 15 cm",
       "1 × post-op timing guide",
       "1 × storage tin",
-      "Priority support — answers within 24 h",
+      "Priority support, answers within 24 h",
     ],
     posology: [
       "Start once the incision is fully closed.",
@@ -154,12 +154,12 @@ export const products: Product[] = [
     sideEffects:
       "Side effects : patience. A surgeon who asks where you got it.",
     narrative: [
-      "Surgery closes one chapter and opens another. The months that follow are when a scar decides what it will look like for years — and when consistent silicone coverage earns its reputation.",
+      "Surgery closes one chapter and opens another. The months that follow are when a scar decides what it will look like for years, and when consistent silicone coverage earns its reputation.",
       "Once your incision is closed and your clinician gives the green light, the protocol takes over: eight patches, sixteen weeks, one gesture a day. The long game, played properly.",
     ],
     specs: [
       ["Material", "Medical-grade silicone"],
-      ["Contains", "8 patches — 5 × 15 cm"],
+      ["Contains", "8 patches, 5 × 15 cm"],
       ["Start", "Once the incision is fully closed"],
       ["Wear", "12–23 h per day"],
       ["Coverage", "Up to 16 weeks"],
@@ -168,15 +168,15 @@ export const products: Product[] = [
     faq: [
       {
         q: "When do I start after surgery",
-        a: "Once the wound is fully closed — no scabs, no openings, stitches out — and your clinician agrees. The included guide walks through the timing, procedure by procedure.",
+        a: "Once the wound is fully closed, no scabs, no openings, stitches out, and your clinician agrees. The included guide walks through the timing, procedure by procedure.",
       },
       {
-        q: "C-section, abdominoplasty, cardiac — does it fit",
+        q: "C-section, abdominoplasty, cardiac, does it fit",
         a: "The 5 × 15 cm format covers most surgical lines, and patches can be placed end to end for longer incisions. Cut to fit; count roughly one patch per 15 cm per two weeks.",
       },
       {
         q: "Why sixteen weeks",
-        a: "The first four months post-op are when scar tissue is most active — and most responsive. Sixteen weeks of coverage carries you through the window that matters most.",
+        a: "The first four months post-op are when scar tissue is most active, and most responsive. Sixteen weeks of coverage carries you through the window that matters most.",
       },
     ],
     metaDescription:
@@ -196,8 +196,8 @@ export const products: Product[] = [
     coverage: "≈ 8 weeks, twice daily",
     layers: 1,
     contents: [
-      "1 × silicone gel — 30 ml / 1.0 fl oz",
-      "Airless pump — precise dosing",
+      "1 × silicone gel, 30 ml / 1.0 fl oz",
+      "Airless pump, precise dosing",
       "Application guide",
     ],
     posology: [
@@ -207,21 +207,21 @@ export const products: Product[] = [
     ],
     sideEffects: "Side effects : a sixty-second habit you keep.",
     narrative: [
-      "Some scars live on skin that moves — a jaw, a knuckle, an eyebrow. Zones where a patch lifts, folds, or simply shows. That is what the gel is for.",
+      "Some scars live on skin that moves, a jaw, a knuckle, an eyebrow. Zones where a patch lifts, folds, or simply shows. That is what the gel is for.",
       "One pump, a thin film, sixty seconds. It dries invisible, holds through the day, and disappears under makeup or SPF. The same silicone discipline, translated for the zones the world looks at first.",
     ],
     specs: [
       ["Material", "Medical-grade silicone gel"],
       ["Volume", "30 ml / 1.0 fl oz"],
-      ["Use", "Twice daily — thin layer"],
+      ["Use", "Twice daily, thin layer"],
       ["Dry-down", "≈ 60 seconds"],
       ["Supply", "≈ 8 weeks, twice daily"],
       ["Batch", BATCH],
     ],
     faq: [
       {
-        q: "Patch or gel — which one",
-        a: "Patch for flat zones you can cover: torso, arms, legs. Gel for the face, the joints, and skin that moves. Plenty of people run both — patch at night, gel by day.",
+        q: "Patch or gel, which one",
+        a: "Patch for flat zones you can cover: torso, arms, legs. Gel for the face, the joints, and skin that moves. Plenty of people run both, patch at night, gel by day.",
       },
       {
         q: "Does it work under makeup",

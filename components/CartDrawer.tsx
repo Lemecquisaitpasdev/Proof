@@ -27,7 +27,7 @@ export default function CartDrawer({
         className={`drawer${isOpen ? " is-open" : ""}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Your ritual — cart"
+        aria-label="Your ritual, cart"
         aria-hidden={!isOpen}
         inert={!isOpen || undefined}
       >
@@ -86,7 +86,7 @@ export default function CartDrawer({
                   <div>
                     <div className="cline__name">{product.name}</div>
                     <div className="cline__meta">
-                      {product.chapter} — {product.chapterName}
+                      {product.chapter} · {product.chapterName}
                     </div>
                     <div className="qty">
                       <button
@@ -122,14 +122,14 @@ export default function CartDrawer({
               <span>{formatPrice(total)}</span>
             </div>
             <p className="drawer__note">
-              Shipping calculated at checkout — ships worldwide
+              Shipping calculated at checkout, ships worldwide
             </p>
             <Link
               href="/checkout"
               className="btn btn--primary btn--block"
               onClick={close}
             >
-              Checkout — {formatPrice(total)}
+              Checkout · {formatPrice(total)}
             </Link>
           </div>
         )}

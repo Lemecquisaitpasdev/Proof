@@ -1,5 +1,5 @@
 /**
- * BLOC POSOLOGIE — la voix clinique détournée.
+ * BLOC POSOLOGIE, la voix clinique détournée.
  * L'humour sec vit ici, en mono, et nulle part ailleurs.
  */
 export default function Posology({

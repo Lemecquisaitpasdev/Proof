@@ -59,10 +59,10 @@ export default function PdpBuyBox({ product }: { product: Product }) {
           </button>
         </div>
         <button type="button" className="btn btn--primary" onClick={onAdd}>
-          Add to ritual — {formatPrice(product.price * qty)}
+          Add to ritual · {formatPrice(product.price * qty)}
         </button>
       </div>
-      <p className="pdp__micro">Ships in 48 h — 30-day returns — worldwide</p>
+      <p className="pdp__micro">Ships in 48 h, 30-day returns, worldwide</p>
       <div ref={sentinel} aria-hidden="true" />
 
       {/* barre collante mobile */}
@@ -75,7 +75,7 @@ export default function PdpBuyBox({ product }: { product: Product }) {
           <small className="num">{formatPrice(product.price)}</small>
         </div>
         <button type="button" className="btn btn--primary" onClick={onAdd}>
-          Add — {formatPrice(product.price * qty)}
+          Add · {formatPrice(product.price * qty)}
         </button>
       </div>
     </>

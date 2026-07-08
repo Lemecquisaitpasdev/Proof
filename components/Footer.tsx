@@ -75,7 +75,7 @@ export default function Footer() {
             Proof improves the appearance of scars. It is not intended to
             diagnose, treat, cure, or prevent any disease.
           </p>
-          <p>© 2026 Proof — Honor it. Don&apos;t erase it.</p>
+          <p>© 2026 Proof, Honor it. Don&apos;t erase it.</p>
         </div>
         <div className="footer__mark" aria-hidden="true">
           Proof

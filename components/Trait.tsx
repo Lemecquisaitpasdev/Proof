@@ -1,7 +1,7 @@
 import KintsugiLine from "@/components/KintsugiLine";
 
 /**
- * Séparateur de section — la fêlure d'or, dessinée au scroll.
+ * Séparateur de section, la fêlure d'or, dessinée au scroll.
  * (Shim de compatibilité : les pages migrent vers <KintsugiLine/> direct.)
  */
 export default function Trait() {

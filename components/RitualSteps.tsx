@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * LE RITUEL — stepper éditorial.
+ * LE RITUEL, stepper éditorial.
  * Photo du geste à gauche (sticky, crossfade), les trois étapes à droite.
- * Chaque étape s'active quand elle traverse le centre du viewport — pas
+ * Chaque étape s'active quand elle traverse le centre du viewport, pas
  * de scroll-jack. Clic possible. Mobile : la photo active au-dessus.
  */
 export type RitualStep = {

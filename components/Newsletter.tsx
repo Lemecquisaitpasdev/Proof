@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 /**
- * Newsletter — input minimaliste : border-bottom 1px, la ligne devient
+ * Newsletter, input minimaliste : border-bottom 1px, la ligne devient
  * or au focus. Pré-lancement : l'inscription part par e-mail.
  */
 export default function Newsletter() {
@@ -13,8 +13,8 @@ export default function Newsletter() {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    window.location.href = `mailto:contactus@trackk.fr?subject=PROOF%20—%20First%20drop&body=${encodeURIComponent(
-      `Keep me posted for the first drop. — ${email.trim()}`,
+    window.location.href = `mailto:contactus@trackk.fr?subject=PROOF%20,%20First%20drop&body=${encodeURIComponent(
+      `Keep me posted for the first drop. ${email.trim()}`,
     )}`;
     setSent(true);
   };

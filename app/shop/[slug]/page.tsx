@@ -11,7 +11,7 @@ import { productImage } from "@/lib/product-image";
 
 type Props = { params: Promise<{ slug: string }> };
 
-/* Compagnons éditorialisés — « complete the ritual » */
+/* Compagnons éditorialisés, « complete the ritual » */
 const PAIRS: Record<string, string[]> = {
   "the-patch": ["the-ritual", "the-gel"],
   "the-ritual": ["protocol", "the-gel"],
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProduct(slug);
   if (!product) return {};
   return {
-    title: `${product.name} — ${formatPrice(product.price)}`,
+    title: `${product.name}, ${formatPrice(product.price)}`,
     description: product.metaDescription,
   };
 }
@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `Proof — ${product.name}`,
+    name: `Proof, ${product.name}`,
     description: product.metaDescription,
     brand: { "@type": "Brand", name: "Proof" },
     offers: {
@@ -82,13 +82,13 @@ export default async function ProductPage({ params }: Props) {
           </nav>
 
           <div className="pdp">
-            {/* GALERIE — collante */}
+            {/* GALERIE, collante */}
             <div className="pdp__gallery">
               <div className="pdp__visual">
                 {gallery[0] ? (
                   <Image
                     src={gallery[0]}
-                    alt={`${product.name} — medical-grade silicone scar care`}
+                    alt={`${product.name}, medical-grade silicone scar care`}
                     fill
                     sizes="(max-width: 900px) 100vw, 55vw"
                     style={{ objectFit: "cover" }}
@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: Props) {
                 <div className="pdp__visual" key={src}>
                   <Image
                     src={src}
-                    alt={`${product.name} — view ${i + 2}`}
+                    alt={`${product.name}, view ${i + 2}`}
                     fill
                     sizes="(max-width: 900px) 100vw, 55vw"
                     style={{ objectFit: "cover" }}
@@ -121,7 +121,7 @@ export default async function ProductPage({ params }: Props) {
                 <span className="badge">{product.badge}</span>
               ) : null}
               <span className="eyebrow eyebrow--gold" style={{ marginBottom: 16 }}>
-                {product.chapter} — {product.chapterName}
+                {product.chapter} · {product.chapterName}
               </span>
               <h1 className="pdp__title">{product.name}</h1>
 
@@ -165,7 +165,7 @@ export default async function ProductPage({ params }: Props) {
                       Silicone sheeting has been used on scars since 1983 and is
                       listed as a first-line, non-invasive option in
                       international scar-management guidelines. Proof improves
-                      the appearance of scars — texture, color and relief. We
+                      the appearance of scars, texture, color and relief. We
                       don&apos;t claim more than that.
                     </p>
                     <Link
@@ -243,7 +243,7 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
-      {/* COMPLETE THE RITUAL — cross-sell éditorialisé */}
+      {/* COMPLETE THE RITUAL, cross-sell éditorialisé */}
       {companions.length > 0 ? (
         <section className="section pairing" style={{ paddingTop: "var(--sec)" }}>
           <div className="container">

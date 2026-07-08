@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__in">
-        <Link href="/" className="logo" aria-label="Proof — home">
+        <Link href="/" className="logo" aria-label="Proof, home">
           Proof
         </Link>
         <nav className="nav" aria-label="Main">

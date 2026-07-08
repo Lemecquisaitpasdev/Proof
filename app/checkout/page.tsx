@@ -43,7 +43,7 @@ export default function CheckoutPage() {
                       product ? (
                         <tr key={product.slug}>
                           <td className="is-ink">
-                            {product.name} — {product.chapter}
+                            {product.name}, {product.chapter}
                           </td>
                           <td>{qty}</td>
                           <td>{formatPrice(product.price * qty)}</td>
@@ -75,7 +75,7 @@ export default function CheckoutPage() {
 
             <div>
               <Posology
-                title="Payment — status"
+                title="Payment, status"
                 lines={[
                   "Checkout opens with the first drop.",
                   "Your cart is saved on this device.",
@@ -85,7 +85,7 @@ export default function CheckoutPage() {
               <a
                 className="btn btn--primary btn--block"
                 style={{ marginTop: "var(--gut)" }}
-                href={`mailto:contactus@trackk.fr?subject=PROOF%20—%20First%20drop&body=Keep%20me%20posted%20for%20the%20first%20drop.%20My%20ritual%20:%20${encodeURIComponent(
+                href={`mailto:contactus@trackk.fr?subject=PROOF%20,%20First%20drop&body=Keep%20me%20posted%20for%20the%20first%20drop.%20My%20ritual%20:%20${encodeURIComponent(
                   lines
                     .map(({ product, qty }) => `${qty} × ${product?.name}`)
                     .join(", "),

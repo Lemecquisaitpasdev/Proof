@@ -1,5 +1,5 @@
 /**
- * « AS SEEN IN » — wordmarks presse en défilement lent.
+ * « AS SEEN IN », wordmarks presse en défilement lent.
  * Logos typographiques : chaque titre garde sa voix, la teinte reste Os.
  */
 const PRESS: { name: string; cls: string }[] = [

@@ -12,12 +12,12 @@ export function AddToRitual({ product }: { product: Product }) {
       className="btn btn--primary"
       onClick={() => add(product.slug)}
     >
-      Add to ritual — {formatPrice(product.price)}
+      Add to ritual · {formatPrice(product.price)}
     </button>
   );
 }
 
-/* Quick-add — feedback en place : « Added ✓ » 1.5s, le compteur du
+/* Quick-add, feedback en place : « Added ✓ » 1.5s, le compteur du
    header fait le spring. Le drawer ne s'ouvre pas ici. */
 export function CardAdd({ product }: { product: Product }) {
   const { add } = useCart();

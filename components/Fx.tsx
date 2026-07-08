@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 /**
- * FX — le moteur de motion, unique et léger.
+ * FX, le moteur de motion, unique et léger.
  * - [data-reveal]        fade + translateY(24px) à l'entrée, une fois.
  * - [data-reveal-group]  ses enfants [data-reveal] reçoivent --i (stagger 60ms).
  * - [data-draw]          .is-drawn à l'entrée (lignes kintsugi, schéma).
@@ -19,7 +19,7 @@ export default function Fx() {
     document.documentElement.classList.add("js");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* Stagger — indice --i par groupe */
+    /* Stagger, indice --i par groupe */
     document.querySelectorAll<HTMLElement>("[data-reveal-group]").forEach((group) => {
       group
         .querySelectorAll<HTMLElement>(":scope [data-reveal]")
@@ -51,7 +51,7 @@ export default function Fx() {
       pending.add(el);
     });
 
-    /* Filet de sécurité — un flick très rapide peut faire manquer l'IO :
+    /* Filet de sécurité, un flick très rapide peut faire manquer l'IO :
        tout élément déjà entré dans le viewport est révélé sans attendre. */
     let sweepRaf = 0;
     const sweep = () => {

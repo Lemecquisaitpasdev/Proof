@@ -33,7 +33,7 @@ export default function StoryPage() {
         <div className="container story__grid">
           <div>
             <span className="eyebrow eyebrow--gold" data-reveal>
-              01, Kintsugi
+              01 · Kintsugi
             </span>
             <p className="d2 story__quote" data-reveal>
               Broken things are repaired{" "}
@@ -78,10 +78,79 @@ export default function StoryPage() {
         <KintsugiLine variant="separator" />
       </div>
 
+      {/* THE FOUNDER */}
+      <section className="section">
+        <div className="container story__grid" style={{ alignItems: "start" }}>
+          <div>
+            <span className="eyebrow eyebrow--gold" data-reveal>
+              02 · The founder
+            </span>
+            <h2 className="d2" data-reveal>
+              Founded after{" "}
+              <span className="kword">
+                17 stitches
+                <KintsugiLine variant="underline" />
+              </span>
+            </h2>
+            <p className="measure" style={{ marginTop: 32 }} data-reveal>
+              It started on a road, far from home. A motorcycle, a crash, a
+              brush with something final. Rayane woke in an emergency clinic on
+              the other side of the world with 17 stitches across his cheek and
+              temple.
+            </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              The wound closed. Then came the harder part. He went looking for
+              something to care for the scar, a patch, a gel, one brand he could
+              trust. He found none. Just shelves of nameless products all
+              speaking the same language: erase, hide, fade it away. As if the
+              scar shouldn&apos;t be there. As if caring for it was something to
+              feel guilty about.
+            </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              Then he travelled to Japan. There he found kintsugi, broken
+              objects repaired with gold, the crack never hidden but filled,
+              made part of the piece, made precious. And it all made sense.
+            </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              His scar wasn&apos;t a flaw to erase. It was proof he survived,
+              proof of a chapter that changed him. It deserved to be softened
+              and cared for with the best there is, because a hardship is meant
+              to be overcome, not hidden in a drawer. You honor it by giving it
+              real care, not by pretending it was never there.
+            </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              So he built the brand he couldn&apos;t find.
+            </p>
+            <p className="d3" style={{ marginTop: 44 }} data-reveal>
+              This is{" "}
+              <span className="kword">
+                Proof.
+                <KintsugiLine variant="underline" />
+              </span>
+            </p>
+          </div>
+          <figure className="story__figure" data-reveal>
+            <div className="hero__parallax" data-parallax="6">
+              <Image
+                src="/images/founder-story.jpg"
+                alt="PROOF founder story"
+                fill
+                sizes="(max-width: 900px) 100vw, 40vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
       <section className="section">
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">02 · The object</span>
+            <span className="eyebrow eyebrow--gold">03 · The object</span>
             <h2 className="d3">Clinical luxury.</h2>
           </div>
           <div data-reveal>
@@ -106,7 +175,7 @@ export default function StoryPage() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">03 · The line</span>
+            <span className="eyebrow eyebrow--gold">04 · The line</span>
             <h2 className="d3">One real line.</h2>
           </div>
           <div data-reveal>

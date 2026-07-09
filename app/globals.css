@@ -1984,13 +1984,22 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* galerie en grille 2 colonnes (façon La Mer) */
 .pdp__gallery {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--gut);
 }
 
-@media (min-width: 901px) {
+@media (max-width: 560px) {
   .pdp__gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* la buy-box reste collante pendant qu'on parcourt les images */
+@media (min-width: 901px) {
+  .pdp__buybox {
     position: sticky;
     top: 104px;
   }
@@ -1998,7 +2007,7 @@ html.js .ritual--live .rstep {
 
 .pdp__visual {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--porcelain);

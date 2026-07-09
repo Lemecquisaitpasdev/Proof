@@ -51,6 +51,11 @@ export default async function ProductPage({ params }: Props) {
     ),
   );
 
+  /* tuiles de la grille 2 colonnes : les photos réelles, complétées par le
+     packshot CSS pour toujours remplir un nombre pair de cases (≥ 2) */
+  const tiles: (string | null)[] = [...gallery];
+  while (tiles.length < 2 || tiles.length % 2 !== 0) tiles.push(null);
+
   const companions = (PAIRS[product.slug] ?? [])
     .map((s) => getProduct(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -82,35 +87,30 @@ export default async function ProductPage({ params }: Props) {
           </nav>
 
           <div className="pdp">
-            {/* GALERIE, collante */}
+            {/* GALERIE, grille 2 colonnes */}
             <div className="pdp__gallery">
-              <div className="pdp__visual">
-                {gallery[0] ? (
-                  <Image
-                    src={gallery[0]}
-                    alt={`${product.name}, medical-grade silicone scar care`}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 55vw"
-                    style={{ objectFit: "cover" }}
-                    priority
-                  />
-                ) : (
-                  <PlateVisual
-                    layers={product.layers}
-                    count={product.coverage}
-                    label={BATCH}
-                  />
-                )}
-              </div>
-              {gallery.slice(1).map((src, i) => (
-                <div className="pdp__visual" key={src}>
-                  <Image
-                    src={src}
-                    alt={`${product.name}, view ${i + 2}`}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 55vw"
-                    style={{ objectFit: "cover" }}
-                  />
+              {tiles.map((src, i) => (
+                <div className="pdp__visual" key={src ?? `plate-${i}`}>
+                  {src ? (
+                    <Image
+                      src={src}
+                      alt={
+                        i === 0
+                          ? `${product.name}, medical-grade silicone scar care`
+                          : `${product.name}, view ${i + 1}`
+                      }
+                      fill
+                      sizes="(max-width: 560px) 100vw, (max-width: 900px) 45vw, 28vw"
+                      style={{ objectFit: "cover" }}
+                      priority={i === 0}
+                    />
+                  ) : (
+                    <PlateVisual
+                      layers={product.layers}
+                      count={product.coverage}
+                      label={BATCH}
+                    />
+                  )}
                 </div>
               ))}
             </div>

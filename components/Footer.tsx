@@ -46,6 +46,11 @@ export default function Footer() {
                   Help
                 </Link>
               </li>
+              <li>
+                <Link href="/brand" className="klink">
+                  Brand
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

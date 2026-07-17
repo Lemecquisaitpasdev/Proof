@@ -2481,6 +2481,83 @@ html.js .ritual--live .rstep {
   align-items: start;
 }
 
+/* ============ BRAND / TÉLÉCHARGEMENTS ============ */
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+@media (max-width: 640px) {
+  .brand-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand-tile__art {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+}
+
+.brand-tile__art svg {
+  height: 42%;
+  width: auto;
+}
+
+.brand-tile__art--bone {
+  background: var(--bone);
+}
+
+.brand-tile__art--ink {
+  background: var(--ink);
+  border-color: transparent;
+}
+
+.brand-tile__bar {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding-top: 18px;
+}
+
+.brand-tile__label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-right: auto;
+}
+
+.dl {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-image: linear-gradient(var(--kintsugi), var(--kintsugi));
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: left calc(100% - 0.05em);
+  transition: background-size 0.18s var(--ease-out);
+  padding-bottom: 2px;
+}
+
+.dl:hover {
+  background-size: 100% 1px;
+}
+
+.dl::before {
+  content: "↓ ";
+  font-family: var(--font-mono), monospace;
+  color: var(--kintsugi-ink);
+}
+
 @media (max-width: 860px) {
   .checkout-grid {
     grid-template-columns: 1fr;

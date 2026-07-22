@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
 
 export const metadata: Metadata = {
@@ -76,6 +77,38 @@ export default function BrandPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
+      {/* LA MARQUE, PORTÉE, le P brodé ton sur ton */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container split">
+          <div data-reveal>
+            <span className="eyebrow eyebrow--gold">In the world</span>
+            <h2 className="d3">Worn quietly.</h2>
+            <p className="measure" style={{ marginTop: 24 }}>
+              Tone on tone on a bone coat, the P reads as a detail before it
+              reads as a logo. Up close, it is the whole idea, a break kept, not
+              hidden.
+            </p>
+          </div>
+          <figure
+            className="imgframe"
+            style={{ aspectRatio: "10 / 9", margin: 0 }}
+            data-reveal
+          >
+            <Image
+              src="/images/blouseavecproofbroder.png"
+              alt="The Proof P, embroidered tone on tone on a bone lab coat"
+              fill
+              sizes="(max-width: 860px) 100vw, 58vw"
+              style={{ objectFit: "cover" }}
+            />
+          </figure>
         </div>
       </section>
 

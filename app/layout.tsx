@@ -59,6 +59,21 @@ export const metadata: Metadata = {
       "Medical-grade silicone patches that improve the appearance of scars. Honor it. Don't erase it.",
     siteName: "Proof",
     type: "website",
+    images: [
+      {
+        url: "/images/laboproof.png",
+        width: 1254,
+        height: 1254,
+        alt: "Proof, precision under examination",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Proof, Premium Silicone Scar Patch",
+    description:
+      "Medical-grade silicone patches that improve the appearance of scars. Honor it. Don't erase it.",
+    images: ["/images/laboproof.png"],
   },
 };
 

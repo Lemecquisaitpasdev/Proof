@@ -32,6 +32,8 @@ const ALIASES: Record<string, string[]> = {
   "protocol-2": ["protocol-2", "packagingproofpatch"],
   "the-gel-2": ["the-gel-2", "photogelavecfond", "produitgelsilicone"],
   "the-gel-3": ["the-gel-3", "photogelmarketing", "gelsilicone"],
+  /* La bille de gel tenue à la pince chirurgicale, plan macro éditorial. */
+  "the-gel-4": ["the-gel-4", "moleculedegelcapturer"],
 
   /* Héros de la home, portrait lumineux, cicatrice visible, assumée. */
   hero: ["hero", "gelensiliconenutulisationfemme", "siliconegelmannequin"],

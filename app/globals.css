@@ -1901,6 +1901,29 @@ html.js .ritual--live .rstep {
   object-fit: cover;
 }
 
+/* Bande matière pleine largeur (Science), le gel exposé comme une œuvre */
+.matband {
+  margin: 0;
+}
+
+.matband__media {
+  position: relative;
+  aspect-ratio: 16 / 8.8;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--ink);
+}
+
+.matband__media img {
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .matband__media {
+    aspect-ratio: 4 / 3.2;
+  }
+}
+
 /* ============ 18 — SPECS / TABLE COMPARATIVE ============ */
 
 .specs {

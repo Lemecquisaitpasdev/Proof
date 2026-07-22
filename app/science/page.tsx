@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import Mechanism from "@/components/Mechanism";
@@ -30,6 +31,26 @@ export default function SciencePage() {
             of clinical use. Here is what it does, how, and what we refuse to
             claim.
           </p>
+        </div>
+      </section>
+
+      {/* LA MATIÈRE, EXPOSÉE, macro du gel en installation */}
+      <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <div className="container">
+          <figure className="matband" data-reveal>
+            <div className="matband__media">
+              <Image
+                src="/products/gelsiliconemicrospe.png"
+                alt="Cohesive medical silicone magnified into a gallery-scale field of cells"
+                fill
+                sizes="(max-width: 1200px) 100vw, 1120px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <figcaption className="story__caption">
+              The material, exhibited. Cohesive silicone, magnified into a field.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

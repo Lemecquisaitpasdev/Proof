@@ -47,6 +47,7 @@ export default async function ProductPage({ params }: Props) {
         productImage(`alt-${product.slug}`),
         productImage(`${product.slug}-2`),
         productImage(`${product.slug}-3`),
+        productImage(`${product.slug}-4`),
       ].filter((g): g is string => g !== null),
     ),
   );

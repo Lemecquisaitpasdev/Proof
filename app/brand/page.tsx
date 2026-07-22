@@ -112,6 +112,32 @@ export default function BrandPage() {
         </div>
       </section>
 
+      {/* SUR ÉCRAN, le P seul, objet numérique */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container" style={{ textAlign: "center" }}>
+          <span className="eyebrow eyebrow--gold" data-reveal>
+            On screen
+          </span>
+          <figure
+            style={{ margin: "22px auto 0", maxWidth: 860 }}
+            data-reveal
+          >
+            <div className="imgframe" style={{ aspectRatio: "1529 / 1028" }}>
+              <Image
+                src="/images/notificationproof.png"
+                alt="The Proof P alone, lit on a black phone screen"
+                fill
+                sizes="(max-width: 900px) 100vw, 860px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <figcaption className="story__caption" style={{ textAlign: "center" }}>
+              The mark, on a black screen. One glance is enough.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       <div className="container sep">
         <KintsugiLine variant="separator" />
       </div>

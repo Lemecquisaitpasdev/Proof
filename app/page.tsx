@@ -14,7 +14,6 @@ import { productImage } from "@/lib/product-image";
 const D = (s: number) => ({ "--d": `${s}s` }) as React.CSSProperties;
 
 export default function HomePage() {
-  const heroPhoto = productImage("hero");
   const storyObject = productImage("story-object");
   const bouchon = productImage("bouchon");
 
@@ -61,19 +60,20 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="hero__visual enter" style={D(0.58)}>
-            {heroPhoto ? (
-              <div className="hero__parallax" data-parallax="3">
-                <Image
-                  src={heroPhoto}
-                  alt="Real skin, a visible scar, worn openly, Proof silicone scar care"
-                  fill
-                  sizes="(max-width: 940px) 100vw, 42vw"
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
-              </div>
-            ) : null}
+          <div
+            className="hero__visual hero__visual--portrait enter"
+            style={{ ...D(0.58), aspectRatio: "1163 / 1353" }}
+          >
+            <div className="hero__parallax" data-parallax="2">
+              <Image
+                src="/images/proofart.png"
+                alt="Proof, a profile in silhouette, the scar traced in gold, the P mark honored"
+                fill
+                sizes="(max-width: 940px) 100vw, 42vw"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>

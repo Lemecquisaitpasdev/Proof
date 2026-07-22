@@ -1,8 +1,11 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
+import PlateVisual from "@/components/PlateVisual";
 import { productImage } from "@/lib/product-image";
 
 export const metadata: Metadata = {
@@ -13,6 +16,12 @@ export const metadata: Metadata = {
 
 export default function StoryPage() {
   const objectPhoto = productImage("story-object");
+  /* Photo du fondateur, fournie plus tard : si absente, plate CSS (jamais cassé) */
+  const founderPhoto = fs.existsSync(
+    path.join(process.cwd(), "public", "images", "founder-story.jpg"),
+  )
+    ? "/images/founder-story.jpg"
+    : null;
 
   return (
     <>
@@ -130,15 +139,19 @@ export default function StoryPage() {
             </p>
           </div>
           <figure className="story__figure" data-reveal>
-            <div className="hero__parallax" data-parallax="6">
-              <Image
-                src="/images/founder-story.jpg"
-                alt="PROOF founder story"
-                fill
-                sizes="(max-width: 900px) 100vw, 40vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            {founderPhoto ? (
+              <div className="hero__parallax" data-parallax="6">
+                <Image
+                  src={founderPhoto}
+                  alt="Rayane, the founder, the scar he chose to care for"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 40vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+            ) : (
+              <PlateVisual />
+            )}
           </figure>
         </div>
       </section>
@@ -198,6 +211,47 @@ export default function StoryPage() {
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
+      {/* IN THE WORLD, la keynote PROOF 17 */}
+      <section className="section">
+        <div className="container story__grid" style={{ alignItems: "start" }}>
+          <div>
+            <span className="eyebrow eyebrow--gold" data-reveal>
+              05 · In the world
+            </span>
+            <h2 className="d2" data-reveal>
+              Said out loud.
+            </h2>
+            <p className="measure" style={{ marginTop: 32 }} data-reveal>
+              The idea does not stay in the bottle. Kept, not hidden, it travels
+              into rooms and onto screens, into the way people talk about the
+              marks they carry.
+            </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              Same four words, on a stage the size of a wall. Honor it.
+              Don&apos;t erase it.
+            </p>
+          </div>
+          <figure className="story__figure" data-reveal>
+            <div className="hero__parallax" data-parallax="6">
+              <Image
+                src="/images/proofconferencekeynote.png"
+                alt="The Proof 17 conference, a keynote before a wall-sized screen of magnified silicone"
+                fill
+                sizes="(max-width: 900px) 100vw, 40vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <figcaption className="story__caption">
+              The Proof 17 Conference, the idea, in public.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

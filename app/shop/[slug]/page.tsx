@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import KintsugiLine from "@/components/KintsugiLine";
 import PlateVisual from "@/components/PlateVisual";
+import PdpGallery from "@/components/PdpGallery";
 import ProductCard from "@/components/ProductCard";
 import PdpBuyBox from "@/components/PdpBuyBox";
 import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
@@ -52,11 +52,6 @@ export default async function ProductPage({ params }: Props) {
     ),
   );
 
-  /* tuiles de la grille 2 colonnes : les photos réelles, complétées par le
-     packshot CSS pour toujours remplir un nombre pair de cases (≥ 2) */
-  const tiles: (string | null)[] = [...gallery];
-  while (tiles.length < 2 || tiles.length % 2 !== 0) tiles.push(null);
-
   const companions = (PAIRS[product.slug] ?? [])
     .map((s) => getProduct(s))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -88,33 +83,18 @@ export default async function ProductPage({ params }: Props) {
           </nav>
 
           <div className="pdp">
-            {/* GALERIE, grille 2 colonnes */}
-            <div className="pdp__gallery">
-              {tiles.map((src, i) => (
-                <div className="pdp__visual" key={src ?? `plate-${i}`}>
-                  {src ? (
-                    <Image
-                      src={src}
-                      alt={
-                        i === 0
-                          ? `${product.name}, medical-grade silicone scar care`
-                          : `${product.name}, view ${i + 1}`
-                      }
-                      fill
-                      sizes="(max-width: 560px) 100vw, (max-width: 900px) 45vw, 28vw"
-                      style={{ objectFit: "cover" }}
-                      priority={i === 0}
-                    />
-                  ) : (
-                    <PlateVisual
-                      layers={product.layers}
-                      count={product.coverage}
-                      label={BATCH}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+            {/* GALERIE, grande image + rail vertical (façon Rhode) */}
+            <PdpGallery
+              images={gallery}
+              alt={`${product.name}, medical-grade silicone scar care`}
+              plate={
+                <PlateVisual
+                  layers={product.layers}
+                  count={product.coverage}
+                  label={BATCH}
+                />
+              }
+            />
 
             {/* BUY-BOX */}
             <div className="pdp__buybox">

@@ -489,6 +489,13 @@ html.js [data-parallax] {
   width: 100%;
 }
 
+/* CTA pleine largeur en pilule (fiche produit, façon Rhode) */
+.btn--pill {
+  width: 100%;
+  border-radius: 999px;
+  padding-block: 22px;
+}
+
 .btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
@@ -2007,16 +2014,87 @@ html.js .ritual--live .rstep {
   }
 }
 
-/* galerie en grille 2 colonnes (façon La Mer) */
-.pdp__gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gut);
+/* galerie façon Rhode : une grande image + un rail vertical de vignettes */
+.pdpg {
+  position: relative;
+}
+
+.pdpg__stage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--porcelain);
+}
+
+.pdpg__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.55s var(--ease-out);
+}
+
+.pdpg__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pdpg__slide img {
+  object-fit: cover;
+}
+
+/* rail vertical, vignettes en surimpression à gauche */
+.pdpg__rail {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 2;
+}
+
+.pdpg__thumb {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--porcelain);
+  cursor: pointer;
+  opacity: 0.72;
+  box-shadow: 0 6px 18px rgba(26, 24, 21, 0.12);
+  transition: opacity 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out),
+    border-color 0.25s var(--ease-out);
+}
+
+.pdpg__thumb img {
+  object-fit: cover;
+}
+
+.pdpg__thumb:hover {
+  opacity: 1;
+}
+
+.pdpg__thumb.is-active {
+  opacity: 1;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px var(--ink), 0 6px 18px rgba(26, 24, 21, 0.16);
 }
 
 @media (max-width: 560px) {
-  .pdp__gallery {
-    grid-template-columns: 1fr;
+  .pdpg__rail {
+    left: 10px;
+    gap: 8px;
+  }
+
+  .pdpg__thumb {
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -2026,18 +2104,6 @@ html.js .ritual--live .rstep {
     position: sticky;
     top: 104px;
   }
-}
-
-.pdp__visual {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: var(--radius);
-  background: var(--porcelain);
-}
-
-.pdp__visual img {
-  object-fit: cover;
 }
 
 .pdp__buybox .badge {
@@ -2072,22 +2138,26 @@ html.js .ritual--live .rstep {
   margin-top: 14px;
 }
 
-.pdp__buy {
-  display: flex;
-  gap: var(--gut);
-  margin-top: 32px;
-  align-items: stretch;
-  flex-wrap: wrap;
+.pdp__desc {
+  margin-top: 18px;
+  color: var(--graphite);
+  font-size: 15px;
+  line-height: 1.62;
+  max-width: 42ch;
 }
 
-.pdp__buy .btn {
-  flex: 1 1 200px;
+.pdp__qtyrow {
+  margin-top: 30px;
 }
 
-@media (max-width: 420px) {
-  .pdp__buy .btn {
-    flex-basis: 100%;
-  }
+.pdp__qtylabel {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-bottom: 12px;
 }
 
 .qty--pdp {
@@ -2096,13 +2166,28 @@ html.js .ritual--live .rstep {
 }
 
 .qty--pdp button {
-  width: 44px;
-  height: 100%;
-  min-height: 54px;
+  width: 46px;
+  min-height: 50px;
 }
 
 .qty--pdp span {
-  width: 44px;
+  width: 52px;
+}
+
+.pdp__cta {
+  margin-top: 24px;
+}
+
+.pdp__pay {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--graphite);
+}
+
+.pdp__pay b {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 /* Accordéons — filets 1px clay */

@@ -32,15 +32,15 @@ export default function PdpBuyBox({ product }: { product: Product }) {
   }, []);
 
   const onAdd = () => add(product.slug, { qty });
+  const installment = `$${(product.price / 4).toFixed(2)}`;
 
   return (
     <>
       <div className="pdp__price num">{formatPrice(product.price)}</div>
-      <p className="lead" style={{ marginTop: 24 }}>
-        {product.tagline}
-      </p>
+      <p className="pdp__desc">{product.tagline}</p>
 
-      <div className="pdp__buy">
+      <div className="pdp__qtyrow">
+        <span className="pdp__qtylabel">Quantity</span>
         <div className="qty qty--pdp" aria-label="Quantity">
           <button
             type="button"
@@ -58,10 +58,18 @@ export default function PdpBuyBox({ product }: { product: Product }) {
             +
           </button>
         </div>
-        <button type="button" className="btn btn--primary" onClick={onAdd}>
-          Add to ritual · {formatPrice(product.price * qty)}
-        </button>
       </div>
+
+      <button
+        type="button"
+        className="btn btn--primary btn--pill pdp__cta"
+        onClick={onAdd}
+      >
+        Add to ritual · {formatPrice(product.price * qty)}
+      </button>
+      <p className="pdp__pay">
+        or 4 interest-free payments of <b className="num">{installment}</b>
+      </p>
       <p className="pdp__micro">Ships in 48 h, 30-day returns, worldwide</p>
       <div ref={sentinel} aria-hidden="true" />
 

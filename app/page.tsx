@@ -181,22 +181,22 @@ export default function HomePage() {
       <section className="section feature">
         <div className="container feature__grid">
           <div className="feature__copy" data-reveal>
-            <span className="eyebrow">The refill</span>
+            <span className="eyebrow">The monthly refill</span>
             <h2 className="d2">Made to be kept.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
-              The brushed-steel cap, embossed with the P, is the object. When
-              the gel runs out you refill it, you do not replace it. Less to
-              throw away, and far less to pay.
+              The brushed-steel cap, embossed with the P, is the object, yours
+              to keep. The gel arrives on subscription, a fresh refill every
+              month, so the ritual never runs dry. Refill, don&apos;t replace.
             </p>
             <ul className="feature__list">
-              <li>Keep the steel cap for good, only the gel is refilled</li>
-              <li>A refill costs far less than buying the object again</li>
-              <li>One cap kept is one package not made, less waste by design</li>
-              <li>Refillable gel, reusable patch, nothing built to be tossed</li>
+              <li>A fresh gel refill every month, delivered to your door</li>
+              <li>Keep the steel cap for good, only the gel is renewed</li>
+              <li>One object kept, one package spared, less waste by design</li>
+              <li>Pause, skip or cancel anytime, always on your terms</li>
             </ul>
             <div className="feature__cta">
-              <Link href="/shop" className="btn btn--primary">
-                Open the shop
+              <Link href="/shop/the-gel" className="btn btn--primary">
+                Start your refill
               </Link>
               <Link href="/story" className="tlink klink">
                 Read the story

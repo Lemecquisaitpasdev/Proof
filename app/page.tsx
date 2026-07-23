@@ -270,6 +270,54 @@ export default function HomePage() {
         <KintsugiLine variant="separator" />
       </div>
 
+      {/* RACONTEZ-NOUS, l'histoire de la cicatrice → 10 % (carnet acier Proof 17) */}
+      <section className="section">
+        <div className="container tellus__grid">
+          <figure className="tellus__figure" data-reveal>
+            <div className="hero__parallax" data-parallax="4">
+              <Image
+                src="/images/carnetenacier.png"
+                alt="The Proof 17 book, a brushed-steel journal, the scar kept as a thin gold seam"
+                fill
+                sizes="(max-width: 900px) 100vw, 42vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </figure>
+          <div data-reveal>
+            <span className="eyebrow eyebrow--gold">Season 01 · The line</span>
+            <h2 className="d2">Tell us your scar&apos;s story.</h2>
+            <p className="measure" style={{ marginTop: 24 }}>
+              Each season, one real scar becomes the gold line that runs across
+              this whole site. Send us yours, how it happened, what it changed,
+              what it taught you. We keep them in the Proof 17 book.
+            </p>
+            <div className="tellus__reward">
+              <span className="tellus__code">Code Proof17</span>
+              <span className="tellus__rewardtext">
+                10% off the whole shop, in thanks for your story.
+              </span>
+            </div>
+            <div className="tellus__cta">
+              <a
+                className="btn btn--primary"
+                href={`mailto:contactus@trackk.fr?subject=${encodeURIComponent(
+                  "PROOF, the story of my scar",
+                )}&body=${encodeURIComponent(
+                  "Here is the story of my scar:\n\nThe how, the when, what it changed.\n",
+                )}`}
+              >
+                Share your story
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
       {/* PHASE 02, L'APP à venir (teaser, image notification téléphone) */}
       <section className="section appsoon">
         <div className="container appsoon__grid">

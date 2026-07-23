@@ -78,6 +78,76 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* TROIS PORTES, apparitions / science / histoire */}
+      <section className="section trio-sec">
+        <div className="container">
+          <div className="trio" data-reveal-group>
+            <Link href="/story#world" className="trio__card" data-reveal>
+              <Image
+                src="/images/proofconferencekeynote.png"
+                alt="The Proof 17 conference, on stage before a wall of magnified silicone"
+                fill
+                sizes="(max-width: 860px) 100vw, 33vw"
+                style={{ objectFit: "cover" }}
+              />
+              <span className="trio__scrim" aria-hidden="true" />
+              <span className="trio__body">
+                <span className="trio__no">01 · In the world</span>
+                <span className="trio__title">
+                  Appearances &amp; awards
+                  <i className="trio__line" aria-hidden="true" />
+                </span>
+                <span className="trio__cta">
+                  Explore <span className="trio__arrow">→</span>
+                </span>
+              </span>
+            </Link>
+
+            <Link href="/science" className="trio__card" data-reveal>
+              <Image
+                src="/products/gelsiliconemicrospe.png"
+                alt="Medical silicone magnified into a field of cells, exhibited on screen"
+                fill
+                sizes="(max-width: 860px) 100vw, 33vw"
+                style={{ objectFit: "cover" }}
+              />
+              <span className="trio__scrim" aria-hidden="true" />
+              <span className="trio__body">
+                <span className="trio__no">02 · The evidence</span>
+                <span className="trio__title">
+                  What the science says
+                  <i className="trio__line" aria-hidden="true" />
+                </span>
+                <span className="trio__cta">
+                  Read <span className="trio__arrow">→</span>
+                </span>
+              </span>
+            </Link>
+
+            <Link href="/story" className="trio__card" data-reveal>
+              <Image
+                src={productImage("hero") ?? "/products/gelensiliconenutulisationfemme.png"}
+                alt="Real skin, a visible scar worn openly, the story behind Proof"
+                fill
+                sizes="(max-width: 860px) 100vw, 33vw"
+                style={{ objectFit: "cover" }}
+              />
+              <span className="trio__scrim" aria-hidden="true" />
+              <span className="trio__body">
+                <span className="trio__no">03 · The house</span>
+                <span className="trio__title">
+                  Our story
+                  <i className="trio__line" aria-hidden="true" />
+                </span>
+                <span className="trio__cta">
+                  Discover <span className="trio__arrow">→</span>
+                </span>
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* PRESSE */}
       <div className="container">
         <PressMarquee />

@@ -1158,6 +1158,155 @@ html.js [data-parallax] {
   }
 }
 
+/* ============ 10b — TROIS PORTES (apparitions / science / histoire) ============ */
+
+.trio-sec {
+  padding-top: 0;
+  padding-bottom: clamp(40px, 6vw, 84px);
+}
+
+.trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gut);
+}
+
+.trio__card {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 3.85;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--porcelain);
+  isolation: isolate;
+}
+
+.trio__card img {
+  object-fit: cover;
+  transition: transform 1.1s var(--ease-out);
+  will-change: transform;
+}
+
+.trio__card:hover img,
+.trio__card:focus-visible img {
+  transform: scale(1.05);
+}
+
+.trio__card:focus-visible {
+  outline: 2px solid var(--kintsugi-ink);
+  outline-offset: 4px;
+}
+
+/* voile d'encre, lisibilité du texte posé sur la photo */
+.trio__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(26, 24, 21, 0.88) 0%,
+    rgba(26, 24, 21, 0.55) 26%,
+    rgba(26, 24, 21, 0.2) 52%,
+    rgba(26, 24, 21, 0) 74%
+  );
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.trio__body {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  display: block;
+  padding: clamp(22px, 2.4vw, 36px);
+}
+
+.trio__no {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kintsugi);
+  margin-bottom: 12px;
+}
+
+.trio__title {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 850;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  font-size: clamp(21px, 1.85vw, 29px);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  color: var(--bone);
+  text-wrap: balance;
+}
+
+/* filet d'or qui se déploie sous le titre au survol */
+.trio__line {
+  position: absolute;
+  left: 0;
+  right: 12%;
+  bottom: -9px;
+  height: 1px;
+  background: var(--kintsugi);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.trio__card:hover .trio__line,
+.trio__card:focus-visible .trio__line {
+  transform: scaleX(1);
+}
+
+.trio__cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-70);
+}
+
+.trio__arrow {
+  display: inline-block;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.trio__card:hover .trio__arrow,
+.trio__card:focus-visible .trio__arrow {
+  transform: translateX(6px);
+}
+
+@media (max-width: 860px) {
+  .trio {
+    grid-template-columns: 1fr;
+  }
+
+  .trio__card {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trio__card img,
+  .trio__arrow,
+  .trio__line {
+    transition: none;
+  }
+
+  .trio__card:hover img {
+    transform: none;
+  }
+}
+
 /* ============ 11 — SHOP / CARDS ============ */
 /* Cards SANS bordure : l'image fait la card. */
 

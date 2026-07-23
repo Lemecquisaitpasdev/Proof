@@ -219,7 +219,7 @@ export default function StoryPage() {
       </div>
 
       {/* IN THE WORLD, la keynote PROOF 17 */}
-      <section className="section">
+      <section className="section" id="world">
         <div className="container story__grid" style={{ alignItems: "start" }}>
           <div>
             <span className="eyebrow eyebrow--gold" data-reveal>

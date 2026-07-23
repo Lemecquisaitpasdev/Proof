@@ -265,6 +265,53 @@ export default function HomePage() {
           </figure>
         </div>
       </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
+      {/* PHASE 02, L'APP à venir (teaser, image notification téléphone) */}
+      <section className="section appsoon">
+        <div className="container appsoon__grid">
+          <div className="appsoon__copy" data-reveal>
+            <span className="eyebrow eyebrow--gold">Phase 02 · The app</span>
+            <h2 className="d2">Soon, in your pocket.</h2>
+            <p className="measure" style={{ marginTop: 24 }}>
+              An app is on the way. The whole ritual carried with you, private
+              when you want it, shared when you are ready.
+            </p>
+            <ul className="applist">
+              <li>
+                Follow your scar week by week, a quiet timeline of how it
+                softens.
+              </li>
+              <li>
+                Reorder your refills in a tap, with member drops and the
+                occasional promo.
+              </li>
+              <li>
+                Share your story, and read others, in a community that keeps its
+                marks.
+              </li>
+              <li>Gentle reminders for wear time, so the ritual holds.</li>
+            </ul>
+            <div className="appsoon__cta">
+              <span className="appsoon__tag">Coming 2026 · iOS &amp; Android</span>
+            </div>
+          </div>
+          <figure className="appsoon__media" data-reveal>
+            <div className="hero__parallax" data-parallax="4">
+              <Image
+                src="/images/notificationproof.png"
+                alt="Proof, the P lit on a phone screen, the app coming soon"
+                fill
+                sizes="(max-width: 940px) 100vw, 52vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          </figure>
+        </div>
+      </section>
     </>
   );
 }

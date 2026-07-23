@@ -1876,6 +1876,92 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* ============ 16b — PHASE 02, L'APP (teaser fin d'accueil) ============ */
+
+.appsoon__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5.2fr) minmax(0, 6fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+.appsoon__media {
+  position: relative;
+  aspect-ratio: 1529 / 1028;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--porcelain);
+  margin: 0;
+}
+
+.appsoon__media img {
+  object-fit: cover;
+}
+
+.applist {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+}
+
+.applist li {
+  display: flex;
+  gap: 14px;
+  padding: 15px 0;
+  border-top: 1px solid var(--hairline);
+  color: var(--graphite);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.applist li:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.applist li::before {
+  content: "+";
+  color: var(--kintsugi-ink);
+  font-family: var(--font-mono), monospace;
+  flex-shrink: 0;
+}
+
+.appsoon__cta {
+  margin-top: 32px;
+}
+
+.appsoon__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+
+.appsoon__tag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kintsugi);
+  flex-shrink: 0;
+}
+
+@media (max-width: 940px) {
+  .appsoon__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appsoon__media {
+    order: -1;
+  }
+}
+
 /* ============ 17 — SPLIT ÉDITORIAL ============ */
 
 .split {

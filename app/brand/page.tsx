@@ -84,6 +84,104 @@ export default function BrandPage() {
         <KintsugiLine variant="separator" />
       </div>
 
+      {/* BLUEPRINT — le symbole déconstruit, grille de construction */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <span className="mlabel" data-reveal>
+            Symbol system / Construction grid / Rev. 03
+          </span>
+          <h2 className="d3" style={{ marginTop: 14, marginBottom: 40 }} data-reveal>
+            The mark, deconstructed.
+          </h2>
+          <div className="blueprint" data-reveal>
+            <svg viewBox="0 0 340 170" aria-label="Construction blueprint of the Proof P mark">
+              {/* grille de construction */}
+              <g stroke="var(--hairline)" strokeWidth="0.5">
+                <line x1="0" y1="30" x2="340" y2="30" strokeDasharray="3 4" />
+                <line x1="0" y1="84" x2="340" y2="84" strokeDasharray="3 4" />
+                <line x1="0" y1="130" x2="340" y2="130" strokeDasharray="3 4" />
+                <line x1="60" y1="0" x2="60" y2="170" strokeDasharray="3 4" />
+                <line x1="130" y1="0" x2="130" y2="170" strokeDasharray="3 4" />
+              </g>
+
+              {/* le P, tracé en filet (blueprint, jamais rempli) */}
+              <g transform="translate(38 18)">
+                <path
+                  d="M22 12 L92 12 L92 66 L46 66 L46 112 L22 112 Z"
+                  fill="none"
+                  stroke="var(--contrast)"
+                  strokeWidth="1.4"
+                  data-draw
+                />
+                <path
+                  d="M46 32 L72 32 L72 48 L46 48 Z"
+                  fill="none"
+                  stroke="var(--contrast)"
+                  strokeWidth="1.4"
+                  data-draw
+                />
+                {/* la coupure — l'or dans la fissure */}
+                <path
+                  d="M38.2 10.2 L20.2 28.2"
+                  fill="none"
+                  stroke="var(--kintsugi)"
+                  strokeWidth="1.6"
+                  data-draw
+                />
+                {/* cercles de construction */}
+                <g fill="none" stroke="var(--contrast-40)" strokeWidth="0.5">
+                  <circle cx="22" cy="12" r="9" />
+                  <circle cx="92" cy="66" r="9" />
+                  <circle cx="29.2" cy="19.2" r="16" strokeDasharray="2 3" />
+                </g>
+                {/* points d'ancrage */}
+                <g fill="var(--kintsugi)">
+                  <circle cx="22" cy="12" r="1.6" />
+                  <circle cx="92" cy="12" r="1.6" />
+                  <circle cx="92" cy="66" r="1.6" />
+                  <circle cx="46" cy="66" r="1.6" />
+                  <circle cx="46" cy="112" r="1.6" />
+                  <circle cx="22" cy="112" r="1.6" />
+                </g>
+              </g>
+
+              {/* cotes */}
+              <g
+                stroke="var(--contrast-40)"
+                strokeWidth="0.5"
+                fill="none"
+              >
+                <line x1="60" y1="148" x2="130" y2="148" />
+                <line x1="60" y1="145" x2="60" y2="151" />
+                <line x1="130" y1="145" x2="130" y2="151" />
+                <line x1="146" y1="30" x2="146" y2="130" />
+                <line x1="143" y1="30" x2="149" y2="30" />
+                <line x1="143" y1="130" x2="149" y2="130" />
+              </g>
+
+              {/* annotations mono */}
+              <g className="blueprint__txt">
+                <text x="90" y="158" textAnchor="middle">1X</text>
+                <text x="152" y="82">3X</text>
+                <text x="196" y="38">ANCHOR 01 / (22, 12)</text>
+                <text x="196" y="52">THE CUT / 45° / GOLD</text>
+                <text x="196" y="66">COUNTER / 1X SQUARE</text>
+                <text x="196" y="94">STROKE / NEVER FILLED</text>
+                <text x="196" y="108">CLEAR SPACE / 1X ALL SIDES</text>
+                <text x="196" y="136">REF: MARK-P / REV. 03</text>
+              </g>
+            </svg>
+          </div>
+          <span className="mcap">
+            Gold line system / The break is the mark
+          </span>
+        </div>
+      </section>
+
+      <div className="container sep">
+        <KintsugiLine variant="separator" />
+      </div>
+
       {/* LA MARQUE, PORTÉE, le P brodé ton sur ton */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container split">

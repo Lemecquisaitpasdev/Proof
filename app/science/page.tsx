@@ -16,12 +16,14 @@ export default function SciencePage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow enter">The science</span>
+          <span className="mlabel enter">
+            Clinical file / Method: occlusion therapy / Since 1983
+          </span>
           <h1
             className="d1 enter"
-            style={{ "--d": ".1s", maxWidth: "14ch" } as React.CSSProperties}
+            style={{ "--d": ".1s", marginTop: 16, maxWidth: "16ch" } as React.CSSProperties}
           >
-            No miracles. A mechanism.
+            Precision healing. Verified by protocol.
           </h1>
           <p
             className="lead measure enter"
@@ -47,10 +49,16 @@ export default function SciencePage() {
                 style={{ objectFit: "cover" }}
               />
             </div>
-            <figcaption className="story__caption">
-              The material, exhibited. Cohesive silicone, magnified into a field.
+            <figcaption className="mcap">
+              Silicone study / Magnified field / Exhibit 02
             </figcaption>
           </figure>
+          <div className="assure" style={{ marginTop: 40 }} data-reveal>
+            <span>1983 / First clinical report</span>
+            <span>12&ndash;23 h / Daily wear</span>
+            <span>16 weeks / Post-op window</span>
+            <span>First-line / International guidelines</span>
+          </div>
         </div>
       </section>
 
@@ -179,7 +187,7 @@ export default function SciencePage() {
               style={{
                 marginTop: 40,
                 fontSize: 9.5,
-                color: "var(--graphite)",
+                color: "var(--dim)",
                 letterSpacing: "0.12em",
                 maxWidth: "68ch",
               }}

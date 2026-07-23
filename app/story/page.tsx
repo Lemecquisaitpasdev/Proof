@@ -27,7 +27,9 @@ export default function StoryPage() {
     <>
       <section className="pagehead">
         <div className="container">
-          <span className="eyebrow enter">The story</span>
+          <span className="mlabel enter">
+            The manifesto / Filed 2026 / Kintsugi protocol
+          </span>
           <h1
             className="d1 enter"
             style={{ "--d": ".1s", maxWidth: "16ch" } as React.CSSProperties}

@@ -79,7 +79,7 @@ export default async function ProductPage({ params }: Props) {
               The Shop
             </Link>
             <span>/</span>
-            <span style={{ color: "var(--graphite)" }}>{product.name}</span>
+            <span style={{ color: "var(--dim)" }}>{product.name}</span>
           </nav>
 
           <div className="pdp">
@@ -96,13 +96,16 @@ export default async function ProductPage({ params }: Props) {
               }
             />
 
-            {/* BUY-BOX */}
+            {/* BUY-BOX — spec sheet */}
             <div className="pdp__buybox">
+              <div className="code-giant" aria-hidden="true">
+                {product.code}
+              </div>
               {product.badge ? (
                 <span className="badge">{product.badge}</span>
               ) : null}
-              <span className="eyebrow eyebrow--gold" style={{ marginBottom: 16 }}>
-                {product.chapter} · {product.chapterName}
+              <span className="mlabel" style={{ display: "block", marginBottom: 14 }}>
+                {product.chapter} / {product.chapterName} / Method: {product.method}
               </span>
               <h1 className="pdp__title">{product.name}</h1>
 

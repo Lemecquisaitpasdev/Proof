@@ -14,13 +14,13 @@ export default function CheckoutPage() {
   return (
     <section className="pagehead section">
       <div className="container">
-        <span className="eyebrow">Checkout</span>
-        <h1 className="d1">Your ritual.</h1>
+        <span className="mlabel">Checkout / Order file</span>
+        <h1 className="d1" style={{ marginTop: 16 }}>Your protocol.</h1>
 
         {lines.length === 0 ? (
           <div style={{ marginTop: 48, maxWidth: 560 }}>
             <p className="lead">
-              Nothing here yet. Three chapters are waiting in the shop.
+              Nothing on file yet. The protocol line is waiting.
             </p>
             <Link href="/shop" className="btn btn--primary" style={{ marginTop: 28 }}>
               Open the shop
@@ -64,7 +64,7 @@ export default function CheckoutPage() {
                 className="mono"
                 style={{
                   marginTop: 16,
-                  color: "var(--graphite)",
+                  color: "var(--dim)",
                   fontSize: 10,
                   letterSpacing: "0.18em",
                 }}
@@ -80,7 +80,7 @@ export default function CheckoutPage() {
                   "Checkout opens with the first drop.",
                   "Your cart is saved on this device.",
                 ]}
-                sideEffects="Side effects : anticipation."
+                sideEffects="Observed effects: anticipation."
               />
               <a
                 className="btn btn--primary btn--block"

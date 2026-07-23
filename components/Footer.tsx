@@ -12,8 +12,10 @@ export default function Footer() {
               Proof
             </div>
             <p>
-              Premium silicone scar patches. The rigor of a medical device, the
-              desire of a niche perfumery object.
+              Medical-grade scar care. Engineered to honor, not hide.
+            </p>
+            <p className="mlabel" style={{ marginTop: 14 }}>
+              Ref: PROOF-01 / [ Batch 4099XF ] / US
             </p>
           </div>
           <div>

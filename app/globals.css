@@ -1,38 +1,49 @@
 /* ============================================================
    PROOF — DESIGN SYSTEM
-   DA V2.0 — Clinical warmth.
-   Bone 70 / Porcelain 15 / Ink 8 / Clay 5 / Or Kintsugi 2.
-   La peau est le sujet : le site est lumineux. Le noir survit
-   dans une seule section. L'or ne remplit jamais : il répare.
-   Radius 0 (pastilles badge : 2px). Filets 1px clay 30%.
+   DA V3.0 — Laboratory of proof. Dark / Gold / Kintsugi.
+   Le vide sombre EST le luxe. Ratio : 90% dark, 8% bone/argent,
+   2% or. L'or n'est jamais décoratif : il apparaît comme la
+   lumière dans une fissure. Annotations mono façon rapport
+   d'analyse (● LABEL / REF / BATCH). Grille suisse 12 col.
+   Référence structurelle : Covalent (Obrazur), transposé.
+   ------------------------------------------------------------
+   TOKENS SÉMANTIQUES
+   --base      champ de la page (noir profond chaud)
+   --surface   surface posée (carte, cadre, drawer)
+   --contrast  pôle opposé (bone) : texte, sections accent
+   --dim       voix secondaire sur dark (AA ≥ 7:1)
+   --gold      or kintsugi (filets, jamais d'aplat)
+   --gold-deep or lisible en petit texte sur dark (≥ 8:1)
+   Les sections accent (.science, .feature, .brand-tile__art--ink)
+   posent background: var(--contrast) : ce sont les 8% clairs.
    ============================================================ */
 
 :root {
   /* 01 — COULEUR */
-  --bone: #f5f1ea;
-  --porcelain: #fbf9f5;
-  --ink: #1a1815;
+  --base: #0f0d0a;
+  --surface: #1a1712;
+  --contrast: #ede8df;
   --clay: #b8a088;
   --kintsugi: #c9a227;
-  --graphite: #4a463f;
+  --dim: #a89f90;
 
-  /* Or profond — seul or autorisé en petit texte (≥ 5:1 sur bone) */
-  --kintsugi-ink: #7e6412;
+  /* Or lisible en petit texte sur dark */
+  --gold-deep: #d8b848;
 
-  /* Voiles */
-  --hairline: rgba(184, 160, 136, 0.32);
-  --hairline-strong: rgba(184, 160, 136, 0.55);
-  --ink-04: rgba(26, 24, 21, 0.04);
-  --ink-08: rgba(26, 24, 21, 0.08);
-  --ink-40: rgba(26, 24, 21, 0.4);
-  --ink-55: rgba(26, 24, 21, 0.55);
-  --bone-12: rgba(245, 241, 234, 0.14);
-  --bone-55: rgba(245, 241, 234, 0.55);
-  --bone-70: rgba(245, 241, 234, 0.72);
+  /* Voiles — hairlines clairs sur dark, alphas des deux pôles */
+  --hairline: rgba(237, 232, 223, 0.16);
+  --hairline-strong: rgba(237, 232, 223, 0.34);
+  --contrast-04: rgba(237, 232, 223, 0.05);
+  --contrast-08: rgba(237, 232, 223, 0.09);
+  --contrast-40: rgba(237, 232, 223, 0.4);
+  --contrast-55: rgba(237, 232, 223, 0.55);
+  --base-12: rgba(15, 13, 10, 0.14);
+  --base-55: rgba(15, 13, 10, 0.55);
+  --base-70: rgba(15, 13, 10, 0.72);
 
-  /* Ombres — neutres uniquement, jamais colorées */
-  --shadow-plate: 0 32px 56px -36px rgba(26, 24, 21, 0.35);
-  --shadow-lift: 0 16px 40px -24px rgba(26, 24, 21, 0.28);
+  /* Ombres — le noir porte le noir */
+  --shadow-plate: 0 32px 56px -36px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 16px 40px -24px rgba(0, 0, 0, 0.5);
 
   /* GRILLE — 4/8px strict, container 1440, gouttières généreuses */
   --maxw: 1440px;
@@ -41,12 +52,12 @@
   --sec: clamp(96px, 11vw, 144px);
   --sec-hush: clamp(128px, 16vw, 208px);
 
-  /* Coins arrondis — appliqués aux surfaces d'images (demande client) */
+  /* Coins arrondis — surfaces d'images */
   --radius: 18px;
   --radius-sm: 10px;
 
   /* MOTION — micro 150–200ms, reveals 500–600ms, jamais de bounce */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-organique: cubic-bezier(0.65, 0.05, 0.22, 1);
 
   /* Grain — réservé à la matière silicone (PlateVisual), jamais en fond */
@@ -59,13 +70,13 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
-  background: var(--bone);
-  color: var(--ink);
+  background: var(--base);
+  color: var(--contrast);
   font-family: var(--font-instrument), system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.65;
@@ -74,8 +85,8 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--contrast);
+  color: var(--base);
 }
 
 a {
@@ -110,6 +121,123 @@ textarea {
 :focus-visible {
   outline: 2px solid var(--kintsugi);
   outline-offset: 3px;
+}
+
+/* ============ 01b — LANGAGE RAPPORT DE LABO ============ */
+/* Annotations mono façon fiche d'analyse. Toujours petites,
+   toujours intentionnelles : ● LABEL / REF: SCAR-01 / [ BATCH ] */
+
+.mlabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.mlabel::before {
+  content: "● ";
+  color: var(--gold-deep);
+  font-size: 8px;
+  vertical-align: 1px;
+}
+
+.mlabel--gold {
+  color: var(--gold-deep);
+}
+
+.mlabel--plain::before {
+  content: none;
+}
+
+/* légende systématique sous une image */
+.mcap {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 14px;
+}
+
+.mcap::before {
+  content: "● ";
+  color: var(--gold-deep);
+  font-size: 8px;
+  vertical-align: 1px;
+}
+
+/* micro-références en pied de section : REF / LOT / DATE */
+.refline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border-top: 1px solid var(--hairline);
+  padding-top: 16px;
+  margin-top: clamp(40px, 5vw, 72px);
+}
+
+/* statement typographique géant — un seul message par écran */
+.statement {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 122%;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.9;
+  margin: 0;
+  color: var(--contrast);
+  font-size: clamp(52px, 9.5vw, 176px);
+  text-wrap: balance;
+}
+
+.statement .gold {
+  color: var(--kintsugi);
+}
+
+/* code produit géant PR-0X — fantôme d'archive sur les fiches */
+.code-giant {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(64px, 11vw, 200px);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--contrast-40);
+  user-select: none;
+}
+
+.pdp__buybox .code-giant {
+  font-size: clamp(56px, 6.5vw, 108px);
+  margin-bottom: 10px;
+}
+
+/* bandeau de réassurance mono */
+.assure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border-block: 1px solid var(--hairline);
+  padding-block: 18px;
+}
+
+.assure span::before {
+  content: "● ";
+  color: var(--gold-deep);
+  font-size: 8px;
+  vertical-align: 1px;
 }
 
 /* ============ LAYOUT ============ */
@@ -148,7 +276,7 @@ textarea {
   letter-spacing: -0.01em;
   line-height: 0.94;
   margin: 0;
-  color: var(--ink);
+  color: var(--contrast);
   text-wrap: balance;
 }
 
@@ -181,7 +309,7 @@ textarea {
   line-height: 1.1;
   letter-spacing: 0.01em;
   margin: 0;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .h-m {
@@ -193,7 +321,7 @@ textarea {
   line-height: 1.15;
   letter-spacing: 0.03em;
   margin: 0;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 /* Exergue — Archivo black en capitales (l'ancienne voix « quote ») */
@@ -211,7 +339,7 @@ textarea {
 
 .exergue em {
   font-style: normal;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 .mono {
@@ -226,13 +354,13 @@ textarea {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   display: block;
   margin-bottom: 28px;
 }
 
 .eyebrow--gold {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 .measure {
@@ -242,13 +370,13 @@ textarea {
 .lead {
   font-size: clamp(17px, 1.5vw, 19px);
   line-height: 1.65;
-  color: var(--graphite);
+  color: var(--dim);
   margin: 0;
 }
 
 p {
   margin: 0 0 16px;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 p:last-child {
@@ -256,7 +384,7 @@ p:last-child {
 }
 
 strong {
-  color: var(--ink);
+  color: var(--contrast);
   font-weight: 600;
 }
 
@@ -451,8 +579,8 @@ html.js [data-parallax] {
 
 /* le filet d'or apparaît sous le bouton au hover */
 .btn--primary {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--contrast);
+  color: var(--base);
 }
 
 .btn--primary::after {
@@ -477,12 +605,12 @@ html.js [data-parallax] {
 }
 
 .btn--line {
-  border-color: var(--ink-40);
-  color: var(--ink);
+  border-color: var(--contrast-40);
+  color: var(--contrast);
 }
 
 .btn--line:hover {
-  border-color: var(--ink);
+  border-color: var(--contrast);
 }
 
 .btn--block {
@@ -516,7 +644,7 @@ html.js [data-parallax] {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .tlink::after {
@@ -537,8 +665,8 @@ html.js [data-parallax] {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--kintsugi-ink);
-  background: var(--porcelain);
+  color: var(--gold-deep);
+  background: var(--surface);
   border-radius: 2px;
   padding: 6px 12px;
   box-shadow: inset 0 0 0 1px var(--hairline);
@@ -547,7 +675,7 @@ html.js [data-parallax] {
 /* ============ 06 — TOPBAR (marquee specs) ============ */
 
 .topbar {
-  background: var(--porcelain);
+  background: var(--surface);
   border-bottom: 1px solid var(--hairline);
   overflow: hidden;
 }
@@ -574,7 +702,7 @@ html.js [data-parallax] {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   white-space: nowrap;
   padding-inline: 22px;
   position: relative;
@@ -614,7 +742,7 @@ html.js [data-parallax] {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(251, 249, 245, 0.86);
+  background: rgba(15, 13, 10, 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--hairline);
@@ -635,7 +763,7 @@ html.js [data-parallax] {
   text-transform: uppercase;
   font-size: 21px;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--contrast);
   line-height: 1;
 }
 
@@ -649,16 +777,16 @@ html.js [data-parallax] {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   padding-block: 6px;
 }
 
 .nav a:hover {
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .nav a.is-active {
-  color: var(--ink);
+  color: var(--contrast);
   background-size: 100% 1px;
 }
 
@@ -667,9 +795,9 @@ html.js [data-parallax] {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid var(--ink-40);
+  border: 1px solid var(--contrast-40);
   padding: 11px 18px;
-  color: var(--ink);
+  color: var(--contrast);
   transition: border-color 0.15s ease;
   display: inline-flex;
   align-items: baseline;
@@ -677,13 +805,13 @@ html.js [data-parallax] {
 }
 
 .cartbtn:hover {
-  border-color: var(--ink);
+  border-color: var(--contrast);
 }
 
 .cartbtn__count {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   display: inline-block;
   font-variant-numeric: tabular-nums;
 }
@@ -748,7 +876,7 @@ html.js [data-parallax] {
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   padding: 22px 28px 22px 0;
   border-right: 1px solid var(--hairline);
   white-space: nowrap;
@@ -777,7 +905,7 @@ html.js [data-parallax] {
 .pw {
   white-space: nowrap;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
   opacity: 0.4;
   padding-inline: 38px;
   line-height: 1;
@@ -861,7 +989,7 @@ html.js [data-parallax] {
 .scrim {
   position: fixed;
   inset: 0;
-  background: rgba(26, 24, 21, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 60;
   opacity: 0;
   pointer-events: none;
@@ -879,7 +1007,7 @@ html.js [data-parallax] {
   right: 0;
   bottom: 0;
   width: min(440px, 100vw);
-  background: var(--porcelain);
+  background: var(--surface);
   border-left: 1px solid var(--hairline);
   z-index: 70;
   transform: translateX(102%);
@@ -915,7 +1043,7 @@ html.js [data-parallax] {
   text-transform: uppercase;
   letter-spacing: 0.01em;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .drawer__close {
@@ -923,11 +1051,11 @@ html.js [data-parallax] {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 .drawer__close:hover {
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .drawer__body {
@@ -956,7 +1084,7 @@ html.js [data-parallax] {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  background: var(--bone);
+  background: var(--base);
 }
 
 .cline__name {
@@ -966,7 +1094,7 @@ html.js [data-parallax] {
   text-transform: uppercase;
   letter-spacing: -0.005em;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .cline__meta {
@@ -974,7 +1102,7 @@ html.js [data-parallax] {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-top: 4px;
 }
 
@@ -982,7 +1110,7 @@ html.js [data-parallax] {
   font-family: var(--font-mono), monospace;
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: var(--contrast);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -1000,13 +1128,13 @@ html.js [data-parallax] {
   place-items: center;
   font-family: var(--font-mono), monospace;
   font-size: 13px;
-  color: var(--graphite);
+  color: var(--dim);
   transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .qty button:hover {
-  background: var(--bone);
-  color: var(--ink);
+  background: var(--base);
+  color: var(--contrast);
 }
 
 .qty span {
@@ -1015,7 +1143,7 @@ html.js [data-parallax] {
   place-items: center;
   font-family: var(--font-mono), monospace;
   font-size: 12px;
-  color: var(--ink);
+  color: var(--contrast);
   border-inline: 1px solid var(--hairline);
   font-variant-numeric: tabular-nums;
 }
@@ -1023,7 +1151,7 @@ html.js [data-parallax] {
 .drawer__foot {
   border-top: 1px solid var(--hairline-strong);
   padding: 22px 28px 26px;
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .drawer__total {
@@ -1033,7 +1161,7 @@ html.js [data-parallax] {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
   margin-bottom: 8px;
   font-variant-numeric: tabular-nums;
 }
@@ -1043,7 +1171,7 @@ html.js [data-parallax] {
   font-size: 9.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-bottom: 18px;
 }
 
@@ -1096,7 +1224,7 @@ html.js [data-parallax] {
   aspect-ratio: 1654 / 951;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .hero__title {
@@ -1177,7 +1305,7 @@ html.js [data-parallax] {
   aspect-ratio: 3 / 3.85;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
   isolation: isolate;
 }
 
@@ -1193,7 +1321,7 @@ html.js [data-parallax] {
 }
 
 .trio__card:focus-visible {
-  outline: 2px solid var(--kintsugi-ink);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 4px;
 }
 
@@ -1241,7 +1369,7 @@ html.js [data-parallax] {
   font-size: clamp(21px, 1.85vw, 29px);
   line-height: 0.98;
   letter-spacing: -0.005em;
-  color: var(--bone);
+  color: var(--contrast);
   text-wrap: balance;
 }
 
@@ -1272,7 +1400,7 @@ html.js [data-parallax] {
   font-size: 10.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--bone-70);
+  color: var(--contrast-55);
 }
 
 .trio__arrow {
@@ -1352,7 +1480,7 @@ html.js [data-parallax] {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .card__visual > img,
@@ -1399,7 +1527,7 @@ html.js [data-parallax] {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 .card__name {
@@ -1410,13 +1538,13 @@ html.js [data-parallax] {
   letter-spacing: -0.005em;
   font-size: 23px;
   line-height: 1;
-  color: var(--ink);
+  color: var(--contrast);
   margin: 0;
 }
 
 .card__desc {
   font-size: 13.5px;
-  color: var(--graphite);
+  color: var(--dim);
   line-height: 1.55;
   flex: 1;
 }
@@ -1454,7 +1582,7 @@ html.js [data-parallax] {
 
 .card__price {
   font-size: 15px;
-  color: var(--ink);
+  color: var(--contrast);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1463,9 +1591,9 @@ html.js [data-parallax] {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--ink-40);
+  border-bottom: 1px solid var(--contrast-40);
   padding: 4px 2px;
-  color: var(--ink);
+  color: var(--contrast);
   transition: border-color 0.15s ease, color 0.2s ease;
 }
 
@@ -1474,7 +1602,7 @@ html.js [data-parallax] {
 }
 
 .card__add.is-added {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   border-color: var(--kintsugi);
 }
 
@@ -1484,7 +1612,7 @@ html.js [data-parallax] {
 .plate {
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 22% 8%, #fffdf9 0%, var(--porcelain) 52%, #f0ebe1 100%);
+  background: radial-gradient(120% 90% at 22% 8%, #fffdf9 0%, #f4f0e8 52%, #eae4d8 100%);
   overflow: hidden;
 }
 
@@ -1527,7 +1655,7 @@ html.js [data-parallax] {
   font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   opacity: 0.75;
 }
 
@@ -1539,7 +1667,7 @@ html.js [data-parallax] {
   font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 /* ============ 13 — RITUAL (stepper éditorial) ============ */
@@ -1557,7 +1685,7 @@ html.js [data-parallax] {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .ritual__media img {
@@ -1591,7 +1719,7 @@ html.js [data-parallax] {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   letter-spacing: 0.2em;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   display: block;
   margin-bottom: 16px;
 }
@@ -1604,7 +1732,7 @@ html.js [data-parallax] {
   letter-spacing: -0.005em;
   font-size: clamp(24px, 2.4vw, 34px);
   line-height: 1;
-  color: var(--ink);
+  color: var(--contrast);
   margin: 0 0 12px;
 }
 
@@ -1641,7 +1769,7 @@ html.js .ritual--live .rstep.is-active {
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: var(--radius);
-    background: var(--porcelain);
+    background: var(--surface);
     margin-bottom: 8px;
   }
 
@@ -1680,7 +1808,7 @@ html.js .ritual--live .rstep {
 /* ============ 14 — POSOLOGY (fiche médicale) ============ */
 
 .posology {
-  background: var(--porcelain);
+  background: var(--surface);
   border: 1px solid var(--hairline);
   border-top: 2px solid var(--kintsugi);
   padding: 36px 32px 32px;
@@ -1689,13 +1817,13 @@ html.js .ritual--live .rstep {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 2.2;
-  color: var(--graphite);
+  color: var(--dim);
   position: relative;
   overflow: hidden;
 }
 
 .posology__title {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   letter-spacing: 0.22em;
   margin-bottom: 14px;
   font-size: 11px;
@@ -1703,7 +1831,7 @@ html.js .ritual--live .rstep {
 
 .posology em {
   font-style: normal;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 /* tampon PROOF en filigrane */
@@ -1718,7 +1846,7 @@ html.js .ritual--live .rstep {
   text-transform: uppercase;
   font-size: 82px;
   letter-spacing: -0.01em;
-  color: var(--ink);
+  color: var(--contrast);
   opacity: 0.045;
   pointer-events: none;
   line-height: 1;
@@ -1734,26 +1862,26 @@ html.js .ritual--live .rstep {
 /* ============ 15 — SCIENCE (LE moment sombre) ============ */
 
 .science {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--contrast);
+  color: var(--base);
 }
 
 .science .eyebrow {
-  color: var(--bone-55);
+  color: var(--base-55);
 }
 
 .science .d2,
 .science .d3,
 .science .h-l {
-  color: var(--bone);
+  color: var(--base);
 }
 
 .science p {
-  color: var(--bone-70);
+  color: var(--base-70);
 }
 
 .science .exergue {
-  color: var(--bone);
+  color: var(--base);
 }
 
 .science .exergue em {
@@ -1775,16 +1903,16 @@ html.js .ritual--live .rstep {
 }
 
 .science .btn--line {
-  border-color: var(--bone-12);
-  color: var(--bone);
+  border-color: var(--base-12);
+  color: var(--base);
 }
 
 .science .btn--line:hover {
-  border-color: var(--bone-55);
+  border-color: var(--base-55);
 }
 
 .science .tlink {
-  color: var(--bone);
+  color: var(--base);
 }
 
 /* Schéma mécanisme — traits fins, labels mono, dessiné au scroll */
@@ -1795,7 +1923,7 @@ html.js .ritual--live .rstep {
 
 .mechanism .m-line {
   fill: none;
-  stroke: var(--bone);
+  stroke: var(--base);
   stroke-width: 1;
   opacity: 0.9;
   stroke-dasharray: 1;
@@ -1825,7 +1953,7 @@ html.js .ritual--live .rstep {
 }
 
 .mechanism .m-dot {
-  fill: var(--bone);
+  fill: var(--base);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -1847,7 +1975,7 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  fill: var(--bone);
+  fill: var(--base);
   opacity: 0;
   transition: opacity 0.6s ease 1.1s;
 }
@@ -1885,22 +2013,22 @@ html.js .ritual--live .rstep {
    à gauche, macro des bouchons acier en bleed à droite. */
 
 .feature {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--contrast);
+  color: var(--base);
   overflow: hidden;
 }
 
 .feature .eyebrow {
-  color: var(--bone-55);
+  color: var(--base-55);
 }
 
 .feature .d2,
 .feature .d3 {
-  color: var(--bone);
+  color: var(--base);
 }
 
 .feature p {
-  color: var(--bone-70);
+  color: var(--base-70);
 }
 
 .feature__grid {
@@ -1939,15 +2067,15 @@ html.js .ritual--live .rstep {
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--bone-70);
+  color: var(--base-70);
   padding: 15px 0;
-  border-top: 1px solid var(--bone-12);
+  border-top: 1px solid var(--base-12);
   display: flex;
   gap: 14px;
 }
 
 .feature__list li:last-child {
-  border-bottom: 1px solid var(--bone-12);
+  border-bottom: 1px solid var(--base-12);
 }
 
 .feature__list li::before {
@@ -1965,12 +2093,12 @@ html.js .ritual--live .rstep {
 }
 
 .feature .btn--primary {
-  background: var(--bone);
-  color: var(--ink);
+  background: var(--base);
+  color: var(--contrast);
 }
 
 .feature .tlink {
-  color: var(--bone);
+  color: var(--base);
 }
 
 @media (max-width: 940px) {
@@ -1995,7 +2123,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 4 / 4.4;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
   margin: 0;
 }
 
@@ -2008,7 +2136,7 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-top: 14px;
 }
 
@@ -2039,7 +2167,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 1529 / 1028;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
   margin: 0;
 }
 
@@ -2058,7 +2186,7 @@ html.js .ritual--live .rstep {
   gap: 14px;
   padding: 15px 0;
   border-top: 1px solid var(--hairline);
-  color: var(--graphite);
+  color: var(--dim);
   font-size: 15px;
   line-height: 1.5;
 }
@@ -2069,7 +2197,7 @@ html.js .ritual--live .rstep {
 
 .applist li::before {
   content: "+";
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   font-family: var(--font-mono), monospace;
   flex-shrink: 0;
 }
@@ -2086,7 +2214,7 @@ html.js .ritual--live .rstep {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
   border: 1px solid var(--hairline-strong);
   border-radius: 999px;
   padding: 10px 18px;
@@ -2125,7 +2253,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 1132 / 1389;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
   margin: 0;
 }
 
@@ -2142,7 +2270,7 @@ html.js .ritual--live .rstep {
   padding: 16px 20px;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-sm);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .tellus__code {
@@ -2150,8 +2278,8 @@ html.js .ritual--live .rstep {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--kintsugi-ink);
-  border: 1px dashed var(--kintsugi-ink);
+  color: var(--gold-deep);
+  border: 1px dashed var(--gold-deep);
   border-radius: 999px;
   padding: 8px 16px;
   flex-shrink: 0;
@@ -2159,7 +2287,7 @@ html.js .ritual--live .rstep {
 
 .tellus__rewardtext {
   font-size: 14px;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 .tellus__cta {
@@ -2170,6 +2298,28 @@ html.js .ritual--live .rstep {
   .tellus__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ============ 16d — BLUEPRINT DU SYMBOLE (page Brand) ============ */
+
+.blueprint {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 56px);
+}
+
+.blueprint svg {
+  width: 100%;
+  height: auto;
+}
+
+.blueprint__txt text {
+  font-family: var(--font-mono), monospace;
+  font-size: 5.5px;
+  letter-spacing: 0.14em;
+  fill: var(--dim);
+  text-transform: uppercase;
 }
 
 /* ============ 17 — SPLIT ÉDITORIAL ============ */
@@ -2193,7 +2343,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .imgframe--tall {
@@ -2214,7 +2364,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 16 / 8.8;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--ink);
+  background: var(--contrast);
 }
 
 .matband__media img {
@@ -2248,20 +2398,20 @@ html.js .ritual--live .rstep {
 }
 
 .specs th {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   font-size: 10px;
   letter-spacing: 0.18em;
   white-space: nowrap;
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .specs td {
-  color: var(--graphite);
-  background: var(--porcelain);
+  color: var(--dim);
+  background: var(--surface);
 }
 
 .specs td.is-ink {
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .specs-scroll {
@@ -2283,18 +2433,18 @@ html.js .ritual--live .rstep {
   font-size: 10.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   display: flex;
   gap: 10px;
   margin-bottom: clamp(32px, 4vw, 56px);
 }
 
 .crumb a:hover {
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .crumb span {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 .pdp {
@@ -2320,7 +2470,7 @@ html.js .ritual--live .rstep {
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius);
-  background: var(--porcelain);
+  background: var(--surface);
 }
 
 .pdpg__slide {
@@ -2360,7 +2510,7 @@ html.js .ritual--live .rstep {
   border: 1px solid var(--hairline-strong);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  background: var(--porcelain);
+  background: var(--surface);
   cursor: pointer;
   opacity: 0.72;
   box-shadow: 0 6px 18px rgba(26, 24, 21, 0.12);
@@ -2378,8 +2528,8 @@ html.js .ritual--live .rstep {
 
 .pdpg__thumb.is-active {
   opacity: 1;
-  border-color: var(--ink);
-  box-shadow: 0 0 0 2px var(--ink), 0 6px 18px rgba(26, 24, 21, 0.16);
+  border-color: var(--contrast);
+  box-shadow: 0 0 0 2px var(--contrast), 0 6px 18px rgba(26, 24, 21, 0.16);
 }
 
 @media (max-width: 560px) {
@@ -2415,12 +2565,12 @@ html.js .ritual--live .rstep {
   line-height: 0.96;
   letter-spacing: -0.01em;
   margin: 0;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .pdp__price {
   font-size: 19px;
-  color: var(--ink);
+  color: var(--contrast);
   margin-top: 18px;
   font-variant-numeric: tabular-nums;
 }
@@ -2430,13 +2580,13 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-top: 14px;
 }
 
 .pdp__desc {
   margin-top: 18px;
-  color: var(--graphite);
+  color: var(--dim);
   font-size: 15px;
   line-height: 1.62;
   max-width: 42ch;
@@ -2452,13 +2602,13 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-bottom: 12px;
 }
 
 .qty--pdp {
   margin: 0;
-  border-color: var(--ink-40);
+  border-color: var(--contrast-40);
 }
 
 .qty--pdp button {
@@ -2478,11 +2628,11 @@ html.js .ritual--live .rstep {
   margin-top: 14px;
   text-align: center;
   font-size: 12px;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 .pdp__pay b {
-  color: var(--ink);
+  color: var(--contrast);
   font-weight: 600;
 }
 
@@ -2508,7 +2658,7 @@ html.js .ritual--live .rstep {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .acc summary::-webkit-details-marker {
@@ -2518,7 +2668,7 @@ html.js .ritual--live .rstep {
 .acc summary::after {
   content: "+";
   font-family: var(--font-mono), monospace;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   font-size: 14px;
   flex-shrink: 0;
 }
@@ -2543,7 +2693,7 @@ html.js .ritual--live .rstep {
   font-size: 11.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 .acc__list li {
@@ -2552,7 +2702,7 @@ html.js .ritual--live .rstep {
 
 .acc__list li::before {
   content: "+";
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   margin-right: 12px;
 }
 
@@ -2563,7 +2713,7 @@ html.js .ritual--live .rstep {
   right: 0;
   bottom: 0;
   z-index: 50;
-  background: rgba(251, 249, 245, 0.94);
+  background: rgba(15, 13, 10, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--hairline);
@@ -2586,7 +2736,7 @@ html.js .ritual--live .rstep {
   text-transform: uppercase;
   letter-spacing: -0.005em;
   font-size: 15px;
-  color: var(--ink);
+  color: var(--contrast);
   flex: 1;
   min-width: 0;
   white-space: nowrap;
@@ -2599,7 +2749,7 @@ html.js .ritual--live .rstep {
   font-family: var(--font-instrument), sans-serif;
   font-weight: 400;
   font-size: 12px;
-  color: var(--graphite);
+  color: var(--dim);
   font-variant-numeric: tabular-nums;
 }
 
@@ -2648,7 +2798,7 @@ html.js .ritual--live .rstep {
   text-transform: uppercase;
   letter-spacing: 0.02em;
   font-size: 17px;
-  color: var(--ink);
+  color: var(--contrast);
   transition: color 0.15s ease;
 }
 
@@ -2659,7 +2809,7 @@ html.js .ritual--live .rstep {
 .faq summary::after {
   content: "+";
   font-family: var(--font-mono), monospace;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   font-size: 15px;
   flex-shrink: 0;
 }
@@ -2683,7 +2833,7 @@ html.js .ritual--live .rstep {
   border-top: 1px solid var(--hairline);
   margin-top: var(--sec);
   overflow: hidden;
-  background: var(--bone);
+  background: var(--base);
 }
 
 .footer__grid {
@@ -2708,7 +2858,7 @@ html.js .ritual--live .rstep {
 
 .footer__brand p {
   font-size: 14px;
-  color: var(--graphite);
+  color: var(--dim);
   max-width: 30ch;
 }
 
@@ -2717,7 +2867,7 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   margin: 0 0 20px;
   font-weight: 400;
 }
@@ -2734,15 +2884,15 @@ html.js .ritual--live .rstep {
 .footer ul a,
 .footer ul span {
   font-size: 14px;
-  color: var(--graphite);
+  color: var(--dim);
 }
 
 .footer ul a:hover {
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .footer ul .soon {
-  color: var(--ink-55);
+  color: var(--contrast-55);
 }
 
 .footer ul .soon em {
@@ -2750,7 +2900,7 @@ html.js .ritual--live .rstep {
   font-family: var(--font-mono), monospace;
   font-size: 9px;
   letter-spacing: 0.16em;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   margin-left: 8px;
   text-transform: uppercase;
 }
@@ -2758,7 +2908,7 @@ html.js .ritual--live .rstep {
 /* Newsletter — input minimal, la ligne devient or au focus */
 .newsletter p {
   font-size: 14px;
-  color: var(--graphite);
+  color: var(--dim);
   margin-bottom: 18px;
   max-width: 30ch;
 }
@@ -2782,11 +2932,11 @@ html.js .ritual--live .rstep {
   border: none;
   padding: 10px 2px;
   font-size: 14px;
-  color: var(--ink);
+  color: var(--contrast);
 }
 
 .newsletter input::placeholder {
-  color: var(--ink-55);
+  color: var(--contrast-55);
 }
 
 .newsletter input:focus {
@@ -2797,12 +2947,12 @@ html.js .ritual--live .rstep {
   font-family: var(--font-mono), monospace;
   font-size: 12px;
   padding: 10px 6px;
-  color: var(--graphite);
+  color: var(--dim);
   transition: color 0.15s ease, transform 0.18s var(--ease-out);
 }
 
 .newsletter button:hover {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   transform: translateX(3px);
 }
 
@@ -2820,7 +2970,7 @@ html.js .ritual--live .rstep {
   font-size: 9.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin: 0;
   max-width: 72ch;
 }
@@ -2833,7 +2983,7 @@ html.js .ritual--live .rstep {
   letter-spacing: -0.01em;
   line-height: 0.78;
   font-size: clamp(96px, 18vw, 230px);
-  color: var(--ink);
+  color: var(--contrast);
   opacity: 0.05;
   text-align: center;
   user-select: none;
@@ -2863,7 +3013,7 @@ html.js .ritual--live .rstep {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   border-top: 1px solid var(--hairline);
   padding: 16px 2px;
   line-height: 1.9;
@@ -2874,7 +3024,7 @@ html.js .ritual--live .rstep {
 }
 
 .refs li span {
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
   margin-right: 14px;
 }
 
@@ -2914,11 +3064,11 @@ html.js .ritual--live .rstep {
 }
 
 .brand-tile__art--bone {
-  background: var(--bone);
+  background: var(--base);
 }
 
 .brand-tile__art--ink {
-  background: var(--ink);
+  background: var(--contrast);
   border-color: transparent;
 }
 
@@ -2934,7 +3084,7 @@ html.js .ritual--live .rstep {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: var(--dim);
   margin-right: auto;
 }
 
@@ -2943,7 +3093,7 @@ html.js .ritual--live .rstep {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--contrast);
   background-image: linear-gradient(var(--kintsugi), var(--kintsugi));
   background-repeat: no-repeat;
   background-size: 0% 1px;
@@ -2959,7 +3109,7 @@ html.js .ritual--live .rstep {
 .dl::before {
   content: "↓ ";
   font-family: var(--font-mono), monospace;
-  color: var(--kintsugi-ink);
+  color: var(--gold-deep);
 }
 
 @media (max-width: 860px) {

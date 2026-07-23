@@ -117,7 +117,7 @@ export default function HelpPage() {
               <a
                 href="mailto:contactus@trackk.fr"
                 className="klink"
-                style={{ color: "var(--kintsugi-ink)" }}
+                style={{ color: "var(--gold-deep)" }}
               >
                 contactus@trackk.fr
               </a>{" "}

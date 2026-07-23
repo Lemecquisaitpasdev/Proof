@@ -65,7 +65,7 @@ export default function PdpBuyBox({ product }: { product: Product }) {
         className="btn btn--primary btn--pill pdp__cta"
         onClick={onAdd}
       >
-        Add to ritual · {formatPrice(product.price * qty)}
+        {product.cta} · {formatPrice(product.price * qty)}
       </button>
       <p className="pdp__pay">
         or 4 interest-free payments of <b className="num">{installment}</b>
@@ -83,7 +83,7 @@ export default function PdpBuyBox({ product }: { product: Product }) {
           <small className="num">{formatPrice(product.price)}</small>
         </div>
         <button type="button" className="btn btn--primary" onClick={onAdd}>
-          Add · {formatPrice(product.price * qty)}
+          {product.cta} · {formatPrice(product.price * qty)}
         </button>
       </div>
     </>

@@ -41,7 +41,7 @@ export default function CartDrawer({
         <div className="drawer__body">
           {lines.length === 0 ? (
             <div className="drawer__empty">
-              <p className="mono" style={{ color: "var(--graphite)" }}>
+              <p className="mono" style={{ color: "var(--dim)" }}>
                 Your ritual is empty.
               </p>
               <p style={{ fontSize: 14.5, marginTop: 12 }}>

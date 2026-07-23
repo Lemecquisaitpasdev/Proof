@@ -19,64 +19,79 @@ export default function HomePage() {
 
   return (
     <>
-      {/* HÉROS */}
+      {/* HÉROS — le manifeste */}
       <section className="hero">
         <div className="container hero__grid">
           <div className="hero__copy">
-            <span className="eyebrow enter" style={D(0)}>
-              Premium silicone scar patch, Batch Nº 017
+            <span className="mlabel enter" style={D(0)}>
+              Medical-grade scar care / Engineered to honor, not hide
             </span>
-            <h1 className="d1 hero__title">
+            <h1 className="d1 hero__title" style={{ marginTop: 18 }}>
               <span className="w enter" style={D(0.14)}>
-                Your
+                Scars
               </span>{" "}
               <span className="w enter" style={D(0.18)}>
-                scar
+                are
               </span>{" "}
               <span className="w enter" style={D(0.22)}>
-                has
+                not
               </span>{" "}
               <span className="w enter" style={D(0.26)}>
-                a
+                flaws.
               </span>{" "}
-              <span className="w enter" style={D(0.3)}>
+              <span className="w enter" style={D(0.34)}>
+                They are{" "}
                 <span className="kword">
-                  story.
+                  proof.
                   <KintsugiLine variant="underline" onload />
                 </span>
               </span>
             </h1>
-            <p className="lead hero__lead enter" style={D(0.4)}>
-              We made it something worth wearing. A medical-grade silicone
-              patch that improves the appearance of scars, texture, color,
-              relief, without asking them to disappear.
+            <p className="lead hero__lead enter" style={D(0.44)}>
+              Medical-grade silicone that improves the appearance of scars,
+              texture, color, relief. Nothing is asked to disappear.
             </p>
-            <div className="hero__cta enter" style={D(0.52)}>
-              <Link href="/shop/the-ritual" className="btn btn--primary">
-                Shop The Ritual · $69
+            <div className="hero__cta enter" style={D(0.54)}>
+              <Link href="/shop/protocol" className="btn btn--primary">
+                Begin the protocol
               </Link>
               <Link href="/story" className="tlink klink">
-                Read the story
+                Read the manifesto
               </Link>
             </div>
           </div>
-          <div
-            className="hero__visual hero__visual--portrait enter"
-            style={{ ...D(0.58), aspectRatio: "1163 / 1353" }}
-          >
-            <div className="hero__parallax" data-parallax="2">
-              <Image
-                src="/images/proofart.png"
-                alt="Proof, a profile in silhouette, the scar traced in gold, the P mark honored"
-                fill
-                sizes="(max-width: 940px) 100vw, 42vw"
-                style={{ objectFit: "cover" }}
-                priority
-              />
+          <figure className="enter" style={{ ...D(0.58), margin: 0 }}>
+            <div
+              className="hero__visual hero__visual--portrait"
+              style={{ aspectRatio: "1163 / 1353" }}
+            >
+              <div className="hero__parallax" data-parallax="2">
+                <Image
+                  src="/images/proofart.png"
+                  alt="Proof, a profile in silhouette, the scar traced in gold, the P mark honored"
+                  fill
+                  sizes="(max-width: 940px) 100vw, 42vw"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
             </div>
-          </div>
+            <figcaption className="mcap">
+              Photo 01 / Silhouette study / Gold line system
+            </figcaption>
+          </figure>
         </div>
       </section>
+
+      {/* RÉASSURANCE — langage labo */}
+      <div className="container">
+        <div className="assure" data-reveal>
+          <span>30-day protocol guarantee</span>
+          <span>Free US shipping</span>
+          <span>Dermatologist reviewed</span>
+          <span>{`Batch Nº 017 / Est. 2026`}</span>
+        </div>
+      </div>
 
       {/* TROIS PORTES, apparitions / science / histoire */}
       <section className="section trio-sec">
@@ -156,11 +171,11 @@ export default function HomePage() {
       {/* LA BOUTIQUE */}
       <section className="section" id="shop">
         <div className="container">
-          <span className="eyebrow" data-reveal>
-            The shop, four chapters
+          <span className="mlabel" data-reveal>
+            The protocol line / Ref: SCAR-01&mdash;04
           </span>
-          <h2 className="d2" style={{ marginBottom: 56 }} data-reveal>
-            Pick your chapter.
+          <h2 className="d2" style={{ marginTop: 14, marginBottom: 56 }} data-reveal>
+            Four instruments. One discipline.
           </h2>
           <div className="cards" data-reveal-group>
             {products.map((p) => (
@@ -177,9 +192,9 @@ export default function HomePage() {
         <div className="container">
           <div className="science__grid">
             <div data-reveal>
-              <span className="eyebrow">The science</span>
-              <h2 className="d3" style={{ maxWidth: "12ch" }}>
-                Decades of clinical use. One material.
+              <span className="mlabel">Method: occlusion therapy / Since 1983</span>
+              <h2 className="d3" style={{ marginTop: 14, maxWidth: "13ch" }}>
+                Precision healing. Verified by protocol.
               </h2>
               <p className="measure" style={{ marginTop: 28 }}>
                 Silicone sheeting has been used on scars since 1983 and appears
@@ -205,10 +220,10 @@ export default function HomePage() {
       {/* LE RITUEL */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <span className="eyebrow" data-reveal>
-            The ritual
+          <span className="mlabel" data-reveal>
+            Daily protocol / Wear time 12&ndash;23 h
           </span>
-          <h2 className="d2" style={{ marginBottom: 48 }} data-reveal>
+          <h2 className="d2" style={{ marginTop: 14, marginBottom: 48 }} data-reveal>
             One patch. One day. Repeat.
           </h2>
           <div data-reveal>
@@ -241,9 +256,20 @@ export default function HomePage() {
                 "Apply once daily on clean skin.",
                 "Wear time : 12–23 h.",
               ]}
-              sideEffects="Side effects : pride, confidence, questions at parties."
+              sideEffects="Observed effects: a ritual kept. A scar carried differently."
             />
           </div>
+        </div>
+      </section>
+
+      {/* STATEMENT — un seul message par écran */}
+      <section className="section--hush section" aria-label="Honor it. Don't erase it.">
+        <div className="container" style={{ textAlign: "center" }}>
+          <p className="statement" data-reveal>
+            Honor it.
+            <br />
+            <span className="gold">Don&apos;t erase it.</span>
+          </p>
         </div>
       </section>
 
@@ -427,6 +453,40 @@ export default function HomePage() {
               />
             </div>
           </figure>
+        </div>
+      </section>
+
+      {/* CLÔTURE DU MANIFESTE — l'appartenance */}
+      <section className="section--hush section">
+        <div className="container" style={{ textAlign: "center" }}>
+          <p className="statement" data-reveal>
+            Your scar
+            <br />
+            is <span className="gold">proof.</span>
+          </p>
+          <p
+            className="lead measure"
+            style={{ marginInline: "auto", marginTop: 36 }}
+            data-reveal
+          >
+            One email when a batch ships. One story each season. Nothing else.
+          </p>
+          <div className="hero__cta" style={{ justifyContent: "center", marginTop: 36 }} data-reveal>
+            <a
+              className="btn btn--primary"
+              href={`mailto:contactus@trackk.fr?subject=${encodeURIComponent(
+                "PROOF, join the proven",
+              )}&body=${encodeURIComponent("Count me in for the next batch.\n")}`}
+            >
+              Join the proven
+            </a>
+          </div>
+          <div className="refline" style={{ justifyContent: "center" }} data-reveal>
+            <span>Proof / Medical-grade scar care</span>
+            <span>Ref: PROOF-SITE-01</span>
+            <span>[ Batch 4099XF ]</span>
+            <span>Est. 2026 / US</span>
+          </div>
         </div>
       </section>
     </>

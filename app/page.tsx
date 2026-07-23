@@ -177,23 +177,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* L'OBJET, bande sombre menée par le produit (bouchons acier) */}
+      {/* L'OBJET, bande sombre : la recharge, l'écologie, l'économie */}
       <section className="section feature">
         <div className="container feature__grid">
           <div className="feature__copy" data-reveal>
-            <span className="eyebrow">The object</span>
+            <span className="eyebrow">The refill</span>
             <h2 className="d2">Made to be kept.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
-              The rigor of a medical device, the manners of a niche perfumery
-              object, considered down to the brushed-steel cap, embossed with
-              the P.
+              The brushed-steel cap, embossed with the P, is the object. When
+              the gel runs out you refill it, you do not replace it. Less to
+              throw away, and far less to pay.
             </p>
             <ul className="feature__list">
-              <li>Medical-grade silicone, worn 12 to 23 hours a day</li>
-              <li>Reusable up to 14 days per patch</li>
-              <li>Refillable gel in a brushed-steel cap</li>
-              <li>Ships worldwide, 30-day returns</li>
-              <li>A numbered series, Batch Nº 017</li>
+              <li>Keep the steel cap for good, only the gel is refilled</li>
+              <li>A refill costs far less than buying the object again</li>
+              <li>One cap kept is one package not made, less waste by design</li>
+              <li>Refillable gel, reusable patch, nothing built to be tossed</li>
             </ul>
             <div className="feature__cta">
               <Link href="/shop" className="btn btn--primary">

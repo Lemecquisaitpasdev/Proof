@@ -223,7 +223,7 @@ export default function HomePage() {
           <span className="mlabel" data-reveal>
             Daily protocol / Wear time 12&ndash;23 h
           </span>
-          <h2 className="d2" style={{ marginTop: 14, marginBottom: 48 }} data-reveal>
+          <h2 className="d3" style={{ marginTop: 14, marginBottom: 48 }} data-reveal>
             One patch. One day. Repeat.
           </h2>
           <div data-reveal>
@@ -264,21 +264,21 @@ export default function HomePage() {
 
       {/* STATEMENT — un seul message par écran */}
       <section className="section--hush section" aria-label="Honor it. Don't erase it.">
-        <div className="container" style={{ textAlign: "center" }}>
+        <div className="container">
           <p className="statement" data-reveal>
             Honor it.
             <br />
-            <span className="gold">Don&apos;t erase it.</span>
+            Don&apos;t&nbsp;erase&nbsp;it.
           </p>
         </div>
       </section>
 
       {/* L'OBJET, bande sombre : la recharge, l'écologie, l'économie */}
       <section className="section feature">
-        <div className="container feature__grid">
+        <div className="container feature__grid feature__grid--flip">
           <div className="feature__copy" data-reveal>
             <span className="eyebrow">The monthly refill</span>
-            <h2 className="d2">Made to be kept.</h2>
+            <h2 className="d3">Made to be kept.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
               The brushed-steel cap, embossed with the P, is the object, yours
               to keep. The gel arrives on subscription, a fresh refill every
@@ -321,7 +321,7 @@ export default function HomePage() {
 
       {/* L'HISTOIRE, contemplative */}
       <section className="section--hush section">
-        <div className="container story__grid">
+        <div className="container story__grid story__grid--flip">
           <div>
             <span className="eyebrow" data-reveal>
               The story
@@ -458,20 +458,16 @@ export default function HomePage() {
 
       {/* CLÔTURE DU MANIFESTE — l'appartenance */}
       <section className="section--hush section">
-        <div className="container" style={{ textAlign: "center" }}>
+        <div className="container">
           <p className="statement" data-reveal>
             Your scar
             <br />
-            is <span className="gold">proof.</span>
+            is&nbsp;proof.
           </p>
-          <p
-            className="lead measure"
-            style={{ marginInline: "auto", marginTop: 36 }}
-            data-reveal
-          >
+          <p className="lead measure" style={{ marginTop: 36 }} data-reveal>
             One email when a batch ships. One story each season. Nothing else.
           </p>
-          <div className="hero__cta" style={{ justifyContent: "center", marginTop: 36 }} data-reveal>
+          <div className="hero__cta" style={{ marginTop: 36 }} data-reveal>
             <a
               className="btn btn--primary"
               href={`mailto:contactus@trackk.fr?subject=${encodeURIComponent(
@@ -481,7 +477,7 @@ export default function HomePage() {
               Join the proven
             </a>
           </div>
-          <div className="refline" style={{ justifyContent: "center" }} data-reveal>
+          <div className="refline" data-reveal>
             <span>Proof / Medical-grade scar care</span>
             <span>Ref: PROOF-SITE-01</span>
             <span>[ Batch 4099XF ]</span>

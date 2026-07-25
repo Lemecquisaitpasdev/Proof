@@ -53,8 +53,8 @@
   --sec-hush: clamp(128px, 16vw, 208px);
 
   /* Coins arrondis — surfaces d'images */
-  --radius: 18px;
-  --radius-sm: 10px;
+  --radius: 4px;
+  --radius-sm: 2px;
 
   /* MOTION — micro 150–200ms, reveals 500–600ms, jamais de bounce */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,13 +193,12 @@ textarea {
   line-height: 0.9;
   margin: 0;
   color: var(--contrast);
-  font-size: clamp(52px, 9.5vw, 176px);
+  font-size: clamp(48px, 8vw, 150px);
   text-wrap: balance;
 }
 
-.statement .gold {
-  color: var(--kintsugi);
-}
+/* L'or ne remplit jamais un titre : l'exception unique du site
+   est la ligne kintsugi sous « proof. » dans le hero. */
 
 /* code produit géant PR-0X — fantôme d'archive sur les fiches */
 .code-giant {
@@ -617,10 +616,10 @@ html.js [data-parallax] {
   width: 100%;
 }
 
-/* CTA pleine largeur en pilule (fiche produit, façon Rhode) */
+/* CTA pleine largeur (fiche produit) — même langage d'angle que tout le site */
 .btn--pill {
   width: 100%;
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding-block: 22px;
 }
 
@@ -742,7 +741,7 @@ html.js [data-parallax] {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(15, 13, 10, 0.82);
+  background: rgba(15, 13, 10, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--hairline);
@@ -1361,7 +1360,9 @@ html.js [data-parallax] {
 
 .trio__title {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: flex-end;
+  min-height: 1.96em;
   font-family: var(--font-archivo), Arial, sans-serif;
   font-weight: 850;
   font-stretch: 115%;
@@ -1612,7 +1613,7 @@ html.js [data-parallax] {
 .plate {
   position: absolute;
   inset: 0;
-  background: radial-gradient(120% 90% at 22% 8%, #fffdf9 0%, #f4f0e8 52%, #eae4d8 100%);
+  background: radial-gradient(120% 90% at 22% 8%, #ffffff 0%, #f9f6f0 55%, #f0ebe1 100%);
   overflow: hidden;
 }
 
@@ -1743,7 +1744,7 @@ html.js [data-parallax] {
 }
 
 html.js .ritual--live .rstep {
-  opacity: 0.38;
+  opacity: 0.6;
 }
 
 html.js .ritual--live .rstep.is-active {
@@ -1885,15 +1886,15 @@ html.js .ritual--live .rstep {
 }
 
 .science .exergue em {
-  font-style: italic;
-  color: var(--kintsugi);
+  font-style: normal;
+  color: #7e6412;
 }
 
 .science__grid {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
   gap: clamp(40px, 6vw, 112px);
-  align-items: center;
+  align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -2063,10 +2064,9 @@ html.js .ritual--live .rstep {
 }
 
 .feature__list li {
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-instrument), sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--base-70);
   padding: 15px 0;
   border-top: 1px solid var(--base-12);
@@ -2099,6 +2099,16 @@ html.js .ritual--live .rstep {
 
 .feature .tlink {
   color: var(--base);
+}
+
+@media (min-width: 941px) {
+  .feature__grid--flip {
+    grid-template-columns: minmax(0, 4.8fr) minmax(0, 5.5fr);
+  }
+
+  .feature__grid--flip .feature__media {
+    order: -1;
+  }
 }
 
 @media (max-width: 940px) {
@@ -2145,6 +2155,16 @@ html.js .ritual--live .rstep {
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(40px, 6vw, 112px);
   align-items: center;
+}
+
+@media (min-width: 901px) {
+  .story__grid--flip {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .story__grid--flip > figure {
+    order: -1;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2216,7 +2236,7 @@ html.js .ritual--live .rstep {
   text-transform: uppercase;
   color: var(--contrast);
   border: 1px solid var(--hairline-strong);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 10px 18px;
 }
 
@@ -2280,7 +2300,7 @@ html.js .ritual--live .rstep {
   text-transform: uppercase;
   color: var(--gold-deep);
   border: 1px dashed var(--gold-deep);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 8px 16px;
   flex-shrink: 0;
 }

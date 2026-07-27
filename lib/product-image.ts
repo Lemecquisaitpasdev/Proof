@@ -28,12 +28,15 @@ const ALIASES: Record<string, string[]> = {
 
   /* Galeries PDP */
   "the-patch-2": ["the-patch-2", "patchproofgris"],
+  "the-patch-3": ["the-patch-3", "patchpackaging"],
   "the-ritual-2": ["the-ritual-2", "patchproofeditionslimitee"],
   "protocol-2": ["protocol-2", "packagingproofpatch"],
   "the-gel-2": ["the-gel-2", "photogelavecfond", "produitgelsilicone"],
   "the-gel-3": ["the-gel-3", "photogelmarketing", "gelsilicone"],
   /* La bille de gel tenue à la pince chirurgicale, plan macro éditorial. */
   "the-gel-4": ["the-gel-4", "moleculedegelcapturer"],
+  "the-gel-5": ["the-gel-5", "mannequinmetisse"],
+  "the-gel-6": ["the-gel-6", "applicationdegelmen"],
 
   /* Héros de la home, portrait lumineux, cicatrice visible, assumée. */
   hero: ["hero", "gelensiliconenutulisationfemme", "siliconegelmannequin"],
@@ -44,8 +47,9 @@ const ALIASES: Record<string, string[]> = {
   "ritual-wear": ["ritual-wear", "gelsiliconesurhomme", "siliconegelmannequin"],
 
   /* Page Science */
-  "science-material": ["science-material", "produitgelsilicone"],
-  "science-mechanism": ["science-mechanism", "gelsilicone"],
+  "science-material": ["science-material", "analyticprecision"],
+  "science-mechanism": ["science-mechanism", "technologie3couchescellulaire"],
+  "science-pattern": ["science-pattern", "cellulesiliconemotif"],
 
   /* Story, l'objet, packaging à la fissure kintsugi */
   "story-object": ["story-object", "packagingproofpatch"],
@@ -56,7 +60,10 @@ const ALIASES: Record<string, string[]> = {
   /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],
 
-  /* Panneaux plein écran de la fiche Gel */
+  /* Panneaux plein écran des fiches produit */
+  "patch-panel-a": ["patch-panel-a", "patchpackaging"],
+  "patch-panel-b": ["patch-panel-b", "mannequinproof"],
+
   "gel-panel-a": ["gel-panel-a", "gelsiliconesurhomme", "siliconegelmannequin"],
   "gel-panel-b": ["gel-panel-b", "photogelmarketing", "photogelavecfond"],
   "gel-panel-c": [

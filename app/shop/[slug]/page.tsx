@@ -52,6 +52,8 @@ export default async function ProductPage({ params }: Props) {
         productImage(`${product.slug}-2`),
         productImage(`${product.slug}-3`),
         productImage(`${product.slug}-4`),
+        productImage(`${product.slug}-5`),
+        productImage(`${product.slug}-6`),
       ].filter((g): g is string => g !== null),
     ),
   );

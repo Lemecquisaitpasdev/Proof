@@ -239,21 +239,37 @@ export default function StoryPage() {
               Same four words, on a stage the size of a wall. Honor it.
               Don&apos;t erase it.
             </p>
+            <p className="measure" style={{ marginTop: 24 }} data-reveal>
+              And on a lit shelf, at eye level, where the protocol is picked up
+              without a word being said.
+            </p>
           </div>
-          <figure className="story__figure" data-reveal>
-            <div className="hero__parallax" data-parallax="6">
-              <Image
-                src="/images/proofconferencekeynote.png"
-                alt="The Proof 17 conference, a keynote before a wall-sized screen of magnified silicone"
-                fill
-                sizes="(max-width: 900px) 100vw, 40vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <figcaption className="story__caption">
-              The Proof 17 Conference, the idea, in public.
-            </figcaption>
-          </figure>
+          <div className="worldpair" data-reveal>
+            <figure className="worldpair__fig">
+              <div className="worldpair__media">
+                <Image
+                  src="/images/proofconferencekeynote.png"
+                  alt="The Proof 17 conference, a keynote before a wall-sized screen of magnified silicone"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 20vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <figcaption className="mcap">The Proof 17 Conference</figcaption>
+            </figure>
+            <figure className="worldpair__fig">
+              <div className="worldpair__media">
+                <Image
+                  src="/images/distributeurproof.png"
+                  alt="A lit Proof 17 dispenser, the line stocked shelf by shelf"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 20vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <figcaption className="mcap">The Proof 17 dispenser</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 

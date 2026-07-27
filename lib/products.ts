@@ -62,6 +62,21 @@ export const products: Product[] = [
       { title: "Fourteen days", sub: "Rinse, air-dry, reapply" },
       { title: "Worn unseen", sub: "Sits flat under clothing" },
     ],
+    quickSpecs: {
+      image: "patch-panel-a",
+      headline: "One sachet. One patch. Fourteen days of occlusion.",
+      rows: [
+        ["Good for", "Torso, arms, legs, flat zones"],
+        ["Feels like", "A second skin you forget"],
+        ["Looks like", "A soft matte line under clothing"],
+        ["FYI", "Reusable · Trimmable · Dermatologist reviewed"],
+      ],
+    },
+    targets: {
+      image: "patch-panel-b",
+      label: "Wear the patch to soften:",
+      words: ["Texture", "Color", "Relief"],
+    },
     price: 29,
     chapter: "PR-01",
     chapterName: "The Accident",

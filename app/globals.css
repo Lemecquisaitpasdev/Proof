@@ -2937,6 +2937,82 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* ============ 17e — APPOINTS IMAGE (Science, Story, Brand) ============ */
+
+/* structure en coupe, sous le schéma animé du mécanisme */
+.sci-layers {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin: var(--gut) 0 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--base);
+}
+
+.sci-layers img {
+  object-fit: cover;
+}
+
+/* motif cellulaire, bande claire pleine largeur */
+.patternband {
+  margin: 0;
+}
+
+.patternband__media {
+  position: relative;
+  aspect-ratio: 1536 / 700;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.patternband__media img {
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .patternband__media {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* la marque dans le monde : deux figures côte à côte */
+.worldpair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gut);
+}
+
+.worldpair__fig {
+  margin: 0;
+}
+
+.worldpair__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.worldpair__media img {
+  object-fit: cover;
+}
+
+/* le wordmark officiel, sur tuile claire */
+.wordmark {
+  margin-top: var(--gut);
+}
+
+.wordmark__art {
+  /* fond calé sur le blanc du fichier : aucune couture autour du logo */
+  background: #fff;
+  border-radius: var(--radius);
+  padding: clamp(32px, 6vw, 88px) clamp(28px, 8vw, 140px);
+  display: grid;
+  place-items: center;
+}
+
 /* ============ 18 — SPECS / TABLE COMPARATIVE ============ */
 
 .specs {

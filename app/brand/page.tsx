@@ -65,6 +65,24 @@ export default function BrandPage() {
               </div>
             </div>
           </div>
+
+          <div className="wordmark" data-reveal>
+            <div className="wordmark__art">
+              <Image
+                src="/brand/proof-wordmark.png"
+                alt="The Proof wordmark"
+                width={1695}
+                height={608}
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
+            <div className="brand-tile__bar">
+              <span className="brand-tile__label">The wordmark</span>
+              <a className="dl" href="/brand/proof-wordmark.png" download>
+                PNG
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 

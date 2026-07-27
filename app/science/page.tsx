@@ -4,6 +4,7 @@ import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import Mechanism from "@/components/Mechanism";
+import { productImage } from "@/lib/product-image";
 
 export const metadata: Metadata = {
   title: "Science",
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default function SciencePage() {
+  const material = productImage("science-material");
+  const mechanism = productImage("science-mechanism");
+  const pattern = productImage("science-pattern");
+
   return (
     <>
       <section className="pagehead">
@@ -80,6 +85,17 @@ export default function SciencePage() {
               used in clinical settings, cut as a 5 × 15 cm patch you can trim
               to your scar.
             </p>
+            {material ? (
+              <figure className="imgframe" style={{ marginTop: 32, aspectRatio: "1233 / 1275" }}>
+                <Image
+                  src={material}
+                  alt="Analytical precision, medical silicone under laboratory testing"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 58vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </figure>
+            ) : null}
           </div>
         </div>
       </section>
@@ -107,10 +123,42 @@ export default function SciencePage() {
             </div>
             <div data-reveal>
               <Mechanism />
+              {mechanism ? (
+                <figure className="sci-layers">
+                  <Image
+                    src={mechanism}
+                    alt="The three-layer structure of the silicone film, in section"
+                    fill
+                    sizes="(max-width: 900px) 100vw, 44vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </figure>
+              ) : null}
             </div>
           </div>
         </div>
       </section>
+
+      {pattern ? (
+        <section className="section" style={{ paddingBottom: 0 }}>
+          <div className="container">
+            <figure className="patternband" data-reveal>
+              <div className="patternband__media">
+                <Image
+                  src={pattern}
+                  alt="Cohesive silicone, magnified into a repeating field of cells"
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1120px"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <figcaption className="mcap">
+                Cell pattern / Cohesive silicone / Exhibit 03
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+      ) : null}
 
       <section className="section">
         <div className="container split">

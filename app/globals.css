@@ -1436,6 +1436,136 @@ html.js [data-parallax] {
   }
 }
 
+/* ============ 10c — LABSTRIP (la maison-laboratoire, pleine page) ============ */
+/* Un moment clair pleine largeur : le sujet en blouse occupe le champ, la
+   marque et ses annotations traversent l'image en un seul bandeau, sur la
+   grille 12 colonnes. Le fond reprend le blanc clinique de la photo (et non
+   le bone) pour qu'aucune couture n'apparaisse en cas de letterbox. */
+
+.labstrip {
+  position: relative;
+  background: #f2f2f4;
+  color: var(--base);
+  aspect-ratio: 1672 / 941;
+  min-height: 460px;
+  overflow: hidden;
+}
+
+.labstrip__media {
+  position: absolute;
+  inset: 0;
+}
+
+.labstrip__media img {
+  object-fit: cover;
+}
+
+.labstrip__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.labstrip__row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: center;
+  column-gap: var(--gut);
+  /* marge extérieure resserrée : la marque touche presque le bord */
+  padding-inline: clamp(20px, 3vw, 44px);
+}
+
+.labstrip__mark {
+  grid-column: 1;
+  width: clamp(21px, 2.2vw, 32px);
+  height: auto;
+}
+
+.labstrip__note {
+  grid-column: 3 / span 3;
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(9px, 0.78vw, 11px);
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.labstrip__note::before {
+  content: "● ";
+  font-size: 0.8em;
+  vertical-align: 1px;
+}
+
+.labstrip__note--end {
+  grid-column: 11 / -1;
+}
+
+.labstrip__note--end::before {
+  content: none;
+}
+
+.labstrip__word {
+  grid-column: 9 / span 2;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  font-size: clamp(24px, 2.5vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+/* Mobile : l'image reprend le flux, le bandeau se pose dessous, lisible. */
+@media (max-width: 860px) {
+  .labstrip {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+
+  .labstrip__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+  }
+
+  .labstrip__band {
+    position: static;
+    transform: none;
+    padding-block: 26px 32px;
+  }
+
+  .labstrip__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 22px;
+    align-items: end;
+  }
+
+  .labstrip__mark {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .labstrip__word {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .labstrip__note {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .labstrip__note--end {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    text-align: right;
+  }
+}
+
 /* ============ 11 — SHOP / CARDS ============ */
 /* Cards SANS bordure : l'image fait la card. */
 

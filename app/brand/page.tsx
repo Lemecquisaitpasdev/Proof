@@ -1,25 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
+import PMark from "@/components/PMark";
 
 export const metadata: Metadata = {
   title: "Brand",
   description:
     "The Proof mark, a geometric P with a single cut, the scar honored. Download the logo for social and press.",
 };
-
-/* Le P de Proof : géométrique, une fine fente diagonale détache un éclat
-   en haut-gauche, la coupure honorée. */
-const P_PATH =
-  "M22 12 L92 12 L92 66 L46 66 L46 112 L22 112 Z M46 32 L72 32 L72 48 L46 48 Z M41.8 13.8 L23.8 31.8 L20.2 28.2 L38.2 10.2 Z";
-
-function PMark({ fill }: { fill: string }) {
-  return (
-    <svg viewBox="16 6 80 110" aria-hidden="true">
-      <path fill={fill} fillRule="evenodd" d={P_PATH} />
-    </svg>
-  );
-}
 
 export default function BrandPage() {
   return (

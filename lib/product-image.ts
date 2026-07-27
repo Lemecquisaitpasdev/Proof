@@ -55,6 +55,15 @@ const ALIASES: Record<string, string[]> = {
 
   /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],
+
+  /* Panneaux plein écran de la fiche Gel */
+  "gel-panel-a": ["gel-panel-a", "gelsiliconesurhomme", "siliconegelmannequin"],
+  "gel-panel-b": ["gel-panel-b", "photogelmarketing", "photogelavecfond"],
+  "gel-panel-c": [
+    "gel-panel-c",
+    "gelensiliconenutulisationfemme",
+    "photogelsalledebain",
+  ],
 };
 
 export function productImage(slot: string): string | null {

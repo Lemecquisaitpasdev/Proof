@@ -2531,6 +2531,412 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* ============ 17c — PANNEAUX PLEIN ÉCRAN (fiche produit) ============ */
+/* Deux moitiés, bord à bord : un panneau clair qui parle, une image qui
+   montre. L'axe s'inverse d'un panneau à l'autre (--flip). */
+
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+.panel__body {
+  background: var(--contrast);
+  color: var(--base);
+  padding: clamp(32px, 5vw, 88px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(420px, 46vw, 700px);
+}
+
+.panel--flip .panel__media {
+  order: -1;
+}
+
+.panel__media {
+  position: relative;
+  min-height: clamp(320px, 46vw, 700px);
+  background: var(--surface);
+}
+
+.panel__media img {
+  object-fit: cover;
+}
+
+.panel__head {
+  max-width: 18ch;
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+/* le display du système est en bone : sur un panneau clair, il repasse
+   à l'encre */
+.panel__body .d1,
+.panel__body .d2,
+.panel__body .d3,
+.panel__body .statement {
+  color: var(--base);
+}
+
+/* la table clé/valeur reprend le filet du système, sur clair */
+.panel__body .specs th,
+.panel__body .specs td {
+  border-color: rgba(15, 13, 10, 0.14);
+  color: var(--base);
+  background: transparent;
+}
+
+.panel__body .specs th {
+  color: #7e6412;
+}
+
+.panel .mlabel {
+  color: var(--base-55);
+}
+
+.panel .mlabel::before {
+  color: #7e6412;
+}
+
+/* les trois mots que le geste adoucit */
+.targets {
+  list-style: none;
+  margin: clamp(22px, 3vw, 36px) 0 0;
+  padding: 0;
+}
+
+.targets li {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  font-size: clamp(34px, 4.4vw, 68px);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--base);
+}
+
+.targets .kword--strike {
+  color: var(--base);
+}
+
+/* onglets de résultats */
+.results__tabs {
+  display: flex;
+  gap: clamp(16px, 2.4vw, 34px);
+  border-bottom: 1px solid rgba(15, 13, 10, 0.14);
+  padding-bottom: 14px;
+}
+
+.results__tab {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--base-55);
+  position: relative;
+  padding-bottom: 14px;
+  margin-bottom: -15px;
+  transition: color 0.2s ease;
+}
+
+.results__tab:hover {
+  color: var(--base);
+}
+
+.results__tab.is-active {
+  color: var(--base);
+  border-bottom: 1px solid var(--base);
+}
+
+.results__list {
+  list-style: none;
+  margin: clamp(28px, 4vw, 48px) 0 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(20px, 2.6vw, 34px);
+}
+
+.results__pct {
+  display: block;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 112%;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1;
+  color: #7e6412;
+  font-variant-numeric: tabular-nums;
+}
+
+.results__claim {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--base);
+}
+
+.results__note {
+  margin-top: clamp(24px, 3vw, 40px);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--base-55);
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .panel__media,
+  .panel--flip .panel__media {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .panel__body {
+    min-height: 0;
+  }
+}
+
+/* ============ 17d — AVIS (fin de fiche produit) ============ */
+
+.reviews {
+  background: var(--contrast);
+  color: var(--base);
+  padding-block: var(--sec);
+}
+
+.reviews .mlabel {
+  color: var(--base-55);
+}
+
+.reviews .mlabel::before {
+  color: #7e6412;
+}
+
+.reviews__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: clamp(24px, 3vw, 40px);
+  border-bottom: 1px solid rgba(15, 13, 10, 0.14);
+}
+
+.reviews__score {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #7e6412;
+}
+
+.reviews__avg {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 112%;
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 1;
+  color: var(--base);
+  font-variant-numeric: tabular-nums;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.reviews__count {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--base-55);
+}
+
+.reviews__sort {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviews__sort select {
+  background: transparent;
+  border: 1px solid rgba(15, 13, 10, 0.28);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--base);
+}
+
+.reviews__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.review {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 8fr);
+  gap: clamp(20px, 4vw, 64px);
+  padding-block: clamp(32px, 4vw, 52px);
+  border-bottom: 1px solid rgba(15, 13, 10, 0.14);
+}
+
+.review__name {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.review__verified {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7e6412;
+}
+
+.review__verified::before {
+  content: "✓ ";
+}
+
+.review__facets {
+  margin: 22px 0 0;
+}
+
+.review__facets div {
+  margin-bottom: 14px;
+}
+
+.review__facets dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--base-55);
+}
+
+.review__facets dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+}
+
+.review__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #7e6412;
+}
+
+.review__age {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--base-55);
+}
+
+.review__title {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 108%;
+  text-transform: uppercase;
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.1;
+  margin: 18px 0 10px;
+}
+
+.review__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--base-70);
+  max-width: 62ch;
+}
+
+.review__scale {
+  margin-top: 26px;
+  max-width: 360px;
+}
+
+.review__q {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--base-55);
+  margin-bottom: 10px;
+}
+
+.review__track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+.review__notch {
+  height: 4px;
+  background: rgba(15, 13, 10, 0.14);
+}
+
+.review__notch.is-on {
+  background: #7e6412;
+}
+
+.review__ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--base-55);
+}
+
+.review__helpful {
+  margin-top: 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--base-55);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.review__helpful:hover,
+.review__helpful[aria-pressed="true"] {
+  color: var(--base);
+  border-bottom-color: #7e6412;
+}
+
+@media (max-width: 760px) {
+  .review {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .review__facets {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
+    margin-top: 16px;
+  }
+}
+
 /* ============ 18 — SPECS / TABLE COMPARATIVE ============ */
 
 .specs {

@@ -7,8 +7,11 @@ import PlateVisual from "@/components/PlateVisual";
 import PdpGallery from "@/components/PdpGallery";
 import ProductCard from "@/components/ProductCard";
 import PdpBuyBox from "@/components/PdpBuyBox";
+import PdpResults from "@/components/PdpResults";
+import PdpReviews from "@/components/PdpReviews";
 import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
+import { getReviews } from "@/lib/reviews";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -55,6 +58,14 @@ export default async function ProductPage({ params }: Props) {
 
   /* swatch de matière, commun aux quatre fiches */
   const texture = productImage("texture");
+
+  /* panneaux plein écran, facultatifs (fiche Gel aujourd'hui) */
+  const panelA = product.quickSpecs ? productImage(product.quickSpecs.image) : null;
+  const panelB = product.targets ? productImage(product.targets.image) : null;
+  const panelC = product.results ? productImage(product.results.image) : null;
+
+  /* avis — jeu d'amorçage, cf. lib/reviews.ts */
+  const reviews = getReviews(product.slug);
 
   const companions = (PAIRS[product.slug] ?? [])
     .map((s) => getProduct(s))
@@ -233,6 +244,94 @@ export default async function ProductPage({ params }: Props) {
         </section>
       ) : null}
 
+      {/* PANNEAU 01 — la matière en bref */}
+      {product.quickSpecs ? (
+        <section className="panel" aria-label="At a glance">
+          <div className="panel__body">
+            <h2 className="d3 panel__head" data-reveal>
+              {product.quickSpecs.headline}
+            </h2>
+            <table className="specs specs--kv panel__specs" data-reveal>
+              <tbody>
+                {product.quickSpecs.rows.map(([k, v]) => (
+                  <tr key={k}>
+                    <th scope="row">{k}</th>
+                    <td>{v}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {panelA ? (
+            <div className="panel__media">
+              <Image
+                src={panelA}
+                alt={`${product.name}, worn on the skin`}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
+      {/* PANNEAU 02 — ce que le geste adoucit */}
+      {product.targets ? (
+        <section className="panel panel--flip" aria-label="What it softens">
+          <div className="panel__body">
+            <span className="mlabel" data-reveal>
+              {product.targets.label}
+            </span>
+            <ul className="targets" data-reveal>
+              {product.targets.words.map((w, i) => (
+                <li key={w}>
+                  {i === 0 ? (
+                    <span className="kword kword--strike">
+                      {w}
+                      <KintsugiLine variant="strike" />
+                    </span>
+                  ) : (
+                    w
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {panelB ? (
+            <div className="panel__media">
+              <Image
+                src={panelB}
+                alt={`${product.name}, the object`}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
+      {/* PANNEAU 03 — les résultats de l'étude */}
+      {product.results ? (
+        <section className="panel" aria-label="Study results">
+          <div className="panel__body">
+            <PdpResults tabs={product.results.tabs} />
+          </div>
+          {panelC ? (
+            <div className="panel__media">
+              <Image
+                src={panelC}
+                alt={`${product.name}, applied on a scar`}
+                fill
+                sizes="(max-width: 900px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
       {/* SPECS + FAQ */}
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container split">
@@ -295,6 +394,10 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
         </section>
+      ) : null}
+
+      {reviews ? (
+        <PdpReviews set={reviews} productName={product.name} />
       ) : null}
 
       <script

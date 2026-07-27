@@ -9,6 +9,25 @@ export type Product = {
   cta: string;
   /* Quatre bénéfices, disposés autour du swatch de matière (PDP) */
   benefits: { title: string; sub: string }[];
+  /* Panneaux plein écran, facultatifs, fiche produit */
+  quickSpecs?: {
+    image: string;
+    headline: string;
+    rows: [string, string][];
+  };
+  targets?: { image: string; label: string; words: string[] };
+  /* ⚠ Les pourcentages ci-dessous sont des ESPACES RÉSERVÉS. Ils doivent
+     être remplacés par les résultats de l'étude réelle (ou la section
+     retirée) avant toute mise en ligne. Aucun chiffre inventé ne doit
+     être publié comme preuve. */
+  results?: {
+    image: string;
+    tabs: {
+      label: string;
+      footnote: string;
+      rows: { pct: string; claim: string }[];
+    }[];
+  };
   price: number;
   chapter: string;
   chapterName: string;
@@ -234,6 +253,48 @@ export const products: Product[] = [
       { title: "Makeup ready", sub: "Layers under SPF" },
       { title: "Zones that move", sub: "Face, joints, knuckles" },
     ],
+    quickSpecs: {
+      image: "gel-panel-a",
+      headline: "A sixty-second film. For every zone a patch cannot hold.",
+      rows: [
+        ["Good for", "Face, joints, zones that move"],
+        ["Feels like", "A weightless second skin"],
+        ["Looks like", "Nothing at all, once dry"],
+        ["FYI", "Fragrance-free · Non-comedogenic · Dermatologist reviewed"],
+      ],
+    },
+    targets: {
+      image: "gel-panel-b",
+      label: "Wear the gel to soften:",
+      words: ["Texture", "Color", "Relief"],
+    },
+    results: {
+      image: "gel-panel-c",
+      tabs: [
+        {
+          label: "Immediate",
+          footnote:
+            "Placeholder figures. Replace with the results of the consumer perception study before launch.",
+          rows: [
+            { pct: "00%", claim: "Agreed the gel dries to an invisible film" },
+            { pct: "00%", claim: "Agreed the scar feels softer to the touch" },
+            { pct: "00%", claim: "Agreed it layers cleanly under makeup" },
+            { pct: "00%", claim: "Agreed they would keep the daily gesture" },
+          ],
+        },
+        {
+          label: "After 8 weeks",
+          footnote:
+            "Placeholder figures. Replace with the results of the consumer perception study before launch.",
+          rows: [
+            { pct: "00%", claim: "Agreed the scar looks flatter" },
+            { pct: "00%", claim: "Agreed the color looks closer to their skin" },
+            { pct: "00%", claim: "Agreed the texture looks smoother" },
+            { pct: "00%", claim: "Agreed they carry the scar more openly" },
+          ],
+        },
+      ],
+    },
     price: 39,
     chapter: "PR-04",
     chapterName: "The Gesture",

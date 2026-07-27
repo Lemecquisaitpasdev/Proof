@@ -4,7 +4,6 @@ import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import PressMarquee from "@/components/PressMarquee";
-import PMark from "@/components/PMark";
 import RitualSteps from "@/components/RitualSteps";
 import Mechanism from "@/components/Mechanism";
 import { products } from "@/lib/products";
@@ -168,35 +167,6 @@ export default function HomePage() {
       <div className="container">
         <PressMarquee />
       </div>
-
-      {/* LA MAISON-LABORATOIRE — pleine page, la marque en bandeau */}
-      <section className="labstrip" aria-label="Proof, medical-grade scar care lab">
-        <div className="labstrip__media">
-          <Image
-            src="/images/proofmedicalmen.png"
-            alt="A Proof clinician in a lab coat, checking the hour of the protocol"
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div className="labstrip__band">
-          <div className="container labstrip__row">
-            <PMark className="labstrip__mark" fill="var(--base)" />
-            <span className="labstrip__note">
-              Defining
-              <br />
-              the scar protocol
-            </span>
-            <span className="labstrip__word">Proof</span>
-            <span className="labstrip__note labstrip__note--end">
-              Medical-grade silicone
-              <br />
-              &amp; scar care lab
-            </span>
-          </div>
-        </div>
-      </section>
 
       {/* LA BOUTIQUE */}
       <section className="section" id="shop">

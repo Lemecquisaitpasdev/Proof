@@ -7,6 +7,8 @@ export type Product = {
   method: string;
   /* CTA propre au produit — jamais « Buy now » */
   cta: string;
+  /* Quatre bénéfices, disposés autour du swatch de matière (PDP) */
+  benefits: { title: string; sub: string }[];
   price: number;
   chapter: string;
   chapterName: string;
@@ -35,6 +37,12 @@ export const products: Product[] = [
     code: "PR-01",
     method: "Occlusion therapy · 12–23 h",
     cta: "Claim your proof",
+    benefits: [
+      { title: "Occlusive seal", sub: "Hydration held at the surface" },
+      { title: "Cut to fit", sub: "Any scar, any length" },
+      { title: "Fourteen days", sub: "Rinse, air-dry, reapply" },
+      { title: "Worn unseen", sub: "Sits flat under clothing" },
+    ],
     price: 29,
     chapter: "PR-01",
     chapterName: "The Accident",
@@ -91,6 +99,12 @@ export const products: Product[] = [
     code: "PR-02",
     method: "Occlusion therapy · 6 weeks",
     cta: "Start your ritual",
+    benefits: [
+      { title: "Six-week course", sub: "Three patches, in rotation" },
+      { title: "Occlusive seal", sub: "Hydration held at the surface" },
+      { title: "One daily gesture", sub: "Ninety seconds, every morning" },
+      { title: "Texture and color", sub: "Appearance improves over weeks" },
+    ],
     price: 69,
     chapter: "PR-02",
     chapterName: "The Ritual",
@@ -149,6 +163,12 @@ export const products: Product[] = [
     code: "PR-03",
     method: "Post-op protocol · 16 weeks",
     cta: "Begin the protocol",
+    benefits: [
+      { title: "Sixteen weeks", sub: "The full post-op window" },
+      { title: "Eight patches", sub: "Placed end to end if needed" },
+      { title: "Surgical lines", sub: "5 × 15 cm, cut to fit" },
+      { title: "Priority support", sub: "Answers within 24 hours" },
+    ],
     price: 129,
     chapter: "PR-03",
     chapterName: "The Protocol",
@@ -208,6 +228,12 @@ export const products: Product[] = [
     code: "PR-04",
     method: "Film therapy · twice daily",
     cta: "Add the gesture",
+    benefits: [
+      { title: "Featherlight finish", sub: "Clean, comfortable wear" },
+      { title: "Sixty seconds", sub: "Dries to an invisible film" },
+      { title: "Makeup ready", sub: "Layers under SPF" },
+      { title: "Zones that move", sub: "Face, joints, knuckles" },
+    ],
     price: 39,
     chapter: "PR-04",
     chapterName: "The Gesture",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import KintsugiLine from "@/components/KintsugiLine";
 import PlateVisual from "@/components/PlateVisual";
@@ -51,6 +52,9 @@ export default async function ProductPage({ params }: Props) {
       ].filter((g): g is string => g !== null),
     ),
   );
+
+  /* swatch de matière, commun aux quatre fiches */
+  const texture = productImage("texture");
 
   const companions = (PAIRS[product.slug] ?? [])
     .map((s) => getProduct(s))
@@ -183,6 +187,51 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* LA MATIÈRE — bénéfices disposés autour du swatch de silicone */}
+      {texture ? (
+        <section className="swatch">
+          <div className="container">
+            <span className="mlabel" data-reveal>
+              The material / Ref: {product.code} / Medical-grade silicone
+            </span>
+            <div className="swatch__grid" data-reveal>
+              <ul className="swatch__col swatch__col--l">
+                {product.benefits.slice(0, 2).map((b) => (
+                  <li className="swatch__item" key={b.title}>
+                    <span className="swatch__t">{b.title}</span>
+                    <span className="swatch__s">{b.sub}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <figure className="swatch__media">
+                <Image
+                  src={texture}
+                  alt={`${product.name}, a swatch of medical-grade silicone`}
+                  fill
+                  sizes="(max-width: 860px) 70vw, 30vw"
+                  style={{ objectFit: "contain" }}
+                />
+              </figure>
+
+              <ul className="swatch__col swatch__col--r">
+                {product.benefits.slice(2).map((b) => (
+                  <li className="swatch__item" key={b.title}>
+                    <span className="swatch__t">{b.title}</span>
+                    <span className="swatch__s">{b.sub}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="refline">
+              <span>{product.method}</span>
+              <span>Ref: {product.code}</span>
+              <span>[ {BATCH} ]</span>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* SPECS + FAQ */}
       <section className="section" style={{ paddingTop: 0 }}>

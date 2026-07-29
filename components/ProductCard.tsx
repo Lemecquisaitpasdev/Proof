@@ -14,7 +14,9 @@ import { CardAdd } from "@/components/AddButton";
 export default function ProductCard({ product }: { product: Product }) {
   const photo = productImage(product.slug);
   const alt = productImage(`alt-${product.slug}`);
-  const patchCount = product.layers === 4 ? 8 : product.layers;
+  const from = product.variants?.length
+    ? Math.min(...product.variants.map((v) => v.price))
+    : product.price;
 
   return (
     <article className="card">
@@ -35,10 +37,7 @@ export default function ProductCard({ product }: { product: Product }) {
             style={{ objectFit: "cover" }}
           />
         ) : (
-          <PlateVisual
-            layers={product.layers}
-            count={`${String(patchCount).padStart(2, "0")} patch${patchCount > 1 ? "es" : ""}`}
-          />
+          <PlateVisual layers={product.layers} count={product.plateLabel} />
         )}
         {alt ? (
           <span className="card__alt" aria-hidden="true">
@@ -61,7 +60,15 @@ export default function ProductCard({ product }: { product: Product }) {
         </h3>
         <p className="card__desc">{product.cardLine}</p>
         <div className="card__foot">
-          <span className="card__price">{formatPrice(product.price)}</span>
+          <span className="card__price">
+            {product.variants?.length ? (
+              <>
+                <small className="card__from">From</small> {formatPrice(from)}
+              </>
+            ) : (
+              formatPrice(product.price)
+            )}
+          </span>
           <CardAdd product={product} />
         </div>
       </div>

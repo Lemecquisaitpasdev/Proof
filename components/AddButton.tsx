@@ -2,17 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
-import { formatPrice, type Product } from "@/lib/products";
+import { formatPrice, makeKey, type Product } from "@/lib/products";
+
+/* Conditionnement par défaut : celui mis en avant, sinon le premier. */
+function defaultVariant(product: Product) {
+  return product.variants?.find((v) => v.badge) ?? product.variants?.[0];
+}
 
 export function AddToRitual({ product }: { product: Product }) {
   const { add } = useCart();
+  const v = defaultVariant(product);
   return (
     <button
       type="button"
       className="btn btn--primary"
-      onClick={() => add(product.slug)}
+      onClick={() => add(makeKey(product.slug, v?.id))}
     >
-      Add to ritual · {formatPrice(product.price)}
+      {product.cta} · {formatPrice(v?.price ?? product.price)}
     </button>
   );
 }
@@ -31,7 +37,7 @@ export function CardAdd({ product }: { product: Product }) {
   }, []);
 
   const onClick = () => {
-    add(product.slug, { open: false });
+    add(makeKey(product.slug, defaultVariant(product)?.id), { open: false });
     setAdded(true);
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => setAdded(false), 1500);

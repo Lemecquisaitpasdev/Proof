@@ -51,7 +51,7 @@ const FAQ = [
       },
       {
         q: "Which chapter should I pick",
-        a: "New scar and curiosity: The Patch. A scar you are serious about: The Ritual, six weeks is where texture and color settle. Post-surgery: Protocol, sixteen weeks of coverage.",
+        a: "Flat zones you can cover, torso, arms, legs: The Patch, in the pack size that matches how far you are going. Face, joints, skin that moves: The Gel. Both at once: The Protocol.",
       },
     ],
   },

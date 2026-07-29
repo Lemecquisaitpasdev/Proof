@@ -16,21 +16,20 @@ const ALIASES: Record<string, string[]> = {
   /* Cards shop, état PRIMAIRE, toujours lumineux : photo claire si elle
      existe, sinon la plate CSS (pas d'alias → null). */
   "the-patch": ["the-patch", "patchproof"],
-  "the-ritual": ["the-ritual"],
   protocol: ["protocol"],
   "the-gel": ["the-gel", "gelensiliconesurfondblanc", "texturegelsilicone"],
 
   /* Cards shop, état HOVER : l'objet photographié au studio. */
   "alt-the-patch": ["alt-the-patch", "patchproofgris"],
-  "alt-the-ritual": ["alt-the-ritual", "patchproofeditionslimitee"],
   "alt-protocol": ["alt-protocol", "packagingproofpatch"],
   "alt-the-gel": ["alt-the-gel", "gelsiliconeavecboiteproduit", "produitgelsilicone"],
 
   /* Galeries PDP */
   "the-patch-2": ["the-patch-2", "patchproofgris"],
   "the-patch-3": ["the-patch-3", "patchpackaging"],
-  "the-ritual-2": ["the-ritual-2", "patchproofeditionslimitee"],
+  "the-patch-4": ["the-patch-4", "patchproofeditionslimitee"],
   "protocol-2": ["protocol-2", "packagingproofpatch"],
+  "protocol-3": ["protocol-3", "gelsiliconeavecboiteproduit"],
   "the-gel-2": ["the-gel-2", "photogelavecfond", "produitgelsilicone"],
   "the-gel-3": ["the-gel-3", "photogelmarketing", "gelsilicone"],
   /* La bille de gel tenue à la pince chirurgicale, plan macro éditorial. */
@@ -61,6 +60,9 @@ const ALIASES: Record<string, string[]> = {
   texture: ["texture", "texturegelsilicone"],
 
   /* Panneaux plein écran des fiches produit */
+  "protocol-panel-a": ["protocol-panel-a", "packagingproofpatch"],
+  "protocol-panel-b": ["protocol-panel-b", "mannequinmetisse"],
+
   "patch-panel-a": ["patch-panel-a", "patchpackaging"],
   "patch-panel-b": ["patch-panel-b", "mannequinproof"],
 

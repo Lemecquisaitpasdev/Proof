@@ -17,10 +17,9 @@ type Props = { params: Promise<{ slug: string }> };
 
 /* Compagnons éditorialisés, « complete the ritual » */
 const PAIRS: Record<string, string[]> = {
-  "the-patch": ["the-ritual", "the-gel"],
-  "the-ritual": ["protocol", "the-gel"],
-  protocol: ["the-ritual", "the-gel"],
-  "the-gel": ["the-ritual", "the-patch"],
+  "the-patch": ["protocol", "the-gel"],
+  "the-gel": ["protocol", "the-patch"],
+  protocol: ["the-patch", "the-gel"],
 };
 
 export function generateStaticParams() {
@@ -61,7 +60,7 @@ export default async function ProductPage({ params }: Props) {
   /* swatch de matière, commun aux quatre fiches */
   const texture = productImage("texture");
 
-  /* panneaux plein écran, facultatifs (fiche Gel aujourd'hui) */
+  /* panneaux plein écran, facultatifs */
   const panelA = product.quickSpecs ? productImage(product.quickSpecs.image) : null;
   const panelB = product.targets ? productImage(product.targets.image) : null;
   const panelC = product.results ? productImage(product.results.image) : null;
@@ -126,19 +125,7 @@ export default async function ProductPage({ params }: Props) {
               </span>
               <h1 className="pdp__title">{product.name}</h1>
 
-              <PdpBuyBox product={product} />
-
-              <div className="acc">
-                <details open>
-                  <summary>What&apos;s inside</summary>
-                  <div className="acc__body">
-                    <ul className="acc__list">
-                      {product.contents.map((c) => (
-                        <li key={c}>{c}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </details>
+              <PdpBuyBox product={product}>
                 <details>
                   <summary>How to use</summary>
                   <div className="acc__body">
@@ -178,7 +165,7 @@ export default async function ProductPage({ params }: Props) {
                     </Link>
                   </div>
                 </details>
-              </div>
+              </PdpBuyBox>
             </div>
           </div>
         </div>

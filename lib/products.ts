@@ -1,7 +1,30 @@
+/**
+ * LA GAMME — trois instruments.
+ *
+ * PR-01  The Patch      un patch, vendu par conditionnement (1 / 3 / 8)
+ * PR-02  The Gel        30 ml, pour les zones qu'un patch ne tient pas
+ * PR-03  The Protocol   le gel et les patchs, ensemble
+ *
+ * Le Patch porte des `variants` : le prix, la couverture et le contenu
+ * dépendent du conditionnement choisi. Le panier indexe alors la ligne
+ * sur une clé composée « slug#variantId » (cf. parseKey / resolveLine).
+ */
+
+export type Variant = {
+  id: string;
+  label: string;
+  patches: number;
+  price: number;
+  coverage: string;
+  badge?: string;
+  note: string;
+  contents: string[];
+};
+
 export type Product = {
   slug: string;
   name: string;
-  /* Nomenclature codifiée façon spec sheet : PR-01…PR-04 */
+  /* Nomenclature codifiée façon spec sheet : PR-01…PR-03 */
   code: string;
   /* Méthode, en annotation mono : OCCLUSION THERAPY, etc. */
   method: string;
@@ -9,6 +32,8 @@ export type Product = {
   cta: string;
   /* Quatre bénéfices, disposés autour du swatch de matière (PDP) */
   benefits: { title: string; sub: string }[];
+  /* Conditionnements, si le produit se décline */
+  variants?: Variant[];
   /* Panneaux plein écran, facultatifs, fiche produit */
   quickSpecs?: {
     image: string;
@@ -28,7 +53,10 @@ export type Product = {
       rows: { pct: string; claim: string }[];
     }[];
   };
+  /* Prix d'entrée : celui de la première variante si le produit se décline */
   price: number;
+  /* Mention portée par le packshot CSS quand aucune photo n'existe */
+  plateLabel: string;
   chapter: string;
   chapterName: string;
   badge?: string;
@@ -59,8 +87,52 @@ export const products: Product[] = [
     benefits: [
       { title: "Occlusive seal", sub: "Hydration held at the surface" },
       { title: "Cut to fit", sub: "Any scar, any length" },
-      { title: "Fourteen days", sub: "Rinse, air-dry, reapply" },
+      { title: "Fourteen days", sub: "Per patch, rinse and reapply" },
       { title: "Worn unseen", sub: "Sits flat under clothing" },
+    ],
+    variants: [
+      {
+        id: "x1",
+        label: "1 patch",
+        patches: 1,
+        price: 29,
+        coverage: "14 days",
+        note: "The first fortnight. Test the gesture.",
+        contents: [
+          "1 × silicone patch, 5 × 15 cm",
+          "1 × storage card",
+          "Application protocol",
+        ],
+      },
+      {
+        id: "x3",
+        label: "3 patches",
+        patches: 3,
+        price: 69,
+        coverage: "6 weeks",
+        badge: "Most chosen",
+        note: "The window where texture and color settle.",
+        contents: [
+          "3 × silicone patches, 5 × 15 cm",
+          "1 × ritual card, the six-week course",
+          "1 × storage tin",
+        ],
+      },
+      {
+        id: "x8",
+        label: "8 patches",
+        patches: 8,
+        price: 129,
+        coverage: "16 weeks",
+        badge: "Post-op",
+        note: "The full window after surgery.",
+        contents: [
+          "8 × silicone patches, 5 × 15 cm",
+          "1 × post-op timing guide",
+          "1 × storage tin",
+          "Priority support, answers within 24 h",
+        ],
+      },
     ],
     quickSpecs: {
       image: "patch-panel-a",
@@ -78,28 +150,29 @@ export const products: Product[] = [
       words: ["Texture", "Color", "Relief"],
     },
     price: 29,
+    plateLabel: "1 to 8 patches",
     chapter: "PR-01",
     chapterName: "The Accident",
-    cardLine: "1 reusable patch · medical-grade silicone · 5 × 15 cm",
+    cardLine: "Medical-grade silicone · 5 × 15 cm · 1, 3 or 8 patches",
     tagline:
-      "One medical-grade silicone patch. Fourteen days of occlusion therapy. Worn like armor, not like a bandage.",
-    bestFor: "First scar. First protocol.",
-    coverage: "Up to 14 days",
-    layers: 1,
+      "Medical-grade silicone, cut to your scar. Choose the run: a fortnight, six weeks, or the full post-op window.",
+    bestFor: "Torso, arms, legs. Flat zones.",
+    coverage: "14 days to 16 weeks",
+    layers: 3,
     contents: [
-      "1 × silicone patch, 5 × 15 cm",
-      "1 × storage card",
+      "Silicone patches, 5 × 15 cm",
+      "Storage card or tin, by pack size",
       "Application protocol",
     ],
     posology: [
       "Apply once daily on clean skin.",
       "Wear time: 12–23 h.",
-      "Rinse, air-dry, reapply. Up to 14 days.",
+      "Rinse, air-dry, reapply. One patch lasts 14 days.",
     ],
     sideEffects: "Observed effects: a ritual kept. A scar carried differently.",
     narrative: [
       "It happened. What it left behind is not a flaw to manage. It is a record, and records deserve care.",
-      "One patch. Cut to size. Worn twelve to twenty-three hours a day, rinsed at night, returned each morning. Fourteen days, one gesture. This is where the protocol begins.",
+      "One patch, cut to size, worn twelve to twenty-three hours a day. Rinsed at night, returned each morning. Fourteen days per patch. How many you take is only a question of how far into the protocol you already are.",
     ],
     specs: [
       ["Reference", "PR-01 / SCAR-01"],
@@ -107,10 +180,15 @@ export const products: Product[] = [
       ["Method", "Occlusion therapy"],
       ["Size", "5 × 15 cm, cut to fit"],
       ["Wear", "12–23 h per day"],
-      ["Service life", "Up to 14 days per patch"],
+      ["Service life", "14 days per patch"],
+      ["Pack sizes", "1, 3 or 8 patches"],
       ["Batch", BATCH],
     ],
     faq: [
+      {
+        q: "Which pack size do I need",
+        a: "One patch covers a fortnight. Three carry the six weeks where texture and color usually begin to settle. Eight cover the four months after surgery, when scar tissue is most responsive.",
+      },
       {
         q: "Can I cut it to my scar",
         a: "Yes. One clean cut. Leave about one centimeter of margin so the patch anchors on intact skin.",
@@ -121,145 +199,16 @@ export const products: Product[] = [
       },
       {
         q: "When do I see a change",
-        a: "Texture and color usually begin to move after 8 to 12 weeks of consistent wear. One patch is the first fourteen days. Most people continue with The Ritual.",
+        a: "Texture and color usually begin to move after 8 to 12 weeks of consistent wear. One patch is the first fourteen days of that.",
       },
     ],
     metaDescription:
-      "PR-01, The Patch. One reusable medical-grade silicone patch, 5 × 15 cm. Fourteen days of occlusion therapy to improve the appearance of a scar.",
-  },
-  {
-    slug: "the-ritual",
-    name: "The Ritual",
-    code: "PR-02",
-    method: "Occlusion therapy · 6 weeks",
-    cta: "Start your ritual",
-    benefits: [
-      { title: "Six-week course", sub: "Three patches, in rotation" },
-      { title: "Occlusive seal", sub: "Hydration held at the surface" },
-      { title: "One daily gesture", sub: "Ninety seconds, every morning" },
-      { title: "Texture and color", sub: "Appearance improves over weeks" },
-    ],
-    price: 69,
-    chapter: "PR-02",
-    chapterName: "The Ritual",
-    badge: "Most chosen",
-    cardLine: "3 patches · six weeks of daily wear · ritual card",
-    tagline:
-      "Three patches. Six weeks of daily occlusion, the window where texture and color settle. The habit, engineered.",
-    bestFor: "The daily discipline.",
-    coverage: "Up to 6 weeks",
-    layers: 3,
-    contents: [
-      "3 × silicone patches, 5 × 15 cm",
-      "1 × ritual card, the six-week course",
-      "1 × storage tin",
-    ],
-    posology: [
-      "Apply once daily on clean skin.",
-      "Wear time: 12–23 h.",
-      "One patch every 14 days. Three patches. Six weeks.",
-    ],
-    sideEffects: "Observed effects: a discipline that holds. A mirror that reports differently.",
-    narrative: [
-      "A scar does not change in a weekend. It changes under discipline, the same quiet gesture, every day, until the tissue answers.",
-      "Three patches, fourteen days each. Six weeks of consistent occlusion, the span where the appearance of texture and color usually begins to settle.",
-    ],
-    specs: [
-      ["Reference", "PR-02 / SCAR-02"],
-      ["Material", "Medical-grade silicone"],
-      ["Method", "Occlusion therapy"],
-      ["Contains", "3 patches, 5 × 15 cm"],
-      ["Wear", "12–23 h per day"],
-      ["Rotation", "One patch every 14 days"],
-      ["Coverage", "Up to 6 weeks"],
-      ["Batch", BATCH],
-    ],
-    faq: [
-      {
-        q: "Why six weeks",
-        a: "Scar tissue remodels slowly. Six weeks of daily occlusion is the span where texture and color usually begin to settle.",
-      },
-      {
-        q: "What if I miss a day",
-        a: "A missed day is a pause, not a failure. Reapply the next morning and continue. Consistency over perfection.",
-      },
-      {
-        q: "Does it work on older scars",
-        a: "Mature scars respond too, on a slower clock. Give an older scar the full six weeks before judging.",
-      },
-    ],
-    metaDescription:
-      "PR-02, The Ritual. Three medical-grade silicone patches, six weeks of daily occlusion therapy to improve the appearance of scars.",
-  },
-  {
-    slug: "protocol",
-    name: "The Proof Protocol",
-    code: "PR-03",
-    method: "Post-op protocol · 16 weeks",
-    cta: "Begin the protocol",
-    benefits: [
-      { title: "Sixteen weeks", sub: "The full post-op window" },
-      { title: "Eight patches", sub: "Placed end to end if needed" },
-      { title: "Surgical lines", sub: "5 × 15 cm, cut to fit" },
-      { title: "Priority support", sub: "Answers within 24 hours" },
-    ],
-    price: 129,
-    chapter: "PR-03",
-    chapterName: "The Protocol",
-    badge: "The complete protocol",
-    cardLine: "8 patches · sixteen weeks · post-op guide",
-    tagline:
-      "The complete protocol. Eight patches, sixteen weeks of coverage through the months when a scar decides what it becomes.",
-    bestFor: "Post-op. The long game.",
-    coverage: "Up to 16 weeks",
-    layers: 4,
-    contents: [
-      "8 × silicone patches, 5 × 15 cm",
-      "1 × post-op timing guide",
-      "1 × storage tin",
-      "Priority support, answers within 24 h",
-    ],
-    posology: [
-      "Start once the incision is fully closed.",
-      "Apply once daily on clean skin.",
-      "Wear time: 12–23 h. Sixteen weeks.",
-    ],
-    sideEffects: "Observed effects: patience. A surgeon who asks where you got it.",
-    narrative: [
-      "Surgery closes one chapter and opens another. The four months that follow are when scar tissue is most active, and most responsive.",
-      "Once the incision is closed and your clinician agrees, the protocol takes over. Eight patches. Sixteen weeks. One gesture a day, held through the window that matters most.",
-    ],
-    specs: [
-      ["Reference", "PR-03 / SCAR-03"],
-      ["Material", "Medical-grade silicone"],
-      ["Method", "Post-op occlusion protocol"],
-      ["Contains", "8 patches, 5 × 15 cm"],
-      ["Start", "Once the incision is fully closed"],
-      ["Wear", "12–23 h per day"],
-      ["Coverage", "Up to 16 weeks"],
-      ["Batch", BATCH],
-    ],
-    faq: [
-      {
-        q: "When do I start after surgery",
-        a: "Once the wound is fully closed, no scabs, no openings, stitches out, and your clinician agrees. The included guide covers timing, procedure by procedure.",
-      },
-      {
-        q: "C-section, abdominoplasty, cardiac, does it fit",
-        a: "The 5 × 15 cm format covers most surgical lines. Place patches end to end for longer incisions. Count roughly one patch per 15 cm per two weeks.",
-      },
-      {
-        q: "Why sixteen weeks",
-        a: "The first four months post-op are when scar tissue is most active, and most responsive. Sixteen weeks holds you through that window.",
-      },
-    ],
-    metaDescription:
-      "PR-03, The Proof Protocol. Eight medical-grade silicone patches and a post-op guide. Sixteen weeks of coverage for surgical scars.",
+      "PR-01, The Patch. Reusable medical-grade silicone, 5 × 15 cm, in packs of 1, 3 or 8. Occlusion therapy to improve the appearance of scars.",
   },
   {
     slug: "the-gel",
     name: "The Gel",
-    code: "PR-04",
+    code: "PR-02",
     method: "Film therapy · twice daily",
     cta: "Add the gesture",
     benefits: [
@@ -311,7 +260,8 @@ export const products: Product[] = [
       ],
     },
     price: 39,
-    chapter: "PR-04",
+    plateLabel: "30 ml",
+    chapter: "PR-02",
     chapterName: "The Gesture",
     badge: "New",
     cardLine: "30 ml silicone gel · twice daily · face & mobile zones",
@@ -330,13 +280,14 @@ export const products: Product[] = [
       "Dry-down: ≈ 60 seconds.",
       "Makeup and SPF layer over it once dry.",
     ],
-    sideEffects: "Observed effects: a sixty-second discipline. An invisible film that holds.",
+    sideEffects:
+      "Observed effects: a sixty-second discipline. An invisible film that holds.",
     narrative: [
       "Some scars live on skin that moves. A jaw. A knuckle. An eyebrow. Zones where a patch lifts, folds, or shows.",
       "One pump. A thin film. Sixty seconds to dry, invisible under makeup and SPF. The same silicone discipline, translated for the zones the world reads first.",
     ],
     specs: [
-      ["Reference", "PR-04 / SCAR-04"],
+      ["Reference", "PR-02 / SCAR-02"],
       ["Material", "Medical-grade silicone gel"],
       ["Method", "Thin-film occlusion"],
       ["Volume", "30 ml / 1.0 fl oz"],
@@ -348,7 +299,7 @@ export const products: Product[] = [
     faq: [
       {
         q: "Patch or gel, which one",
-        a: "Patch for flat zones you can cover: torso, arms, legs. Gel for the face, the joints, skin that moves. Many run both, patch by night, gel by day.",
+        a: "Patch for flat zones you can cover: torso, arms, legs. Gel for the face, the joints, skin that moves. Many run both, patch by night, gel by day. That pairing is The Protocol.",
       },
       {
         q: "Does it work under makeup",
@@ -360,12 +311,134 @@ export const products: Product[] = [
       },
     ],
     metaDescription:
-      "PR-04, The Gel. Medical-grade silicone gel, 30 ml. Dries in sixty seconds, invisible under makeup and SPF. For facial scars and zones that move.",
+      "PR-02, The Gel. Medical-grade silicone gel, 30 ml. Dries in sixty seconds, invisible under makeup and SPF. For facial scars and zones that move.",
+  },
+  {
+    slug: "protocol",
+    name: "The Protocol",
+    code: "PR-03",
+    method: "Full protocol · patch by night, gel by day",
+    cta: "Begin the protocol",
+    benefits: [
+      { title: "Patch by night", sub: "Occlusion where skin is still" },
+      { title: "Gel by day", sub: "A film where skin moves" },
+      { title: "Six weeks", sub: "Three patches, one bottle" },
+      { title: "Every zone", sub: "Torso, limbs, face, joints" },
+    ],
+    quickSpecs: {
+      image: "protocol-panel-a",
+      headline: "Both instruments. One discipline, morning and night.",
+      rows: [
+        ["Good for", "Anyone running more than one zone"],
+        ["Feels like", "Two gestures, ninety seconds each"],
+        ["Looks like", "Nothing anyone else has to notice"],
+        ["FYI", "Reusable patches · Refillable gel · Dermatologist reviewed"],
+      ],
+    },
+    targets: {
+      image: "protocol-panel-b",
+      label: "Run the protocol to soften:",
+      words: ["Texture", "Color", "Relief"],
+    },
+    /* Prix de l'ensemble : à arbitrer. 3 patchs (69) + gel (39) = 108 pris
+       séparément ; la valeur ci-dessous est un point de départ. */
+    price: 95,
+    plateLabel: "Patch + gel",
+    chapter: "PR-03",
+    chapterName: "The Protocol",
+    badge: "The complete protocol",
+    cardLine: "3 patches + 30 ml gel · six weeks · both zones",
+    tagline:
+      "The patch and the gel, together. Occlusion on the zones that hold still, a film on the ones that move. Six weeks of both.",
+    bestFor: "The complete protocol.",
+    coverage: "6 weeks, both zones",
+    layers: 4,
+    contents: [
+      "3 × silicone patches, 5 × 15 cm",
+      "1 × silicone gel, 30 ml / 1.0 fl oz",
+      "1 × ritual card, the six-week course",
+      "1 × storage tin",
+      "Priority support, answers within 24 h",
+    ],
+    posology: [
+      "Patch on the flat zones, 12–23 h a day.",
+      "Gel on the face and joints, twice daily.",
+      "One patch every 14 days. Three patches. Six weeks.",
+    ],
+    sideEffects:
+      "Observed effects: a discipline that holds on every zone at once.",
+    narrative: [
+      "Most scars do not sit politely on one kind of skin. A line runs from the collarbone to the jaw, crosses a shoulder, folds at a knuckle. One instrument never covers all of it.",
+      "So the protocol runs both. The patch seals the zones that hold still, twelve to twenty-three hours a day. The gel films the ones that move, twice daily, invisible in sixty seconds. Six weeks, morning and night, nothing left uncovered.",
+    ],
+    specs: [
+      ["Reference", "PR-03 / SCAR-03"],
+      ["Material", "Medical-grade silicone, patch and gel"],
+      ["Method", "Occlusion and thin-film, combined"],
+      ["Contains", "3 patches, 5 × 15 cm + 30 ml gel"],
+      ["Wear", "Patch 12–23 h · Gel twice daily"],
+      ["Coverage", "6 weeks, both zones"],
+      ["Batch", BATCH],
+    ],
+    faq: [
+      {
+        q: "Why run both",
+        a: "Because a scar rarely stays on one kind of skin. The patch holds where the surface is flat and still. The gel covers the face, the joints, anywhere a patch would lift or show.",
+      },
+      {
+        q: "Do I use them on the same spot",
+        a: "No need. Split by zone: patch on the torso, arms and legs, gel on the face and joints. On one long scar crossing both, patch the flat part and film the rest.",
+      },
+      {
+        q: "Is it cheaper than buying separately",
+        a: "Yes, the protocol is priced below the two taken apart. It also removes the reordering gap, which is what usually breaks a six-week course.",
+      },
+    ],
+    metaDescription:
+      "PR-03, The Protocol. Three medical-grade silicone patches and a 30 ml gel. Occlusion on still zones, a film on moving ones, six weeks of both.",
   },
 ];
 
 export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
+}
+
+/* ---- Lignes de panier : « slug » ou « slug#variantId » ---- */
+
+export function makeKey(slug: string, variantId?: string): string {
+  return variantId ? `${slug}#${variantId}` : slug;
+}
+
+export function parseKey(key: string): { slug: string; variantId?: string } {
+  const [slug, variantId] = key.split("#");
+  return { slug, variantId: variantId || undefined };
+}
+
+export type Line = {
+  product: Product;
+  variant?: Variant;
+  /* nom affiché, conditionnement compris */
+  label: string;
+  price: number;
+};
+
+export function resolveLine(key: string): Line | null {
+  const { slug, variantId } = parseKey(key);
+  const product = getProduct(slug);
+  if (!product) return null;
+
+  if (!product.variants?.length) {
+    return { product, label: product.name, price: product.price };
+  }
+
+  const variant =
+    product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+  return {
+    product,
+    variant,
+    label: `${product.name}, ${variant.label}`,
+    price: variant.price,
+  };
 }
 
 export function formatPrice(n: number): string {

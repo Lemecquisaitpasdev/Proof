@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
-import { formatPrice, getProduct } from "@/lib/products";
+import { formatPrice, resolveLine } from "@/lib/products";
 import Posology from "@/components/Posology";
 
 export default function CheckoutPage() {
   const { items, total, clear } = useCart();
   const lines = Object.entries(items)
-    .map(([slug, qty]) => ({ product: getProduct(slug), qty }))
-    .filter((l) => l.product);
+    .map(([key, qty]) => ({ key, line: resolveLine(key), qty }))
+    .filter((l) => l.line);
 
   return (
     <section className="pagehead section">
@@ -39,14 +39,14 @@ export default function CheckoutPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {lines.map(({ product, qty }) =>
-                      product ? (
-                        <tr key={product.slug}>
+                    {lines.map(({ key, line, qty }) =>
+                      line ? (
+                        <tr key={key}>
                           <td className="is-ink">
-                            {product.name}, {product.chapter}
+                            {line.label}, {line.product.chapter}
                           </td>
                           <td>{qty}</td>
-                          <td>{formatPrice(product.price * qty)}</td>
+                          <td>{formatPrice(line.price * qty)}</td>
                         </tr>
                       ) : null,
                     )}
@@ -87,7 +87,7 @@ export default function CheckoutPage() {
                 style={{ marginTop: "var(--gut)" }}
                 href={`mailto:contactus@trackk.fr?subject=PROOF%20,%20First%20drop&body=Keep%20me%20posted%20for%20the%20first%20drop.%20My%20ritual%20:%20${encodeURIComponent(
                   lines
-                    .map(({ product, qty }) => `${qty} × ${product?.name}`)
+                    .map(({ line, qty }) => `${qty} × ${line?.label}`)
                     .join(", "),
                 )}%20(${encodeURIComponent(formatPrice(total))})`}
               >

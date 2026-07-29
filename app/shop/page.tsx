@@ -7,7 +7,7 @@ import { formatPrice, products } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Four chapters. The Patch at $29, The Ritual at $69, Protocol at $129, The Gel at $39. Medical-grade silicone that improves the appearance of scars.",
+    "Three instruments. The Patch from $29, The Gel at $39, The Protocol at $95. Medical-grade silicone that improves the appearance of scars.",
 };
 
 export default function ShopPage() {
@@ -17,14 +17,14 @@ export default function ShopPage() {
         <div className="container">
           <span className="eyebrow enter">The shop</span>
           <h1 className="d1 enter" style={{ "--d": ".1s" } as React.CSSProperties}>
-            Four chapters.
+            Three instruments.
           </h1>
           <p
             className="lead measure enter"
             style={{ "--d": ".22s" } as React.CSSProperties}
           >
-            Every scar gets a chapter. Three patches, one gel, pick where
-            yours starts.
+            The patch for the zones that hold still, the gel for the ones
+            that move, and the protocol that runs both.
           </p>
         </div>
       </section>
@@ -48,13 +48,13 @@ export default function ShopPage() {
       <section className="section">
         <div className="container">
           <span className="eyebrow" data-reveal>
-            La planche, compare
+            The bench, compared
           </span>
           <div className="specs-scroll" data-reveal>
             <table className="specs">
               <thead>
                 <tr>
-                  <th scope="col">Chapter</th>
+                  <th scope="col">Reference</th>
                   {products.map((p) => (
                     <th scope="col" key={p.slug}>
                       {p.chapter}
@@ -93,6 +93,7 @@ export default function ShopPage() {
                   <th scope="row">Price</th>
                   {products.map((p) => (
                     <td key={p.slug} className="is-ink num">
+                      {p.variants?.length ? "From " : ""}
                       {formatPrice(p.price)}
                     </td>
                   ))}
@@ -105,7 +106,7 @@ export default function ShopPage() {
             <Posology
               title="Dispensing note"
               lines={[
-                "Same medical-grade silicone in every chapter.",
+                "Same medical-grade silicone in all three.",
                 "Patch for coverage. Gel for the zones that move.",
               ]}
             />

@@ -172,10 +172,10 @@ export default function HomePage() {
       <section className="section" id="shop">
         <div className="container">
           <span className="mlabel" data-reveal>
-            The protocol line / Ref: SCAR-01&mdash;04
+            The protocol line / Ref: SCAR-01&mdash;03
           </span>
           <h2 className="d2" style={{ marginTop: 14, marginBottom: 56 }} data-reveal>
-            Four instruments. One discipline.
+            Three instruments. One discipline.
           </h2>
           <div className="cards" data-reveal-group>
             {products.map((p) => (

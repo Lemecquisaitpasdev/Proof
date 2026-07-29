@@ -3256,6 +3256,107 @@ html.js .ritual--live .rstep {
   width: 52px;
 }
 
+/* Conditionnements — trois cartouches, façon fiche de commande */
+.packs {
+  margin-top: 30px;
+}
+
+.packs__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 16px 14px 14px;
+  text-align: left;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.pack:hover {
+  border-color: var(--hairline-strong);
+}
+
+.pack.is-on {
+  border-color: var(--contrast);
+  background: var(--contrast-04);
+}
+
+.pack__badge {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--base);
+  background: var(--gold-deep);
+  border-radius: 2px;
+  padding: 2px 6px;
+}
+
+.pack__label {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 108%;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--contrast);
+}
+
+.pack__cover {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.pack__price {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--contrast);
+  font-variant-numeric: tabular-nums;
+}
+
+.packs__note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+@media (max-width: 420px) {
+  .packs__row {
+    grid-template-columns: 1fr;
+  }
+
+  .pack__badge {
+    top: 50%;
+    left: auto;
+    right: 12px;
+    transform: translateY(-50%);
+  }
+}
+
+/* « From » devant le prix d'entrée d'un produit décliné */
+.card__from {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
 .pdp__cta {
   margin-top: 24px;
 }

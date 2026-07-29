@@ -9,8 +9,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { getProduct } from "@/lib/products";
+import { resolveLine } from "@/lib/products";
 
+/* clé de ligne : « slug » ou « slug#variantId » (cf. lib/products) */
 export type CartItems = Record<string, number>;
 
 type CartContextValue = {
@@ -20,8 +21,8 @@ type CartContextValue = {
   isOpen: boolean;
   open: () => void;
   close: () => void;
-  add: (slug: string, opts?: { open?: boolean; qty?: number }) => void;
-  setQty: (slug: string, qty: number) => void;
+  add: (key: string, opts?: { open?: boolean; qty?: number }) => void;
+  setQty: (key: string, qty: number) => void;
   clear: () => void;
 };
 
@@ -40,9 +41,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (raw) {
         const parsed = JSON.parse(raw) as CartItems;
         const clean: CartItems = {};
-        for (const [slug, qty] of Object.entries(parsed)) {
-          if (getProduct(slug) && Number.isInteger(qty) && qty > 0) {
-            clean[slug] = Math.min(qty, 99);
+        for (const [key, qty] of Object.entries(parsed)) {
+          if (resolveLine(key) && Number.isInteger(qty) && qty > 0) {
+            clean[key] = Math.min(qty, 99);
           }
         }
         setItems(clean);
@@ -79,24 +80,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [isOpen]);
 
   const add = useCallback(
-    (slug: string, opts?: { open?: boolean; qty?: number }) => {
+    (key: string, opts?: { open?: boolean; qty?: number }) => {
       const q = Math.max(1, Math.floor(opts?.qty ?? 1));
       setItems((prev) => ({
         ...prev,
-        [slug]: Math.min((prev[slug] ?? 0) + q, 99),
+        [key]: Math.min((prev[key] ?? 0) + q, 99),
       }));
       if (opts?.open !== false) setIsOpen(true);
     },
     [],
   );
 
-  const setQty = useCallback((slug: string, qty: number) => {
+  const setQty = useCallback((key: string, qty: number) => {
     setItems((prev) => {
       const next = { ...prev };
       if (qty <= 0) {
-        delete next[slug];
+        delete next[key];
       } else {
-        next[slug] = Math.min(qty, 99);
+        next[key] = Math.min(qty, 99);
       }
       return next;
     });
@@ -109,11 +110,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const { count, total } = useMemo(() => {
     let count = 0;
     let total = 0;
-    for (const [slug, qty] of Object.entries(items)) {
-      const p = getProduct(slug);
-      if (!p) continue;
+    for (const [key, qty] of Object.entries(items)) {
+      const line = resolveLine(key);
+      if (!line) continue;
       count += qty;
-      total += qty * p.price;
+      total += qty * line.price;
     }
     return { count, total };
   }, [items]);

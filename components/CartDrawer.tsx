@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart";
-import { formatPrice, getProduct } from "@/lib/products";
+import { formatPrice, resolveLine } from "@/lib/products";
 import PlateVisual from "@/components/PlateVisual";
 
 export default function CartDrawer({
@@ -13,8 +13,8 @@ export default function CartDrawer({
 }) {
   const { items, total, isOpen, close, setQty } = useCart();
   const lines = Object.entries(items)
-    .map(([slug, qty]) => ({ product: getProduct(slug), qty }))
-    .filter((l) => l.product);
+    .map(([key, qty]) => ({ key, line: resolveLine(key), qty }))
+    .filter((l) => l.line);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function CartDrawer({
                 Your ritual is empty.
               </p>
               <p style={{ fontSize: 14.5, marginTop: 12 }}>
-                Three chapters are waiting in the shop.
+                Three instruments are waiting in the shop.
               </p>
               <Link
                 href="/shop"
@@ -57,10 +57,11 @@ export default function CartDrawer({
               </Link>
             </div>
           ) : (
-            lines.map(({ product, qty }) => {
-              if (!product) return null;
+            lines.map(({ key, line, qty }) => {
+              if (!line) return null;
+              const { product, label, price } = line;
               return (
-                <div className="cline" key={product.slug}>
+                <div className="cline" key={key}>
                   <Link
                     href={`/shop/${product.slug}`}
                     className="cline__thumb"
@@ -84,30 +85,30 @@ export default function CartDrawer({
                     )}
                   </Link>
                   <div>
-                    <div className="cline__name">{product.name}</div>
+                    <div className="cline__name">{label}</div>
                     <div className="cline__meta">
                       {product.chapter} · {product.chapterName}
                     </div>
                     <div className="qty">
                       <button
                         type="button"
-                        onClick={() => setQty(product.slug, qty - 1)}
-                        aria-label={`Remove one ${product.name}`}
+                        onClick={() => setQty(key, qty - 1)}
+                        aria-label={`Remove one ${label}`}
                       >
                         −
                       </button>
                       <span>{qty}</span>
                       <button
                         type="button"
-                        onClick={() => setQty(product.slug, qty + 1)}
-                        aria-label={`Add one ${product.name}`}
+                        onClick={() => setQty(key, qty + 1)}
+                        aria-label={`Add one ${label}`}
                       >
                         +
                       </button>
                     </div>
                   </div>
                   <div className="cline__price">
-                    {formatPrice(product.price * qty)}
+                    {formatPrice(price * qty)}
                   </div>
                 </div>
               );

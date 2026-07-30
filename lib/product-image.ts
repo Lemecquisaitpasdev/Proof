@@ -59,6 +59,12 @@ const ALIASES: Record<string, string[]> = {
   /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],
 
+  /* « Dans la vraie vie » — le gel dans les routines de la communauté */
+  "routine-shelf": ["routine-shelf", "routineskincare"],
+  "routine-vanity": ["routine-vanity", "routinegirl"],
+  "routine-shave": ["routine-shave", "routinemen"],
+  "routine-carry": ["routine-carry", "photoavion"],
+
   /* Panneaux plein écran des fiches produit */
   "protocol-panel-a": ["protocol-panel-a", "packagingproofpatch"],
   "protocol-panel-b": ["protocol-panel-b", "mannequinmetisse"],

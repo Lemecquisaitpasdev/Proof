@@ -53,6 +53,15 @@ export type Product = {
       rows: { pct: string; claim: string }[];
     }[];
   };
+  /* « Dans la vraie vie » — la même bouteille, photographiée dans les
+     routines où elle finit réellement (clichés communauté, pas studio).
+     Facultatif : ne s'affiche que là où des photos sont fournies. */
+  routine?: {
+    label: string;
+    headline: string;
+    lead: string;
+    shots: { image: string; caption: string }[];
+  };
   /* Prix d'entrée : celui de la première variante si le produit se décline */
   price: number;
   /* Mention portée par le packshot CSS quand aucune photo n'existe */
@@ -257,6 +266,17 @@ export const products: Product[] = [
             { pct: "00%", claim: "Agreed they carry the scar more openly" },
           ],
         },
+      ],
+    },
+    routine: {
+      label: "In real routines",
+      headline: "Kept in good company.",
+      lead: "The same bottle, photographed where it actually ends up — the travel tray, the vanity, the shave shelf. Proof earns its place next to the things people already reach for.",
+      shots: [
+        { image: "routine-shelf", caption: "The morning shelf" },
+        { image: "routine-vanity", caption: "The vanity" },
+        { image: "routine-shave", caption: "The shave shelf" },
+        { image: "routine-carry", caption: "The carry-on" },
       ],
     },
     price: 39,

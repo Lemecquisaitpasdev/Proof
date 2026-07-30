@@ -65,6 +65,11 @@ export default async function ProductPage({ params }: Props) {
   const panelB = product.targets ? productImage(product.targets.image) : null;
   const panelC = product.results ? productImage(product.results.image) : null;
 
+  /* « Dans la vraie vie » — clichés communauté, uniquement ceux résolus */
+  const routineShots = (product.routine?.shots ?? [])
+    .map((s) => ({ caption: s.caption, src: productImage(s.image) }))
+    .filter((s): s is { caption: string; src: string } => s.src !== null);
+
   /* avis — jeu d'amorçage, cf. lib/reviews.ts */
   const reviews = getReviews(product.slug);
 
@@ -273,16 +278,12 @@ export default async function ProductPage({ params }: Props) {
               {product.targets.label}
             </span>
             <ul className="targets" data-reveal>
-              {product.targets.words.map((w, i) => (
+              {product.targets.words.map((w) => (
                 <li key={w}>
-                  {i === 0 ? (
-                    <span className="kword kword--strike">
-                      {w}
-                      <KintsugiLine variant="strike" />
-                    </span>
-                  ) : (
-                    w
-                  )}
+                  <span className="kword kword--strike">
+                    {w}
+                    <KintsugiLine variant="strike" />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -363,6 +364,45 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* DANS LA VRAIE VIE — le gel dans les routines de la communauté */}
+      {product.routine && routineShots.length > 0 ? (
+        <section className="section routine" aria-label="In real routines">
+          <div className="container">
+            <span className="mlabel" data-reveal>
+              {product.routine.label} / Ref: {product.code}
+            </span>
+            <div className="routine__head" data-reveal>
+              <h2 className="d3">{product.routine.headline}</h2>
+              <p className="measure">{product.routine.lead}</p>
+            </div>
+            <div className="routine__grid" data-reveal-group>
+              {routineShots.map((shot, i) => (
+                <figure className="routine__shot" key={shot.caption} data-reveal>
+                  <div className="routine__frame">
+                    <Image
+                      src={shot.src}
+                      alt={`Proof gel in a real routine, ${shot.caption}`}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 24vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <figcaption className="routine__cap">
+                    <span>{shot.caption}</span>
+                    <b>{String(i + 1).padStart(2, "0")}</b>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <div className="refline">
+              <span>Photographed in the wild</span>
+              <span>Ref: {product.code}</span>
+              <span>[ {BATCH} ]</span>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* COMPLETE THE RITUAL, cross-sell éditorialisé */}
       {companions.length > 0 ? (

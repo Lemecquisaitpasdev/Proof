@@ -2547,19 +2547,129 @@ html.js .ritual--live .rstep {
   margin: 0;
 }
 
-.routine__grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(10px, 1.4vw, 22px);
+/* Filmstrip horizontal : quatre clichés visibles, une flèche pour défiler.
+   Le défilement natif (trackpad / tactile) reste disponible ; les flèches
+   ne sont qu'un raccourci, et « prev » n'apparaît qu'après un défilement. */
+.routine__slider {
+  position: relative;
   margin-top: clamp(32px, 4vw, 56px);
 }
 
-/* largeur fixe + centrage : une rangée partielle (7e cliché) reste centrée
-   sous les rangées pleines, au lieu de coller à gauche */
+.routine__rail {
+  --per: 4;
+  --gap: clamp(10px, 1.4vw, 22px);
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.routine__rail::-webkit-scrollbar {
+  display: none;
+}
+
 .routine__shot {
   margin: 0;
-  flex: 0 0 clamp(150px, 21vw, 264px);
+  flex: 0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));
+  scroll-snap-align: start;
+}
+
+/* fondus de bord — suggèrent qu'il reste des clichés hors-champ */
+.routine__slider::before,
+.routine__slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(32px, 5vw, 72px);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.routine__slider::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--base), transparent);
+}
+
+.routine__slider::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--base), transparent);
+}
+
+.routine__slider:not(.is-start)::before,
+.routine__slider:not(.is-end)::after {
+  opacity: 1;
+}
+
+/* la flèche : pastille sur mesure, centrée sur la bande d'images */
+.routine__nav {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  background: rgba(15, 13, 10, 0.66);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--kintsugi);
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s var(--ease-out), border-color 0.2s var(--ease-out),
+    color 0.2s var(--ease-out), opacity 0.3s var(--ease-out);
+}
+
+.routine__nav:hover {
+  background: var(--kintsugi);
+  border-color: var(--kintsugi);
+  color: var(--base);
+}
+
+.routine__nav:focus-visible {
+  outline: 2px solid var(--kintsugi);
+  outline-offset: 3px;
+}
+
+.routine__nav svg {
+  display: block;
+}
+
+.routine__nav--prev {
+  left: clamp(-12px, -0.5vw, -6px);
+}
+
+.routine__nav--next {
+  right: clamp(-12px, -0.5vw, -6px);
+}
+
+.routine__nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .routine__rail {
+    --per: 2.15;
+  }
+}
+
+@media (max-width: 600px) {
+  .routine__rail {
+    --per: 1.25;
+  }
+
+  .routine__nav {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .routine__frame {

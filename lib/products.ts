@@ -270,7 +270,7 @@ export const products: Product[] = [
     },
     routine: {
       label: "In real routines",
-      headline: "Kept in good company.",
+      headline: "They made the protocol part of their routine.",
       lead: "The same bottle, photographed where it actually ends up — the travel tray, the vanity, the shave shelf. Proof earns its place next to the things people already reach for.",
       shots: [
         { image: "routine-shelf", caption: "The morning shelf" },

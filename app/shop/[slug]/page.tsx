@@ -9,6 +9,7 @@ import ProductCard from "@/components/ProductCard";
 import PdpBuyBox from "@/components/PdpBuyBox";
 import PdpResults from "@/components/PdpResults";
 import PdpReviews from "@/components/PdpReviews";
+import PdpRoutine from "@/components/PdpRoutine";
 import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 import { getReviews } from "@/lib/reviews";
@@ -367,41 +368,14 @@ export default async function ProductPage({ params }: Props) {
 
       {/* DANS LA VRAIE VIE — le gel dans les routines de la communauté */}
       {product.routine && routineShots.length > 0 ? (
-        <section className="section routine" aria-label="In real routines">
-          <div className="container">
-            <span className="mlabel" data-reveal>
-              {product.routine.label} / Ref: {product.code}
-            </span>
-            <div className="routine__head" data-reveal>
-              <h2 className="d3">{product.routine.headline}</h2>
-              <p className="measure">{product.routine.lead}</p>
-            </div>
-            <div className="routine__grid" data-reveal-group>
-              {routineShots.map((shot, i) => (
-                <figure className="routine__shot" key={shot.caption} data-reveal>
-                  <div className="routine__frame">
-                    <Image
-                      src={shot.src}
-                      alt={`Proof gel in a real routine, ${shot.caption}`}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 24vw"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <figcaption className="routine__cap">
-                    <span>{shot.caption}</span>
-                    <b>{String(i + 1).padStart(2, "0")}</b>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-            <div className="refline">
-              <span>Photographed in the wild</span>
-              <span>Ref: {product.code}</span>
-              <span>[ {BATCH} ]</span>
-            </div>
-          </div>
-        </section>
+        <PdpRoutine
+          label={product.routine.label}
+          headline={product.routine.headline}
+          lead={product.routine.lead}
+          shots={routineShots}
+          code={product.code}
+          batch={BATCH}
+        />
       ) : null}
 
       {/* COMPLETE THE RITUAL, cross-sell éditorialisé */}

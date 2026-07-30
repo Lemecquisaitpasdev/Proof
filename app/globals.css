@@ -2548,14 +2548,18 @@ html.js .ritual--live .rstep {
 }
 
 .routine__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: clamp(10px, 1.4vw, 22px);
   margin-top: clamp(32px, 4vw, 56px);
 }
 
+/* largeur fixe + centrage : une rangée partielle (7e cliché) reste centrée
+   sous les rangées pleines, au lieu de coller à gauche */
 .routine__shot {
   margin: 0;
+  flex: 0 0 clamp(150px, 21vw, 264px);
 }
 
 .routine__frame {
@@ -2597,11 +2601,6 @@ html.js .ritual--live .rstep {
 @media (max-width: 900px) {
   .routine__head {
     grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .routine__grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 }

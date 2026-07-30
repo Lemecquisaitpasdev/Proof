@@ -64,6 +64,9 @@ const ALIASES: Record<string, string[]> = {
   "routine-vanity": ["routine-vanity", "routinegirl"],
   "routine-shave": ["routine-shave", "routinemen"],
   "routine-carry": ["routine-carry", "photoavion"],
+  "routine-car": ["routine-car", "proofdansvoiture"],
+  "routine-pouch": ["routine-pouch", "proofpochette"],
+  "routine-summer": ["routine-summer", "proofsummer"],
 
   /* Panneaux plein écran des fiches produit */
   "protocol-panel-a": ["protocol-panel-a", "packagingproofpatch"],

@@ -19,6 +19,12 @@ type Props = {
  * flèche pour faire défiler vers les suivants. Défilement natif (trackpad /
  * tactile) conservé ; les flèches ne sont qu'un raccourci. La flèche « prev »
  * n'apparaît qu'une fois qu'on a commencé à défiler.
+ *
+ * ⚠ Le [data-reveal] est porté par un conteneur à classe CONSTANTE
+ * (.routine__reveal), jamais par l'élément dont React pilote la className :
+ * <Fx/> ajoute « is-in » de façon impérative, et un re-render qui réécrirait
+ * la className de ce même nœud effacerait « is-in » — la section disparaîtrait
+ * au clic. Le slider stateful (is-start / is-end) est donc un enfant.
  */
 export default function PdpRoutine({
   label,
@@ -72,68 +78,70 @@ export default function PdpRoutine({
           <p className="measure">{lead}</p>
         </div>
 
-        <div
-          className={
-            "routine__slider" +
-            (atStart ? " is-start" : "") +
-            (atEnd ? " is-end" : "")
-          }
-          data-reveal
-        >
-          <div className="routine__rail" ref={rail}>
-            {shots.map((shot, i) => (
-              <figure className="routine__shot" key={shot.caption}>
-                <div className="routine__frame">
-                  <Image
-                    src={shot.src}
-                    alt={`Proof gel in a real routine, ${shot.caption}`}
-                    fill
-                    sizes="(max-width: 640px) 74vw, (max-width: 900px) 46vw, 23vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <figcaption className="routine__cap">
-                  <span>{shot.caption}</span>
-                  <b>{String(i + 1).padStart(2, "0")}</b>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+        {/* conteneur révélé, className constante — cf. note en tête de fichier */}
+        <div className="routine__reveal" data-reveal>
+          <div
+            className={
+              "routine__slider" +
+              (atStart ? " is-start" : "") +
+              (atEnd ? " is-end" : "")
+            }
+          >
+            <div className="routine__rail" ref={rail}>
+              {shots.map((shot, i) => (
+                <figure className="routine__shot" key={shot.caption}>
+                  <div className="routine__frame">
+                    <Image
+                      src={shot.src}
+                      alt={`Proof gel in a real routine, ${shot.caption}`}
+                      fill
+                      sizes="(max-width: 640px) 74vw, (max-width: 900px) 46vw, 23vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <figcaption className="routine__cap">
+                    <span>{shot.caption}</span>
+                    <b>{String(i + 1).padStart(2, "0")}</b>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
 
-          <button
-            type="button"
-            className="routine__nav routine__nav--prev"
-            aria-label="Previous routines"
-            onClick={() => slide(-1)}
-            disabled={atStart}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M19 12H5M11 6l-6 6 6 6"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            type="button"
-            className="routine__nav routine__nav--next"
-            aria-label="More routines"
-            onClick={() => slide(1)}
-            disabled={atEnd}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M5 12h14M13 6l6 6-6 6"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+            <button
+              type="button"
+              className="routine__nav routine__nav--prev"
+              aria-label="Previous routines"
+              onClick={() => slide(-1)}
+              disabled={atStart}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M19 12H5M11 6l-6 6 6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="routine__nav routine__nav--next"
+              aria-label="More routines"
+              onClick={() => slide(1)}
+              disabled={atEnd}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="refline">

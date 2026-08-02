@@ -2550,9 +2550,12 @@ html.js .ritual--live .rstep {
 /* Filmstrip horizontal : quatre clichés visibles, une flèche pour défiler.
    Le défilement natif (trackpad / tactile) reste disponible ; les flèches
    ne sont qu'un raccourci, et « prev » n'apparaît qu'après un défilement. */
+.routine__reveal {
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
 .routine__slider {
   position: relative;
-  margin-top: clamp(32px, 4vw, 56px);
 }
 
 .routine__rail {

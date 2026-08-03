@@ -177,6 +177,18 @@ export default async function ProductPage({ params }: Props) {
         </div>
       </section>
 
+      {/* DANS LA VRAIE VIE — le gel dans les routines de la communauté */}
+      {product.routine && routineShots.length > 0 ? (
+        <PdpRoutine
+          label={product.routine.label}
+          headline={product.routine.headline}
+          lead={product.routine.lead}
+          shots={routineShots}
+          code={product.code}
+          batch={BATCH}
+        />
+      ) : null}
+
       {/* LE CHAPITRE */}
       <section className="section">
         <div className="container split">
@@ -365,18 +377,6 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </div>
       </section>
-
-      {/* DANS LA VRAIE VIE — le gel dans les routines de la communauté */}
-      {product.routine && routineShots.length > 0 ? (
-        <PdpRoutine
-          label={product.routine.label}
-          headline={product.routine.headline}
-          lead={product.routine.lead}
-          shots={routineShots}
-          code={product.code}
-          batch={BATCH}
-        />
-      ) : null}
 
       {/* COMPLETE THE RITUAL, cross-sell éditorialisé */}
       {companions.length > 0 ? (

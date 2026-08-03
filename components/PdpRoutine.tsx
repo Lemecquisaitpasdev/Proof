@@ -88,7 +88,7 @@ export default function PdpRoutine({
             }
           >
             <div className="routine__rail" ref={rail}>
-              {shots.map((shot, i) => (
+              {shots.map((shot) => (
                 <figure className="routine__shot" key={shot.caption}>
                   <div className="routine__frame">
                     <Image
@@ -99,10 +99,6 @@ export default function PdpRoutine({
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                  <figcaption className="routine__cap">
-                    <span>{shot.caption}</span>
-                    <b>{String(i + 1).padStart(2, "0")}</b>
-                  </figcaption>
                 </figure>
               ))}
             </div>

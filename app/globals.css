@@ -2612,7 +2612,7 @@ html.js .ritual--live .rstep {
 /* la flèche : pastille sur mesure, centrée sur la bande d'images */
 .routine__nav {
   position: absolute;
-  top: 45%;
+  top: 50%;
   transform: translateY(-50%);
   width: 52px;
   height: 52px;

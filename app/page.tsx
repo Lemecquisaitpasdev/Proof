@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import KintsugiLine from "@/components/KintsugiLine";
-import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
 import PressMarquee from "@/components/PressMarquee";
 import RitualSteps from "@/components/RitualSteps";
@@ -197,12 +196,7 @@ export default function HomePage() {
               <h2 className="d3" style={{ marginTop: 14, maxWidth: "13ch" }}>
                 Precision healing. Verified by protocol.
               </h2>
-              <p className="measure" style={{ marginTop: 28 }}>
-                Silicone sheeting has treated scars since 1983, a first-line
-                option in international guidelines. The mechanism: occlusion and
-                hydration, so the skin regulates itself.
-              </p>
-              <p className="exergue" style={{ marginTop: 40 }}>
+              <p className="exergue" style={{ marginTop: 28 }}>
                 We don&apos;t say heal. We don&apos;t say disappear. We say what
                 the literature says, <em>improve the appearance.</em>
               </p>
@@ -232,31 +226,22 @@ export default function HomePage() {
                 {
                   no: "R.01",
                   name: "Clean",
-                  text: "Wash with mild soap, pat dry. The patch only holds on clean skin.",
+                  text: "Wash and pat dry.",
                   image: productImage("ritual-clean"),
                 },
                 {
                   no: "R.02",
                   name: "Apply",
-                  text: "Place it over the scar, press ten seconds. Cut to size if the scar is shorter.",
+                  text: "Over the scar, press ten seconds. Trim to fit.",
                   image: productImage("ritual-apply"),
                 },
                 {
                   no: "R.03",
                   name: "Wear",
-                  text: "12 to 23 hours a day. Rinse at night, air-dry, reapply — up to 14 days per patch.",
+                  text: "12 to 23 hours a day, up to 14 days per patch.",
                   image: productImage("ritual-wear"),
                 },
               ]}
-            />
-          </div>
-          <div style={{ marginTop: 48, maxWidth: 560 }} data-reveal>
-            <Posology
-              lines={[
-                "Apply once daily on clean skin.",
-                "Wear time : 12–23 h.",
-              ]}
-              sideEffects="Observed effects: a ritual kept. A scar carried differently."
             />
           </div>
         </div>
@@ -279,11 +264,7 @@ export default function HomePage() {
           <div className="feature__copy" data-reveal>
             <span className="eyebrow">The monthly refill</span>
             <h2 className="d3">Made to be kept.</h2>
-            <p className="measure" style={{ marginTop: 24 }}>
-              The brushed-steel cap is yours to keep. The gel arrives monthly,
-              so the ritual never runs dry. Refill, don&apos;t replace.
-            </p>
-            <ul className="feature__list">
+            <ul className="feature__list" style={{ marginTop: 24 }}>
               <li>A fresh gel refill every month, delivered</li>
               <li>Keep the steel cap &mdash; only the gel is renewed</li>
               <li>Pause, skip or cancel anytime</li>
@@ -333,8 +314,8 @@ export default function HomePage() {
               .
             </p>
             <p className="measure" style={{ marginTop: 32 }} data-reveal>
-              Kintsugi treats the repair as part of the object&apos;s history &mdash;
-              more valuable, not less. That is the whole idea behind Proof.
+              Kintsugi makes the repair more valuable, not less. The whole idea
+              behind Proof.
             </p>
             <div data-reveal>
               <Link href="/story" className="tlink klink" style={{ marginTop: 32 }}>
@@ -381,8 +362,7 @@ export default function HomePage() {
             <h2 className="d2">Tell us your scar&apos;s story.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
               Each season, one real scar becomes the gold line across this site.
-              Send us yours &mdash; how it happened, what it changed. We keep them
-              in the Proof 17 book.
+              Send us yours.
             </p>
             <div className="tellus__reward">
               <span className="tellus__code">Code Proof17</span>
@@ -407,14 +387,9 @@ export default function HomePage() {
           <div className="appsoon__copy" data-reveal>
             <span className="eyebrow eyebrow--gold">Phase 02 · The app</span>
             <h2 className="d2">Soon, in your pocket.</h2>
-            <p className="measure" style={{ marginTop: 24 }}>
-              The whole ritual carried with you &mdash; private when you want it,
-              shared when you&apos;re ready.
-            </p>
-            <ul className="applist">
+            <ul className="applist" style={{ marginTop: 24 }}>
               <li>Follow your scar, week by week</li>
               <li>Reorder refills in a tap</li>
-              <li>Share your story, read others</li>
               <li>Gentle reminders for wear time</li>
             </ul>
             <div className="appsoon__cta">

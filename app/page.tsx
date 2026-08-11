@@ -48,8 +48,8 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="lead hero__lead enter" style={D(0.44)}>
-              Medical-grade silicone that improves the appearance of scars,
-              texture, color, relief. Nothing is asked to disappear.
+              Medical-grade silicone that improves the appearance of scars &mdash;
+              texture, color, relief.
             </p>
             <div className="hero__cta enter" style={D(0.54)}>
               <Link href="/shop/protocol" className="btn btn--primary">
@@ -197,10 +197,9 @@ export default function HomePage() {
                 Precision healing. Verified by protocol.
               </h2>
               <p className="measure" style={{ marginTop: 28 }}>
-                Silicone sheeting has been used on scars since 1983 and appears
-                in international scar-management recommendations as a first-line
-                option. No miracle vocabulary, a mechanism: occlusion and
-                hydration, so the skin can regulate itself.
+                Silicone sheeting has treated scars since 1983, a first-line
+                option in international guidelines. The mechanism: occlusion and
+                hydration, so the skin regulates itself.
               </p>
               <p className="exergue" style={{ marginTop: 40 }}>
                 We don&apos;t say heal. We don&apos;t say disappear. We say what
@@ -232,19 +231,19 @@ export default function HomePage() {
                 {
                   no: "R.01",
                   name: "Clean",
-                  text: "Wash the area with mild soap. Pat dry. The patch only commits to honest skin.",
+                  text: "Wash with mild soap, pat dry. The patch only holds on clean skin.",
                   image: productImage("ritual-clean"),
                 },
                 {
                   no: "R.02",
                   name: "Apply",
-                  text: "Place the patch over the scar. Press for ten seconds. Cut it to size if the story is shorter.",
+                  text: "Place it over the scar, press ten seconds. Cut to size if the scar is shorter.",
                   image: productImage("ritual-apply"),
                 },
                 {
                   no: "R.03",
                   name: "Wear",
-                  text: "12 to 23 hours a day. Rinse the patch at night, let it air-dry, start again, for up to 14 days per patch.",
+                  text: "12 to 23 hours a day. Rinse at night, air-dry, reapply — up to 14 days per patch.",
                   image: productImage("ritual-wear"),
                 },
               ]}
@@ -280,15 +279,13 @@ export default function HomePage() {
             <span className="eyebrow">The monthly refill</span>
             <h2 className="d3">Made to be kept.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
-              The brushed-steel cap, embossed with the P, is the object, yours
-              to keep. The gel arrives on subscription, a fresh refill every
-              month, so the ritual never runs dry. Refill, don&apos;t replace.
+              The brushed-steel cap is yours to keep. The gel arrives monthly,
+              so the ritual never runs dry. Refill, don&apos;t replace.
             </p>
             <ul className="feature__list">
-              <li>A fresh gel refill every month, delivered to your door</li>
-              <li>Keep the steel cap for good, only the gel is renewed</li>
-              <li>One object kept, one package spared, less waste by design</li>
-              <li>Pause, skip or cancel anytime, always on your terms</li>
+              <li>A fresh gel refill every month, delivered</li>
+              <li>Keep the steel cap &mdash; only the gel is renewed</li>
+              <li>Pause, skip or cancel anytime</li>
             </ul>
             <div className="feature__cta">
               <Link href="/shop/the-gel" className="btn btn--primary">
@@ -335,9 +332,8 @@ export default function HomePage() {
               .
             </p>
             <p className="measure" style={{ marginTop: 32 }} data-reveal>
-              Kintsugi treats the repair as part of the object&apos;s history,
-              more valuable, not less. That is the entire idea behind Proof.
-              Honor it. Don&apos;t erase it.
+              Kintsugi treats the repair as part of the object&apos;s history &mdash;
+              more valuable, not less. That is the whole idea behind Proof.
             </p>
             <div data-reveal>
               <Link href="/story" className="tlink klink" style={{ marginTop: 32 }}>
@@ -383,9 +379,9 @@ export default function HomePage() {
             <span className="eyebrow eyebrow--gold">Season 01 · The line</span>
             <h2 className="d2">Tell us your scar&apos;s story.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
-              Each season, one real scar becomes the gold line that runs across
-              this whole site. Send us yours, how it happened, what it changed,
-              what it taught you. We keep them in the Proof 17 book.
+              Each season, one real scar becomes the gold line across this site.
+              Send us yours &mdash; how it happened, what it changed. We keep them
+              in the Proof 17 book.
             </p>
             <div className="tellus__reward">
               <span className="tellus__code">Code Proof17</span>
@@ -420,23 +416,14 @@ export default function HomePage() {
             <span className="eyebrow eyebrow--gold">Phase 02 · The app</span>
             <h2 className="d2">Soon, in your pocket.</h2>
             <p className="measure" style={{ marginTop: 24 }}>
-              An app is on the way. The whole ritual carried with you, private
-              when you want it, shared when you are ready.
+              The whole ritual carried with you &mdash; private when you want it,
+              shared when you&apos;re ready.
             </p>
             <ul className="applist">
-              <li>
-                Follow your scar week by week, a quiet timeline of how it
-                softens.
-              </li>
-              <li>
-                Reorder your refills in a tap, with member drops and the
-                occasional promo.
-              </li>
-              <li>
-                Share your story, and read others, in a community that keeps its
-                marks.
-              </li>
-              <li>Gentle reminders for wear time, so the ritual holds.</li>
+              <li>Follow your scar, week by week</li>
+              <li>Reorder refills in a tap</li>
+              <li>Share your story, read others</li>
+              <li>Gentle reminders for wear time</li>
             </ul>
             <div className="appsoon__cta">
               <span className="appsoon__tag">Coming 2026 · iOS &amp; Android</span>

@@ -83,16 +83,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* RÉASSURANCE — langage labo */}
-      <div className="container">
-        <div className="assure" data-reveal>
-          <span>30-day protocol guarantee</span>
-          <span>Free US shipping</span>
-          <span>Dermatologist reviewed</span>
-          <span>{`Batch Nº 017 / Est. 2026`}</span>
-        </div>
-      </div>
-
       {/* TROIS PORTES, apparitions / science / histoire */}
       <section className="section trio-sec">
         <div className="container">

@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import PressMarquee from "@/components/PressMarquee";
 import RitualSteps from "@/components/RitualSteps";
 import Mechanism from "@/components/Mechanism";
+import StoryDialog from "@/components/StoryDialog";
 import { products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
@@ -390,16 +391,7 @@ export default function HomePage() {
               </span>
             </div>
             <div className="tellus__cta">
-              <a
-                className="btn btn--primary"
-                href={`mailto:contactus@trackk.fr?subject=${encodeURIComponent(
-                  "PROOF, the story of my scar",
-                )}&body=${encodeURIComponent(
-                  "Here is the story of my scar:\n\nThe how, the when, what it changed.\n",
-                )}`}
-              >
-                Share your story
-              </a>
+              <StoryDialog />
             </div>
           </div>
         </div>

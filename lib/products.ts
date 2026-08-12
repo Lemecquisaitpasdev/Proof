@@ -363,9 +363,9 @@ export const products: Product[] = [
       label: "Run the protocol to soften:",
       words: ["Texture", "Color", "Relief"],
     },
-    /* Prix de l'ensemble : à arbitrer. 3 patchs (69) + gel (39) = 108 pris
-       séparément ; la valeur ci-dessous est un point de départ. */
-    price: 95,
+    /* Prix de l'ensemble : 3 patchs (69) + gel (85) = 154 pris séparément ;
+       130 conserve une remise d'environ 15 %. */
+    price: 130,
     plateLabel: "Patch + gel",
     chapter: "PR-03",
     chapterName: "The Protocol",

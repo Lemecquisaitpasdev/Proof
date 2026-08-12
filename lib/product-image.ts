@@ -17,7 +17,7 @@ const ALIASES: Record<string, string[]> = {
      existe, sinon la plate CSS (pas d'alias → null). */
   "the-patch": ["the-patch", "patchproof"],
   protocol: ["protocol"],
-  "the-gel": ["the-gel", "gelensiliconesurfondblanc", "texturegelsilicone"],
+  "the-gel": ["the-gel", "mannequinmetisse", "gelensiliconesurfondblanc", "texturegelsilicone"],
 
   /* Cards shop, état HOVER : l'objet photographié au studio. */
   "alt-the-patch": ["alt-the-patch", "patchproofgris"],
@@ -34,7 +34,7 @@ const ALIASES: Record<string, string[]> = {
   "the-gel-3": ["the-gel-3", "photogelmarketing", "gelsilicone"],
   /* La bille de gel tenue à la pince chirurgicale, plan macro éditorial. */
   "the-gel-4": ["the-gel-4", "moleculedegelcapturer"],
-  "the-gel-5": ["the-gel-5", "mannequinmetisse"],
+  "the-gel-5": ["the-gel-5", "gelensiliconesurfondblanc"],
   "the-gel-6": ["the-gel-6", "applicationdegelmen"],
 
   /* Héros de la home, portrait lumineux, cicatrice visible, assumée. */

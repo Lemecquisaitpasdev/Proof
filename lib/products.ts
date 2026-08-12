@@ -282,7 +282,7 @@ export const products: Product[] = [
         { image: "routine-summer", caption: "The beach bag" },
       ],
     },
-    price: 39,
+    price: 85,
     plateLabel: "30 ml",
     chapter: "PR-02",
     chapterName: "The Gesture",

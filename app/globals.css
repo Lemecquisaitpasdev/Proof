@@ -2742,6 +2742,23 @@ html.js .ritual--live .rstep {
   object-fit: cover;
 }
 
+/* Crossfade en boucle : la blouse brodée (.tech__over) se fond par-dessus la
+   structure en couches toutes les ~5 s, puis se retire. */
+.tech__over {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out);
+}
+
+.tech__over.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech__over {
+    transition: none;
+  }
+}
+
 .tech__head {
   margin-top: 14px;
 }

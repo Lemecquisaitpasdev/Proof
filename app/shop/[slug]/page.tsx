@@ -10,6 +10,7 @@ import PdpBuyBox from "@/components/PdpBuyBox";
 import PdpResults from "@/components/PdpResults";
 import PdpReviews from "@/components/PdpReviews";
 import PdpRoutine from "@/components/PdpRoutine";
+import TechReveal from "@/components/TechReveal";
 import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 import { getReviews } from "@/lib/reviews";
@@ -66,8 +67,10 @@ export default async function ProductPage({ params }: Props) {
   const panelB = product.targets ? productImage(product.targets.image) : null;
   const panelC = product.results ? productImage(product.results.image) : null;
 
-  /* visuel de la technologie propriétaire (Deep Matrix) */
+  /* visuels de la technologie propriétaire (Deep Matrix) : la base résolue par
+     slot, plus le visuel de crossfade optionnel (chemin public direct) */
   const techImage = product.tech ? productImage(product.tech.image) : null;
+  const techImageAlt = product.tech?.imageAlt ?? null;
 
   /* « Dans la vraie vie » — clichés communauté, uniquement ceux résolus */
   const routineShots = (product.routine?.shots ?? [])
@@ -259,7 +262,13 @@ export default async function ProductPage({ params }: Props) {
         <section className="section tech" aria-label="Deep Matrix technology">
           <div className="container tech__grid">
             <figure className="tech__media" data-reveal>
-              {techImage ? (
+              {techImage && techImageAlt ? (
+                <TechReveal
+                  base={techImage}
+                  baseAlt="Deep Matrix, medical-grade silicone structured in stacked layers"
+                  overlay={techImageAlt}
+                />
+              ) : techImage ? (
                 <Image
                   src={techImage}
                   alt="Deep Matrix, medical-grade silicone structured in stacked layers"

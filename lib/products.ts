@@ -64,7 +64,11 @@ export type Product = {
   };
   /* Technologie propriétaire, expliquée en regard d'un visuel (Deep Matrix) */
   tech?: {
+    /* Visuel de base (slot résolu par productImage) : la structure en couches */
     image: string;
+    /* Visuel secondaire, chemin public direct : le crossfade en boucle vient
+       le révéler par-dessus la base toutes les ~5 s (R.01 → optionnel) */
+    imageAlt?: string;
     label: string;
     headline: string;
     body: string[];
@@ -292,6 +296,7 @@ export const products: Product[] = [
     },
     tech: {
       image: "deep-matrix",
+      imageAlt: "/images/blouseavecproofbroder.png",
       label: "Proprietary technology / Engineered at Proof",
       headline: "Deep Matrix™.",
       body: [

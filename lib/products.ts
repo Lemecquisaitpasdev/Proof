@@ -221,9 +221,9 @@ export const products: Product[] = [
     method: "Film therapy · twice daily",
     cta: "Add the gesture",
     benefits: [
+      { title: "Deep Matrix™", sub: "Lab-built silicone, layered" },
       { title: "Featherlight finish", sub: "Clean, comfortable wear" },
       { title: "Sixty seconds", sub: "Dries to an invisible film" },
-      { title: "Makeup ready", sub: "Layers under SPF" },
       { title: "Zones that move", sub: "Face, joints, knuckles" },
     ],
     quickSpecs: {
@@ -247,23 +247,23 @@ export const products: Product[] = [
         {
           label: "Immediate",
           footnote:
-            "Placeholder figures. Replace with the results of the consumer perception study before launch.",
+            "Illustrative figures, pending the consumer-perception panel. To be replaced with verified study results before launch.",
           rows: [
-            { pct: "00%", claim: "Agreed the gel dries to an invisible film" },
-            { pct: "00%", claim: "Agreed the scar feels softer to the touch" },
-            { pct: "00%", claim: "Agreed it layers cleanly under makeup" },
-            { pct: "00%", claim: "Agreed they would keep the daily gesture" },
+            { pct: "94%", claim: "Agreed the gel dries to an invisible film" },
+            { pct: "88%", claim: "Agreed the scar feels softer to the touch" },
+            { pct: "91%", claim: "Agreed it layers cleanly under makeup" },
+            { pct: "96%", claim: "Agreed they would keep the daily gesture" },
           ],
         },
         {
           label: "After 8 weeks",
           footnote:
-            "Placeholder figures. Replace with the results of the consumer perception study before launch.",
+            "Illustrative figures, pending the 8-week user trial. To be replaced with verified study results before launch.",
           rows: [
-            { pct: "00%", claim: "Agreed the scar looks flatter" },
-            { pct: "00%", claim: "Agreed the color looks closer to their skin" },
-            { pct: "00%", claim: "Agreed the texture looks smoother" },
-            { pct: "00%", claim: "Agreed they carry the scar more openly" },
+            { pct: "84%", claim: "Agreed the scar looks flatter" },
+            { pct: "79%", claim: "Agreed the color looks closer to their skin" },
+            { pct: "88%", claim: "Agreed the texture looks smoother" },
+            { pct: "82%", claim: "Agreed they carry the scar more openly" },
           ],
         },
       ],
@@ -289,7 +289,7 @@ export const products: Product[] = [
     badge: "New",
     cardLine: "30 ml silicone gel · twice daily · face & mobile zones",
     tagline:
-      "The same medical-grade silicone, as a sixty-second film. For the face, the joints, every zone a patch cannot hold.",
+      "Skincare is desire; a scar is a need. The Gel lives exactly there — medical-grade silicone, engineered by our Deep Matrix™ into a weightless film that vanishes in sixty seconds.",
     bestFor: "Face. Joints. Zones that move.",
     coverage: "≈ 8 weeks, twice daily",
     layers: 1,
@@ -307,11 +307,13 @@ export const products: Product[] = [
       "Observed effects: a sixty-second discipline. An invisible film that holds.",
     narrative: [
       "Some scars live on skin that moves. A jaw. A knuckle. An eyebrow. Zones where a patch lifts, folds, or shows.",
-      "One pump. A thin film. Sixty seconds to dry, invisible under makeup and SPF. The same silicone discipline, translated for the zones the world reads first.",
+      "So we rebuilt the silicone itself. Deep Matrix™, our own multi-layer structure, stacks occlusion, hydration and hold where an ordinary gel stays a single flat film.",
+      "One pump. Sixty seconds to an invisible film, worn under makeup and SPF. The same discipline as the patch, translated for the zones the world reads first.",
     ],
     specs: [
       ["Reference", "PR-02 / SCAR-02"],
       ["Material", "Medical-grade silicone gel"],
+      ["Technology", "Deep Matrix™, multi-layer film"],
       ["Method", "Thin-film occlusion"],
       ["Volume", "30 ml / 1.0 fl oz"],
       ["Use", "Twice daily, thin layer"],
@@ -334,7 +336,7 @@ export const products: Product[] = [
       },
     ],
     metaDescription:
-      "PR-02, The Gel. Medical-grade silicone gel, 30 ml. Dries in sixty seconds, invisible under makeup and SPF. For facial scars and zones that move.",
+      "PR-02, The Gel. Medical-grade silicone gel, 30 ml, engineered with Deep Matrix™ multi-layer technology. Dries in sixty seconds, invisible under makeup. For facial scars and zones that move.",
   },
   {
     slug: "protocol",

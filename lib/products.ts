@@ -62,6 +62,14 @@ export type Product = {
     lead: string;
     shots: { image: string; caption: string }[];
   };
+  /* Technologie propriétaire, expliquée en regard d'un visuel (Deep Matrix) */
+  tech?: {
+    image: string;
+    label: string;
+    headline: string;
+    body: string[];
+    award?: string;
+  };
   /* Prix d'entrée : celui de la première variante si le produit se décline */
   price: number;
   /* Mention portée par le packshot CSS quand aucune photo n'existe */
@@ -281,6 +289,16 @@ export const products: Product[] = [
         { image: "routine-pouch", caption: "The pouch" },
         { image: "routine-summer", caption: "The beach bag" },
       ],
+    },
+    tech: {
+      image: "deep-matrix",
+      label: "Proprietary technology / Engineered at Proof",
+      headline: "Deep Matrix™.",
+      body: [
+        "We separate the silicone at the cellular level. Freed from one another, each cell is tuned on its own — the number of layers, their composition, their size, all set deliberately instead of poured as a single flat film.",
+        "Built that way, the film maps to the scar's relief and settles closer to the skin than an ordinary silicone gel, layer answering layer. This is Deep Matrix™, developed in-house at Proof.",
+      ],
+      award: "Recognized in independent lab-tech evaluations",
     },
     price: 85,
     plateLabel: "30 ml",

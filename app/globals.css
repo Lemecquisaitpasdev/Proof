@@ -2718,6 +2718,70 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* ============ 17b-ter — DEEP MATRIX (technologie, fiche gel) ============ */
+/* Section sombre : le visuel des couches à gauche, l'explication à droite. */
+
+.tech__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 84px);
+  align-items: center;
+}
+
+.tech__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.tech__media img {
+  object-fit: cover;
+}
+
+.tech__head {
+  margin-top: 14px;
+}
+
+.tech__copy .exergue {
+  margin-top: 26px;
+}
+
+.tech__copy .measure {
+  margin-top: 20px;
+}
+
+.tech__award {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.tech__award svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--kintsugi);
+}
+
+@media (max-width: 900px) {
+  .tech__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 6vw, 40px);
+  }
+}
+
 /* ============ 17c — PANNEAUX PLEIN ÉCRAN (fiche produit) ============ */
 /* Deux moitiés, bord à bord : un panneau clair qui parle, une image qui
    montre. L'axe s'inverse d'un panneau à l'autre (--flip). */

@@ -66,6 +66,9 @@ export default async function ProductPage({ params }: Props) {
   const panelB = product.targets ? productImage(product.targets.image) : null;
   const panelC = product.results ? productImage(product.results.image) : null;
 
+  /* visuel de la technologie propriétaire (Deep Matrix) */
+  const techImage = product.tech ? productImage(product.tech.image) : null;
+
   /* « Dans la vraie vie » — clichés communauté, uniquement ceux résolus */
   const routineShots = (product.routine?.shots ?? [])
     .map((s) => ({ caption: s.caption, src: productImage(s.image) }))
@@ -246,6 +249,43 @@ export default async function ProductPage({ params }: Props) {
               <span>{product.method}</span>
               <span>Ref: {product.code}</span>
               <span>[ {BATCH} ]</span>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* DEEP MATRIX — technologie propriétaire, visuel + explication */}
+      {product.tech ? (
+        <section className="section tech" aria-label="Deep Matrix technology">
+          <div className="container tech__grid">
+            <figure className="tech__media" data-reveal>
+              {techImage ? (
+                <Image
+                  src={techImage}
+                  alt="Deep Matrix, medical-grade silicone structured in stacked layers"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 46vw"
+                  style={{ objectFit: "cover" }}
+                />
+              ) : null}
+            </figure>
+            <div className="tech__copy" data-reveal>
+              <span className="mlabel">{product.tech.label}</span>
+              <h2 className="d3 tech__head">{product.tech.headline}</h2>
+              {product.tech.body.map((par) => (
+                <p key={par} className="measure">
+                  {par}
+                </p>
+              ))}
+              {product.tech.award ? (
+                <div className="tech__award">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                    <circle cx="12" cy="9" r="5.5" />
+                    <path d="M9 13.6 7.4 21l4.6-2.7L16.6 21 15 13.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>{product.tech.award}</span>
+                </div>
+              ) : null}
             </div>
           </div>
         </section>

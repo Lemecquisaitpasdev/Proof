@@ -59,6 +59,9 @@ const ALIASES: Record<string, string[]> = {
   /* Macro texture silicone */
   texture: ["texture", "texturegelsilicone"],
 
+  /* Deep Matrix — visuel de la structure en couches (lignes empilées) */
+  "deep-matrix": ["deep-matrix", "deepmatrix", "technologie3couchescellulaire"],
+
   /* « Dans la vraie vie » — le gel dans les routines de la communauté */
   "routine-shelf": ["routine-shelf", "routineskincare"],
   "routine-vanity": ["routine-vanity", "routinegirl"],

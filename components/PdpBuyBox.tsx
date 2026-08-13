@@ -111,7 +111,33 @@ export default function PdpBuyBox({
       <p className="pdp__pay">
         or 4 interest-free payments of <b className="num">{installment}</b>
       </p>
-      <p className="pdp__micro">Ships in 48 h, 30-day returns, worldwide</p>
+
+      <ul className="assure-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path
+              d="M3 6.5h10.5v8H3zM13.5 9h3.6L21 12v2.5h-6.9M7 18a1.6 1.6 0 100-3.2A1.6 1.6 0 007 18zM17.4 18a1.6 1.6 0 100-3.2 1.6 1.6 0 000 3.2z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Free worldwide shipping, ships in 48 h
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="M4 9h11a5 5 0 010 10H9M4 9l4-4M4 9l4 4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          30-day returns, no interrogation
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <rect x="3" y="5.5" width="18" height="13" rx="2" />
+            <path d="M3 10h18" strokeLinecap="round" />
+          </svg>
+          Pay in 4, interest-free
+        </li>
+      </ul>
+
       <div ref={sentinel} aria-hidden="true" />
 
       <div className="acc">

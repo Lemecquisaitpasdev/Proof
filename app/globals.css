@@ -3274,7 +3274,7 @@ html.js .ritual--live .rstep {
   display: grid;
   /* galerie volontairement resserrée : image produit plus petite, la buy-box
      garde une largeur confortable, alignées à gauche comme le reste du site */
-  grid-template-columns: minmax(0, 440px) minmax(0, 560px);
+  grid-template-columns: minmax(0, 480px) minmax(0, 540px);
   gap: clamp(32px, 4.5vw, 72px);
   align-items: start;
 }
@@ -3285,9 +3285,12 @@ html.js .ritual--live .rstep {
   }
 }
 
-/* galerie façon Rhode : une grande image + un rail vertical de vignettes */
+/* galerie : une grande image + un rail HORIZONTAL de vignettes en dessous */
 .pdpg {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .pdpg__stage {
@@ -3315,32 +3318,26 @@ html.js .ritual--live .rstep {
   object-fit: cover;
 }
 
-/* rail vertical, vignettes en surimpression à gauche */
+/* rail horizontal de vignettes, sous l'image (façon La Prairie) */
 .pdpg__rail {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 2;
+  flex-flow: row wrap;
+  gap: 8px;
 }
 
 .pdpg__thumb {
   position: relative;
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   padding: 0;
-  border: 1px solid var(--hairline-strong);
+  border: 1px solid var(--hairline);
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--surface);
   cursor: pointer;
-  opacity: 0.72;
-  box-shadow: 0 6px 18px rgba(26, 24, 21, 0.12);
-  transition: opacity 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out),
-    border-color 0.25s var(--ease-out);
+  opacity: 0.6;
+  transition: opacity 0.25s var(--ease-out), border-color 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out);
 }
 
 .pdpg__thumb img {
@@ -3353,19 +3350,14 @@ html.js .ritual--live .rstep {
 
 .pdpg__thumb.is-active {
   opacity: 1;
-  border-color: var(--contrast);
-  box-shadow: 0 0 0 2px var(--contrast), 0 6px 18px rgba(26, 24, 21, 0.16);
+  border-color: var(--kintsugi);
+  box-shadow: 0 0 0 1.5px var(--kintsugi);
 }
 
 @media (max-width: 560px) {
-  .pdpg__rail {
-    left: 10px;
-    gap: 8px;
-  }
-
   .pdpg__thumb {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
   }
 }
 
@@ -3560,6 +3552,32 @@ html.js .ritual--live .rstep {
 .pdp__pay b {
   color: var(--contrast);
   font-weight: 600;
+}
+
+/* liste d'assurances à picto (façon La Prairie), sous le paiement */
+.assure-list {
+  list-style: none;
+  margin: 26px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 13px;
+}
+
+.assure-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: var(--dim);
+}
+
+.assure-list svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--kintsugi);
 }
 
 /* Accordéons — filets 1px clay */

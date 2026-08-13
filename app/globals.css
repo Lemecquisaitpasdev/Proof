@@ -2799,6 +2799,156 @@ html.js .ritual--live .rstep {
   }
 }
 
+/* ============ 17b-quater — HONORE TON HISTOIRE (spread éditorial) ============ */
+/* Mur de galerie : le cliché couleur (hôtel) en pôle droit, les deux tirages
+   noir & blanc à cadre blanc posés à gauche, légèrement inclinés. */
+
+.honor__scatter {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 3.4vw, 72px);
+}
+
+.honor__col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gauche : l'intro puis le triptyque, calé juste dessous. Droite : le cliché
+   couleur en tête, le diptyque plus bas et resserré. Colonnes indépendantes →
+   le triptyque remonte sous le titre au lieu d'attendre le grand cliché. */
+.honor__col--lead {
+  flex: 0 0 40%;
+  gap: clamp(40px, 5vw, 92px);
+}
+
+.honor__col--main {
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: clamp(56px, 8vw, 132px);
+}
+
+.honor__head {
+  margin-top: 16px;
+}
+
+.honor__lead {
+  margin-top: 22px;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.5;
+  color: var(--dim);
+}
+
+.honor__fig {
+  margin: 0;
+  transition: transform 0.6s var(--ease-out);
+  transform-origin: center;
+}
+
+.honor__fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: var(--shadow-lift);
+}
+
+.honor__fig figcaption {
+  margin-top: 15px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* Inclinaisons légères, façon tirages posés puis épinglés au mur. Le diptyque
+   est resserré et poussé à droite pour décaler la cascade. */
+.honor__fig--b {
+  transform: rotate(-2.1deg);
+}
+
+.honor__fig--c {
+  max-width: 70%;
+  margin-left: auto;
+  transform: rotate(2.3deg);
+}
+
+.honor__fig--a figcaption,
+.honor__fig--c figcaption {
+  text-align: right;
+}
+
+/* Citation qui ancre l'espace en bas à gauche et signe la section (le nom de
+   la marque, Proof, y répond en écho). */
+.honor__quote {
+  margin-top: clamp(52px, 8vw, 128px);
+  max-width: 20rem;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 108%;
+  font-size: clamp(24px, 2.5vw, 36px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--contrast);
+  text-wrap: balance;
+}
+
+/* Survol : le tirage se redresse et se soulève. */
+.honor__fig--b:hover,
+.honor__fig--c:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+@media (max-width: 900px) {
+  .honor__scatter {
+    flex-direction: column;
+    gap: clamp(34px, 8vw, 54px);
+  }
+
+  /* On « déplie » les colonnes (display:contents) pour re-séquencer les
+     tirages : le cliché couleur passe juste après le titre. */
+  .honor__col {
+    display: contents;
+  }
+
+  .honor__intro {
+    order: 0;
+  }
+  .honor__fig--a {
+    order: 1;
+  }
+  .honor__fig--b {
+    order: 2;
+  }
+  .honor__fig--c {
+    order: 3;
+  }
+  .honor__quote {
+    order: 4;
+    margin-top: 0;
+    max-width: 28rem;
+  }
+
+  .honor__fig--a,
+  .honor__fig--b,
+  .honor__fig--c {
+    max-width: 34rem;
+    margin: 0;
+    transform: none;
+  }
+
+  .honor__fig--a figcaption,
+  .honor__fig--c figcaption {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .honor__fig {
+    transition: none;
+  }
+}
+
 /* ============ 17c — PANNEAUX PLEIN ÉCRAN (fiche produit) ============ */
 /* Deux moitiés, bord à bord : un panneau clair qui parle, une image qui
    montre. L'axe s'inverse d'un panneau à l'autre (--flip). */

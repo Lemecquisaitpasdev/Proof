@@ -24,6 +24,30 @@ const PAIRS: Record<string, string[]> = {
   protocol: ["the-patch", "the-gel"],
 };
 
+/* Un tirage du spread « Honor your story » : image + légende mono. */
+type HonorShot = {
+  src: string;
+  alt: string;
+  caption: string;
+  w: number;
+  h: number;
+};
+
+function HonorFigure({ shot, variant }: { shot: HonorShot; variant: string }) {
+  return (
+    <figure className={`honor__fig honor__fig--${variant}`} data-reveal>
+      <Image
+        src={shot.src}
+        alt={shot.alt}
+        width={shot.w}
+        height={shot.h}
+        sizes="(max-width: 900px) 90vw, 42vw"
+      />
+      <figcaption>{shot.caption}</figcaption>
+    </figure>
+  );
+}
+
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
 }
@@ -381,6 +405,37 @@ export default async function ProductPage({ params }: Props) {
               />
             </div>
           ) : null}
+        </section>
+      ) : null}
+
+      {/* HONORE TON HISTOIRE — spread éditorial, la cicatrice assumée */}
+      {product.honor ? (
+        <section className="section honor" aria-label="Honor your story">
+          <div className="container">
+            <div className="honor__scatter">
+              <div className="honor__col honor__col--lead">
+                <header className="honor__intro" data-reveal>
+                  <span className="mlabel mlabel--gold">{product.honor.label}</span>
+                  <h2 className="d2 honor__head">{product.honor.headline}</h2>
+                  <p className="honor__lead">{product.honor.lead}</p>
+                </header>
+                {product.honor.shots[1] ? (
+                  <HonorFigure shot={product.honor.shots[1]} variant="b" />
+                ) : null}
+                <p className="honor__quote" data-reveal>
+                  A scar is proof you healed.
+                </p>
+              </div>
+              <div className="honor__col honor__col--main">
+                {product.honor.shots[0] ? (
+                  <HonorFigure shot={product.honor.shots[0]} variant="a" />
+                ) : null}
+                {product.honor.shots[2] ? (
+                  <HonorFigure shot={product.honor.shots[2]} variant="c" />
+                ) : null}
+              </div>
+            </div>
+          </div>
         </section>
       ) : null}
 

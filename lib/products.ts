@@ -74,6 +74,15 @@ export type Product = {
     body: string[];
     award?: string;
   };
+  /* « Honor your story » — spread éditorial de portraits (cicatrice assumée).
+     Chaque cliché porte ses dimensions intrinsèques → pas de saut de mise en
+     page, et une légende mono. Chemins publics directs. (R.01 → optionnel) */
+  honor?: {
+    label: string;
+    headline: string;
+    lead: string;
+    shots: { src: string; alt: string; caption: string; w: number; h: number }[];
+  };
   /* Prix d'entrée : celui de la première variante si le produit se décline */
   price: number;
   /* Mention portée par le packshot CSS quand aucune photo n'existe */
@@ -304,6 +313,34 @@ export const products: Product[] = [
         "Built that way, the film maps to the scar's relief and settles closer to the skin than an ordinary silicone gel, layer answering layer. This is Deep Matrix™, developed in-house at Proof.",
       ],
       award: "Recognized in independent lab-tech evaluations",
+    },
+    honor: {
+      label: "Portraits — worn, not hidden",
+      headline: "Honor your story.",
+      lead: "Every scar closes one story and opens another — a birth, a repair, a night that left its mark. Proof was never built to erase them; it helps the skin settle and soften, so what you carry stays yours to show, on your own terms.",
+      shots: [
+        {
+          src: "/images/hotelfemmeproof.png",
+          alt: "A woman resting on the floor of a hotel suite, a fine scar along her thigh, the Proof bottle beside her.",
+          caption: "On her own terms",
+          w: 1123,
+          h: 1401,
+        },
+        {
+          src: "/images/avantapresnoiretblanc.png",
+          alt: "Black-and-white triptych of a woman's face in profile, a small scar on the cheek.",
+          caption: "Softer, frame by frame",
+          w: 1024,
+          h: 1536,
+        },
+        {
+          src: "/images/cicatricecesarienne.png",
+          alt: "Black-and-white diptych of a cesarean scar, a baby's foot resting against the belly.",
+          caption: "The line, and the life after",
+          w: 895,
+          h: 1280,
+        },
+      ],
     },
     price: 85,
     plateLabel: "30 ml",

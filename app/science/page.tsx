@@ -41,6 +41,33 @@ export default function SciencePage() {
         </div>
       </section>
 
+      {/* PRECISION UNDER EXAMINATION — plaque d'ouverture du dossier */}
+      <section className="section">
+        <div className="container science__grid">
+          <figure className="imgframe" style={{ aspectRatio: "1 / 1" }} data-reveal>
+            <Image
+              src="/images/laboproof.png"
+              alt="A researcher in silhouette examining a slide at a microscope, under the line Precision Under Examination"
+              fill
+              sizes="(max-width: 900px) 100vw, 46vw"
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          </figure>
+          <div data-reveal>
+            <span className="eyebrow eyebrow--gold">In the lab</span>
+            <h2 className="d3">Examined, not asserted.</h2>
+            <p className="measure" style={{ marginTop: 28 }}>
+              Everything that follows &mdash; the material, the mechanism, the
+              evidence &mdash; earns its place by being looked at, not by being
+              claimed. Proof holds its silicone to the medical-grade standard and
+              keeps every line on this page inside what the clinic has actually
+              observed.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* LA MATIÈRE, EXPOSÉE, macro du gel en installation */}
       <section className="section" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <div className="container">

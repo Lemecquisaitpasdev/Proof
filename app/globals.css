@@ -1894,7 +1894,7 @@ html.js .ritual--live .rstep {
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
   gap: clamp(40px, 6vw, 112px);
-  align-items: start;
+  align-items: center;
 }
 
 @media (max-width: 900px) {
@@ -3358,19 +3358,6 @@ html.js .ritual--live .rstep {
 /* ============ 17e — APPOINTS IMAGE (Science, Story, Brand) ============ */
 
 /* structure en coupe, sous le schéma animé du mécanisme */
-.sci-layers {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  margin: var(--gut) 0 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  background: var(--base);
-}
-
-.sci-layers img {
-  object-fit: cover;
-}
-
 /* motif cellulaire, bande claire pleine largeur */
 .patternband {
   margin: 0;

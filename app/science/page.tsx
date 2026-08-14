@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function SciencePage() {
   const material = productImage("science-material");
-  const mechanism = productImage("science-mechanism");
+  const deepMatrix = productImage("deep-matrix");
   const pattern = productImage("science-pattern");
 
   return (
@@ -123,18 +123,47 @@ export default function SciencePage() {
             </div>
             <div data-reveal>
               <Mechanism />
-              {mechanism ? (
-                <figure className="sci-layers">
-                  <Image
-                    src={mechanism}
-                    alt="The three-layer structure of the silicone film, in section"
-                    fill
-                    sizes="(max-width: 900px) 100vw, 44vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </figure>
-              ) : null}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DEEP MATRIX, la technologie propriétaire de Proof */}
+      <section className="section">
+        <div className="container split">
+          <div data-reveal>
+            <span className="eyebrow eyebrow--gold">03 · Deep Matrix</span>
+            <h2 className="d3">Past the flat film.</h2>
+          </div>
+          <div data-reveal>
+            <p className="measure">
+              A standard silicone sheet is poured as one uniform film. Deep
+              Matrix&trade; is our own method: the silicone is separated at the
+              cellular level and rebuilt in deliberate layers &mdash; their
+              number, composition, and size set on purpose, not left to a single
+              flat cast.
+            </p>
+            <p className="measure">
+              Structured that way, the film follows the raised relief of a scar
+              and holds closer to the skin, so the occlusion is more complete
+              where it counts. It is the same mechanism as any medical silicone,
+              occlusion and hydration, engineered for better contact. It adds no
+              new medical claim.
+            </p>
+            {deepMatrix ? (
+              <figure
+                className="imgframe"
+                style={{ marginTop: 32, aspectRatio: "1 / 1" }}
+              >
+                <Image
+                  src={deepMatrix}
+                  alt="Deep Matrix, medical silicone separated and rebuilt in deliberate stacked layers"
+                  fill
+                  sizes="(max-width: 860px) 100vw, 58vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </figure>
+            ) : null}
           </div>
         </div>
       </section>
@@ -163,7 +192,7 @@ export default function SciencePage() {
       <section className="section">
         <div className="container split">
           <div data-reveal>
-            <span className="eyebrow eyebrow--gold">03 · The evidence</span>
+            <span className="eyebrow eyebrow--gold">04 · The evidence</span>
             <h2 className="d3">On the record.</h2>
           </div>
           <div data-reveal>
@@ -199,7 +228,7 @@ export default function SciencePage() {
         <div className="container split">
           <div data-reveal>
             <span className="eyebrow eyebrow--gold">
-              04 · What we refuse to say
+              05 · What we refuse to say
             </span>
             <h2 className="d3">The honest column.</h2>
           </div>

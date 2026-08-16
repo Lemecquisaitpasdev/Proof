@@ -1,0 +1,59 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Proof",
+    "theme_version": "1.0.0",
+    "theme_author": "Proof",
+    "theme_documentation_url": "https://github.com/Lemecquisaitpasdev/Proof",
+    "theme_support_url": "https://github.com/Lemecquisaitpasdev/Proof/issues"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      {
+        "type": "text",
+        "id": "wordmark",
+        "label": "Wordmark",
+        "default": "Proof",
+        "info": "Rendu dans l'Archivo Black expansé du logo."
+      },
+      {
+        "type": "text",
+        "id": "tagline",
+        "label": "Signature",
+        "default": "Honor it. Don't erase it."
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_drawer",
+        "label": "Ouvrir le panier en tiroir",
+        "default": true,
+        "info": "Décoché, l'ajout au panier renvoie vers la page panier."
+      },
+      {
+        "type": "text",
+        "id": "cart_note",
+        "label": "Mention sous le total",
+        "default": "Shipping calculated at checkout, ships worldwide"
+      }
+    ]
+  },
+  {
+    "name": "Legal",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "disclaimer",
+        "label": "Mention réglementaire",
+        "default": "Proof improves the appearance of scars. It is not intended to diagnose, treat, cure, or prevent any disease.",
+        "info": "Affichée en pied de page et sur les fiches produit. À faire valider avant mise en vente."
+      }
+    ]
+  }
+]

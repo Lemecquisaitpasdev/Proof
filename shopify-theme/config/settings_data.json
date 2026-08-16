@@ -1,0 +1,16 @@
+{
+  "current": {
+    "wordmark": "Proof",
+    "tagline": "Honor it. Don't erase it.",
+    "cart_drawer": true,
+    "cart_note": "Shipping calculated at checkout, ships worldwide",
+    "disclaimer": "Proof improves the appearance of scars. It is not intended to diagnose, treat, cure, or prevent any disease."
+  },
+  "presets": {
+    "Proof": {
+      "wordmark": "Proof",
+      "tagline": "Honor it. Don't erase it.",
+      "cart_drawer": true
+    }
+  }
+}

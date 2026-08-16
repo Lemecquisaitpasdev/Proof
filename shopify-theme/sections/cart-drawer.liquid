@@ -1,0 +1,105 @@
+{% comment %}
+  LE TIROIR — « Your ritual ».
+
+  Remplace le panier localStorage du site Next.js par le vrai panier
+  Shopify. proof.js poste sur /cart/add.js puis /cart/change.js, et
+  redemande CETTE section (?sections=cart-drawer) pour réafficher le
+  contenu : le balisage ci-dessous est donc la seule source de vérité,
+  côté serveur comme après une mise à jour Ajax.
+{% endcomment %}
+
+<div class="scrim" data-cart-scrim aria-hidden="true"></div>
+
+<aside
+  class="drawer"
+  data-cart-drawer
+  role="dialog"
+  aria-modal="true"
+  aria-label="{{ 'cart.general.title' | t }}"
+  aria-hidden="true"
+  inert
+>
+  <div class="drawer__head">
+    <span class="drawer__title">{{ 'cart.general.title' | t }}</span>
+    <button type="button" class="drawer__close" data-cart-close>
+      {{ 'cart.general.close' | t }}
+    </button>
+  </div>
+
+  <div class="drawer__body">
+    {%- if cart.item_count == 0 -%}
+      <div class="drawer__empty">
+        <p class="mono" style="color: var(--dim)">{{ 'cart.general.empty' | t }}</p>
+        <p style="font-size: 14.5px; margin-top: 12px">{{ 'cart.general.empty_lead' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost" style="margin-top: 24px" data-cart-close>
+          {{ 'cart.general.continue' | t }}
+        </a>
+      </div>
+    {%- else -%}
+      {%- for item in cart.items -%}
+        {%- assign chapter = item.product.metafields.proof.chapter -%}
+        {%- assign chapter_name = item.product.metafields.proof.chapter_name -%}
+        <div class="cline" data-cart-line="{{ forloop.index }}">
+          <a href="{{ item.url }}" class="cline__thumb" data-cart-close aria-label="{{ item.product.title | escape }}">
+            {%- if item.image -%}
+              {{
+                item.image
+                | image_url: width: 128
+                | image_tag: loading: 'lazy', widths: '64,128', alt: '', style: 'object-fit:cover;width:100%;height:100%'
+              }}
+            {%- endif -%}
+          </a>
+
+          <div>
+            <div class="cline__name">
+              {{ item.product.title }}{% unless item.variant.title contains 'Default' %}, {{ item.variant.title }}{% endunless %}
+            </div>
+            {%- if chapter != blank -%}
+              <div class="cline__meta">{{ chapter }}{% if chapter_name != blank %} · {{ chapter_name }}{% endif %}</div>
+            {%- endif -%}
+
+            <div class="qty">
+              <button
+                type="button"
+                data-cart-qty="{{ item.quantity | minus: 1 }}"
+                data-line="{{ forloop.index }}"
+                aria-label="{{ 'products.product.decrease' | t }}"
+              >&minus;</button>
+              <span>{{ item.quantity }}</span>
+              <button
+                type="button"
+                data-cart-qty="{{ item.quantity | plus: 1 }}"
+                data-line="{{ forloop.index }}"
+                aria-label="{{ 'products.product.increase' | t }}"
+              >+</button>
+            </div>
+          </div>
+
+          <div class="cline__price">{{ item.final_line_price | money }}</div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  {%- if cart.item_count > 0 -%}
+    <div class="drawer__foot">
+      <div class="drawer__total">
+        <span>{{ 'cart.general.total' | t }}</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="drawer__note">{{ settings.cart_note }}</p>
+      <form action="{{ routes.cart_url }}" method="post">
+        <button type="submit" name="checkout" class="btn btn--primary btn--block">
+          {{ 'cart.general.checkout' | t }} &middot; {{ cart.total_price | money }}
+        </button>
+      </form>
+    </div>
+  {%- endif -%}
+</aside>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

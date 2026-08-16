@@ -1,0 +1,10 @@
+<section class="pagehead section">
+  <div class="container">
+    <h1 class="d1">Collections</h1>
+    <ul style="margin-top: 32px">
+      {%- for collection in collections -%}
+        <li><a href="{{ collection.url }}" class="klink">{{ collection.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

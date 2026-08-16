@@ -1,0 +1,41 @@
+{
+  "general": {
+    "accessibility": { "skip_to_content": "Skip to content" },
+    "meta": { "tags": "Tagged {{ tags }}", "page": "Page {{ page }}" },
+    "newsletter": {
+      "heading": "The first drop",
+      "label": "Email address",
+      "button": "Keep me posted",
+      "success": "You are on the list."
+    },
+    "search": { "no_results": "Nothing on file for {{ terms }}." }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to your ritual",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "pack_size": "Pack size",
+      "from": "From",
+      "increase": "Increase quantity",
+      "decrease": "Decrease quantity"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your ritual",
+      "empty": "Your ritual is empty.",
+      "empty_lead": "Three instruments are waiting in the shop.",
+      "continue": "Open the shop",
+      "close": "Close",
+      "total": "Total",
+      "checkout": "Checkout",
+      "remove": "Remove"
+    }
+  },
+  "sections": {
+    "header": { "cart": "Cart", "menu": "Menu", "home": "Proof, home" }
+  },
+  "onboarding": { "product_title": "Example product" }
+}

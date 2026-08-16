@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-product" },
+    "tech": { "type": "product-tech" },
+    "honor": { "type": "product-honor" }
+  },
+  "order": ["main", "tech", "honor"]
+}

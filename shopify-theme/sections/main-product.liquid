@@ -1,0 +1,260 @@
+{% comment %}
+  FICHE PRODUIT — galerie + buy-box.
+
+  Les conditionnements du Patch (1 / 3 / 8) deviennent de vraies variantes
+  Shopify sur l'option « Pack size ». Le sélecteur est un groupe de radios
+  nommées `id` : sans JavaScript, la sélection part quand même au panier
+  avec la bonne variante ; proof.js ne fait que rafraîchir le prix affiché
+  et le libellé du bouton.
+
+  Les mentions éditoriales (code, méthode, chapitre, accroche, couverture)
+  viennent de metafields `proof.*`, avec repli si elles ne sont pas encore
+  renseignées — le thème reste utilisable dès l'import.
+{% endcomment %}
+
+{%- assign v = product.selected_or_first_available_variant -%}
+{%- assign cta = product.metafields.proof.cta | default: 'products.product.add_to_cart' | t -%}
+
+<section class="pagehead" style="padding-top: 40px">
+  <div class="container">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="{{ routes.all_products_collection_url }}" class="klink">The Shop</a>
+      <span>/</span>
+      <span style="color: var(--dim)">{{ product.title }}</span>
+    </nav>
+
+    <div class="pdp">
+      {% comment %} GALERIE — grande image, rail de vignettes dessous {% endcomment %}
+      <div class="pdpg">
+        <div class="pdpg__stage">
+          {%- for media in product.media -%}
+            <div class="pdpg__slide{% if forloop.first %} is-active{% endif %}" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+              {{
+                media
+                | image_url: width: 1400
+                | image_tag:
+                  loading: forloop.first | default: false,
+                  widths: '400,600,900,1200,1400',
+                  sizes: '(max-width: 900px) 100vw, 45vw',
+                  alt: product.title,
+                  style: 'object-fit:cover;position:absolute;inset:0;width:100%;height:100%'
+              }}
+            </div>
+          {%- else -%}
+            <div class="pdpg__slide is-active">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</div>
+          {%- endfor -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <div class="pdpg__rail" role="tablist" aria-label="Product views">
+            {%- for media in product.media -%}
+              <button
+                type="button"
+                class="pdpg__thumb{% if forloop.first %} is-active{% endif %}"
+                data-pdpg-thumb="{{ forloop.index0 }}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="View {{ forloop.index }}"
+              >
+                {{ media | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100,200', alt: '' }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {% comment %} BUY-BOX — spec sheet {% endcomment %}
+      <div class="pdp__buybox">
+        {%- assign code = product.metafields.proof.code -%}
+        {%- if code != blank -%}
+          <div class="code-giant" aria-hidden="true">{{ code }}</div>
+        {%- endif -%}
+
+        {%- assign badge = product.metafields.proof.badge -%}
+        {%- if badge != blank -%}<span class="badge">{{ badge }}</span>{%- endif -%}
+
+        {%- assign chapter = product.metafields.proof.chapter -%}
+        {%- if chapter != blank -%}
+          <span class="mlabel" style="display: block; margin-bottom: 14px">
+            {{ chapter }}
+            {%- if product.metafields.proof.chapter_name != blank %} / {{ product.metafields.proof.chapter_name }}{% endif -%}
+            {%- if product.metafields.proof.method != blank %} / Method: {{ product.metafields.proof.method }}{% endif -%}
+          </span>
+        {%- endif -%}
+
+        <h1 class="pdp__title">{{ product.title }}</h1>
+
+        {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+          <div class="pdp__price num" data-price>{{ v.price | money }}</div>
+
+          {%- assign tagline = product.metafields.proof.tagline -%}
+          <p class="pdp__desc">{{ tagline | default: product.description | strip_html | truncatewords: 45 }}</p>
+
+          {%- if product.has_only_default_variant -%}
+            <input type="hidden" name="id" value="{{ v.id }}">
+          {%- else -%}
+            <div class="packs" role="radiogroup" aria-label="{{ 'products.product.pack_size' | t }}">
+              <span class="pdp__qtylabel">{{ product.options.first }}</span>
+              <div class="packs__row">
+                {%- for variant in product.variants -%}
+                  <label
+                    class="pack{% if variant.id == v.id %} is-on{% endif %}{% unless variant.available %} is-out{% endunless %}"
+                    data-pack
+                    data-price="{{ variant.price }}"
+                    data-price-money="{{ variant.price | money | escape }}"
+                    data-note="{{ variant.metafields.proof.note | escape }}"
+                  >
+                    <input
+                      type="radio"
+                      name="id"
+                      value="{{ variant.id }}"
+                      class="visually-hidden"
+                      {% if variant.id == v.id %}checked{% endif %}
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                    {%- if variant.metafields.proof.badge != blank -%}
+                      <span class="pack__badge">{{ variant.metafields.proof.badge }}</span>
+                    {%- endif -%}
+                    <span class="pack__label">{{ variant.title }}</span>
+                    {%- if variant.metafields.proof.coverage != blank -%}
+                      <span class="pack__cover">{{ variant.metafields.proof.coverage }}</span>
+                    {%- endif -%}
+                    <span class="pack__price num">{{ variant.price | money }}</span>
+                  </label>
+                {%- endfor -%}
+              </div>
+              <p class="packs__note" data-pack-note>{{ v.metafields.proof.note }}</p>
+            </div>
+          {%- endif -%}
+
+          <div class="pdp__qtyrow">
+            <span class="pdp__qtylabel">{{ 'products.product.quantity' | t }}</span>
+            <div class="qty qty--pdp">
+              <button type="button" data-qty-step="-1" aria-label="{{ 'products.product.decrease' | t }}">&minus;</button>
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max="99"
+                class="num"
+                data-qty-input
+                aria-label="{{ 'products.product.quantity' | t }}"
+              >
+              <button type="button" data-qty-step="1" aria-label="{{ 'products.product.increase' | t }}">+</button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            name="add"
+            class="btn btn--primary btn--pill pdp__cta"
+            data-add
+            data-cta="{{ cta | escape }}"
+            data-sold-out="{{ 'products.product.sold_out' | t | escape }}"
+            {% unless v.available %}disabled{% endunless %}
+          >
+            <span data-add-label>
+              {%- if v.available -%}{{ cta }} &middot; {{ v.price | money }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+            </span>
+          </button>
+        {% endform %}
+
+        {%- if section.settings.show_installments -%}
+          <p class="pdp__pay">
+            or 4 interest-free payments of <b class="num" data-installment>{{ v.price | divided_by: 4 | money }}</b>
+          </p>
+        {%- endif -%}
+
+        <ul class="assure-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M3 6.5h10.5v8H3zM13.5 9h3.6L21 12v2.5h-6.9M7 18a1.6 1.6 0 100-3.2A1.6 1.6 0 007 18zM17.4 18a1.6 1.6 0 100-3.2 1.6 1.6 0 000 3.2z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ section.settings.assure_shipping }}
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M4 9h11a5 5 0 010 10H9M4 9l4-4M4 9l4 4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ section.settings.assure_returns }}
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="5.5" width="18" height="13" rx="2"/>
+              <path d="M3 10h18" stroke-linecap="round"/>
+            </svg>
+            {{ section.settings.assure_pay }}
+          </li>
+        </ul>
+
+        <div class="acc">
+          {%- assign contents = v.metafields.proof.contents.value | default: product.metafields.proof.contents.value -%}
+          {%- if contents != blank -%}
+            <details open>
+              <summary>What's inside</summary>
+              <div class="acc__body">
+                <ul class="acc__list">
+                  {%- for line in contents -%}<li>{{ line }}</li>{%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          {%- endif -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'accordion' -%}
+              <details {{ block.shopify_attributes }}>
+                <summary>{{ block.settings.heading }}</summary>
+                <div class="acc__body">
+                  {{ block.settings.body }}
+                  {%- if block.settings.link_label != blank and block.settings.link != blank -%}
+                    <a href="{{ block.settings.link }}" class="tlink klink" style="margin-top: 12px">{{ block.settings.link_label }}</a>
+                  {%- endif -%}
+                </div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} Barre d'achat collante mobile — révélée par proof.js quand le CTA sort du cadre {% endcomment %}
+<div class="buybar" data-buybar aria-hidden="true">
+  <div class="buybar__name">
+    {{ product.title }}
+    <small class="num" data-price>{{ v.price | money }}</small>
+  </div>
+  <button type="button" class="btn btn--primary" data-buybar-add>
+    <span data-add-label>{{ cta }} &middot; {{ v.price | money }}</span>
+  </button>
+</div>
+
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "checkbox", "id": "show_installments", "label": "Afficher le paiement en 4 fois", "default": true },
+    { "type": "text", "id": "assure_shipping", "label": "Garantie 1", "default": "Free worldwide shipping, ships in 48 h" },
+    { "type": "text", "id": "assure_returns", "label": "Garantie 2", "default": "30-day returns, no interrogation" },
+    { "type": "text", "id": "assure_pay", "label": "Garantie 3", "default": "Pay in 4, interest-free" }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordéon",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titre", "default": "How to use" },
+        { "type": "richtext", "id": "body", "label": "Contenu" },
+        { "type": "text", "id": "link_label", "label": "Libellé du lien" },
+        { "type": "url", "id": "link", "label": "Lien" }
+      ]
+    }
+  ]
+}
+{% endschema %}

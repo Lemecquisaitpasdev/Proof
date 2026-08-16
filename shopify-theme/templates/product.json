@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "howto": {
+          "type": "accordion",
+          "settings": { "heading": "How to use" }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Shipping & returns",
+            "body": "<p>Ships worldwide within 48 hours; most destinations arrive in 3 to 7 business days, tracked by email. Thirty-day returns, no interrogation.</p>"
+          }
+        },
+        "evidence": {
+          "type": "accordion",
+          "settings": {
+            "heading": "Clinical evidence",
+            "body": "<p>Silicone sheeting has been used on scars since 1983 and is listed as a first-line, non-invasive option in international scar-management guidelines. Proof improves the appearance of scars, texture, color and relief. We don't claim more than that.</p>",
+            "link_label": "Read the science"
+          }
+        }
+      },
+      "block_order": ["howto", "shipping", "evidence"]
+    }
+  },
+  "order": ["main"]
+}

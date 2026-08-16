@@ -1,0 +1,31 @@
+<section class="pagehead">
+  <div class="container">
+    {%- if section.settings.label != blank -%}
+      <span class="mlabel enter">{{ section.settings.label }}</span>
+    {%- endif -%}
+    <h1 class="d1 enter" style="margin-top: 16px">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="lead measure enter">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0">
+  <div class="container">
+    <div class="cards{% if collection.products_count == 3 %} cards--three{% endif %}" data-reveal-group>
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <p class="lead">Nothing on file yet.</p>
+      {%- endfor -%}
+    </div>
+    {{ paginate | default_pagination }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [{ "type": "text", "id": "label", "label": "Sur-titre", "default": "The Shop / Three instruments" }]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+{% comment %}
+  HÉROS. Chaque ligne du titre est un .w animé à l'entrée (.enter + --d).
+  Le mot doré est enveloppé dans .kword — la lumière dans la fissure.
+{% endcomment %}
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      {%- if section.settings.label != blank -%}
+        <span class="mlabel enter" style="--d: 0s">{{ section.settings.label }}</span>
+      {%- endif -%}
+
+      <h1 class="d1 hero__title" style="margin-top: 18px">
+        {%- assign lines = section.settings.headline | newline_to_br | split: '<br />' -%}
+        {%- for line in lines -%}
+          {%- assign clean = line | strip -%}
+          {%- if clean != blank -%}
+            {%- assign gold = section.settings.gold_word | strip -%}
+            <span class="w enter" style="--d: {{ forloop.index | times: 0.06 | plus: 0.14 }}s">
+              {%- if gold != blank and clean contains gold -%}
+                {%- assign parts = clean | split: gold -%}
+                {{ parts[0] }}<span class="kword">{{ gold }}</span>{{ parts[1] }}
+              {%- else -%}
+                {{ clean }}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      </h1>
+
+      {%- if section.settings.lead != blank -%}
+        <p class="lead hero__lead enter" style="--d: 0.44s">{{ section.settings.lead }}</p>
+      {%- endif -%}
+
+      <div class="hero__cta enter" style="--d: 0.54s">
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="btn btn--primary">{{ section.settings.cta_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+          <a href="{{ section.settings.link }}" class="tlink klink">{{ section.settings.link_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.settings.image != blank -%}
+      <figure class="enter" style="--d: 0.58s; margin: 0">
+        <div class="hero__visual hero__visual--portrait">
+          <div class="hero__parallax" data-parallax="2">
+            {{
+              section.settings.image
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '500,800,1100,1400',
+                sizes: '(max-width: 900px) 100vw, 50vw',
+                alt: section.settings.image_alt,
+                style: 'object-fit:cover;width:100%;height:100%'
+            }}
+          </div>
+        </div>
+        {%- if section.settings.caption != blank -%}
+          <figcaption class="mcap">{{ section.settings.caption }}</figcaption>
+        {%- endif -%}
+      </figure>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Sur-titre", "default": "Medical-grade silicone / Since 1983" },
+    { "type": "textarea", "id": "headline", "label": "Titre", "info": "Une ligne par ligne affichée.", "default": "Honor it.\nDon't erase it." },
+    { "type": "text", "id": "gold_word", "label": "Mot en or", "info": "Reçoit le filet kintsugi." },
+    { "type": "textarea", "id": "lead", "label": "Chapô" },
+    { "type": "text", "id": "cta_label", "label": "Bouton", "default": "Open the shop" },
+    { "type": "url", "id": "cta_link", "label": "Lien du bouton" },
+    { "type": "text", "id": "link_label", "label": "Lien texte", "default": "Read the story" },
+    { "type": "url", "id": "link", "label": "Lien" },
+    { "type": "image_picker", "id": "image", "label": "Visuel" },
+    { "type": "text", "id": "image_alt", "label": "Texte alternatif" },
+    { "type": "text", "id": "caption", "label": "Légende" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

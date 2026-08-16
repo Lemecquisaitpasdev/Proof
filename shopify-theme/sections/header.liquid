@@ -1,0 +1,39 @@
+{% comment %}
+  En-tête. Le compteur du panier est rendu par Liquid puis tenu à jour
+  par proof.js après chaque ajout Ajax (data-cart-count).
+{% endcomment %}
+<header class="header">
+  <div class="container header__in">
+    <a href="{{ routes.root_url }}" class="logo" aria-label="{{ 'sections.header.home' | t }}">
+      {{ settings.wordmark | default: shop.name }}
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      {%- for link in section.settings.menu.links -%}
+        <a
+          href="{{ link.url }}"
+          class="klink{% if link.active or link.child_active %} is-active{% endif %}"
+        >{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a
+      href="{{ routes.cart_url }}"
+      class="cartbtn"
+      data-cart-open
+      aria-label="{{ 'cart.general.title' | t }}"
+    >
+      {{ 'sections.header.cart' | t }}
+      <em class="cartbtn__count" data-cart-count>({{ cart.item_count }})</em>
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

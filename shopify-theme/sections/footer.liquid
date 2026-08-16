@@ -1,0 +1,109 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="logo" style="margin-bottom: 18px">{{ settings.wordmark | default: shop.name }}</div>
+        <p>{{ section.settings.blurb }}</p>
+        {%- if section.settings.ref != blank -%}
+          <p class="mlabel" style="margin-top: 14px">{{ section.settings.ref }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            <div {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.heading }}</h4>
+              <ul>
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}" class="klink">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+
+          {%- when 'soon' -%}
+            <div {{ block.shopify_attributes }}>
+              <h4>{{ block.settings.heading }}</h4>
+              <ul>
+                {%- assign labels = block.settings.items | split: ',' -%}
+                {%- for label in labels -%}
+                  <li><span class="soon">{{ label | strip }}<em>{{ block.settings.tag }}</em></span></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+
+      {%- if section.settings.show_newsletter -%}
+        <div class="news">
+          <h4>{{ 'general.newsletter.heading' | t }}</h4>
+          {% form 'customer', class: 'news__form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="visually-hidden" for="news-email">{{ 'general.newsletter.label' | t }}</label>
+            <input
+              id="news-email"
+              type="email"
+              name="contact[email]"
+              class="news__input"
+              placeholder="{{ 'general.newsletter.label' | t }}"
+              autocomplete="email"
+              required
+            >
+            <button type="submit" class="news__btn">{{ 'general.newsletter.button' | t }}</button>
+            {%- if form.posted_successfully? -%}
+              <p class="news__ok" role="status">{{ 'general.newsletter.success' | t }}</p>
+            {%- endif -%}
+          {% endform %}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="footer__legal">
+      <p>{{ settings.disclaimer }}</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}, {{ settings.tagline }}</p>
+    </div>
+
+    <div class="footer__mark" aria-hidden="true">{{ settings.wordmark | default: shop.name }}</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "Phrase de marque",
+      "default": "Medical-grade scar care. Engineered to honor, not hide."
+    },
+    { "type": "text", "id": "ref", "label": "Référence", "default": "Ref: PROOF-01 / [ Batch 4099XF ] / US" },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Afficher l'inscription newsletter", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Colonne de liens",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titre", "default": "The Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    },
+    {
+      "type": "soon",
+      "name": "Colonne « bientôt »",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Titre", "default": "Phase 2" },
+        { "type": "text", "id": "items", "label": "Entrées (séparées par des virgules)", "default": "The Wall, Journal, Chapters" },
+        { "type": "text", "id": "tag", "label": "Étiquette", "default": "Soon" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "menu", "settings": { "heading": "The Shop" } },
+      { "type": "soon", "settings": { "heading": "Phase 2" } }
+    ]
+  }
+}
+{% endschema %}

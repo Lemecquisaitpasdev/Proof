@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "lab": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "In the lab",
+        "heading": "Examined, not asserted.",
+        "body": "<p>Everything that follows — the material, the mechanism, the evidence — earns its place by being looked at, not by being claimed. Proof holds its silicone to the medical-grade standard and keeps every line on this page inside what the clinic has actually observed.</p>",
+        "ratio": "1 / 1"
+      }
+    },
+    "material": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "01 · The material",
+        "heading": "Born in burn units.",
+        "body": "<p>Silicone gel sheeting entered scar care in 1983, on burn scars and contractures. Four decades later it is still the reference, not because the marketing was loud, but because the results kept being observed.</p>"
+      }
+    },
+    "mechanism": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "02 · The mechanism",
+        "heading": "Occlusion. Hydration.",
+        "body": "<p>A scar that dries out overproduces collagen, that is what makes it raised, stiff, and darker than the skin around it. A silicone patch closes the surface, restores hydration in the outer layer of the skin, and lets the tissue regulate its own collagen production.</p>",
+        "pull": "Flatter. Softer. Closer to your skin tone.",
+        "invert": true
+      }
+    },
+    "deepmatrix": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "03 · Deep Matrix",
+        "heading": "Past the flat film.",
+        "body": "<p>A standard silicone sheet is poured as one uniform film. Deep Matrix™ is our own method: the silicone is separated at the cellular level and rebuilt in deliberate layers — their number, composition, and size set on purpose, not left to a single flat cast.</p><p>Structured that way, the film follows the raised relief of a scar and holds closer to the skin, so the occlusion is more complete where it counts. It is the same mechanism as any medical silicone, occlusion and hydration, engineered for better contact. It adds no new medical claim.</p>",
+        "ratio": "1 / 1"
+      }
+    },
+    "evidence": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "04 · The evidence",
+        "heading": "On the record.",
+        "body": "<p>Silicone sheeting is listed as a first-line, non-invasive option in international scar-management recommendations, for both hypertrophic scars and keloids.</p>"
+      }
+    },
+    "honest": {
+      "type": "editorial-split",
+      "settings": {
+        "label": "05 · What we refuse to say",
+        "heading": "The honest column.",
+        "body": "<p>We don't say heal. We don't say cure. We don't say disappear. The patch improves the appearance of scars, that is the claim, the whole claim, and it is enough.</p>",
+        "pull": "The scar stays. That is the point."
+      }
+    }
+  },
+  "order": ["lab", "material", "mechanism", "deepmatrix", "evidence", "honest"]
+}

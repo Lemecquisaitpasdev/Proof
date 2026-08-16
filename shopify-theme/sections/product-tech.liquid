@@ -1,0 +1,85 @@
+{% comment %}
+  DEEP MATRIX — technologie propriétaire.
+  Le visuel de base tient ~5 s, puis le second se fond par-dessus, puis
+  se retire, en boucle (proof.js pilote .is-active sur .tech__over ; le
+  fondu lui-même est en CSS). Sans second visuel, l'image reste fixe.
+  Respecte prefers-reduced-motion.
+{% endcomment %}
+{%- if section.settings.headline != blank -%}
+  <section class="section tech" aria-label="{{ section.settings.headline | escape }}">
+    <div class="container tech__grid">
+      <figure class="tech__media" data-reveal>
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '400,600,900,1200',
+              sizes: '(max-width: 900px) 100vw, 46vw',
+              alt: section.settings.image_alt,
+              style: 'object-fit:cover;position:absolute;inset:0;width:100%;height:100%'
+          }}
+        {%- endif -%}
+        {%- if section.settings.image_over != blank -%}
+          {{
+            section.settings.image_over
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '400,600,900,1200',
+              sizes: '(max-width: 900px) 100vw, 46vw',
+              alt: '',
+              class: 'tech__over',
+              aria-hidden: 'true',
+              style: 'object-fit:cover;position:absolute;inset:0;width:100%;height:100%'
+          }}
+        {%- endif -%}
+      </figure>
+
+      <div class="tech__copy" data-reveal>
+        {%- if section.settings.label != blank -%}
+          <span class="mlabel">{{ section.settings.label }}</span>
+        {%- endif -%}
+        <h2 class="d3 tech__head">{{ section.settings.headline }}</h2>
+        <div class="tech__body">{{ section.settings.body }}</div>
+
+        {%- if section.settings.award != blank -%}
+          <div class="tech__award">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="9" r="5.5"/>
+              <path d="M9 13.6 7.4 21l4.6-2.7L16.6 21 15 13.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>{{ section.settings.award }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Deep Matrix",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Visuel de base", "info": "La structure en couches." },
+    { "type": "text", "id": "image_alt", "label": "Texte alternatif", "default": "Deep Matrix, medical-grade silicone structured in stacked layers" },
+    { "type": "image_picker", "id": "image_over", "label": "Visuel du fondu", "info": "Apparaît en fondu toutes les ~5 s. Laisser vide pour une image fixe." },
+    { "type": "text", "id": "label", "label": "Sur-titre", "default": "Proprietary technology / Engineered at Proof" },
+    { "type": "text", "id": "headline", "label": "Titre", "default": "Deep Matrix™." },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Texte",
+      "default": "<p>We separate the silicone at the cellular level. Freed from one another, each cell is tuned on its own — the number of layers, their composition, their size, all set deliberately instead of poured as a single flat film.</p><p>Built that way, the film maps to the scar's relief and settles closer to the skin than an ordinary silicone gel, layer answering layer. This is Deep Matrix™, developed in-house at Proof.</p>"
+    },
+    {
+      "type": "text",
+      "id": "award",
+      "label": "Ligne de reconnaissance",
+      "info": "⚠ Ne publier que des distinctions réelles et vérifiables."
+    }
+  ],
+  "presets": [{ "name": "Deep Matrix" }]
+}
+{% endschema %}

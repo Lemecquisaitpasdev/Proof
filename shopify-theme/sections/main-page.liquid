@@ -1,0 +1,18 @@
+<section class="pagehead">
+  <div class="container">
+    {%- if page.metafields.proof.label != blank -%}
+      <span class="mlabel enter">{{ page.metafields.proof.label }}</span>
+    {%- endif -%}
+    <h1 class="d1 enter" style="margin-top: 16px">{{ page.title }}</h1>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0">
+  <div class="container">
+    <div class="measure rte" data-reveal>{{ page.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Page", "settings": [] }
+{% endschema %}

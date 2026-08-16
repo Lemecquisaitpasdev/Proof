@@ -1,0 +1,46 @@
+{% comment %}
+  Bandeau défilant — les faits produit, en boucle continue.
+  La séquence est dupliquée : la seconde copie est aria-hidden, elle
+  n'existe que pour que la translation reboucle sans couture (cf. .topbar__track).
+{% endcomment %}
+{%- if section.blocks.size > 0 -%}
+  <div class="topbar" role="note" aria-label="{{ section.settings.label | escape }}">
+    <div class="topbar__track">
+      {%- for i in (1..2) -%}
+        <div class="topbar__seq" {% if i == 2 %}aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <span class="topbar__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Libellé accessible", "default": "Product facts" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Fait",
+      "settings": [{ "type": "text", "id": "text", "label": "Texte", "default": "Medical-grade silicone" }]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "text": "Batch Nº 017" } },
+      { "type": "item", "settings": { "text": "Medical-grade silicone" } },
+      { "type": "item", "settings": { "text": "Reusable 14 days" } },
+      { "type": "item", "settings": { "text": "Wear time 12–23 h" } },
+      { "type": "item", "settings": { "text": "5 × 15 cm" } },
+      { "type": "item", "settings": { "text": "New, The Gel 30 ml" } },
+      { "type": "item", "settings": { "text": "Ships worldwide" } },
+      { "type": "item", "settings": { "text": "Honor it. Don't erase it." } }
+    ]
+  }
+}
+{% endschema %}

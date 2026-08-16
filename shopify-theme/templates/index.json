@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "hero": {
+      "type": "home-hero",
+      "settings": {
+        "label": "Medical-grade silicone / Since 1983",
+        "headline": "Honor it.\nDon't erase it.",
+        "lead": "Medical-grade silicone that improves the appearance of scars. Worn, not hidden.",
+        "cta_label": "Open the shop",
+        "link_label": "Read the story"
+      }
+    },
+    "range": {
+      "type": "featured-products",
+      "settings": { "label": "The range", "heading": "Three instruments.", "count": 3 }
+    }
+  },
+  "order": ["hero", "range"]
+}

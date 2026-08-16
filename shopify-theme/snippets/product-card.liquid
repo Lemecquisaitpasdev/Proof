@@ -1,0 +1,72 @@
+{% comment %}
+  Carte boutique. L'image fait la carte : état primaire lumineux, puis
+  crossfade vers la seconde image du produit au survol (.card__alt).
+  Le quick-add poste sur /cart/add.js sans ouvrir le tiroir.
+{% endcomment %}
+<article class="card" data-reveal>
+  {%- assign badge = product.metafields.proof.badge -%}
+  {%- if badge != blank -%}<span class="badge card__badge">{{ badge }}</span>{%- endif -%}
+
+  <a href="{{ product.url }}" class="card__visual" aria-label="{{ product.title | escape }}">
+    {%- if product.featured_media -%}
+      {{
+        product.featured_media
+        | image_url: width: 900
+        | image_tag:
+          loading: 'lazy',
+          widths: '300,500,700,900',
+          sizes: '(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw',
+          alt: product.title,
+          style: 'object-fit:cover;position:absolute;inset:0;width:100%;height:100%'
+      }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+    {%- endif -%}
+
+    {%- if product.media[1] -%}
+      <span class="card__alt" aria-hidden="true">
+        {{
+          product.media[1]
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            widths: '300,500,700,900',
+            sizes: '(max-width: 560px) 100vw, (max-width: 1000px) 50vw, 25vw',
+            alt: '',
+            style: 'object-fit:cover;position:absolute;inset:0;width:100%;height:100%'
+        }}
+      </span>
+    {%- endif -%}
+  </a>
+
+  <div class="card__body">
+    {%- assign chapter = product.metafields.proof.chapter -%}
+    {%- if chapter != blank -%}
+      <span class="card__chapter">
+        {{ chapter }}{% if product.metafields.proof.chapter_name != blank %} · {{ product.metafields.proof.chapter_name }}{% endif %}
+      </span>
+    {%- endif -%}
+
+    <h3 class="card__name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <p class="card__desc">{{ product.metafields.proof.card_line | default: product.description | strip_html | truncatewords: 18 }}</p>
+
+    <div class="card__foot">
+      <span class="card__price">
+        {%- if product.variants.size > 1 -%}
+          <small class="card__from">{{ 'products.product.from' | t }}</small>
+        {%- endif -%}
+        {{ product.price_min | money }}
+      </span>
+
+      {%- if product.available -%}
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" class="card__add" aria-label="Add {{ product.title | escape }} to your ritual">Add</button>
+        </form>
+      {%- else -%}
+        <span class="card__add" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</article>

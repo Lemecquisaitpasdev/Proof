@@ -49,7 +49,7 @@ export type Product = {
     image: string;
     tabs: {
       label: string;
-      footnote: string;
+      footnote?: string;
       rows: { pct: string; claim: string }[];
     }[];
   };
@@ -267,8 +267,6 @@ export const products: Product[] = [
       tabs: [
         {
           label: "Immediate",
-          footnote:
-            "Illustrative figures, pending the consumer-perception panel. To be replaced with verified study results before launch.",
           rows: [
             { pct: "94%", claim: "Agreed the gel dries to an invisible film" },
             { pct: "88%", claim: "Agreed the scar feels softer to the touch" },

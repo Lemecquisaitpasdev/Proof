@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type Tab = {
   label: string;
-  footnote: string;
+  footnote?: string;
   rows: { pct: string; claim: string }[];
 };
 
@@ -43,7 +43,7 @@ export default function PdpResults({ tabs }: { tabs: Tab[] }) {
         ))}
       </ul>
 
-      <p className="results__note">{tab.footnote}</p>
+      {tab.footnote ? <p className="results__note">{tab.footnote}</p> : null}
     </>
   );
 }

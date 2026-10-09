@@ -71,7 +71,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <h3 className="card__name">{product.name}</h3>
           <p className="card__desc">{product.cardLine}</p>
           <p className="card__soon">
-            In development<span className="card__soonmore"> · Not yet available</span>
+            In development<span className="card__soonmore">&nbsp;· Not yet available</span>
           </p>
         </div>
       </article>

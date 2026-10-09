@@ -23,11 +23,26 @@ export class StoreUnavailable extends Error {
   }
 }
 
+/* Noms injectés par l'intégration Upstash de Vercel : KV_REST_API_URL /
+   KV_REST_API_TOKEN, ou UPSTASH_REDIS_REST_URL / _TOKEN. Vercel peut y
+   ajouter un préfixe au moment de la connexion (« STORAGE_KV_REST_API_URL ») :
+   on accepte donc n'importe quel préfixe, l'URL et le jeton allant par paire. */
+const PAIRS = [
+  ["KV_REST_API_URL", "KV_REST_API_TOKEN"],
+  ["UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"],
+] as const;
+
 function config() {
-  /* noms injectés par l'intégration Upstash (ou l'ancien Vercel KV) */
-  const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
-  return url && token ? { url: url.replace(/\/$/, ""), token } : null;
+  for (const [urlName, tokenName] of PAIRS) {
+    for (const key of Object.keys(process.env)) {
+      if (key !== urlName && !key.endsWith(`_${urlName}`)) continue;
+      const prefix = key.slice(0, key.length - urlName.length);
+      const url = process.env[key];
+      const token = process.env[`${prefix}${tokenName}`];
+      if (url && token) return { url: url.replace(/\/$/, ""), token };
+    }
+  }
+  return null;
 }
 
 export const storeConfigured = () => config() !== null;

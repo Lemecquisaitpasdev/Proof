@@ -6,7 +6,7 @@ import { productImage } from "@/lib/product-image";
 import { RESERVE, pad3 } from "@/lib/reserve";
 
 export const metadata: Metadata = {
-  title: "Reserve your bottle",
+  title: "Reserve your protocol",
   description:
     "Batch 017 is in the lab. Reserve The Gel today, no card and no payment. When it ships, your bottle is held for 48 hours.",
   robots: { index: false },

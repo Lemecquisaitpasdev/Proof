@@ -94,7 +94,7 @@ export default function CheckoutPage() {
                         .reduce((n, { qty }) => n + qty, 0),
                     )}
                   >
-                    Reserve your bottles
+                    Reserve your protocol
                   </Link>
                 </>
               ) : (

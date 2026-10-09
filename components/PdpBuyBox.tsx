@@ -112,7 +112,7 @@ export default function PdpBuyBox({
       {reserving ? (
         <>
           <Link href={reserveHref(qty)} className="btn btn--primary btn--pill pdp__cta">
-            {qty > 1 ? `Reserve ${qty} bottles` : "Reserve your bottle"} · {formatPrice(unitPrice * qty)}
+            Reserve your protocol · {formatPrice(unitPrice * qty)}
           </Link>
           <p className="pdp__pay">
             Batch 017 is in the lab. <b>No card, no payment today.</b>

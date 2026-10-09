@@ -191,7 +191,7 @@ export default function ReserveForm({ batch, product }: Props) {
       <div className="container">
         <span className="mlabel">Reservation / Batch {batch}</span>
         <h1 className="d1" style={{ marginTop: 16 }}>
-          Reserve your bottle.
+          Reserve your protocol.
         </h1>
         <p className="lead measure rsv__lead">
           Batch {batch} is in the lab. Reserve today and pay nothing. When it ships,
@@ -272,11 +272,7 @@ export default function ReserveForm({ batch, product }: Props) {
             </fieldset>
 
             <button type="submit" className="btn btn--primary btn--pill" disabled={busy}>
-              {busy
-                ? "Reserving…"
-                : qty > 1
-                  ? `Reserve ${qty} bottles`
-                  : "Reserve my bottle"}
+              {busy ? "Reserving…" : "Reserve my protocol"}
             </button>
             <p className="rsv__error" role="alert" aria-live="assertive">
               {error}

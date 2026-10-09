@@ -14,7 +14,7 @@ visiteur choisit 1 à 3 flacons, laisse son e-mail, s'engage sur le prix
 - Anti-abus : un champ piège invisible pour les robots, et 8 envois au plus
   par connexion et par heure.
 
-Parcours : bouton « Reserve your bottle » (fiche du gel, card de l'accueil,
+Parcours : bouton « Reserve your protocol » (fiche du gel, card de l'accueil,
 panier) → `/reserve` → certificat « Reservation Nº 247 · Batch 017 ».
 
 ## Activer (5 minutes, gratuit)
@@ -22,16 +22,24 @@ panier) → `/reserve` → certificat « Reservation Nº 247 · Batch 017 ».
 Sans stockage, la page s'affiche mais répond « Reservations open in a
 moment » : rien n'est perdu, rien n'est enregistré.
 
-1. **Stockage** — Vercel → le projet → onglet **Storage** → ajouter
-   **Upstash (Redis)**, offre gratuite, et le connecter au projet pour tous
-   les environnements. Les clés (`UPSTASH_REDIS_REST_URL` /
-   `UPSTASH_REDIS_REST_TOKEN`, ou `KV_REST_API_URL` / `KV_REST_API_TOKEN`)
-   s'ajoutent toutes seules.
-2. **Clé d'export** — Vercel → Settings → Environment Variables → ajouter
-   `RESERVATIONS_ADMIN_KEY` avec une longue chaîne aléatoire, connue de toi
-   seul.
-3. **Redéployer** (Deployments → Redeploy) pour que les variables soient
-   prises en compte.
+1. **Stockage** — Vercel → le projet → **Storage** → **Create Database** →
+   choisir **Upstash**, produit **Redis** (pas « Redis Cloud », qui ne parle
+   pas l'API REST utilisée ici) → offre **Free** → région proche des
+   visiteurs (ex. Washington D.C. / us-east-1 pour les États-Unis) → nom
+   `proof-reservations` → Create.
+   Puis **Connect Project** : projet `proof`, cocher **Production, Preview
+   et Development**. Le préfixe des variables peut rester vide ou valoir
+   `STORAGE` : le code accepte n'importe quel préfixe
+   (`KV_REST_API_URL` / `KV_REST_API_TOKEN`, ou
+   `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`).
+2. **Clé d'export** — Settings → **Environment Variables** → ajouter
+   `RESERVATIONS_ADMIN_KEY`, une longue chaîne aléatoire connue de toi seul,
+   pour les trois environnements.
+3. **Redéployer** — Deployments → le plus récent → « ⋯ » → **Redeploy** :
+   les variables ne s'appliquent qu'aux déploiements suivants.
+4. **Tester** — faire une réservation sur `/reserve`, puis ouvrir le lien
+   d'export (ci-dessous) : elle doit y figurer. Pour l'effacer ensuite,
+   voir « Données personnelles ».
 
 ## Suivre et exporter
 

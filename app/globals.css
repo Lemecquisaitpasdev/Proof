@@ -3293,10 +3293,15 @@ html.js .ritual--live .rstep {
   color: var(--base);
 }
 
+/* protocole d'étude, en annotation mono sous les chiffres */
 .results__note {
   margin-top: clamp(24px, 3vw, 40px);
-  font-size: 12px;
-  line-height: 1.5;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  white-space: pre-line;
   color: var(--base-55);
 }
 

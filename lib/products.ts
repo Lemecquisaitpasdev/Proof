@@ -272,6 +272,8 @@ export const products: Product[] = [
       tabs: [
         {
           label: "Immediate",
+          footnote:
+            "Consumer perception study · 54 participants\nAssessed immediately after application",
           rows: [
             { pct: "94%", claim: "Agreed the gel dries to an invisible film" },
             { pct: "88%", claim: "Agreed the scar feels softer to the touch" },
@@ -281,6 +283,8 @@ export const products: Product[] = [
         },
         {
           label: "After 8 weeks",
+          footnote:
+            "Consumer perception study · 54 participants\nAfter 8 weeks of twice-daily use",
           rows: [
             { pct: "84%", claim: "Agreed the scar looks flatter" },
             { pct: "79%", claim: "Agreed the color looks closer to their skin" },

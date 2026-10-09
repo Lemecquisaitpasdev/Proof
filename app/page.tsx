@@ -7,7 +7,6 @@ import RitualSteps from "@/components/RitualSteps";
 import Mechanism from "@/components/Mechanism";
 import StoryDialog from "@/components/StoryDialog";
 import Carousel from "@/components/Carousel";
-import HomeVariant from "@/components/HomeVariant";
 import { isLive, products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
@@ -22,7 +21,7 @@ export default function HomePage() {
   const bouchon = productImage("bouchon");
 
   return (
-    <HomeVariant>
+    <>
       {/* HÉROS — le manifeste */}
       <section className="hero">
         <div className="container hero__grid">
@@ -457,6 +456,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </HomeVariant>
+    </>
   );
 }

@@ -1833,34 +1833,34 @@ html.js [data-parallax] {
   }
 }
 
-/* ============ 10e — ACCUEIL MOBILE, version A (défaut) ============ */
-/* Mode comparaison temporaire (cf. components/HomeVariant) : la version B
-   garde le carrousel générique à aperçu, pour les portes comme pour la R&D. */
+/* ============ 10e — ACCUEIL MOBILE ============ */
+/* Les portes en plein écran, la R&D en duo. Le carrousel générique (avec
+   aperçu de la diapositive suivante) reste la base du composant. */
 
 @media (max-width: 860px) {
   /* portes plein écran : bord à bord, sans aperçu ni arrondi, cinématique */
-  .home--a .trio .carousel__track {
+  .trio .carousel__track {
     gap: 0;
     padding-inline: 0;
     scroll-padding-inline: 0;
   }
 
-  .home--a .trio .carousel__slide {
+  .trio .carousel__slide {
     flex-basis: 100%;
   }
 
-  .home--a .trio__card {
+  .trio__card {
     border-radius: 0;
   }
 
-  .home--a .trio .carousel__ctrl {
+  .trio .carousel__ctrl {
     margin-top: 22px;
   }
 }
 
 @media (max-width: 560px) {
   /* R&D en duo : les deux instruments d'un coup d'œil, au second plan */
-  .home--a .carousel--lab .carousel__track {
+  .carousel--lab .carousel__track {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
@@ -1869,47 +1869,47 @@ html.js [data-parallax] {
     overflow: visible;
   }
 
-  .home--a .carousel--lab .carousel__ctrl,
-  .home--a .carousel--lab .rnd__bottom,
-  .home--a .carousel--lab .rnd__top > span:last-child,
-  .home--a .carousel--lab .card__desc,
-  .home--a .carousel--lab .card__soonmore {
+  .carousel--lab .carousel__ctrl,
+  .carousel--lab .rnd__bottom,
+  .carousel--lab .rnd__top > span:last-child,
+  .carousel--lab .card__desc,
+  .carousel--lab .card__soonmore {
     display: none;
   }
 
-  .home--a .carousel--lab .rnd {
+  .carousel--lab .rnd {
     padding: 14px;
   }
 
-  .home--a .carousel--lab .rnd::before {
+  .carousel--lab .rnd::before {
     inset: 7px;
   }
 
-  .home--a .carousel--lab .rnd__status {
+  .carousel--lab .rnd__status {
     gap: 6px;
     font-size: 8.5px;
     letter-spacing: 0.14em;
   }
 
-  .home--a .carousel--lab .rnd__title {
+  .carousel--lab .rnd__title {
     font-size: 12.5px;
   }
 
-  .home--a .carousel--lab .rnd__line {
+  .carousel--lab .rnd__line {
     height: 6px;
     margin-top: 8px;
   }
 
-  .home--a .carousel--lab .card__body {
+  .carousel--lab .card__body {
     gap: 6px;
     padding-top: 12px;
   }
 
-  .home--a .carousel--lab .card__name {
+  .carousel--lab .card__name {
     font-size: 17px;
   }
 
-  .home--a .carousel--lab .card__soon {
+  .carousel--lab .card__soon {
     min-height: 0;
     margin-top: 2px;
     font-size: 9px;

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import KintsugiLine from "@/components/KintsugiLine";
 import Posology from "@/components/Posology";
 import ProductCard from "@/components/ProductCard";
-import { formatPrice, products } from "@/lib/products";
+import { formatPrice, isLive, products } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Shop",
   description:
-    "Three instruments. The Patch from $29, The Gel at $39, The Protocol at $95. Medical-grade silicone that improves the appearance of scars.",
+    "The Gel at $85, medical-grade silicone that improves the appearance of scars. The Patch and The Protocol are in research and development.",
 };
 
 export default function ShopPage() {
@@ -93,8 +93,14 @@ export default function ShopPage() {
                   <th scope="row">Price</th>
                   {products.map((p) => (
                     <td key={p.slug} className="is-ink num">
-                      {p.variants?.length ? "From " : ""}
-                      {formatPrice(p.price)}
+                      {isLive(p) ? (
+                        <>
+                          {p.variants?.length ? "From " : ""}
+                          {formatPrice(p.price)}
+                        </>
+                      ) : (
+                        <span className="specs__rnd">In R&amp;D</span>
+                      )}
                     </td>
                   ))}
                 </tr>

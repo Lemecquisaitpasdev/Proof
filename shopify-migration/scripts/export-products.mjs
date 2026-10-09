@@ -135,14 +135,19 @@ for (const product of products) {
         first ? html(product) : "",
         first ? "Proof" : "",
         first ? product.chapterName ?? "" : "",
-        first ? [product.chapter, product.method].filter(Boolean).join(", ") : "",
+        first
+          ? [product.chapter, product.method, product.status === "rnd" ? "rnd" : ""]
+              .filter(Boolean)
+              .join(", ")
+          : "",
         first ? "TRUE" : "",
         first ? (product.variants?.length ? "Pack size" : "Title") : "",
         variant.label,
         sku,
         0,
         "shopify",
-        100,
+        /* R&D : stock nul + politique « deny » → visible, jamais achetable */
+        product.status === "rnd" ? 0 : 100,
         "deny",
         "manual",
         variant.price.toFixed(2),

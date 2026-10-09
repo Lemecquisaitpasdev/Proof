@@ -52,8 +52,8 @@ export default function HomePage() {
               texture, color, relief.
             </p>
             <div className="hero__cta enter" style={D(0.54)}>
-              <Link href="/shop/protocol" className="btn btn--primary">
-                Begin the protocol
+              <Link href="/shop/the-gel" className="btn btn--primary">
+                Begin with the gel
               </Link>
               <Link href="/story" className="tlink klink">
                 Read the manifesto

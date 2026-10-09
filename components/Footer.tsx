@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { products } from "@/lib/products";
+import { isLive, products } from "@/lib/products";
 import Newsletter from "@/components/Newsletter";
 
 export default function Footer() {
@@ -23,9 +23,16 @@ export default function Footer() {
             <ul>
               {products.map((p) => (
                 <li key={p.slug}>
-                  <Link href={`/shop/${p.slug}`} className="klink">
-                    {p.name}
-                  </Link>
+                  {isLive(p) ? (
+                    <Link href={`/shop/${p.slug}`} className="klink">
+                      {p.name}
+                    </Link>
+                  ) : (
+                    <span className="soon">
+                      {p.name}
+                      <em>R&amp;D</em>
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

@@ -13,6 +13,9 @@
 {% endcomment %}
 
 {%- assign v = product.selected_or_first_available_variant -%}
+{% comment %} Tag « rnd » : instrument en recherche & développement, la fiche reste consultable mais rien ne s'achète {% endcomment %}
+{%- assign rnd = false -%}
+{%- if product.tags contains 'rnd' -%}{%- assign rnd = true -%}{%- endif -%}
 {%- assign cta = product.metafields.proof.cta | default: 'products.product.add_to_cart' | t -%}
 
 <section class="pagehead" style="padding-top: 40px">
@@ -84,6 +87,14 @@
 
         <h1 class="pdp__title">{{ product.title }}</h1>
 
+        {%- if rnd -%}
+          <div class="pdp__rnd">
+            <span class="rnd__status"><i class="rnd__dot"></i>Status / R&amp;D</span>
+            <p class="pdp__desc">{{ product.metafields.proof.tagline | default: product.description | strip_html | truncatewords: 45 }}</p>
+            <p class="card__soon">In research &amp; development · Not yet available</p>
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">Back to the shop</a>
+          </div>
+        {%- else -%}
         {% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
           <div class="pdp__price num" data-price>{{ v.price | money }}</div>
 
@@ -159,8 +170,9 @@
             </span>
           </button>
         {% endform %}
+        {%- endif -%}
 
-        {%- if section.settings.show_installments -%}
+        {%- if section.settings.show_installments and rnd == false -%}
           <p class="pdp__pay">
             or 4 interest-free payments of <b class="num" data-installment>{{ v.price | divided_by: 4 | money }}</b>
           </p>
@@ -221,6 +233,7 @@
 </section>
 
 {% comment %} Barre d'achat collante mobile — révélée par proof.js quand le CTA sort du cadre {% endcomment %}
+{%- unless rnd -%}
 <div class="buybar" data-buybar aria-hidden="true">
   <div class="buybar__name">
     {{ product.title }}
@@ -230,6 +243,7 @@
     <span data-add-label>{{ cta }} &middot; {{ v.price | money }}</span>
   </button>
 </div>
+{%- endunless -%}
 
 <script type="application/ld+json">
   {{ product | structured_data }}

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/lib/products";
+import { liveProducts } from "@/lib/products";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${SITE_URL}/`, lastModified: now, priority: 1 },
     { url: `${SITE_URL}/shop`, lastModified: now, priority: 0.9 },
-    ...products.map((p) => ({
+    ...liveProducts.map((p) => ({
       url: `${SITE_URL}/shop/${p.slug}`,
       lastModified: now,
       priority: 0.8,

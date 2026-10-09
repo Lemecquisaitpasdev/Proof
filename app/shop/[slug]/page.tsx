@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import KintsugiLine from "@/components/KintsugiLine";
 import PlateVisual from "@/components/PlateVisual";
 import PdpGallery from "@/components/PdpGallery";
@@ -11,7 +11,7 @@ import PdpResults from "@/components/PdpResults";
 import PdpReviews from "@/components/PdpReviews";
 import PdpRoutine from "@/components/PdpRoutine";
 import TechReveal from "@/components/TechReveal";
-import { BATCH, formatPrice, getProduct, products } from "@/lib/products";
+import { BATCH, formatPrice, getProduct, isLive, liveProducts } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 import { getReviews } from "@/lib/reviews";
 
@@ -48,14 +48,15 @@ function HonorFigure({ shot, variant }: { shot: HonorShot; variant: string }) {
   );
 }
 
+/* seules les fiches en vente sont générées ; un instrument en R&D n'a pas de page */
 export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+  return liveProducts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product) return {};
+  if (!product || !isLive(product)) return {};
   return {
     title: `${product.name}, ${formatPrice(product.price)}`,
     description: product.metaDescription,
@@ -66,6 +67,8 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
+  /* en R&D : un ancien lien renvoie à la boutique plutôt qu'à une fiche morte */
+  if (!isLive(product)) redirect("/shop");
 
   const primary = productImage(product.slug);
   /* galerie : visuel principal + objet studio + détails, dédupliqués */
@@ -106,7 +109,7 @@ export default async function ProductPage({ params }: Props) {
 
   const companions = (PAIRS[product.slug] ?? [])
     .map((s) => getProduct(s))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p));
+    .filter((p): p is NonNullable<typeof p> => Boolean(p) && isLive(p!));
 
   const jsonLd = {
     "@context": "https://schema.org",

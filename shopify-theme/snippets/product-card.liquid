@@ -2,7 +2,53 @@
   Carte boutique. L'image fait la carte : état primaire lumineux, puis
   crossfade vers la seconde image du produit au survol (.card__alt).
   Le quick-add poste sur /cart/add.js sans ouvrir le tiroir.
+
+  Produit tagué « rnd » (recherche & développement) : ni lien, ni prix,
+  ni ajout. Le motif cellulaire du silicone (assets/rnd-cells.webp) prend
+  la place de la photo, rallumé par une onde dorée qui part du centre.
 {% endcomment %}
+{%- if product.tags contains 'rnd' -%}
+  {%- assign code = product.metafields.proof.code | default: '' -%}
+  {%- assign shift = code | slice: -2, 2 | times: 0.9 -%}
+  {%- capture cells -%}
+    <img src="{{ 'rnd-cells.webp' | asset_url }}" alt="" width="1536" height="1024" loading="lazy" style="object-fit:cover;position:absolute;inset:0;width:100%;height:100%">
+  {%- endcapture -%}
+  <article class="card card--rnd" data-reveal aria-label="{{ product.title | escape }}, in research and development">
+    <div class="card__visual" style="--rnd-shift: -{{ shift }}s">
+      <span class="rnd__culture" aria-hidden="true">
+        <span class="rnd__cells">{{ cells }}</span>
+        <span class="rnd__wave">{{ cells }}</span>
+        <span class="rnd__wave rnd__wave--late">{{ cells }}</span>
+      </span>
+      <span class="rnd" aria-hidden="true">
+        <span class="rnd__top">
+          <span class="rnd__status"><i class="rnd__dot"></i>Status / R&amp;D</span>
+          <span>{{ code }}</span>
+        </span>
+        <span class="rnd__center">
+          <span class="rnd__title">In research<br>&amp; development</span>
+          <svg class="kline rnd__line" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true" data-draw>
+            <path d="M2 8.6 C 40 7, 72 10.6, 112 8.4 C 152 6.4, 182 10.4, 226 8.2 C 258 6.8, 282 9, 298 8" pathLength="1" vector-effect="non-scaling-stroke"/>
+            <path d="M196 8.7 C 222 7.2, 244 6, 266 5.2" pathLength="1" vector-effect="non-scaling-stroke"/>
+          </svg>
+        </span>
+        <span class="rnd__bottom">Under examination at the lab</span>
+      </span>
+    </div>
+
+    <div class="card__body">
+      {%- assign chapter = product.metafields.proof.chapter -%}
+      {%- if chapter != blank -%}
+        <span class="card__chapter">
+          {{ chapter }}{% if product.metafields.proof.chapter_name != blank %} · {{ product.metafields.proof.chapter_name }}{% endif %}
+        </span>
+      {%- endif -%}
+      <h3 class="card__name">{{ product.title }}</h3>
+      <p class="card__desc">{{ product.metafields.proof.card_line | default: product.description | strip_html | truncatewords: 18 }}</p>
+      <p class="card__soon">In development · Not yet available</p>
+    </div>
+  </article>
+{%- else -%}
 <article class="card" data-reveal>
   {%- assign badge = product.metafields.proof.badge -%}
   {%- if badge != blank -%}<span class="badge card__badge">{{ badge }}</span>{%- endif -%}
@@ -70,3 +116,4 @@
     </div>
   </div>
 </article>
+{%- endif -%}

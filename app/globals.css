@@ -1467,6 +1467,11 @@ html.js [data-parallax] {
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
+  /* une colonne : l'instrument en vente passe devant ceux en R&D */
+  .cards > :has(> .card:not(.card--rnd)) {
+    order: -1;
+  }
 }
 
 .card {
@@ -1605,6 +1610,196 @@ html.js [data-parallax] {
 .card__add.is-added {
   color: var(--gold-deep);
   border-color: var(--kintsugi);
+}
+
+/* — Instrument en R&D : culture cellulaire. Le motif silicone, inversé en
+     fond noir de microscope ; deux ondes dorées décalées le propagent depuis
+     le centre, cellule après cellule, en boucle. Statut mono, cadre filet or,
+     titre souligné d'une fêlure. — */
+.card--rnd .card__visual {
+  cursor: default;
+  background: var(--base);
+  --rnd-cycle: 7s;
+}
+
+.rnd__culture {
+  position: absolute;
+  inset: 0;
+  animation: rnd-breathe 14s ease-in-out var(--rnd-shift, 0s) infinite alternate;
+}
+
+.rnd__cells,
+.rnd__wave {
+  position: absolute;
+  inset: 0;
+}
+
+/* membranes à peine lisibles sur le noir : la culture au repos */
+.rnd__cells img {
+  filter: invert(1) sepia(0.5) brightness(0.78) contrast(1.15);
+}
+
+/* l'onde : les mêmes cellules, membranes passées à l'or, révélées par un
+   anneau qui s'élargit (mask-size) — la colonie gagne du terrain */
+.rnd__wave {
+  -webkit-mask: radial-gradient(circle closest-side, transparent 52%, #000 74%, #000 86%, transparent 100%) 50% 50% / 0% 0% no-repeat;
+  mask: radial-gradient(circle closest-side, transparent 52%, #000 74%, #000 86%, transparent 100%) 50% 50% / 0% 0% no-repeat;
+  animation: rnd-propagate var(--rnd-cycle) cubic-bezier(0.3, 0.1, 0.3, 1) var(--rnd-shift, 0s) infinite;
+}
+
+.rnd__wave--late {
+  animation-delay: calc(var(--rnd-shift, 0s) - var(--rnd-cycle) / 2);
+}
+
+.rnd__wave img {
+  filter: invert(1) sepia(1) saturate(2.4) hue-rotate(-6deg) brightness(1.05) contrast(1.35);
+}
+
+@keyframes rnd-propagate {
+  0% {
+    -webkit-mask-size: 0% 0%;
+    mask-size: 0% 0%;
+    opacity: 0.95;
+  }
+  70% {
+    opacity: 0.75;
+  }
+  100% {
+    -webkit-mask-size: 290% 290%;
+    mask-size: 290% 290%;
+    opacity: 0;
+  }
+}
+
+@keyframes rnd-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.rnd {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px;
+  background:
+    radial-gradient(ellipse 46% 22% at 50% 50%, rgba(15, 13, 10, 0.78), rgba(15, 13, 10, 0) 100%),
+    radial-gradient(ellipse 85% 85% at 50% 50%, rgba(15, 13, 10, 0) 55%, rgba(15, 13, 10, 0.7) 100%);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--contrast-55);
+}
+
+/* cadre filet or, en retrait, comme une plaque de spécimen */
+.rnd::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201, 162, 39, 0.4);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+.rnd__top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rnd__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--gold-deep);
+}
+
+.rnd__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kintsugi);
+  animation: rnd-pulse 2.4s ease-out infinite;
+}
+
+@keyframes rnd-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px rgba(201, 162, 39, 0);
+  }
+}
+
+.rnd__center {
+  position: relative;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rnd__title {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.04;
+  letter-spacing: -0.005em;
+  color: var(--contrast);
+}
+
+.rnd__line {
+  width: 78%;
+  height: 10px;
+  margin-top: 14px;
+}
+
+.rnd__bottom {
+  position: relative;
+  text-align: center;
+}
+
+.card__soon {
+  display: flex;
+  align-items: center;
+  min-height: 27px;
+  margin-top: 10px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+/* sans mouvement : une seule onde, figée à mi-course */
+@media (prefers-reduced-motion: reduce) {
+  .rnd__dot,
+  .rnd__culture,
+  .rnd__wave {
+    animation: none;
+  }
+
+  .rnd__wave {
+    -webkit-mask-size: 170% 170%;
+    mask-size: 170% 170%;
+    opacity: 0.8;
+  }
+
+  .rnd__wave--late {
+    display: none;
+  }
 }
 
 /* ============ 12 — PLATE VISUAL (produit CSS, lumière) ============ */
@@ -3453,6 +3648,10 @@ html.js .ritual--live .rstep {
 
 .specs td.is-ink {
   color: var(--contrast);
+}
+
+.specs .specs__rnd {
+  color: var(--gold-deep);
 }
 
 .specs-scroll {

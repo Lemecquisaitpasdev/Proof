@@ -90,6 +90,10 @@ export type Product = {
   chapter: string;
   chapterName: string;
   badge?: string;
+  /* « rnd » : instrument encore en recherche & développement. La card reste
+     visible (voile R&D, ni lien ni prix), mais la fiche produit, le panier,
+     le sitemap et les ventes croisées l'ignorent. Absent → en vente. */
+  status?: "rnd";
   cardLine: string;
   tagline: string;
   bestFor: string;
@@ -111,6 +115,7 @@ export const products: Product[] = [
   {
     slug: "the-patch",
     name: "The Patch",
+    status: "rnd",
     code: "PR-01",
     method: "Occlusion therapy · 12–23 h",
     cta: "Claim your proof",
@@ -397,6 +402,7 @@ export const products: Product[] = [
   {
     slug: "protocol",
     name: "The Protocol",
+    status: "rnd",
     code: "PR-03",
     method: "Full protocol · patch by night, gel by day",
     cta: "Begin the protocol",
@@ -484,6 +490,13 @@ export function getProduct(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);
 }
 
+/* En vente : ni en R&D, ni autre statut à venir */
+export function isLive(product: Product): boolean {
+  return !product.status;
+}
+
+export const liveProducts: Product[] = products.filter(isLive);
+
 /* ---- Lignes de panier : « slug » ou « slug#variantId » ---- */
 
 export function makeKey(slug: string, variantId?: string): string {
@@ -506,7 +519,8 @@ export type Line = {
 export function resolveLine(key: string): Line | null {
   const { slug, variantId } = parseKey(key);
   const product = getProduct(slug);
-  if (!product) return null;
+  /* un instrument en R&D ne s'achète pas : la ligne est purgée du panier */
+  if (!product || !isLive(product)) return null;
 
   if (!product.variants?.length) {
     return { product, label: product.name, price: product.price };

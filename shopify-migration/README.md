@@ -62,6 +62,13 @@ Admin Shopify → **Produits → Importer** → `products.csv`.
 le thème lit (chapitre, méthode, accroche, couverture…), en colonnes
 `Metafield: …` prises en charge nativement par l'import.
 
+**The Patch et The Protocol sont en R&D** (`status: "rnd"` dans
+`lib/products.ts`) : ils sortent avec le tag `rnd` et un stock à 0
+(politique `deny`). Le thème affiche alors la carte « In research &
+development » (motif cellulaire animé, ni lien ni prix) et remplace le
+formulaire de la fiche par un statut. Pour lancer un produit : retirer le
+tag `rnd` dans l'admin et renseigner son stock.
+
 Pense à créer les **définitions de metafields** (Paramètres → Metafields →
 Produits / Variantes) avec le même namespace `proof` : sans elles les valeurs
 sont bien importées, mais restent invisibles dans l'admin.

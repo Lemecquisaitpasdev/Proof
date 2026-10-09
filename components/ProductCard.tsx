@@ -13,7 +13,7 @@ import KintsugiLine from "@/components/KintsugiLine";
  * visible d'emblée.
  *
  * Instrument en R&D : même gabarit, mais ni lien ni prix. La photo cède
- * la place au motif cellulaire du silicone, qu'une onde dorée propage
+ * la place au motif cellulaire du silicone, qu'une onde de lumière blanche propage
  * depuis le centre (cadre filet or, statut mono, titre souligné d'une
  * fêlure kintsugi) ; le pied annonce « pas encore disponible ».
  */

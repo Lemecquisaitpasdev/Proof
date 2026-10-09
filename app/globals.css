@@ -1613,7 +1613,7 @@ html.js [data-parallax] {
 }
 
 /* — Instrument en R&D : culture cellulaire. Le motif silicone, inversé en
-     fond noir de microscope ; deux ondes dorées décalées le propagent depuis
+     fond noir de microscope ; deux ondes de lumière blanche, décalées, le propagent depuis
      le centre, cellule après cellule, en boucle. Statut mono, cadre filet or,
      titre souligné d'une fêlure. — */
 .card--rnd .card__visual {
@@ -1639,7 +1639,7 @@ html.js [data-parallax] {
   filter: invert(1) sepia(0.5) brightness(0.78) contrast(1.15);
 }
 
-/* l'onde : les mêmes cellules, membranes passées à l'or, révélées par un
+/* l'onde : les mêmes cellules, membranes portées au blanc, révélées par un
    anneau qui s'élargit (mask-size) — la colonie gagne du terrain */
 .rnd__wave {
   -webkit-mask: radial-gradient(circle closest-side, transparent 52%, #000 74%, #000 86%, transparent 100%) 50% 50% / 0% 0% no-repeat;
@@ -1652,7 +1652,7 @@ html.js [data-parallax] {
 }
 
 .rnd__wave img {
-  filter: invert(1) sepia(1) saturate(2.4) hue-rotate(-6deg) brightness(1.05) contrast(1.35);
+  filter: invert(1) grayscale(1) brightness(1.55) contrast(1.45);
 }
 
 @keyframes rnd-propagate {

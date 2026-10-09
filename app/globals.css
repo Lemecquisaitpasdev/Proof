@@ -2093,13 +2093,14 @@ html.js [data-parallax] {
   border-color: var(--kintsugi);
 }
 
-/* — Instrument en R&D : culture cellulaire. Le motif silicone, inversé en
-     fond noir de microscope ; deux ondes de lumière blanche, décalées, le propagent depuis
-     le centre, cellule après cellule, en boucle. Statut mono, cadre filet or,
-     titre souligné d'une fêlure. — */
+/* — Instrument en R&D : culture cellulaire. Le motif silicone dans ses
+     tons naturels, sur fond bone (le clair de la DA) ; au repos les cellules
+     sont légèrement floues, deux ondes de lumière blanche, décalées, les
+     mettent au point depuis le centre, en boucle. Texte encre, cadre filet
+     or, titre souligné d'une fêlure. — */
 .card--rnd .card__visual {
   cursor: default;
-  background: var(--base);
+  background: #e6e0d5;
   --rnd-cycle: 7s;
 }
 
@@ -2115,13 +2116,13 @@ html.js [data-parallax] {
   inset: 0;
 }
 
-/* membranes à peine lisibles sur le noir : la culture au repos */
+/* la culture au repos : tons bone, adoucis, à peine flous */
 .rnd__cells img {
-  filter: invert(1) sepia(0.5) brightness(0.78) contrast(1.15);
+  filter: sepia(0.4) saturate(0.8) brightness(0.9) contrast(0.85) blur(0.7px);
 }
 
-/* l'onde : les mêmes cellules, membranes portées au blanc, révélées par un
-   anneau qui s'élargit (mask-size) — la colonie gagne du terrain */
+/* l'onde : les mêmes cellules, nettes et éclairées de blanc, révélées par
+   un anneau qui s'élargit (mask-size) — la colonie gagne du terrain */
 .rnd__wave {
   -webkit-mask: radial-gradient(circle closest-side, transparent 52%, #000 74%, #000 86%, transparent 100%) 50% 50% / 0% 0% no-repeat;
   mask: radial-gradient(circle closest-side, transparent 52%, #000 74%, #000 86%, transparent 100%) 50% 50% / 0% 0% no-repeat;
@@ -2133,17 +2134,17 @@ html.js [data-parallax] {
 }
 
 .rnd__wave img {
-  filter: invert(1) grayscale(1) brightness(1.55) contrast(1.45);
+  filter: sepia(0.3) saturate(0.85) brightness(0.98) contrast(1.25);
 }
 
 @keyframes rnd-propagate {
   0% {
     -webkit-mask-size: 0% 0%;
     mask-size: 0% 0%;
-    opacity: 0.95;
+    opacity: 0.85;
   }
   70% {
-    opacity: 0.75;
+    opacity: 0.6;
   }
   100% {
     -webkit-mask-size: 290% 290%;
@@ -2169,14 +2170,13 @@ html.js [data-parallax] {
   flex-direction: column;
   justify-content: space-between;
   padding: 26px;
-  background:
-    radial-gradient(ellipse 46% 22% at 50% 50%, rgba(15, 13, 10, 0.78), rgba(15, 13, 10, 0) 100%),
-    radial-gradient(ellipse 85% 85% at 50% 50%, rgba(15, 13, 10, 0) 55%, rgba(15, 13, 10, 0.7) 100%);
+  /* voile bone au centre : le titre se lit sur les membranes */
+  background: radial-gradient(ellipse 50% 24% at 50% 50%, rgba(230, 224, 213, 0.86), rgba(230, 224, 213, 0) 100%);
   font-family: var(--font-mono), monospace;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--contrast-55);
+  color: var(--base-55);
 }
 
 /* cadre filet or, en retrait, comme une plaque de spécimen */
@@ -2184,7 +2184,7 @@ html.js [data-parallax] {
   content: "";
   position: absolute;
   inset: 12px;
-  border: 1px solid rgba(201, 162, 39, 0.4);
+  border: 1px solid rgba(150, 115, 20, 0.5);
   border-radius: var(--radius-sm);
   pointer-events: none;
 }
@@ -2201,7 +2201,7 @@ html.js [data-parallax] {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  color: var(--gold-deep);
+  color: #7e6412;
 }
 
 .rnd__dot {
@@ -2238,7 +2238,7 @@ html.js [data-parallax] {
   font-size: clamp(20px, 2vw, 26px);
   line-height: 1.04;
   letter-spacing: -0.005em;
-  color: var(--contrast);
+  color: var(--base);
 }
 
 .rnd__line {

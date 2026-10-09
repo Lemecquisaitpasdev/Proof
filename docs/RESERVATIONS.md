@@ -23,15 +23,16 @@ Sans stockage, la page s'affiche mais répond « Reservations open in a
 moment » : rien n'est perdu, rien n'est enregistré.
 
 1. **Stockage** — Vercel → le projet → **Storage** → **Create Database** →
-   choisir **Upstash**, produit **Redis** (pas « Redis Cloud », qui ne parle
-   pas l'API REST utilisée ici) → offre **Free** → région proche des
-   visiteurs (ex. Washington D.C. / us-east-1 pour les États-Unis) → nom
-   `proof-reservations` → Create.
-   Puis **Connect Project** : projet `proof`, cocher **Production, Preview
-   et Development**. Le préfixe des variables peut rester vide ou valoir
-   `STORAGE` : le code accepte n'importe quel préfixe
-   (`KV_REST_API_URL` / `KV_REST_API_TOKEN`, ou
-   `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`).
+   **Upstash (Redis)** ou **Redis (Redis Cloud)**, offre gratuite, région
+   proche des visiteurs (ex. Washington D.C. / us-east-1 pour les
+   États-Unis) → Create. Puis **Connect Project** : projet `proof`,
+   environnements **Production et Preview** (et Development si besoin).
+   Le préfixe proposé (ex. `STORAGE`) peut rester tel quel : le code
+   reconnaît les deux familles de variables, quel que soit le préfixe :
+   - Upstash : `KV_REST_API_URL` + `KV_REST_API_TOKEN` (ou
+     `UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`) ;
+   - Redis Cloud : une URL `redis://` ou `rediss://` (`REDIS_URL`, ou
+     `STORAGE_URL` avec le préfixe).
 2. **Clé d'export** — Settings → **Environment Variables** → ajouter
    `RESERVATIONS_ADMIN_KEY`, une longue chaîne aléatoire connue de toi seul,
    pour les trois environnements.
@@ -47,7 +48,8 @@ moment » : rien n'est perdu, rien n'est enregistré.
   `https://<ton-site>/api/reserve/export?key=<RESERVATIONS_ADMIN_KEY>`
   Colonnes : reservation, batch, email, quantity, product, created_at.
   Garde ce lien privé : il donne accès aux e-mails.
-- En direct : console Upstash → Data Browser → clé `proof:reservations`.
+- En direct : la console de la base (Upstash : Data Browser ; Redis Cloud :
+  Redis Insight), clé `proof:reservations`.
 
 ## E-mail de confirmation (facultatif)
 
@@ -73,7 +75,7 @@ du visiteur). Pour envoyer aussi une confirmation par e-mail :
 ## Données personnelles
 
 Seuls l'e-mail, la quantité, le numéro et la date sont conservés (pas d'IP).
-Pour supprimer quelqu'un sur demande : console Upstash, clé
+Pour supprimer quelqu'un sur demande : dans la console de la base, clé
 `proof:reservations`, supprimer le champ de son e-mail.
 
 ## Où est le code
@@ -81,7 +83,7 @@ Pour supprimer quelqu'un sur demande : console Upstash, clé
 | Fichier | Rôle |
 |---|---|
 | `lib/reserve.ts` | Réglages : série, taille du lot, quantité max, durée de maintien |
-| `lib/reservations-store.ts` | Stockage Upstash, tirage des numéros, anti-abus |
+| `lib/reservations-store.ts` | Stockage Redis (Upstash ou Redis Cloud), tirage des numéros, anti-abus |
 | `lib/reservations-mail.ts` | E-mail de confirmation (Resend), facultatif |
 | `app/api/reserve/route.ts` | API de réservation |
 | `app/api/reserve/export/route.ts` | Export CSV protégé |

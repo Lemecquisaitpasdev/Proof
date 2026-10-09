@@ -1,7 +1,10 @@
 /**
  * RÉSERVATIONS — stockage (serveur uniquement : n'importer que depuis
- * app/api/*). Upstash Redis via son API REST, sans dépendance : il suffit
- * d'ajouter l'intégration Upstash au projet Vercel, qui injecte les clés.
+ * app/api/*). N'importe quel Redis branché sur le projet Vercel :
+ *   - Upstash, par son API REST (KV_REST_API_URL / _TOKEN…) ;
+ *   - Redis Cloud ou tout Redis classique, par son URL redis:// ou rediss://
+ *     (REDIS_URL, ou STORAGE_URL si Vercel a ajouté un préfixe).
+ * Les deux reçoivent exactement les mêmes commandes.
  *
  * Clés :
  *   proof:pool:<série>         set des numéros encore libres (« 001 »…« 500 »)
@@ -13,6 +16,7 @@
  * deux fois, même sous des réservations simultanées. Une série épuisée
  * bascule sur la suivante (017 → 018).
  */
+import { createClient } from "redis";
 import { RESERVE, pad3, type Reservation } from "@/lib/reserve";
 
 type Cmd = (string | number)[];
@@ -32,7 +36,7 @@ const PAIRS = [
   ["UPSTASH_REDIS_REST_URL", "UPSTASH_REDIS_REST_TOKEN"],
 ] as const;
 
-function config() {
+function restConfig() {
   for (const [urlName, tokenName] of PAIRS) {
     for (const key of Object.keys(process.env)) {
       if (key !== urlName && !key.endsWith(`_${urlName}`)) continue;
@@ -45,22 +49,59 @@ function config() {
   return null;
 }
 
-export const storeConfigured = () => config() !== null;
+/* Redis classique : la première variable *_URL (ou REDIS_URL) dont la
+   valeur est une adresse redis:// ou rediss://. */
+function tcpUrl() {
+  const candidates = Object.keys(process.env)
+    .filter((k) => k === "REDIS_URL" || k.endsWith("_URL"))
+    .sort((a, b) => Number(b.endsWith("REDIS_URL")) - Number(a.endsWith("REDIS_URL")));
+  for (const key of candidates) {
+    const value = process.env[key] ?? "";
+    if (/^rediss?:\/\//.test(value)) return value;
+  }
+  return null;
+}
+
+export const storeConfigured = () => restConfig() !== null || tcpUrl() !== null;
+
+/* Une connexion réutilisée tant que la fonction reste chaude ; oubliée à la
+   moindre erreur, pour qu'un appel suivant se reconnecte proprement. */
+let tcpClient: Promise<ReturnType<typeof createClient>> | null = null;
+
+function tcp(url: string) {
+  if (!tcpClient) {
+    const client = createClient({ url, socket: { connectTimeout: 5000 } });
+    client.on("error", () => {
+      tcpClient = null;
+    });
+    tcpClient = client.connect().then(() => client);
+    tcpClient.catch(() => {
+      tcpClient = null;
+    });
+  }
+  return tcpClient;
+}
 
 async function redis<T = unknown>(cmd: Cmd): Promise<T> {
-  const c = config();
-  if (!c) throw new StoreUnavailable();
-  const res = await fetch(c.url, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${c.token}`, "Content-Type": "application/json" },
-    body: JSON.stringify(cmd),
-    cache: "no-store",
-  });
-  const data = (await res.json().catch(() => ({}))) as { result?: T; error?: string };
-  if (!res.ok || data.error) {
-    throw new Error(`redis ${cmd[0]} failed: ${data.error ?? res.status}`);
+  const rest = restConfig();
+  if (rest) {
+    const res = await fetch(rest.url, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${rest.token}`, "Content-Type": "application/json" },
+      body: JSON.stringify(cmd),
+      cache: "no-store",
+    });
+    const data = (await res.json().catch(() => ({}))) as { result?: T; error?: string };
+    if (!res.ok || data.error) {
+      throw new Error(`redis ${cmd[0]} failed: ${data.error ?? res.status}`);
+    }
+    return data.result as T;
   }
-  return data.result as T;
+
+  const url = tcpUrl();
+  if (!url) throw new StoreUnavailable();
+  const client = await tcp(url);
+  return (await client.sendCommand(cmd.map(String))) as T;
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

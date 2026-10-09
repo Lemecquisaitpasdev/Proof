@@ -183,6 +183,13 @@ textarea {
   margin-top: clamp(40px, 5vw, 72px);
 }
 
+/* filet de sécurité : rien ne doit élargir la page sur mobile (un mot
+   géant élargit la zone de mise en page, la page « flotte » de côté et les
+   éléments fixes se décalent). clip, et non hidden : le sticky survit. */
+main {
+  overflow-x: clip;
+}
+
 /* statement typographique géant — un seul message par écran */
 .statement {
   font-family: var(--font-archivo), Arial, sans-serif;
@@ -282,6 +289,11 @@ textarea {
 .d1 {
   font-size: clamp(44px, 7.2vw, 96px);
   line-height: 0.9;
+}
+
+/* titre à mot long (« INSTRUMENTS. ») : il doit tenir sur 342 px à 390 */
+.d1--fit {
+  font-size: clamp(33px, 8.8vw, 96px);
 }
 
 .d2 {
@@ -844,19 +856,191 @@ html.js [data-parallax] {
   }
 }
 
+/* bouton Menu : mobile seulement */
+.menubtn {
+  display: none;
+}
+
+/* Mobile : une ligne, Menu · logo centré · panier. La navigation passe
+   dans le panneau plein écran (.mnav). */
 @media (max-width: 660px) {
   .header__in {
-    height: auto;
-    flex-wrap: wrap;
-    padding-block: 14px;
-    row-gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    height: 60px;
+    gap: 12px;
   }
 
   .nav {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    display: none;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .menubtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-self: start;
+    min-height: 44px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--contrast);
+  }
+
+  .menubtn__icon {
+    display: grid;
+    gap: 5px;
+    width: 18px;
+  }
+
+  .menubtn__icon i {
+    display: block;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .menubtn__icon i + i {
+    width: 62%;
+    background: var(--kintsugi);
+  }
+
+  .cartbtn {
+    justify-self: end;
+    border: 0;
+    padding: 12px 0;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* Panneau de navigation plein écran (mobile) */
+.mnav {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--pad) max(28px, env(safe-area-inset-bottom));
+  background: var(--base);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s var(--ease-out), visibility 0s linear 0.35s;
+}
+
+.mnav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s var(--ease-out), visibility 0s;
+}
+
+.mnav__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.mnav__close {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--contrast);
+}
+
+.mnav__list {
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(28px, 7vh, 64px);
+}
+
+.mnav__link {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  font-size: clamp(34px, 10.5vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--contrast);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+  transition-delay: calc(0.06s + var(--i, 0) * 0.05s);
+}
+
+.mnav.is-open .mnav__link {
+  opacity: 1;
+  transform: none;
+}
+
+.mnav__no {
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--gold-deep);
+  transform: translateY(-1.1em);
+}
+
+/* page courante : filet d'or sous le mot */
+.mnav__link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 38%;
+  height: 1px;
+  background: var(--kintsugi);
+}
+
+.mnav__foot {
+  margin-top: auto;
+  display: grid;
+  gap: 20px;
+}
+
+.mnav__ref {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+@media (min-width: 661px) {
+  .mnav {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mnav,
+  .mnav__link {
+    transition: none;
+  }
+
+  .mnav__link {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -1292,10 +1476,25 @@ html.js [data-parallax] {
   padding-bottom: clamp(40px, 6vw, 84px);
 }
 
-.trio {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gut);
+/* en-tête mobile seulement (cf. plus bas) */
+.trio-head {
+  display: none;
+}
+
+/* bureau : la piste du carrousel s'étale en grille de trois */
+@media (min-width: 861px) {
+  .trio .carousel__track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gut);
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trio .carousel__ctrl {
+    display: none;
+  }
 }
 
 .trio__card {
@@ -1414,13 +1613,30 @@ html.js [data-parallax] {
   transform: translateX(6px);
 }
 
+/* mobile : une respiration après la photo 01, puis une porte à la fois */
 @media (max-width: 860px) {
-  .trio {
-    grid-template-columns: 1fr;
+  .trio-sec {
+    padding-top: clamp(72px, 20vw, 112px);
+  }
+
+  .trio-head {
+    display: block;
+    margin-bottom: 22px;
   }
 
   .trio__card {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 5;
+  }
+
+  /* le texte se pose sur des photos claires : voile plus dense en pied */
+  .trio__scrim {
+    background: linear-gradient(
+      to top,
+      rgba(15, 13, 10, 0.92) 0%,
+      rgba(15, 13, 10, 0.7) 24%,
+      rgba(15, 13, 10, 0.25) 46%,
+      rgba(15, 13, 10, 0) 64%
+    );
   }
 }
 
@@ -1433,6 +1649,271 @@ html.js [data-parallax] {
 
   .trio__card:hover img {
     transform: none;
+  }
+}
+
+/* ============ 10c — CARROUSEL (générique, tactile) ============ */
+/* Piste aimantée qui déborde jusqu'aux bords de l'écran : la diapositive
+   suivante affleure à droite, invitation au geste. */
+
+.carousel__track {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  margin-inline: calc(var(--pad) * -1);
+  padding-inline: var(--pad);
+  scroll-padding-inline: var(--pad);
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__slide {
+  flex: 0 0 86%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.carousel__ctrl {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.carousel__btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--hairline-strong);
+  color: var(--contrast);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.carousel__btn:hover,
+.carousel__btn:active {
+  background: var(--kintsugi);
+  border-color: var(--kintsugi);
+  color: var(--base);
+}
+
+.carousel__btn:focus-visible {
+  outline: 2px solid var(--kintsugi);
+  outline-offset: 3px;
+}
+
+.carousel__count {
+  flex: none;
+  min-width: 7ch;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  color: var(--contrast);
+}
+
+.carousel__count span {
+  color: var(--dim);
+}
+
+.carousel__bars {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+}
+
+.carousel__bar {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  overflow: hidden;
+  background: var(--hairline-strong);
+}
+
+.carousel__bar i {
+  position: absolute;
+  inset: 0;
+  background: var(--kintsugi);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.carousel__bar.is-on i {
+  transform: scaleX(1);
+}
+
+/* avec minuterie : la barre active se remplit sur la durée du cycle */
+.carousel__ctrl.has-timer .carousel__bar.is-on i {
+  animation: carousel-fill var(--carousel-dur) linear both;
+}
+
+.carousel__ctrl.has-timer.is-paused .carousel__bar.is-on i {
+  animation-play-state: paused;
+}
+
+@keyframes carousel-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ============ 10d — LA GAMME (accueil) ============ */
+/* Bureau : grille de trois, le gel au centre (le bloc R&D se dissout dans
+   la grille via display: contents). Mobile : le gel seul, puis « R&D ». */
+
+.lineup__title {
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 115%;
+  text-transform: uppercase;
+  font-size: clamp(26px, 7.4vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  color: var(--contrast);
+  margin: 14px 0 0;
+}
+
+@media (min-width: 561px) {
+  .lineup {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 32px) var(--gut);
+  }
+
+  .lineup__lab,
+  .carousel--lab,
+  .carousel--lab .carousel__track,
+  .carousel--lab .carousel__slide {
+    display: contents;
+  }
+
+  .lineup__head,
+  .carousel--lab .carousel__ctrl {
+    display: none;
+  }
+
+  .lineup__live {
+    order: 2;
+  }
+
+  .carousel--lab .carousel__slide:first-child .lineup__item {
+    order: 1;
+  }
+
+  .carousel--lab .carousel__slide:last-child .lineup__item {
+    order: 3;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 1000px) {
+  .lineup {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .lineup__lab {
+    margin-top: clamp(72px, 20vw, 104px);
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .lineup__head {
+    margin-bottom: 24px;
+  }
+}
+
+/* ============ 10e — ACCUEIL MOBILE, version A (défaut) ============ */
+/* Mode comparaison temporaire (cf. components/HomeVariant) : la version B
+   garde le carrousel générique à aperçu, pour les portes comme pour la R&D. */
+
+@media (max-width: 860px) {
+  /* portes plein écran : bord à bord, sans aperçu ni arrondi, cinématique */
+  .home--a .trio .carousel__track {
+    gap: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .home--a .trio .carousel__slide {
+    flex-basis: 100%;
+  }
+
+  .home--a .trio__card {
+    border-radius: 0;
+  }
+
+  .home--a .trio .carousel__ctrl {
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* R&D en duo : les deux instruments d'un coup d'œil, au second plan */
+  .home--a .carousel--lab .carousel__track {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .home--a .carousel--lab .carousel__ctrl,
+  .home--a .carousel--lab .rnd__bottom,
+  .home--a .carousel--lab .rnd__top > span:last-child,
+  .home--a .carousel--lab .card__desc,
+  .home--a .carousel--lab .card__soonmore {
+    display: none;
+  }
+
+  .home--a .carousel--lab .rnd {
+    padding: 14px;
+  }
+
+  .home--a .carousel--lab .rnd::before {
+    inset: 7px;
+  }
+
+  .home--a .carousel--lab .rnd__status {
+    gap: 6px;
+    font-size: 8.5px;
+    letter-spacing: 0.14em;
+  }
+
+  .home--a .carousel--lab .rnd__title {
+    font-size: 12.5px;
+  }
+
+  .home--a .carousel--lab .rnd__line {
+    height: 6px;
+    margin-top: 8px;
+  }
+
+  .home--a .carousel--lab .card__body {
+    gap: 6px;
+    padding-top: 12px;
+  }
+
+  .home--a .carousel--lab .card__name {
+    font-size: 17px;
+  }
+
+  .home--a .carousel--lab .card__soon {
+    min-height: 0;
+    margin-top: 2px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
   }
 }
 

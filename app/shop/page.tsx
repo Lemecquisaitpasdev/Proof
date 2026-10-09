@@ -16,7 +16,7 @@ export default function ShopPage() {
       <section className="pagehead">
         <div className="container">
           <span className="eyebrow enter">The shop</span>
-          <h1 className="d1 enter" style={{ "--d": ".1s" } as React.CSSProperties}>
+          <h1 className="d1 d1--fit enter" style={{ "--d": ".1s" } as React.CSSProperties}>
             Three instruments.
           </h1>
           <p

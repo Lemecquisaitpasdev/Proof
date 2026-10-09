@@ -6,7 +6,9 @@ import PressMarquee from "@/components/PressMarquee";
 import RitualSteps from "@/components/RitualSteps";
 import Mechanism from "@/components/Mechanism";
 import StoryDialog from "@/components/StoryDialog";
-import { products } from "@/lib/products";
+import Carousel from "@/components/Carousel";
+import HomeVariant from "@/components/HomeVariant";
+import { isLive, products } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 
 /* Séquence d'entrée du hero, eyebrow → titre (mots, 40ms) → lead → CTAs
@@ -15,10 +17,12 @@ const D = (s: number) => ({ "--d": `${s}s` }) as React.CSSProperties;
 
 export default function HomePage() {
   const storyObject = productImage("story-object");
+  const live = products.filter(isLive);
+  const lab = products.filter((p) => !isLive(p));
   const bouchon = productImage("bouchon");
 
   return (
-    <>
+    <HomeVariant>
       {/* HÉROS — le manifeste */}
       <section className="hero">
         <div className="container hero__grid">
@@ -86,8 +90,16 @@ export default function HomePage() {
       {/* TROIS PORTES, apparitions / science / histoire */}
       <section className="section trio-sec">
         <div className="container">
-          <div className="trio" data-reveal-group>
-            <Link href="/story#world" className="trio__card" data-reveal>
+          {/* en-tête mobile : la respiration entre la photo 01 et les portes */}
+          <span className="mlabel trio-head" data-reveal>
+            Inside Proof / Three doors
+          </span>
+          {/* className constante pour le reveal ; le carrousel vit dedans.
+              Bureau : la piste s'étale en grille de trois. Mobile : une porte
+              à la fois, flèches, avance toutes les 3 s. */}
+          <div className="trio-reveal" data-reveal>
+            <Carousel label="Inside Proof" autoplay={3000} className="trio">
+            <Link href="/story#world" className="trio__card">
               <Image
                 src="/images/proofconferencekeynote.png"
                 alt="The Proof 17 conference, on stage before a wall of magnified silicone"
@@ -108,7 +120,7 @@ export default function HomePage() {
               </span>
             </Link>
 
-            <Link href="/science" className="trio__card" data-reveal>
+            <Link href="/science" className="trio__card">
               <Image
                 src="/products/gelsiliconemicrospe.png"
                 alt="Medical silicone magnified into a field of cells, exhibited on screen"
@@ -129,7 +141,7 @@ export default function HomePage() {
               </span>
             </Link>
 
-            <Link href="/story" className="trio__card" data-reveal>
+            <Link href="/story" className="trio__card">
               <Image
                 src={productImage("hero") ?? "/products/gelensiliconenutulisationfemme.png"}
                 alt="Real skin, a visible scar worn openly, the story behind Proof"
@@ -149,6 +161,7 @@ export default function HomePage() {
                 </span>
               </span>
             </Link>
+            </Carousel>
           </div>
         </div>
       </section>
@@ -167,12 +180,27 @@ export default function HomePage() {
           <h2 className="d2" style={{ marginTop: 14, marginBottom: 56 }} data-reveal>
             Three instruments. One discipline.
           </h2>
-          <div className="cards" data-reveal-group>
-            {products.map((p) => (
-              <div key={p.slug} data-reveal>
+          {/* Bureau : grille de trois, le gel au centre. Mobile : le gel seul,
+              puis un bloc « R&D » où les deux autres défilent en carrousel. */}
+          <div className="lineup">
+            {live.map((p) => (
+              <div key={p.slug} className="lineup__live" data-reveal>
                 <ProductCard product={p} />
               </div>
             ))}
+            <div className="lineup__lab">
+              <div className="lineup__head" data-reveal>
+                <span className="mlabel">From the lab / Not yet available</span>
+                <h3 className="lineup__title">In R&amp;D.</h3>
+              </div>
+              <Carousel label="In research and development" className="carousel--lab">
+                {lab.map((p) => (
+                  <div key={p.slug} className="lineup__item" data-reveal>
+                    <ProductCard product={p} />
+                  </div>
+                ))}
+              </Carousel>
+            </div>
           </div>
         </div>
       </section>
@@ -243,7 +271,7 @@ export default function HomePage() {
           <p className="statement" data-reveal>
             Honor it.
             <br />
-            Don&apos;t&nbsp;erase&nbsp;it.
+            Don&apos;t erase&nbsp;it.
           </p>
         </div>
       </section>
@@ -429,6 +457,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </HomeVariant>
   );
 }

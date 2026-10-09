@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { formatPrice, resolveLine } from "@/lib/products";
+import { RESERVE, reserveHref } from "@/lib/reserve";
 import Posology from "@/components/Posology";
 
 export default function CheckoutPage() {
@@ -74,6 +75,30 @@ export default function CheckoutPage() {
             </div>
 
             <div>
+              {RESERVE.open ? (
+                <>
+                  <Posology
+                    title="Payment, status"
+                    lines={[
+                      "Batch 017 is in the lab.",
+                      "Reserve now. No card, no payment today.",
+                    ]}
+                    sideEffects="Observed effects: first in line."
+                  />
+                  <Link
+                    className="btn btn--primary btn--block"
+                    style={{ marginTop: "var(--gut)" }}
+                    href={reserveHref(
+                      lines
+                        .filter(({ line }) => line?.product.slug === RESERVE.product)
+                        .reduce((n, { qty }) => n + qty, 0),
+                    )}
+                  >
+                    Reserve your bottles
+                  </Link>
+                </>
+              ) : (
+              <>
               <Posology
                 title="Payment, status"
                 lines={[
@@ -93,6 +118,8 @@ export default function CheckoutPage() {
               >
                 Get notified at the drop
               </a>
+              </>
+              )}
               <Link
                 href="/shop"
                 className="btn btn--ghost btn--block"

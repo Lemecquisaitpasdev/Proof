@@ -1,14 +1,20 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { formatPrice, makeKey, type Product } from "@/lib/products";
+import { RESERVE, reserveHref } from "@/lib/reserve";
 
 /**
  * BUY-BOX de la fiche produit + barre d'achat collante mobile.
  * Sélecteur de quantité minimal, ajout au panier, feedback en place.
  * La barre mobile apparaît dès que le bouton d'achat principal sort du
  * cadre (sentinelle + IntersectionObserver).
+ *
+ * Réservations ouvertes (lib/reserve.ts) : le bouton mène à /reserve avec la
+ * quantité choisie, et les promesses d'achat immédiat (expédition sous 48 h,
+ * paiement en 4 fois) laissent la place aux conditions de la réservation.
  */
 export default function PdpBuyBox({
   product,
@@ -44,6 +50,8 @@ export default function PdpBuyBox({
     return () => io.disconnect();
   }, []);
 
+  const reserving = RESERVE.open && product.slug === RESERVE.product;
+  const maxQty = reserving ? RESERVE.maxQuantity : 99;
   const variant = product.variants?.find((v) => v.id === variantId);
   const unitPrice = variant?.price ?? product.price;
   const onAdd = () => add(makeKey(product.slug, variant?.id), { qty });
@@ -93,7 +101,7 @@ export default function PdpBuyBox({
           <span className="num">{qty}</span>
           <button
             type="button"
-            onClick={() => setQty((q) => Math.min(99, q + 1))}
+            onClick={() => setQty((q) => Math.min(maxQty, q + 1))}
             aria-label="Increase quantity"
           >
             +
@@ -101,17 +109,54 @@ export default function PdpBuyBox({
         </div>
       </div>
 
-      <button
-        type="button"
-        className="btn btn--primary btn--pill pdp__cta"
-        onClick={onAdd}
-      >
-        {product.cta} · {formatPrice(unitPrice * qty)}
-      </button>
-      <p className="pdp__pay">
-        or 4 interest-free payments of <b className="num">{installment}</b>
-      </p>
+      {reserving ? (
+        <>
+          <Link href={reserveHref(qty)} className="btn btn--primary btn--pill pdp__cta">
+            {qty > 1 ? `Reserve ${qty} bottles` : "Reserve your bottle"} · {formatPrice(unitPrice * qty)}
+          </Link>
+          <p className="pdp__pay">
+            Batch 017 is in the lab. <b>No card, no payment today.</b>
+          </p>
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="btn btn--primary btn--pill pdp__cta"
+            onClick={onAdd}
+          >
+            {product.cta} · {formatPrice(unitPrice * qty)}
+          </button>
+          <p className="pdp__pay">
+            or 4 interest-free payments of <b className="num">{installment}</b>
+          </p>
+        </>
+      )}
 
+      {reserving ? (
+        <ul className="assure-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <rect x="3" y="5.5" width="18" height="13" rx="2" />
+              <path d="M3 10h18M6 15h4" strokeLinecap="round" />
+            </svg>
+            No card asked, no payment taken
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="8.5" />
+              <path d="M12 7.5V12l3 2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Held {RESERVE.holdHours} h after the launch email
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <path d="M4 9h11a5 5 0 010 10H9M4 9l4-4M4 9l4 4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Release your reservation anytime
+          </li>
+        </ul>
+      ) : (
       <ul className="assure-list">
         <li>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -137,6 +182,7 @@ export default function PdpBuyBox({
           Pay in 4, interest-free
         </li>
       </ul>
+      )}
 
       <div ref={sentinel} aria-hidden="true" />
 
@@ -163,9 +209,15 @@ export default function PdpBuyBox({
           {variant ? `${product.name}, ${variant.label}` : product.name}
           <small className="num">{formatPrice(unitPrice)}</small>
         </div>
-        <button type="button" className="btn btn--primary" onClick={onAdd}>
-          {product.cta} · {formatPrice(unitPrice * qty)}
-        </button>
+        {reserving ? (
+          <Link href={reserveHref(qty)} className="btn btn--primary">
+            Reserve · {formatPrice(unitPrice * qty)}
+          </Link>
+        ) : (
+          <button type="button" className="btn btn--primary" onClick={onAdd}>
+            {product.cta} · {formatPrice(unitPrice * qty)}
+          </button>
+        )}
       </div>
     </>
   );

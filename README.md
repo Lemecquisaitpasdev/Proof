@@ -90,6 +90,11 @@ Le panier vit côté client (`lib/cart.tsx`, persistance `localStorage`).
 La page `/checkout` est prête à être branchée sur Stripe, Shopify ou tout
 autre PSP — le bouton de paiement est volontairement en mode « drop à venir ».
 
+**En ce moment : réservations sans paiement** (test de marché avant la
+première série). Les boutons d'achat mènent à `/reserve`, qui attribue un
+numéro de réservation aléatoire et unique. Activation, export de la liste et
+jour du lancement : [`docs/RESERVATIONS.md`](docs/RESERVATIONS.md).
+
 ## Configuration
 
 - `NEXT_PUBLIC_SITE_URL` : URL canonique du site (sitemap, robots, Open

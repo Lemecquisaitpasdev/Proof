@@ -14,6 +14,7 @@ import TechReveal from "@/components/TechReveal";
 import { BATCH, formatPrice, getProduct, isLive, liveProducts } from "@/lib/products";
 import { productImage } from "@/lib/product-image";
 import { getReviews } from "@/lib/reviews";
+import { RESERVE } from "@/lib/reserve";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -178,11 +179,21 @@ export default async function ProductPage({ params }: Props) {
                 <details>
                   <summary>Shipping &amp; returns</summary>
                   <div className="acc__body">
-                    <p>
-                      Ships worldwide within 48 hours; most destinations arrive
-                      in 3 to 7 business days, tracked by email. Thirty-day
-                      returns, no interrogation.
-                    </p>
+                    {RESERVE.open && product.slug === RESERVE.product ? (
+                      <p>
+                        Batch 017 is in the lab and ships to reservations first.
+                        No card and no payment today: when it is ready, you get
+                        a link to claim your bottle, held {RESERVE.holdHours} hours.
+                        From then on, orders ship worldwide, tracked by email,
+                        with thirty-day returns.
+                      </p>
+                    ) : (
+                      <p>
+                        Ships worldwide within 48 hours; most destinations arrive
+                        in 3 to 7 business days, tracked by email. Thirty-day
+                        returns, no interrogation.
+                      </p>
+                    )}
                   </div>
                 </details>
                 <details>

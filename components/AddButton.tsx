@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { formatPrice, makeKey, type Product } from "@/lib/products";
+import { RESERVE } from "@/lib/reserve";
 
 /* Conditionnement par défaut : celui mis en avant, sinon le premier. */
 function defaultVariant(product: Product) {
@@ -26,6 +28,18 @@ export function AddToRitual({ product }: { product: Product }) {
 /* Quick-add, feedback en place : « Added ✓ » 1.5s, le compteur du
    header fait le spring. Le drawer ne s'ouvre pas ici. */
 export function CardAdd({ product }: { product: Product }) {
+  /* réservations ouvertes : la card mène au formulaire, pas au panier */
+  if (RESERVE.open && product.slug === RESERVE.product) {
+    return (
+      <Link href="/reserve" className="card__add" aria-label={`Reserve ${product.name}`}>
+        Reserve
+      </Link>
+    );
+  }
+  return <CardAddToCart product={product} />;
+}
+
+function CardAddToCart({ product }: { product: Product }) {
   const { add } = useCart();
   const [added, setAdded] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

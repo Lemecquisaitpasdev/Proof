@@ -4882,6 +4882,346 @@ html.js .ritual--live .rstep {
   align-items: start;
 }
 
+/* ============ RÉSERVATION (test de marché, sans paiement) ============ */
+
+/* masqué à l'écran, lu par les lecteurs d'écran */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rsv__lead {
+  margin-top: 24px;
+}
+
+.rsv__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.rsv__step {
+  margin: 0 0 36px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.rsv__legend {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding: 0;
+  margin-bottom: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--contrast);
+}
+
+.rsv__legend span {
+  color: var(--gold-deep);
+}
+
+.rsv__field {
+  display: block;
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: border-color 0.2s ease;
+}
+
+.rsv__field:focus-within {
+  border-color: var(--kintsugi);
+}
+
+.rsv__field input {
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 12px 2px;
+  font-size: 17px;
+  color: var(--contrast);
+}
+
+.rsv__field input::placeholder {
+  color: var(--contrast-40);
+}
+
+.rsv__field input:focus {
+  outline: none;
+}
+
+/* pot de miel, hors écran */
+.rsv__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.rsv__check {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 14px;
+  align-items: start;
+  cursor: pointer;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--contrast);
+}
+
+.rsv__check input {
+  position: absolute;
+  opacity: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+}
+
+.rsv__box {
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.rsv__check input:checked + .rsv__box {
+  background: var(--kintsugi);
+  border-color: var(--kintsugi);
+  box-shadow: inset 0 0 0 4px var(--base);
+}
+
+.rsv__check input:focus-visible + .rsv__box {
+  outline: 2px solid var(--kintsugi);
+  outline-offset: 3px;
+}
+
+.rsv__error {
+  min-height: 1.6em;
+  margin: 14px 0 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gold-deep);
+}
+
+.rsv__fine {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--dim);
+  max-width: 52ch;
+}
+
+/* récapitulatif, colonne de droite */
+.rsv__summary {
+  position: sticky;
+  top: 100px;
+  padding: clamp(20px, 2.4vw, 28px);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.rsv__visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  background: var(--base);
+}
+
+.rsv__name {
+  margin: 8px 0 6px;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 800;
+  font-stretch: 112%;
+  text-transform: uppercase;
+  font-size: 23px;
+  line-height: 1;
+  color: var(--contrast);
+}
+
+.rsv__line {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--dim);
+}
+
+.rsv__sum {
+  margin: 22px 0 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.rsv__sum div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.rsv__sum dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.rsv__sum dd {
+  margin: 0;
+  font-size: 15px;
+  color: var(--contrast);
+}
+
+.rsv__today dt,
+.rsv__today dd {
+  color: var(--gold-deep);
+}
+
+.rsv__points {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rsv__points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+/* losange or, le séparateur de la maison */
+.rsv__points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  background: var(--kintsugi);
+  transform: rotate(45deg);
+}
+
+/* les trois quantités restent côte à côte, même sur petit écran */
+.rsv .packs__row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .rsv__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* mobile : le formulaire d'abord ; le récapitulatif suit, sans photo */
+  .rsv__summary {
+    position: static;
+  }
+
+  .rsv__visual {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .rsv .pack {
+    padding: 14px 10px 12px;
+  }
+
+  .rsv .pack__label {
+    font-size: 12.5px;
+  }
+}
+
+/* certificat de réservation */
+.cert {
+  max-width: 640px;
+}
+
+.cert__no {
+  display: flex;
+  align-items: baseline;
+  gap: 0.18em;
+  margin: 18px 0 0;
+  font-family: var(--font-archivo), Arial, sans-serif;
+  font-weight: 900;
+  font-stretch: 122%;
+  font-size: clamp(88px, 20vw, 200px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--contrast);
+}
+
+.cert__sign {
+  font-size: 0.32em;
+  font-weight: 800;
+  color: var(--gold-deep);
+}
+
+.cert__lead {
+  margin-top: 36px;
+  max-width: 44ch;
+}
+
+.cert__table {
+  margin-top: 36px;
+  width: 100%;
+}
+
+/* une adresse e-mail ne passe pas en capitales */
+.cert__table .cert__email {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.cert__note {
+  margin: 20px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.cert__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.cert__reset {
+  margin-top: 32px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border-bottom: 1px solid var(--hairline-strong);
+  padding-bottom: 3px;
+}
+
+.cert__reset:hover {
+  color: var(--contrast);
+}
+
 /* ============ BRAND / TÉLÉCHARGEMENTS ============ */
 
 .brand-grid {

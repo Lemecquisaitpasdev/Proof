@@ -276,8 +276,6 @@ export const products: Product[] = [
         },
         {
           label: "After 8 weeks",
-          footnote:
-            "Illustrative figures, pending the 8-week user trial. To be replaced with verified study results before launch.",
           rows: [
             { pct: "84%", claim: "Agreed the scar looks flatter" },
             { pct: "79%", claim: "Agreed the color looks closer to their skin" },
